@@ -659,7 +659,7 @@
                 </div>
                 <p class="text-xs text-gray-500 leading-relaxed mb-6">Portal informasi wisata resmi Kabupaten Batang.
                     Menjelajahi keindahan alam, budaya, dan kearifan lokal Batang.</p>
-                <p class="text-[10px] text-gray-400 font-medium">© 2026 Wisata Batang. All rights reserved.</p>
+                <p class="text-[10px] text-gray-400 font-medium">Â© 2026 Wisata Batang. All rights reserved.</p>
             </div>
 
             <div>
@@ -732,19 +732,19 @@
         // Digunakan jika Supabase belum disetting (agar desain tetap tampil)
         // ---------------------------------------------------------
         let wisataData = [
-            { id: 1, nama: 'Pantai Sigandu', kategori: 'Wisata Alam', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', desc: 'Pantai Sigandu merupakan salah satu pantai terindah di Kabupaten Batang. Dikenal dengan pemandangan sunset yang memukau dan suasana yang tenang. Pantai ini cocok untuk bersantai, menikmati kuliner laut, dan berbagai aktivitas air lainnya.', harga: 'Rp 5.000 / orang', jam: '06.00 - 18.00 WIB' },
-            { id: 2, nama: 'Curug Gombong', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1432405972618-c600f44af205?auto=format&fit=crop&q=80&w=800', desc: 'Air terjun cantik di kaki Gunung Prau dengan udara yang sangat sejuk dan segar.', harga: 'Rp 10.000 / orang', jam: '07.00 - 17.00 WIB' },
-            { id: 3, nama: 'Safari Beach Jateng', kategori: 'Wisata Buatan', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1544735047-890250669299?auto=format&fit=crop&q=80&w=800', desc: 'Taman hiburan dan edukasi satwa (dulu Dolphin Center) yang cocok untuk rekreasi keluarga di tepi pantai.', harga: 'Rp 50.000 / orang', jam: '08.00 - 16.00 WIB' },
-            { id: 4, nama: 'Pemandian Air Panas', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1540544660406-6a69dacb2804?auto=format&fit=crop&q=80&w=800', desc: 'Relaksasi alami dengan air panas bumi yang dipercaya menyembuhkan berbagai penyakit kulit.', harga: 'Rp 8.000 / orang', jam: '24 Jam' },
-            { id: 5, nama: 'Makam Syekh Maulana Maghribi', kategori: 'Wisata Religi dan Budaya', lokasi: 'Kandangeman', foto: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800', desc: 'Kawasan wisata religi dan ziarah makam tokoh penyebar agama Islam yang terletak di bukit Ujungnegoro.', harga: 'Gratis', jam: '24 Jam' },
-            { id: 6, nama: 'Telaga Dringo', kategori: 'Wisata Alam', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800', desc: 'Danau vulkanik tertinggi di Jawa Tengah yang sering disebut Ranu Kumbolonya Jateng.', harga: 'Rp 10.000 / orang', jam: '24 Jam' }
+            { id: 1, nama: 'Pantai Sigandu', kategori: 'Wisata Alam', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pantai Sigandu merupakan salah satu pantai terindah di Kabupaten Batang. Dikenal dengan pemandangan sunset yang memukau dan suasana yang tenang. Pantai ini cocok untuk bersantai, menikmati kuliner laut, dan berbagai aktivitas air lainnya.', harga: 'Rp 5.000 / orang', jam: '06.00 - 18.00 WIB' },
+            { id: 2, nama: 'Curug Gombong', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1432405972618-c600f44af205?auto=format&fit=crop&q=80&w=800', deskripsi: 'Air terjun cantik di kaki Gunung Prau dengan udara yang sangat sejuk dan segar.', harga: 'Rp 10.000 / orang', jam: '07.00 - 17.00 WIB' },
+            { id: 3, nama: 'Safari Beach Jateng', kategori: 'Wisata Buatan', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1544735047-890250669299?auto=format&fit=crop&q=80&w=800', deskripsi: 'Taman hiburan dan edukasi satwa (dulu Dolphin Center) yang cocok untuk rekreasi keluarga di tepi pantai.', harga: 'Rp 50.000 / orang', jam: '08.00 - 16.00 WIB' },
+            { id: 4, nama: 'Pemandian Air Panas', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1540544660406-6a69dacb2804?auto=format&fit=crop&q=80&w=800', deskripsi: 'Relaksasi alami dengan air panas bumi yang dipercaya menyembuhkan berbagai penyakit kulit.', harga: 'Rp 8.000 / orang', jam: '24 Jam' },
+            { id: 5, nama: 'Makam Syekh Maulana Maghribi', kategori: 'Wisata Religi dan Budaya', lokasi: 'Kandangeman', foto: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800', deskripsi: 'Kawasan wisata religi dan ziarah makam tokoh penyebar agama Islam yang terletak di bukit Ujungnegoro.', harga: 'Gratis', jam: '24 Jam' },
+            { id: 6, nama: 'Telaga Dringo', kategori: 'Wisata Alam', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800', deskripsi: 'Danau vulkanik tertinggi di Jawa Tengah yang sering disebut Ranu Kumbolonya Jateng.', harga: 'Rp 10.000 / orang', jam: '24 Jam' }
         ];
 
         let eventData = [
-            { id: 101, judul: 'Festival Batang Bersholawat', tanggal: '15', bulan: 'JUN', lokasi: 'Alun-alun Batang', waktu: '15 Juni 2026', foto: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', desc: 'Festival tahunan yang diisi dengan lantunan sholawat, tausiyah, dan doa bersama untuk kemajuan Kabupaten Batang.' },
-            { id: 102, judul: 'Batang Creative Festival', tanggal: '22', bulan: 'JUN', lokasi: 'Alun-alun Batang', waktu: '22 Juni 2026', foto: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', desc: 'Pameran karya kreatif pemuda Batang, UMKM, dan pertunjukan musik lokal.' },
-            { id: 103, judul: 'Karnaval Budaya Batang', tanggal: '05', bulan: 'JUL', lokasi: 'Jl. Veteran, Batang', waktu: '5 Juli 2026', foto: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800', desc: 'Pawai pakaian adat dan kesenian tradisional dari berbagai kecamatan.' },
-            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'AGT', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', desc: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.' }
+            { id: 101, judul: 'Festival Batang Bersholawat', tanggal: '15', bulan: 'JUN', lokasi: 'Alun-alun Batang', waktu: '15 Juni 2026', foto: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', deskripsi: 'Festival tahunan yang diisi dengan lantunan sholawat, tausiyah, dan doa bersama untuk kemajuan Kabupaten Batang.' },
+            { id: 102, judul: 'Batang Creative Festival', tanggal: '22', bulan: 'JUN', lokasi: 'Alun-alun Batang', waktu: '22 Juni 2026', foto: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pameran karya kreatif pemuda Batang, UMKM, dan pertunjukan musik lokal.' },
+            { id: 103, judul: 'Karnaval Budaya Batang', tanggal: '05', bulan: 'JUL', lokasi: 'Jl. Veteran, Batang', waktu: '5 Juli 2026', foto: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pawai pakaian adat dan kesenian tradisional dari berbagai kecamatan.' },
+            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'AGT', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.' }
         ];
 
         // ---------------------------------------------------------
@@ -799,7 +799,7 @@
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h4 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-brand-600 transition">${item.nama}</h4>
-                        <p class="text-xs text-gray-500 line-clamp-2 mb-4">${item.desc}</p>
+                        <p class="text-xs text-gray-500 line-clamp-2 mb-4">${item.deskripsi}</p>
                         <div class="mt-auto text-[11px] font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
                             <i class="ph-fill ph-map-pin text-gray-300"></i> ${item.lokasi}
                         </div>
@@ -924,7 +924,7 @@
                         </div>
 
                         <h4 class="text-lg font-bold text-gray-900 mb-3">Deskripsi</h4>
-                        <p class="text-gray-600 leading-relaxed text-sm mb-10">${data.desc}</p>
+                        <p class="text-gray-600 leading-relaxed text-sm mb-10">${data.deskripsi}</p>
 
                         <h4 class="text-lg font-bold text-gray-900 mb-4">Fasilitas</h4>
                         <div class="flex flex-wrap gap-6 border-b border-gray-100 pb-10">
@@ -1005,7 +1005,7 @@
                         </div>
 
                         <h4 class="text-lg font-bold text-gray-900 mb-3">Deskripsi</h4>
-                        <p class="text-gray-600 leading-relaxed text-sm mb-10">${data.desc}</p>
+                        <p class="text-gray-600 leading-relaxed text-sm mb-10">${data.deskripsi}</p>
 
                         <h4 class="text-lg font-bold text-gray-900 mb-4">Detail Event</h4>
                         <div class="grid grid-cols-2 gap-y-4 text-sm">
@@ -1069,7 +1069,7 @@
             document.getElementById('inp-foto').value = data.foto || '';
             document.getElementById('inp-harga').value = data.harga || '';
             document.getElementById('inp-jam').value = data.jam || '';
-            document.getElementById('inp-desc').value = data.desc || '';
+            document.getElementById('inp-desc').value = data.deskripsi || '';
             
             document.getElementById('btn-submit-wisata').innerText = "Update Data Wisata";
             switchAdminTab('wisata');
@@ -1105,7 +1105,7 @@
             document.getElementById('inp-event-lokasi').value = data.lokasi || '';
             document.getElementById('inp-event-waktu').value = data.waktu || '';
             document.getElementById('inp-event-foto').value = data.foto || '';
-            document.getElementById('inp-event-desc').value = data.desc || '';
+            document.getElementById('inp-event-desc').value = data.deskripsi || '';
             
             document.getElementById('btn-submit-event').innerText = "Update Data Event";
             switchAdminTab('event');
@@ -1192,7 +1192,7 @@
                 kategori: document.getElementById('inp-kategori').value,
                 lokasi: document.getElementById('inp-lokasi').value,
                 foto: document.getElementById('inp-foto').value,
-                desc: document.getElementById('inp-desc').value,
+                deskripsi: document.getElementById('inp-desc').value,
                 harga: document.getElementById('inp-harga').value,
                 jam: document.getElementById('inp-jam').value
             };
@@ -1259,7 +1259,7 @@
                 lokasi: document.getElementById('inp-event-lokasi').value,
                 waktu: document.getElementById('inp-event-waktu').value,
                 foto: document.getElementById('inp-event-foto').value,
-                desc: document.getElementById('inp-event-desc').value
+                deskripsi: document.getElementById('inp-event-desc').value
             };
 
             if (isSupabaseConnected) {
@@ -1384,7 +1384,7 @@
                 <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Akses Admin</h3>
                 <p class="text-sm text-center text-gray-500 mb-6">Masukkan kode PIN untuk mengakses halaman administrator.</p>
                 
-                <input type="password" id="admin-pin-input" class="w-full border border-gray-300 rounded-lg p-3 text-center tracking-[0.5em] font-bold text-lg focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition" placeholder="••••••" maxlength="6">
+                <input type="password" id="admin-pin-input" class="w-full border border-gray-300 rounded-lg p-3 text-center tracking-[0.5em] font-bold text-lg focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" maxlength="6">
                 
                 <p id="pin-error" class="text-red-500 text-xs text-center mt-2 hidden">PIN salah. Silakan coba lagi.</p>
                 
