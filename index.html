@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wisata Batang - Portal Informasi Terpadu</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,8 +32,9 @@
     </script>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -41,17 +43,42 @@
 
     <style>
         /* Custom Scrollbar & Utility Classes */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f8fafc; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        
-        .page-view { display: none; animation: fadeIn 0.4s ease; }
-        .page-view.active { display: block; }
-        
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .page-view {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .line-clamp-2 {
@@ -62,9 +89,16 @@
         }
 
         /* Styling for the calendar mockup */
-        .calendar-grid div { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; }
+        .calendar-grid div {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
 
     <!-- ==================== NAVBAR ==================== -->
@@ -74,7 +108,8 @@
             <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
                 <img src="https://api.iconify.design/noto:sunrise-over-mountains.svg" alt="Logo" class="w-10 h-10">
                 <div>
-                    <h1 class="text-xl font-extrabold leading-none text-gray-900 tracking-tight">Wisata<br><span class="text-brand-800 uppercase text-xs tracking-widest font-bold">Batang</span></h1>
+                    <h1 class="text-xl font-extrabold leading-none text-gray-900 tracking-tight">Wisata<br><span
+                            class="text-brand-800 uppercase text-xs tracking-widest font-bold">Batang</span></h1>
                 </div>
             </div>
 
@@ -89,8 +124,10 @@
 
             <!-- Actions -->
             <div class="flex items-center gap-4">
-                <button class="text-gray-500 hover:text-brand-700"><i class="ph ph-magnifying-glass text-xl"></i></button>
-                <button onclick="navigate('admin')" class="hidden lg:block bg-brand-50 text-brand-700 px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-100 transition">
+                <button class="text-gray-500 hover:text-brand-700"><i
+                        class="ph ph-magnifying-glass text-xl"></i></button>
+                <button onclick="openPinModal()"
+                    class="hidden lg:block bg-brand-50 text-brand-700 px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-100 transition">
                     <i class="ph-fill ph-database mr-1"></i> Admin Supabase
                 </button>
             </div>
@@ -103,36 +140,57 @@
         <!-- 1. VIEW: BERANDA -->
         <section id="view-home" class="page-view active">
             <!-- Hero -->
-            <div class="relative w-full max-w-7xl mx-auto md:mt-4 md:rounded-2xl overflow-hidden h-[500px] flex items-center">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover brightness-[0.6]">
+            <div
+                class="relative w-full max-w-7xl mx-auto md:mt-4 md:rounded-2xl overflow-hidden h-[500px] flex items-center">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000"
+                    class="absolute inset-0 w-full h-full object-cover brightness-[0.6]">
                 <div class="relative z-10 px-8 md:px-16 text-white max-w-3xl">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">Jelajahi Wisata<br>Kabupaten Batang</h2>
-                    <p class="text-lg text-gray-200 mb-8 max-w-xl text-shadow">Temukan berbagai destinasi wisata indah, kuliner khas, dan event menarik di Kabupaten Batang.</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">Jelajahi
+                        Wisata<br>Kabupaten Batang</h2>
+                    <p class="text-lg text-gray-200 mb-8 max-w-xl text-shadow">Temukan berbagai destinasi wisata indah,
+                        kuliner khas, dan event menarik di Kabupaten Batang.</p>
                     <div class="flex gap-4">
-                        <button onclick="navigate('wisata')" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm">Lihat Wisata</button>
-                        <button onclick="navigate('event')" class="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm">Lihat Event</button>
+                        <button onclick="navigate('wisata')"
+                            class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm">Lihat
+                            Wisata</button>
+                        <button onclick="navigate('event')"
+                            class="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm">Lihat
+                            Event</button>
                     </div>
                 </div>
             </div>
 
             <!-- Stats (Overlapping) -->
             <div class="max-w-6xl mx-auto px-4 relative z-20 -mt-12">
-                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-gray-100 text-center">
+                <div
+                    class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-gray-100 text-center">
                     <div class="flex items-center justify-center gap-3">
                         <i class="ph-fill ph-map-pin text-3xl text-brand-600"></i>
-                        <div class="text-left"><h3 class="text-xl font-bold text-gray-900">50+</h3><p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Destinasi Wisata</p></div>
+                        <div class="text-left">
+                            <h3 class="text-xl font-bold text-gray-900">50+</h3>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Destinasi Wisata</p>
+                        </div>
                     </div>
                     <div class="flex items-center justify-center gap-3">
                         <i class="ph-fill ph-calendar-check text-3xl text-brand-600"></i>
-                        <div class="text-left"><h3 class="text-xl font-bold text-gray-900">12+</h3><p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Event Tahunan</p></div>
+                        <div class="text-left">
+                            <h3 class="text-xl font-bold text-gray-900">12+</h3>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Event Tahunan</p>
+                        </div>
                     </div>
                     <div class="flex items-center justify-center gap-3">
                         <i class="ph-fill ph-mountains text-3xl text-brand-600"></i>
-                        <div class="text-left"><h3 class="text-xl font-bold text-gray-900">6</h3><p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Kategori Wisata</p></div>
+                        <div class="text-left">
+                            <h3 class="text-xl font-bold text-gray-900">6</h3>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Kategori Wisata</p>
+                        </div>
                     </div>
                     <div class="flex items-center justify-center gap-3">
                         <i class="ph-fill ph-users text-3xl text-brand-600"></i>
-                        <div class="text-left"><h3 class="text-xl font-bold text-gray-900">15K+</h3><p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Pengunjung</p></div>
+                        <div class="text-left">
+                            <h3 class="text-xl font-bold text-gray-900">15K+</h3>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Pengunjung</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -141,7 +199,9 @@
             <div class="max-w-7xl mx-auto px-4 py-16">
                 <div class="flex justify-between items-end mb-8">
                     <h3 class="text-2xl font-bold text-gray-900">Wisata Terpopuler</h3>
-                    <button onclick="navigate('wisata')" class="text-sm font-semibold text-gray-500 hover:text-brand-600 border px-4 py-1 rounded-full">Lihat Semua</button>
+                    <button onclick="navigate('wisata')"
+                        class="text-sm font-semibold text-gray-500 hover:text-brand-600 border px-4 py-1 rounded-full">Lihat
+                        Semua</button>
                 </div>
                 <div id="grid-home-wisata" class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Injected via JS -->
@@ -152,7 +212,9 @@
             <div class="max-w-7xl mx-auto px-4 pb-16">
                 <div class="flex justify-between items-end mb-8">
                     <h3 class="text-2xl font-bold text-gray-900">Event Mendatang</h3>
-                    <button onclick="navigate('event')" class="text-sm font-semibold text-gray-500 hover:text-brand-600 border px-4 py-1 rounded-full">Lihat Semua Event</button>
+                    <button onclick="navigate('event')"
+                        class="text-sm font-semibold text-gray-500 hover:text-brand-600 border px-4 py-1 rounded-full">Lihat
+                        Semua Event</button>
                 </div>
                 <div id="grid-home-event" class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Injected via JS -->
@@ -161,12 +223,15 @@
 
             <!-- Banner CTA -->
             <div class="max-w-7xl mx-auto px-4 pb-16">
-                <div class="bg-[#1a3d24] rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between text-white shadow-xl relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+                <div
+                    class="bg-[#1a3d24] rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between text-white shadow-xl relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
                     <div class="relative z-10">
                         <h2 class="text-3xl font-bold mb-2">Ayo Jelajahi Keindahan Batang!</h2>
                         <p class="text-gray-300">Temukan pengalaman tak terlupakan di setiap sudut Kabupaten Batang.</p>
                     </div>
-                    <button onclick="navigate('wisata')" class="relative z-10 mt-6 md:mt-0 bg-yellow-500 hover:bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-bold transition shadow-lg">Mulai Jelajah</button>
+                    <button onclick="navigate('wisata')"
+                        class="relative z-10 mt-6 md:mt-0 bg-yellow-500 hover:bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-bold transition shadow-lg">Mulai
+                        Jelajah</button>
                 </div>
             </div>
         </section>
@@ -186,32 +251,56 @@
                     <div class="sticky top-28">
                         <h4 class="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wider">Kategori</h4>
                         <div class="space-y-3 text-sm text-gray-600 mb-8">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat" checked class="accent-brand-600 w-4 h-4"><i class="ph ph-squares-four text-brand-600"></i> Semua Kategori</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat" class="accent-brand-600 w-4 h-4"><i class="ph ph-tree"></i> Wisata Alam</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat" class="accent-brand-600 w-4 h-4"><i class="ph ph-buildings"></i> Wisata Buatan</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat" class="accent-brand-600 w-4 h-4"><i class="ph ph-mask-happy"></i> Wisata Religi dan Budaya</label>
-                        </div>
-                        
-                        <h4 class="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wider">Lokasi</h4>
-                        <div class="space-y-3 text-sm text-gray-600 mb-8 max-h-64 overflow-y-auto pr-2">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Bandar</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Banyuputih</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Batang</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Bawang</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Blado</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Gringsing</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Kandeman</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Limpung</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Pecalungan</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Reban</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Subah</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Tersono</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Tulis</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Warungasem</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-brand-600 rounded"> Wonotunggal</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat" checked
+                                    class="accent-brand-600 w-4 h-4"><i class="ph ph-squares-four text-brand-600"></i>
+                                Semua Kategori</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat"
+                                    class="accent-brand-600 w-4 h-4"><i class="ph ph-tree"></i> Wisata Alam</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat"
+                                    class="accent-brand-600 w-4 h-4"><i class="ph ph-buildings"></i> Wisata
+                                Buatan</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="kat"
+                                    class="accent-brand-600 w-4 h-4"><i class="ph ph-mask-happy"></i> Wisata Religi dan
+                                Budaya</label>
                         </div>
 
-                        <button class="w-full border border-gray-300 text-gray-600 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition">Reset Filter</button>
+                        <h4 class="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wider">Lokasi</h4>
+                        <div class="space-y-3 text-sm text-gray-600 mb-8 max-h-64 overflow-y-auto pr-2">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Bandar</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Banyuputih</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Batang</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Bawang</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Blado</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Gringsing</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Kandeman</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Limpung</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Pecalungan</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Reban</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Subah</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Tersono</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Tulis</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Warungasem</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    class="accent-brand-600 rounded"> Wonotunggal</label>
+                        </div>
+
+                        <button
+                            class="w-full border border-gray-300 text-gray-600 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition">Reset
+                            Filter</button>
                     </div>
                 </div>
 
@@ -220,11 +309,16 @@
                     <div class="flex flex-col sm:flex-row justify-between mb-6 gap-4">
                         <div class="relative w-full sm:w-64">
                             <i class="ph ph-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
-                            <input type="text" placeholder="Cari wisata..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-500">
+                            <input type="text" placeholder="Cari wisata..."
+                                class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-500">
                         </div>
                         <div class="flex gap-2">
-                            <select class="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white"><option>Semua Kategori</option></select>
-                            <select class="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white"><option>Semua Lokasi</option></select>
+                            <select class="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white">
+                                <option>Semua Kategori</option>
+                            </select>
+                            <select class="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white">
+                                <option>Semua Lokasi</option>
+                            </select>
                         </div>
                     </div>
 
@@ -234,12 +328,20 @@
 
                     <!-- Pagination -->
                     <div class="flex justify-center mt-12 gap-2">
-                        <button class="w-8 h-8 rounded border flex items-center justify-center text-gray-400 hover:bg-gray-50"><i class="ph ph-caret-left"></i></button>
-                        <button class="w-8 h-8 rounded bg-brand-600 text-white font-medium flex items-center justify-center">1</button>
-                        <button class="w-8 h-8 rounded border flex items-center justify-center text-gray-600 hover:bg-gray-50">2</button>
-                        <button class="w-8 h-8 rounded border flex items-center justify-center text-gray-600 hover:bg-gray-50">3</button>
-                        <button class="w-8 h-8 rounded border flex items-center justify-center text-gray-600 hover:bg-gray-50">...</button>
-                        <button class="w-8 h-8 rounded border flex items-center justify-center text-gray-400 hover:bg-gray-50"><i class="ph ph-caret-right"></i></button>
+                        <button
+                            class="w-8 h-8 rounded border flex items-center justify-center text-gray-400 hover:bg-gray-50"><i
+                                class="ph ph-caret-left"></i></button>
+                        <button
+                            class="w-8 h-8 rounded bg-brand-600 text-white font-medium flex items-center justify-center">1</button>
+                        <button
+                            class="w-8 h-8 rounded border flex items-center justify-center text-gray-600 hover:bg-gray-50">2</button>
+                        <button
+                            class="w-8 h-8 rounded border flex items-center justify-center text-gray-600 hover:bg-gray-50">3</button>
+                        <button
+                            class="w-8 h-8 rounded border flex items-center justify-center text-gray-600 hover:bg-gray-50">...</button>
+                        <button
+                            class="w-8 h-8 rounded border flex items-center justify-center text-gray-400 hover:bg-gray-50"><i
+                                class="ph ph-caret-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -254,7 +356,7 @@
 
         <!-- 4. VIEW: HALAMAN EVENT -->
         <section id="view-event" class="page-view bg-white min-h-screen">
-             <div class="bg-gray-50 border-b border-gray-100 py-10">
+            <div class="bg-gray-50 border-b border-gray-100 py-10">
                 <div class="max-w-7xl mx-auto px-4 text-center">
                     <h2 class="text-3xl font-bold text-gray-900 mb-2">Event Kabupaten Batang</h2>
                     <p class="text-gray-500">Jadwal event dan kegiatan menarik di Kabupaten Batang</p>
@@ -271,14 +373,50 @@
                             <button><i class="ph ph-caret-right text-gray-400"></i></button>
                         </div>
                         <div class="calendar-grid grid grid-cols-7 text-gray-400 font-medium mb-2">
-                            <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+                            <div>Su</div>
+                            <div>Mo</div>
+                            <div>Tu</div>
+                            <div>We</div>
+                            <div>Th</div>
+                            <div>Fr</div>
+                            <div>Sa</div>
                         </div>
                         <div class="calendar-grid grid grid-cols-7 text-gray-700 font-medium">
-                            <div class="text-gray-300">31</div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
-                            <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div>
-                            <div>14</div><div class="bg-brand-600 text-white rounded-full w-8 h-8 mx-auto shadow-md">15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
-                            <div>21</div><div class="bg-brand-600 text-white rounded-full w-8 h-8 mx-auto shadow-md">22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div>
-                            <div>28</div><div>29</div><div>30</div><div class="text-gray-300">1</div><div class="text-gray-300">2</div><div class="text-gray-300">3</div><div class="text-gray-300">4</div>
+                            <div class="text-gray-300">31</div>
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div>5</div>
+                            <div>6</div>
+                            <div>7</div>
+                            <div>8</div>
+                            <div>9</div>
+                            <div>10</div>
+                            <div>11</div>
+                            <div>12</div>
+                            <div>13</div>
+                            <div>14</div>
+                            <div class="bg-brand-600 text-white rounded-full w-8 h-8 mx-auto shadow-md">15</div>
+                            <div>16</div>
+                            <div>17</div>
+                            <div>18</div>
+                            <div>19</div>
+                            <div>20</div>
+                            <div>21</div>
+                            <div class="bg-brand-600 text-white rounded-full w-8 h-8 mx-auto shadow-md">22</div>
+                            <div>23</div>
+                            <div>24</div>
+                            <div>25</div>
+                            <div>26</div>
+                            <div>27</div>
+                            <div>28</div>
+                            <div>29</div>
+                            <div>30</div>
+                            <div class="text-gray-300">1</div>
+                            <div class="text-gray-300">2</div>
+                            <div class="text-gray-300">3</div>
+                            <div class="text-gray-300">4</div>
                         </div>
                     </div>
 
@@ -293,9 +431,18 @@
 
                 <!-- Filters for bottom grid -->
                 <div class="flex flex-col sm:flex-row gap-4 mb-6 pt-8 border-t border-gray-100">
-                    <select class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]"><option>Semua Bulan</option></select>
-                    <select class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]"><option>Semua Lokasi</option></select>
-                    <select class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]"><option>Semua Jenis</option></select>
+                    <select
+                        class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]">
+                        <option>Semua Bulan</option>
+                    </select>
+                    <select
+                        class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]">
+                        <option>Semua Lokasi</option>
+                    </select>
+                    <select
+                        class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]">
+                        <option>Semua Jenis</option>
+                    </select>
                 </div>
 
                 <div id="grid-all-event" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -324,14 +471,19 @@
                     </div>
 
                     <!-- Supabase Config Status -->
-                    <div id="supabase-status" class="mb-6 p-4 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 text-sm">
+                    <div id="supabase-status"
+                        class="mb-6 p-4 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 text-sm">
                         <i class="ph-fill ph-warning-circle"></i> Memeriksa koneksi Supabase...
                     </div>
 
                     <!-- Tabs for Wisata / Event -->
                     <div class="flex border-b border-gray-200 mb-6">
-                        <button id="tab-wisata" class="px-6 py-3 font-semibold text-brand-600 border-b-2 border-brand-600 outline-none" onclick="switchAdminTab('wisata')">Data Wisata</button>
-                        <button id="tab-event" class="px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-700 outline-none" onclick="switchAdminTab('event')">Data Event</button>
+                        <button id="tab-wisata"
+                            class="px-6 py-3 font-semibold text-brand-600 border-b-2 border-brand-600 outline-none"
+                            onclick="switchAdminTab('wisata')">Data Wisata</button>
+                        <button id="tab-event"
+                            class="px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-700 outline-none"
+                            onclick="switchAdminTab('event')">Data Event</button>
                     </div>
 
                     <!-- Form Wisata -->
@@ -339,11 +491,14 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Wisata</label>
-                                <input type="text" id="inp-nama" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: Pantai Sigandu">
+                                <input type="text" id="inp-nama" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: Pantai Sigandu">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Kategori</label>
-                                <select id="inp-kategori" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
+                                <select id="inp-kategori" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Kategori...</option>
                                     <option value="Wisata Alam">Wisata Alam</option>
                                     <option value="Wisata Buatan">Wisata Buatan</option>
@@ -352,7 +507,8 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi (Kecamatan)</label>
-                                <select id="inp-lokasi" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
+                                <select id="inp-lokasi" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Kecamatan...</option>
                                     <option value="Bandar">Bandar</option>
                                     <option value="Banyuputih">Banyuputih</option>
@@ -373,23 +529,32 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">URL Foto Utama</label>
-                                <input type="url" id="inp-foto" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="https://...">
+                                <input type="url" id="inp-foto" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="https://...">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Harga Tiket</label>
-                                <input type="text" id="inp-harga" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: Rp 5.000 / orang">
+                                <input type="text" id="inp-harga" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: Rp 5.000 / orang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Jam Buka</label>
-                                <input type="text" id="inp-jam" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: 08.00 - 17.00 WIB">
+                                <input type="text" id="inp-jam" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: 08.00 - 17.00 WIB">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-desc" rows="4" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
+                            <textarea id="inp-desc" rows="4" required
+                                class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
                         <div class="pt-4">
-                            <button type="submit" id="btn-submit-wisata" class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan Data Wisata ke Supabase</button>
+                            <button type="submit" id="btn-submit-wisata"
+                                class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan
+                                Data Wisata ke Supabase</button>
                         </div>
                     </form>
 
@@ -398,35 +563,50 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Event</label>
-                                <input type="text" id="inp-event-judul" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: Festival Batang">
+                                <input type="text" id="inp-event-judul" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: Festival Batang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi Pelaksanaan</label>
-                                <input type="text" id="inp-event-lokasi" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: Alun-alun Batang">
+                                <input type="text" id="inp-event-lokasi" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: Alun-alun Batang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal (Angka)</label>
-                                <input type="text" id="inp-event-tanggal" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: 15">
+                                <input type="text" id="inp-event-tanggal" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: 15">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan (Singkatan)</label>
-                                <input type="text" id="inp-event-bulan" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: JUN">
+                                <input type="text" id="inp-event-bulan" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: JUN">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Waktu / Jadwal</label>
-                                <input type="text" id="inp-event-waktu" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Contoh: 15 Juni 2026">
+                                <input type="text" id="inp-event-waktu" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="Contoh: 15 Juni 2026">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">URL Foto Utama</label>
-                                <input type="url" id="inp-event-foto" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="https://...">
+                                <input type="url" id="inp-event-foto" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
+                                    placeholder="https://...">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-event-desc" rows="4" required class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
+                            <textarea id="inp-event-desc" rows="4" required
+                                class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
                         <div class="pt-4">
-                            <button type="submit" id="btn-submit-event" class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan Data Event ke Supabase</button>
+                            <button type="submit" id="btn-submit-event"
+                                class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan
+                                Data Event ke Supabase</button>
                         </div>
                     </form>
                 </div>
@@ -441,12 +621,14 @@
             <div class="col-span-1 md:col-span-1">
                 <div class="flex items-center gap-2 mb-4">
                     <img src="https://api.iconify.design/noto:sunrise-over-mountains.svg" alt="Logo" class="w-8 h-8">
-                    <h2 class="text-lg font-extrabold text-gray-900 leading-none">Wisata<br><span class="text-brand-800 uppercase text-[10px] tracking-widest">Batang</span></h2>
+                    <h2 class="text-lg font-extrabold text-gray-900 leading-none">Wisata<br><span
+                            class="text-brand-800 uppercase text-[10px] tracking-widest">Batang</span></h2>
                 </div>
-                <p class="text-xs text-gray-500 leading-relaxed mb-6">Portal informasi wisata resmi Kabupaten Batang. Menjelajahi keindahan alam, budaya, dan kearifan lokal Batang.</p>
+                <p class="text-xs text-gray-500 leading-relaxed mb-6">Portal informasi wisata resmi Kabupaten Batang.
+                    Menjelajahi keindahan alam, budaya, dan kearifan lokal Batang.</p>
                 <p class="text-[10px] text-gray-400 font-medium">© 2026 Wisata Batang. All rights reserved.</p>
             </div>
-            
+
             <div>
                 <h4 class="font-bold text-gray-900 mb-4 text-sm">Menu</h4>
                 <ul class="space-y-3 text-xs font-medium text-gray-500">
@@ -470,14 +652,24 @@
             <div>
                 <h4 class="font-bold text-gray-900 mb-4 text-sm">Kontak Kami</h4>
                 <ul class="space-y-3 text-xs font-medium text-gray-500">
-                    <li class="flex items-center gap-2"><i class="ph-fill ph-phone text-brand-600 text-base"></i> (0285) 1234567</li>
-                    <li class="flex items-center gap-2"><i class="ph-fill ph-envelope text-brand-600 text-base"></i> info@wisatabatang.id</li>
-                    <li class="flex items-start gap-2"><i class="ph-fill ph-map-pin text-brand-600 text-base mt-0.5"></i> Jl. Veteran No. 1, Batang</li>
+                    <li class="flex items-center gap-2"><i class="ph-fill ph-phone text-brand-600 text-base"></i> (0285)
+                        1234567</li>
+                    <li class="flex items-center gap-2"><i class="ph-fill ph-envelope text-brand-600 text-base"></i>
+                        info@wisatabatang.id</li>
+                    <li class="flex items-start gap-2"><i
+                            class="ph-fill ph-map-pin text-brand-600 text-base mt-0.5"></i> Jl. Veteran No. 1, Batang
+                    </li>
                 </ul>
                 <div class="flex gap-3 mt-6">
-                    <a href="#" class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-instagram-logo"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-facebook-logo"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-youtube-logo"></i></a>
+                    <a href="#"
+                        class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i
+                            class="ph-fill ph-instagram-logo"></i></a>
+                    <a href="#"
+                        class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i
+                            class="ph-fill ph-facebook-logo"></i></a>
+                    <a href="#"
+                        class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i
+                            class="ph-fill ph-youtube-logo"></i></a>
                 </div>
             </div>
         </div>
@@ -525,18 +717,18 @@
         // ---------------------------------------------------------
         // 3. CORE LOGIC (Fetch & SPA Router)
         // ---------------------------------------------------------
-        
+
         async function fetchRealData() {
-            if(!isSupabaseConnected) return; // Gunakan Mock Data jika tidak ada koneksi
-            
+            if (!isSupabaseConnected) return; // Gunakan Mock Data jika tidak ada koneksi
+
             try {
                 // Fetch Wisata
                 const { data: wData, error: wErr } = await supabaseClient.from('wisata').select('*').order('id', { ascending: false });
                 if (!wErr && wData && wData.length > 0) wisataData = wData;
-                
+
                 // Fetch Event (Jika Anda buat tabel events)
                 const { data: eData, error: eErr } = await supabaseClient.from('events').select('*').order('id', { ascending: false });
-                if(!eErr && eData && eData.length > 0) eventData = eData;
+                if (!eErr && eData && eData.length > 0) eventData = eData;
             } catch (err) {
                 console.error("Gagal koneksi ke Supabase:", err);
             }
@@ -563,9 +755,9 @@
 
         function createWisataCard(item) {
             let catBg = 'bg-brand-100 text-brand-700'; // Default Green (Wisata Alam)
-            if(item.kategori.toLowerCase() === 'wisata buatan') catBg = 'bg-blue-100 text-blue-700';
-            if(item.kategori.toLowerCase() === 'wisata religi dan budaya') catBg = 'bg-purple-100 text-purple-700';
-            
+            if (item.kategori.toLowerCase() === 'wisata buatan') catBg = 'bg-blue-100 text-blue-700';
+            if (item.kategori.toLowerCase() === 'wisata religi dan budaya') catBg = 'bg-purple-100 text-purple-700';
+
             return `
                 <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-wisata', ${item.id})">
                     <div class="h-48 relative overflow-hidden">
@@ -626,10 +818,10 @@
             // Render Beranda
             document.getElementById('grid-home-wisata').innerHTML = wisataData.slice(0, 4).map(createWisataCard).join('');
             document.getElementById('grid-home-event').innerHTML = eventData.slice(0, 4).map(createEventCardBlock).join('');
-            
+
             // Render Halaman Wisata
             document.getElementById('grid-all-wisata').innerHTML = wisataData.map(createWisataCard).join('');
-            
+
             // Render Halaman Event
             document.getElementById('list-home-event').innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
             document.getElementById('grid-all-event').innerHTML = eventData.map(createEventCardBlock).join('');
@@ -790,10 +982,10 @@
         // ---------------------------------------------------------
         // 6. ADMIN & FORM HANDLING
         // ---------------------------------------------------------
-        
+
         function checkAdminStatus() {
             const statusDiv = document.getElementById('supabase-status');
-            if(isSupabaseConnected) {
+            if (isSupabaseConnected) {
                 statusDiv.className = "mb-6 p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-2";
                 statusDiv.innerHTML = '<i class="ph-fill ph-check-circle text-lg"></i> Terhubung ke Database Supabase';
             } else {
@@ -813,7 +1005,7 @@
                 formWisata.classList.add('block');
                 formEvent.classList.remove('block');
                 formEvent.classList.add('hidden');
-                
+
                 tabWisata.classList.replace('text-gray-500', 'text-brand-600');
                 tabWisata.classList.replace('border-transparent', 'border-brand-600');
                 tabWisata.classList.remove('hover:text-gray-700');
@@ -837,7 +1029,7 @@
             }
         }
 
-        document.getElementById('admin-form-wisata').addEventListener('submit', async function(e) {
+        document.getElementById('admin-form-wisata').addEventListener('submit', async function (e) {
             e.preventDefault();
             const btn = document.getElementById('btn-submit-wisata');
             btn.innerText = "Menyimpan...";
@@ -870,12 +1062,12 @@
                 setTimeout(() => {
                     alert("SIMULASI SUKSES: Karena URL Supabase belum diisi, data ini hanya dicatat di Console.");
                     console.log("Mock Insert Wisata:", newData);
-                    
+
                     // Push ke lokal memori agar bisa direview desainnya
                     newData.id = Date.now();
                     wisataData.unshift(newData);
                     renderAllViews();
-                    
+
                     this.reset();
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
@@ -888,7 +1080,7 @@
             btn.classList.remove('opacity-70');
         });
 
-        document.getElementById('admin-form-event').addEventListener('submit', async function(e) {
+        document.getElementById('admin-form-event').addEventListener('submit', async function (e) {
             e.preventDefault();
             const btn = document.getElementById('btn-submit-event');
             btn.innerText = "Menyimpan...";
@@ -921,12 +1113,12 @@
                 setTimeout(() => {
                     alert("SIMULASI SUKSES: Karena URL Supabase belum diisi, data ini hanya dicatat di Console.");
                     console.log("Mock Insert Event:", newData);
-                    
+
                     // Push ke lokal memori agar bisa direview desainnya
                     newData.id = Date.now();
                     eventData.unshift(newData);
                     renderAllViews();
-                    
+
                     this.reset();
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
@@ -942,6 +1134,86 @@
         // Initialize Application
         initApp();
 
+        // ---------------------------------------------------------
+        // 7. PIN MODAL LOGIC
+        // ---------------------------------------------------------
+        function openPinModal() {
+            const modal = document.getElementById('pin-modal');
+            const modalContent = document.getElementById('pin-modal-content');
+            const input = document.getElementById('admin-pin-input');
+            const errorText = document.getElementById('pin-error');
+            
+            input.value = '';
+            errorText.classList.add('hidden');
+            
+            modal.classList.remove('hidden');
+            // Allow display block to apply before transition
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+                input.focus();
+            }, 10);
+        }
+
+        function closePinModal() {
+            const modal = document.getElementById('pin-modal');
+            const modalContent = document.getElementById('pin-modal-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        function verifyPin() {
+            const pin = document.getElementById('admin-pin-input').value;
+            const errorText = document.getElementById('pin-error');
+            
+            if (pin === '021885') {
+                closePinModal();
+                setTimeout(() => {
+                    navigate('admin');
+                }, 200);
+            } else {
+                errorText.classList.remove('hidden');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const pinInput = document.getElementById('admin-pin-input');
+            if (pinInput) {
+                pinInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        verifyPin();
+                    }
+                });
+            }
+        });
+
     </script>
+
+    <!-- ==================== PIN MODAL ==================== -->
+    <div id="pin-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm overflow-hidden transform transition-all scale-95 opacity-0 duration-200" id="pin-modal-content">
+            <div class="p-6">
+                <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <i class="ph-fill ph-lock-key text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Akses Admin</h3>
+                <p class="text-sm text-center text-gray-500 mb-6">Masukkan kode PIN untuk mengakses halaman administrator.</p>
+                
+                <input type="password" id="admin-pin-input" class="w-full border border-gray-300 rounded-lg p-3 text-center tracking-[0.5em] font-bold text-lg focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition" placeholder="••••••" maxlength="6">
+                
+                <p id="pin-error" class="text-red-500 text-xs text-center mt-2 hidden">PIN salah. Silakan coba lagi.</p>
+                
+                <div class="mt-6 flex gap-3">
+                    <button onclick="closePinModal()" class="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition text-sm">Batal</button>
+                    <button onclick="verifyPin()" class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition text-sm">Masuk</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
