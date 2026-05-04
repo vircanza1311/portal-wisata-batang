@@ -1204,6 +1204,7 @@
                         const res = await supabaseClient.from('wisata').update(newData).eq('id', editWisataId);
                         error = res.error;
                     } else {
+                        newData.id = Date.now();
                         const res = await supabaseClient.from('wisata').insert([newData]);
                         error = res.error;
                     }
@@ -1269,6 +1270,7 @@
                         const res = await supabaseClient.from('events').update(newData).eq('id', editEventId);
                         error = res.error;
                     } else {
+                        newData.id = Date.now();
                         const res = await supabaseClient.from('events').insert([newData]);
                         error = res.error;
                     }
