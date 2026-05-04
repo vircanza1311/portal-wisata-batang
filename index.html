@@ -491,13 +491,13 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Wisata</label>
-                                <input type="text" id="inp-nama" required
+                                <input type="text" id="inp-nama"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Pantai Sigandu">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Kategori</label>
-                                <select id="inp-kategori" required
+                                <select id="inp-kategori"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Kategori...</option>
                                     <option value="Wisata Alam">Wisata Alam</option>
@@ -507,7 +507,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi (Kecamatan)</label>
-                                <select id="inp-lokasi" required
+                                <select id="inp-lokasi"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Kecamatan...</option>
                                     <option value="Bandar">Bandar</option>
@@ -529,26 +529,26 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">URL Foto Utama</label>
-                                <input type="url" id="inp-foto" required
+                                <input type="url" id="inp-foto"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="https://...">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Harga Tiket</label>
-                                <input type="text" id="inp-harga" required
+                                <input type="text" id="inp-harga"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Rp 5.000 / orang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Jam Buka</label>
-                                <input type="text" id="inp-jam" required
+                                <input type="text" id="inp-jam"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: 08.00 - 17.00 WIB">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-desc" rows="4" required
+                            <textarea id="inp-desc" rows="4"
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
                         <div class="pt-4">
@@ -563,44 +563,44 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Event</label>
-                                <input type="text" id="inp-event-judul" required
+                                <input type="text" id="inp-event-judul"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Festival Batang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi Pelaksanaan</label>
-                                <input type="text" id="inp-event-lokasi" required
+                                <input type="text" id="inp-event-lokasi"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Alun-alun Batang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal (Angka)</label>
-                                <input type="text" id="inp-event-tanggal" required
+                                <input type="text" id="inp-event-tanggal"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: 15">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan (Singkatan)</label>
-                                <input type="text" id="inp-event-bulan" required
+                                <input type="text" id="inp-event-bulan"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: JUN">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Waktu / Jadwal</label>
-                                <input type="text" id="inp-event-waktu" required
+                                <input type="text" id="inp-event-waktu"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: 15 Juni 2026">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">URL Foto Utama</label>
-                                <input type="url" id="inp-event-foto" required
+                                <input type="url" id="inp-event-foto"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="https://...">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-event-desc" rows="4" required
+                            <textarea id="inp-event-desc" rows="4"
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
                         <div class="pt-4">
@@ -609,6 +609,39 @@
                                 Data Event ke Supabase</button>
                         </div>
                     </form>
+
+                    <!-- Manajemen Data -->
+                    <div class="mt-12 pt-8 border-t border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Manajemen Data</h3>
+                        
+                        <div id="table-wisata-container" class="overflow-x-auto block">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500">
+                                        <th class="p-3">Nama Wisata</th>
+                                        <th class="p-3">Kategori</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-wisata" class="text-sm">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="table-event-container" class="overflow-x-auto hidden">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500">
+                                        <th class="p-3">Judul Event</th>
+                                        <th class="p-3">Waktu</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-event" class="text-sm">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -825,6 +858,34 @@
             // Render Halaman Event
             document.getElementById('list-home-event').innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
             document.getElementById('grid-all-event').innerHTML = eventData.map(createEventCardBlock).join('');
+
+            const tbodyWisata = document.getElementById('tbody-wisata');
+            if(tbodyWisata) {
+                tbodyWisata.innerHTML = wisataData.map(w => `
+                    <tr class="border-b border-gray-100 hover:bg-gray-50">
+                        <td class="p-3 font-medium">${w.nama || ''}</td>
+                        <td class="p-3">${w.kategori || ''}</td>
+                        <td class="p-3 flex gap-2">
+                            <button onclick="editWisata(${w.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
+                            <button onclick="deleteWisata(${w.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            
+            const tbodyEvent = document.getElementById('tbody-event');
+            if(tbodyEvent) {
+                tbodyEvent.innerHTML = eventData.map(e => `
+                    <tr class="border-b border-gray-100 hover:bg-gray-50">
+                        <td class="p-3 font-medium">${e.judul || ''}</td>
+                        <td class="p-3">${e.tanggal || ''} ${e.bulan || ''}</td>
+                        <td class="p-3 flex gap-2">
+                            <button onclick="editEvent(${e.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
+                            <button onclick="deleteEvent(${e.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
         }
 
         // ---------------------------------------------------------
@@ -994,17 +1055,101 @@
             }
         }
 
+        let editWisataId = null;
+        let editEventId = null;
+
+        function editWisata(id) {
+            const data = wisataData.find(w => w.id == id);
+            if (!data) return;
+            editWisataId = id;
+            
+            document.getElementById('inp-nama').value = data.nama || '';
+            document.getElementById('inp-kategori').value = data.kategori || '';
+            document.getElementById('inp-lokasi').value = data.lokasi || '';
+            document.getElementById('inp-foto').value = data.foto || '';
+            document.getElementById('inp-harga').value = data.harga || '';
+            document.getElementById('inp-jam').value = data.jam || '';
+            document.getElementById('inp-desc').value = data.desc || '';
+            
+            document.getElementById('btn-submit-wisata').innerText = "Update Data Wisata";
+            switchAdminTab('wisata');
+            window.scrollTo(0, 0);
+        }
+
+        async function deleteWisata(id) {
+            if (!confirm("Hapus data wisata ini?")) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { error } = await supabaseClient.from('wisata').delete().eq('id', id);
+                    if (error) throw error;
+                    alert("Data wisata berhasil dihapus.");
+                    await fetchRealData();
+                    renderAllViews();
+                } catch (error) {
+                    alert("Gagal menghapus: " + error.message);
+                }
+            } else {
+                wisataData = wisataData.filter(w => w.id != id);
+                renderAllViews();
+            }
+        }
+
+        function editEvent(id) {
+            const data = eventData.find(e => e.id == id);
+            if (!data) return;
+            editEventId = id;
+            
+            document.getElementById('inp-event-judul').value = data.judul || '';
+            document.getElementById('inp-event-tanggal').value = data.tanggal || '';
+            document.getElementById('inp-event-bulan').value = data.bulan || '';
+            document.getElementById('inp-event-lokasi').value = data.lokasi || '';
+            document.getElementById('inp-event-waktu').value = data.waktu || '';
+            document.getElementById('inp-event-foto').value = data.foto || '';
+            document.getElementById('inp-event-desc').value = data.desc || '';
+            
+            document.getElementById('btn-submit-event').innerText = "Update Data Event";
+            switchAdminTab('event');
+            window.scrollTo(0, 0);
+        }
+
+        async function deleteEvent(id) {
+            if (!confirm("Hapus data event ini?")) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { error } = await supabaseClient.from('events').delete().eq('id', id);
+                    if (error) throw error;
+                    alert("Data event berhasil dihapus.");
+                    await fetchRealData();
+                    renderAllViews();
+                } catch (error) {
+                    alert("Gagal menghapus: " + error.message);
+                }
+            } else {
+                eventData = eventData.filter(e => e.id != id);
+                renderAllViews();
+            }
+        }
+
         function switchAdminTab(tab) {
             const formWisata = document.getElementById('admin-form-wisata');
             const formEvent = document.getElementById('admin-form-event');
             const tabWisata = document.getElementById('tab-wisata');
             const tabEvent = document.getElementById('tab-event');
+            const tableWisata = document.getElementById('table-wisata-container');
+            const tableEvent = document.getElementById('table-event-container');
 
             if (tab === 'wisata') {
                 formWisata.classList.remove('hidden');
                 formWisata.classList.add('block');
                 formEvent.classList.remove('block');
                 formEvent.classList.add('hidden');
+                
+                if (tableWisata && tableEvent) {
+                    tableWisata.classList.remove('hidden');
+                    tableWisata.classList.add('block');
+                    tableEvent.classList.remove('block');
+                    tableEvent.classList.add('hidden');
+                }
 
                 tabWisata.classList.replace('text-gray-500', 'text-brand-600');
                 tabWisata.classList.replace('border-transparent', 'border-brand-600');
@@ -1018,6 +1163,13 @@
                 formEvent.classList.add('block');
                 formWisata.classList.remove('block');
                 formWisata.classList.add('hidden');
+                
+                if (tableWisata && tableEvent) {
+                    tableEvent.classList.remove('hidden');
+                    tableEvent.classList.add('block');
+                    tableWisata.classList.remove('block');
+                    tableWisata.classList.add('hidden');
+                }
 
                 tabEvent.classList.replace('text-gray-500', 'text-brand-600');
                 tabEvent.classList.replace('border-transparent', 'border-brand-600');
@@ -1047,11 +1199,19 @@
 
             if (isSupabaseConnected) {
                 try {
-                    const { error } = await supabaseClient.from('wisata').insert([newData]);
+                    let error;
+                    if (editWisataId) {
+                        const res = await supabaseClient.from('wisata').update(newData).eq('id', editWisataId);
+                        error = res.error;
+                    } else {
+                        const res = await supabaseClient.from('wisata').insert([newData]);
+                        error = res.error;
+                    }
                     if (error) throw error;
-                    alert("Sukses! Data Wisata berhasil ditambahkan ke Supabase.");
+                    alert("Sukses! Data Wisata berhasil " + (editWisataId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
                     this.reset();
-                    // Reload data
+                    editWisataId = null;
+                    btn.innerText = "Simpan Data Wisata ke Supabase";
                     await fetchRealData();
                     renderAllViews();
                 } catch (error) {
@@ -1063,15 +1223,21 @@
                     alert("SIMULASI SUKSES: Karena URL Supabase belum diisi, data ini hanya dicatat di Console.");
                     console.log("Mock Insert Wisata:", newData);
 
-                    // Push ke lokal memori agar bisa direview desainnya
-                    newData.id = Date.now();
-                    wisataData.unshift(newData);
+                    if (editWisataId) {
+                        newData.id = editWisataId;
+                        const idx = wisataData.findIndex(w => w.id === editWisataId);
+                        if (idx > -1) wisataData[idx] = newData;
+                    } else {
+                        newData.id = Date.now();
+                        wisataData.unshift(newData);
+                    }
                     renderAllViews();
 
                     this.reset();
+                    editWisataId = null;
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
-                    navigate('wisata'); // kembali ke halaman wisata
+                    navigate('admin'); 
                 }, 1000);
                 return;
             }
@@ -1098,11 +1264,19 @@
 
             if (isSupabaseConnected) {
                 try {
-                    const { error } = await supabaseClient.from('events').insert([newData]);
+                    let error;
+                    if (editEventId) {
+                        const res = await supabaseClient.from('events').update(newData).eq('id', editEventId);
+                        error = res.error;
+                    } else {
+                        const res = await supabaseClient.from('events').insert([newData]);
+                        error = res.error;
+                    }
                     if (error) throw error;
-                    alert("Sukses! Data Event berhasil ditambahkan ke Supabase.");
+                    alert("Sukses! Data Event berhasil " + (editEventId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
                     this.reset();
-                    // Reload data
+                    editEventId = null;
+                    btn.innerText = "Simpan Data Event ke Supabase";
                     await fetchRealData();
                     renderAllViews();
                 } catch (error) {
@@ -1114,15 +1288,21 @@
                     alert("SIMULASI SUKSES: Karena URL Supabase belum diisi, data ini hanya dicatat di Console.");
                     console.log("Mock Insert Event:", newData);
 
-                    // Push ke lokal memori agar bisa direview desainnya
-                    newData.id = Date.now();
-                    eventData.unshift(newData);
+                    if (editEventId) {
+                        newData.id = editEventId;
+                        const idx = eventData.findIndex(ev => ev.id === editEventId);
+                        if (idx > -1) eventData[idx] = newData;
+                    } else {
+                        newData.id = Date.now();
+                        eventData.unshift(newData);
+                    }
                     renderAllViews();
 
                     this.reset();
+                    editEventId = null;
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
-                    navigate('event'); // kembali ke halaman event
+                    navigate('admin'); 
                 }, 1000);
                 return;
             }
