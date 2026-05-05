@@ -552,7 +552,8 @@
                                     placeholder="https://maps.google.com/...">
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">No Telepon / WhatsApp</label>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">No Telepon /
+                                    WhatsApp</label>
                                 <input type="text" id="inp-telepon"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: 628123456789">
@@ -625,7 +626,7 @@
                     <!-- Manajemen Data -->
                     <div class="mt-12 pt-8 border-t border-gray-100">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Manajemen Data</h3>
-                        
+
                         <div id="table-wisata-container" class="overflow-x-auto block">
                             <table class="w-full text-left border-collapse">
                                 <thead>
@@ -872,7 +873,7 @@
             document.getElementById('grid-all-event').innerHTML = eventData.map(createEventCardBlock).join('');
 
             const tbodyWisata = document.getElementById('tbody-wisata');
-            if(tbodyWisata) {
+            if (tbodyWisata) {
                 tbodyWisata.innerHTML = wisataData.map(w => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="p-3 font-medium">${w.nama || ''}</td>
@@ -884,9 +885,9 @@
                     </tr>
                 `).join('');
             }
-            
+
             const tbodyEvent = document.getElementById('tbody-event');
-            if(tbodyEvent) {
+            if (tbodyEvent) {
                 tbodyEvent.innerHTML = eventData.map(e => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="p-3 font-medium">${e.judul || ''}</td>
@@ -969,10 +970,23 @@
                             </div>
 
                             <div class="pt-4 border-t border-gray-100">
-                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Lokasi Peta</p>
-                                <div class="bg-gray-100 h-32 rounded-lg flex items-center justify-center text-gray-400 text-sm border border-gray-200 relative overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=400" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale">
-                                    <span class="relative z-10 bg-white px-3 py-1 rounded-full shadow text-xs font-bold text-brand-600 cursor-pointer">Lihat Google Maps</span>
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Sosial Media</p>
+                                <div class="flex gap-3">
+                                    <a href="#" class="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent">
+                                        <i class="ph-fill ph-instagram-logo text-lg"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent">
+                                        <i class="ph-fill ph-twitter-logo text-lg"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent">
+                                        <i class="ph-fill ph-facebook-logo text-lg"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent">
+                                        <i class="ph-fill ph-tiktok-logo text-lg"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent">
+                                        <i class="ph-fill ph-globe text-lg"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -1074,7 +1088,7 @@
             const data = wisataData.find(w => w.id == id);
             if (!data) return;
             editWisataId = id;
-            
+
             document.getElementById('inp-nama').value = data.nama || '';
             document.getElementById('inp-kategori').value = data.kategori || '';
             document.getElementById('inp-lokasi').value = data.lokasi || '';
@@ -1084,7 +1098,7 @@
             document.getElementById('inp-maps').value = data.maps || '';
             document.getElementById('inp-telepon').value = data.telepon || '';
             document.getElementById('inp-desc').value = data.deskripsi || '';
-            
+
             document.getElementById('btn-submit-wisata').innerText = "Update Data Wisata";
             switchAdminTab('wisata');
             window.scrollTo(0, 0);
@@ -1112,7 +1126,7 @@
             const data = eventData.find(e => e.id == id);
             if (!data) return;
             editEventId = id;
-            
+
             document.getElementById('inp-event-judul').value = data.judul || '';
             document.getElementById('inp-event-tanggal').value = data.tanggal || '';
             document.getElementById('inp-event-bulan').value = data.bulan || '';
@@ -1120,7 +1134,7 @@
             document.getElementById('inp-event-waktu').value = data.waktu || '';
             document.getElementById('inp-event-foto').value = data.foto || '';
             document.getElementById('inp-event-desc').value = data.deskripsi || '';
-            
+
             document.getElementById('btn-submit-event').innerText = "Update Data Event";
             switchAdminTab('event');
             window.scrollTo(0, 0);
@@ -1157,7 +1171,7 @@
                 formWisata.classList.add('block');
                 formEvent.classList.remove('block');
                 formEvent.classList.add('hidden');
-                
+
                 if (tableWisata && tableEvent) {
                     tableWisata.classList.remove('hidden');
                     tableWisata.classList.add('block');
@@ -1177,7 +1191,7 @@
                 formEvent.classList.add('block');
                 formWisata.classList.remove('block');
                 formWisata.classList.add('hidden');
-                
+
                 if (tableWisata && tableEvent) {
                     tableEvent.classList.remove('hidden');
                     tableEvent.classList.add('block');
@@ -1254,7 +1268,7 @@
                     editWisataId = null;
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
-                    navigate('admin'); 
+                    navigate('admin');
                 }, 1000);
                 return;
             }
@@ -1320,7 +1334,7 @@
                     editEventId = null;
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
-                    navigate('admin'); 
+                    navigate('admin');
                 }, 1000);
                 return;
             }
@@ -1340,10 +1354,10 @@
             const modalContent = document.getElementById('pin-modal-content');
             const input = document.getElementById('admin-pin-input');
             const errorText = document.getElementById('pin-error');
-            
+
             input.value = '';
             errorText.classList.add('hidden');
-            
+
             modal.classList.remove('hidden');
             // Allow display block to apply before transition
             setTimeout(() => {
@@ -1356,10 +1370,10 @@
         function closePinModal() {
             const modal = document.getElementById('pin-modal');
             const modalContent = document.getElementById('pin-modal-content');
-            
+
             modalContent.classList.remove('scale-100', 'opacity-100');
             modalContent.classList.add('scale-95', 'opacity-0');
-            
+
             setTimeout(() => {
                 modal.classList.add('hidden');
             }, 200);
@@ -1368,7 +1382,7 @@
         function verifyPin() {
             const pin = document.getElementById('admin-pin-input').value;
             const errorText = document.getElementById('pin-error');
-            
+
             if (pin === '021885') {
                 closePinModal();
                 setTimeout(() => {
@@ -1382,7 +1396,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const pinInput = document.getElementById('admin-pin-input');
             if (pinInput) {
-                pinInput.addEventListener('keypress', function(e) {
+                pinInput.addEventListener('keypress', function (e) {
                     if (e.key === 'Enter') {
                         verifyPin();
                     }
@@ -1393,27 +1407,34 @@
     </script>
 
     <!-- ==================== PIN MODAL ==================== -->
-    <div id="pin-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
-        <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm overflow-hidden transform transition-all scale-95 opacity-0 duration-200" id="pin-modal-content">
+    <div id="pin-modal"
+        class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm overflow-hidden transform transition-all scale-95 opacity-0 duration-200"
+            id="pin-modal-content">
             <div class="p-6">
-                <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <div
+                    class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4 mx-auto">
                     <i class="ph-fill ph-lock-key text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Akses Admin</h3>
-                <p class="text-sm text-center text-gray-500 mb-6">Masukkan kode PIN untuk mengakses halaman administrator.</p>
-                
-                <input type="password" id="admin-pin-input" class="w-full border border-gray-300 rounded-lg p-3 text-center tracking-[0.5em] font-bold text-lg focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" maxlength="6">
-                
+                <p class="text-sm text-center text-gray-500 mb-6">Masukkan kode PIN untuk mengakses halaman
+                    administrator.</p>
+
+                <input type="password" id="admin-pin-input"
+                    class="w-full border border-gray-300 rounded-lg p-3 text-center tracking-[0.5em] font-bold text-lg focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" maxlength="6">
+
                 <p id="pin-error" class="text-red-500 text-xs text-center mt-2 hidden">PIN salah. Silakan coba lagi.</p>
-                
+
                 <div class="mt-6 flex gap-3">
-                    <button onclick="closePinModal()" class="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition text-sm">Batal</button>
-                    <button onclick="verifyPin()" class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition text-sm">Masuk</button>
+                    <button onclick="closePinModal()"
+                        class="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition text-sm">Batal</button>
+                    <button onclick="verifyPin()"
+                        class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition text-sm">Masuk</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
-
-
