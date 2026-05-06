@@ -118,7 +118,7 @@
                 <button onclick="navigate('home')" class="hover:text-brand-700 transition">Beranda</button>
                 <button onclick="navigate('wisata')" class="hover:text-brand-700 transition">Wisata</button>
                 <button onclick="navigate('event')" class="hover:text-brand-700 transition">Event</button>
-                <button onclick="navigate('ekraf')" id="nav-ekraf" class="hover:text-brand-700 transition">Ekonomi Kreatif</button>
+                <button onclick="navigate('ekraf')" class="hover:text-brand-700 transition">Ekonomi Kreatif</button>
                 <button class="hover:text-brand-700 transition">Tentang</button>
                 <button class="hover:text-brand-700 transition">Kontak</button>
             </div>
@@ -459,159 +459,7 @@
             </div>
         </section>
 
-        <!-- 6. VIEW: EKONOMI KREATIF -->
-        <section id="view-ekraf" class="page-view bg-white min-h-screen">
-            <div class="bg-gray-50 border-b border-gray-100 py-10">
-                <div class="max-w-7xl mx-auto px-4 text-center">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Ekonomi Kreatif Batang</h2>
-                    <p class="text-gray-500">Temukan pelaku ekonomi kreatif di Kabupaten Batang</p>
-                </div>
-            </div>
-
-            <!-- Subsektor Section -->
-            <div class="max-w-7xl mx-auto px-4 py-12">
-                <div class="text-center mb-10">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Daftar Subsektor</h3>
-                    <p class="text-gray-500 text-sm">Subsektor usaha Ekonomi Kreatif</p>
-                </div>
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 mb-12">
-                    <!-- Aplikasi -->
-                    <div onclick="filterEkrafSubsektor('Aplikasi')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Aplikasi">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="10" y="5" width="20" height="30" rx="4" fill="#4a8fc2"/><rect x="14" y="9" width="12" height="18" rx="2" fill="#acd4ee"/><circle cx="20" cy="31" r="2" fill="#2d6a9f"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Aplikasi</span>
-                    </div>
-                    <!-- Arsitektur -->
-                    <div onclick="filterEkrafSubsektor('Arsitektur')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Arsitektur">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="18" width="24" height="14" rx="2" fill="#4a8fc2"/><polygon points="20,6 5,18 35,18" fill="#2d6a9f"/><rect x="15" y="24" width="10" height="8" rx="1" fill="#acd4ee"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Arsitektur</span>
-                    </div>
-                    <!-- Desain Interior -->
-                    <div onclick="filterEkrafSubsektor('Desain Interior')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Desain Interior">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="26" width="6" height="6" rx="1" fill="#4a8fc2"/><path d="M14 29 Q20 20 28 14" stroke="#2d6a9f" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="28" cy="13" r="4" fill="#acd4ee"/><circle cx="28" cy="13" r="2" fill="#4a8fc2"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain Interior</span>
-                    </div>
-                    <!-- Desain Komunikasi Visual -->
-                    <div onclick="filterEkrafSubsektor('Desain Komunikasi Visual')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Desain Komunikasi Visual">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M12 28 L18 12 L24 22 L28 16 L32 28 Z" fill="#4a8fc2"/><circle cx="13" cy="13" r="3" fill="#acd4ee"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain Komunikasi Visual</span>
-                    </div>
-                    <!-- Desain Produk -->
-                    <div onclick="filterEkrafSubsektor('Desain Produk')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Desain Produk">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 8 L32 14 L32 26 L20 32 L8 26 L8 14 Z" fill="#4a8fc2" opacity="0.7"/><path d="M20 8 L32 14 L20 20 L8 14 Z" fill="#2d6a9f"/><path d="M20 20 L20 32 L8 26 L8 14 Z" fill="#acd4ee"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain Produk</span>
-                    </div>
-                    <!-- Fesyen -->
-                    <div onclick="filterEkrafSubsektor('Fesyen')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Fesyen">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="14" cy="16" rx="5" ry="6" fill="#4a8fc2"/><ellipse cx="26" cy="16" rx="5" ry="6" fill="#4a8fc2"/><path d="M9 22 Q20 18 31 22 L33 34 L7 34 Z" fill="#2d6a9f"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Fesyen</span>
-                    </div>
-                    <!-- Film, Animasi dan Video -->
-                    <div onclick="filterEkrafSubsektor('Film, Animasi dan Video')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Film, Animasi dan Video">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="12" width="22" height="16" rx="3" fill="#4a8fc2"/><polygon points="36,20 28,14 28,26" fill="#2d6a9f"/><rect x="9" y="15" width="4" height="10" rx="1" fill="#acd4ee" opacity="0.6"/><rect x="15" y="15" width="4" height="10" rx="1" fill="#acd4ee" opacity="0.6"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Film, Animasi dan Video</span>
-                    </div>
-                    <!-- Fotografi -->
-                    <div onclick="filterEkrafSubsektor('Fotografi')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Fotografi">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="13" width="28" height="20" rx="3" fill="#4a8fc2"/><path d="M15 13 L17 8 L23 8 L25 13 Z" fill="#2d6a9f"/><circle cx="20" cy="23" r="6" fill="#acd4ee"/><circle cx="20" cy="23" r="3.5" fill="#2d6a9f"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Fotografi</span>
-                    </div>
-                    <!-- Gim -->
-                    <div onclick="filterEkrafSubsektor('Gim')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Gim">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="13" width="28" height="18" rx="6" fill="#4a8fc2"/><rect x="11" y="19" width="6" height="2" rx="1" fill="white"/><rect x="13" y="17" width="2" height="6" rx="1" fill="white"/><circle cx="26" cy="18" r="2" fill="white" opacity="0.8"/><circle cx="30" cy="22" r="2" fill="white" opacity="0.8"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Gim</span>
-                    </div>
-                    <!-- Kriya -->
-                    <div onclick="filterEkrafSubsektor('Kriya')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Kriya">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M14 30 L10 14 L20 10 L30 14 L26 30 Z" fill="#4a8fc2" opacity="0.8"/><line x1="14" y1="20" x2="26" y2="20" stroke="#acd4ee" stroke-width="1.5"/><line x1="13" y1="25" x2="27" y2="25" stroke="#acd4ee" stroke-width="1.5"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Kriya</span>
-                    </div>
-                    <!-- Kuliner -->
-                    <div onclick="filterEkrafSubsektor('Kuliner')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Kuliner">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M16 10 L16 20 Q16 26 20 26 Q24 26 24 20 L24 10" stroke="#4a8fc2" stroke-width="2.5" fill="none" stroke-linecap="round"/><line x1="20" y1="26" x2="20" y2="32" stroke="#2d6a9f" stroke-width="2.5" stroke-linecap="round"/><line x1="12" y1="10" x2="12" y2="18" stroke="#acd4ee" stroke-width="2.5" stroke-linecap="round"/><line x1="28" y1="10" x2="28" y2="18" stroke="#acd4ee" stroke-width="2.5" stroke-linecap="round"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Kuliner</span>
-                    </div>
-                    <!-- Musik -->
-                    <div onclick="filterEkrafSubsektor('Musik')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Musik">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M18 28 Q18 32 14 32 Q10 32 10 28 Q10 24 14 24 Q16 24 18 26 L18 12 L28 10 L28 22 Q28 26 24 26 Q20 26 20 22 Q20 18 24 18 Q26 18 28 20" stroke="#2d6a9f" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Musik</span>
-                    </div>
-                    <!-- Penerbitan -->
-                    <div onclick="filterEkrafSubsektor('Penerbitan')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Penerbitan">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="10" y="8" width="18" height="24" rx="2" fill="#4a8fc2"/><rect x="12" y="12" width="10" height="2" rx="1" fill="white" opacity="0.8"/><rect x="12" y="16" width="10" height="2" rx="1" fill="white" opacity="0.8"/><rect x="12" y="20" width="7" height="2" rx="1" fill="white" opacity="0.8"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Penerbitan</span>
-                    </div>
-                    <!-- Periklanan -->
-                    <div onclick="filterEkrafSubsektor('Periklanan')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Periklanan">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M10 16 L22 10 L22 30 L10 24 Z" fill="#4a8fc2"/><rect x="22" y="14" width="8" height="12" rx="2" fill="#2d6a9f" opacity="0.7"/><path d="M10 24 L10 28 L14 28 L14 24" fill="#acd4ee"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Periklanan</span>
-                    </div>
-                    <!-- Seni Pertunjukan -->
-                    <div onclick="filterEkrafSubsektor('Seni Pertunjukan')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Seni Pertunjukan">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 30 Q14 24 20 30 Q26 24 32 30" stroke="#4a8fc2" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="14" cy="18" r="5" fill="#acd4ee"/><path d="M11 21 Q14 26 17 21" stroke="#4a8fc2" stroke-width="1.5" fill="none"/><circle cx="26" cy="18" r="5" fill="#4a8fc2"/><path d="M23 15 Q26 13 29 15" stroke="white" stroke-width="1.5" fill="none"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Seni Pertunjukan</span>
-                    </div>
-                    <!-- Seni Rupa -->
-                    <div onclick="filterEkrafSubsektor('Seni Rupa')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Seni Rupa">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M12 30 L18 12 L24 24 L28 18" stroke="#4a8fc2" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="15" r="3" fill="#acd4ee"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Seni Rupa</span>
-                    </div>
-                    <!-- Televisi dan Radio -->
-                    <div onclick="filterEkrafSubsektor('Televisi dan Radio')" class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group" data-subsektor="Televisi dan Radio">
-                        <div class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="7" y="14" width="26" height="18" rx="3" fill="#4a8fc2"/><rect x="10" y="17" width="20" height="12" rx="1" fill="#acd4ee" opacity="0.6"/><circle cx="20" cy="23" r="3" fill="#2d6a9f"/><rect x="14" y="32" width="12" height="2" rx="1" fill="#2d6a9f"/></svg>
-                        </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Televisi dan Radio</span>
-                    </div>
-                </div>
-
-                <!-- Filter active indicator -->
-                <div id="ekraf-filter-bar" class="hidden flex items-center gap-3 mb-6 p-3 bg-brand-50 rounded-xl border border-brand-100">
-                    <span class="text-sm text-brand-700 font-semibold">Filter aktif: <span id="ekraf-filter-label"></span></span>
-                    <button onclick="clearEkrafFilter()" class="ml-auto text-xs bg-white border border-brand-200 text-brand-600 px-3 py-1 rounded-full hover:bg-brand-100 transition font-semibold">Tampilkan Semua</button>
-                </div>
-
-                <!-- Ekraf Grid -->
-                <h3 class="text-xl font-bold text-gray-900 mb-6">Pelaku Ekonomi Kreatif</h3>
-                <div id="grid-all-ekraf" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Injected via JS -->
-                </div>
-                <p id="ekraf-empty" class="hidden text-center text-gray-400 py-16 text-sm">Belum ada data ekonomi kreatif untuk subsektor ini.</p>
-            </div>
-        </section>
-
-        <!-- 7. VIEW: ADMIN SUPABASE (Input Form) -->
+        <!-- 6. VIEW: ADMIN SUPABASE (Input Form) -->
         <section id="view-admin" class="page-view bg-gray-50 min-h-screen py-16">
             <div class="max-w-4xl mx-auto px-4">
                 <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
@@ -619,7 +467,7 @@
                         <i class="ph-fill ph-database text-3xl text-brand-600"></i>
                         <div>
                             <h2 class="text-2xl font-bold text-gray-900 leading-none">Admin Database</h2>
-                            <p class="text-sm text-gray-500 mt-1">Tambah data wisata, event, dan ekonomi kreatif ke Supabase</p>
+                            <p class="text-sm text-gray-500 mt-1">Tambah data wisata dan event ke Supabase</p>
                         </div>
                     </div>
 
@@ -629,7 +477,7 @@
                         <i class="ph-fill ph-warning-circle"></i> Memeriksa koneksi Supabase...
                     </div>
 
-                    <!-- Tabs for Wisata / Event / Ekraf -->
+                    <!-- Tabs for Wisata / Event -->
                     <div class="flex border-b border-gray-200 mb-6">
                         <button id="tab-wisata"
                             class="px-6 py-3 font-semibold text-brand-600 border-b-2 border-brand-600 outline-none"
@@ -637,9 +485,6 @@
                         <button id="tab-event"
                             class="px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-700 outline-none"
                             onclick="switchAdminTab('event')">Data Event</button>
-                        <button id="tab-ekraf"
-                            class="px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-700 outline-none"
-                            onclick="switchAdminTab('ekraf')">Data Ekraf</button>
                     </div>
 
                     <!-- Form Wisata -->
@@ -815,140 +660,6 @@
                         </div>
                     </form>
 
-                    <!-- Form Ekraf -->
-                    <form id="admin-form-ekraf" class="space-y-4 hidden">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Brand / Usaha</label>
-                                <input type="text" id="inp-ekraf-brand"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="Contoh: Batik Gemawang">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Owner / Pemilik</label>
-                                <input type="text" id="inp-ekraf-owner"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="Contoh: Budi Santoso">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Subsektor Ekraf</label>
-                                <select id="inp-ekraf-subsektor"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
-                                    <option value="" disabled selected>Pilih Subsektor...</option>
-                                    <option value="Aplikasi">Aplikasi</option>
-                                    <option value="Arsitektur">Arsitektur</option>
-                                    <option value="Desain Interior">Desain Interior</option>
-                                    <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
-                                    <option value="Desain Produk">Desain Produk</option>
-                                    <option value="Fesyen">Fesyen</option>
-                                    <option value="Film, Animasi dan Video">Film, Animasi dan Video</option>
-                                    <option value="Fotografi">Fotografi</option>
-                                    <option value="Gim">Gim</option>
-                                    <option value="Kriya">Kriya</option>
-                                    <option value="Kuliner">Kuliner</option>
-                                    <option value="Musik">Musik</option>
-                                    <option value="Penerbitan">Penerbitan</option>
-                                    <option value="Periklanan">Periklanan</option>
-                                    <option value="Seni Pertunjukan">Seni Pertunjukan</option>
-                                    <option value="Seni Rupa">Seni Rupa</option>
-                                    <option value="Televisi dan Radio">Televisi dan Radio</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi (Kecamatan)</label>
-                                <select id="inp-ekraf-lokasi"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
-                                    <option value="" disabled selected>Pilih Kecamatan...</option>
-                                    <option value="Bandar">Bandar</option>
-                                    <option value="Banyuputih">Banyuputih</option>
-                                    <option value="Batang">Batang</option>
-                                    <option value="Bawang">Bawang</option>
-                                    <option value="Blado">Blado</option>
-                                    <option value="Gringsing">Gringsing</option>
-                                    <option value="Kandeman">Kandeman</option>
-                                    <option value="Limpung">Limpung</option>
-                                    <option value="Pecalungan">Pecalungan</option>
-                                    <option value="Reban">Reban</option>
-                                    <option value="Subah">Subah</option>
-                                    <option value="Tersono">Tersono</option>
-                                    <option value="Tulis">Tulis</option>
-                                    <option value="Warungasem">Warungasem</option>
-                                    <option value="Wonotunggal">Wonotunggal</option>
-                                </select>
-                            </div>
-                            <div class="col-span-2">
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat Lengkap</label>
-                                <input type="text" id="inp-ekraf-alamat"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="Contoh: Jl. Raya Batang No. 12, Kel. Proyonanggan, Batang">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor Telepon / WhatsApp</label>
-                                <input type="text" id="inp-ekraf-telepon"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="Contoh: 628123456789">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">URL Foto Utama</label>
-                                <input type="url" id="inp-ekraf-foto"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Link Google Maps</label>
-                                <input type="url" id="inp-ekraf-maps"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://maps.google.com/...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Link Instagram</label>
-                                <input type="url" id="inp-ekraf-instagram"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://instagram.com/...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Link Twitter (X)</label>
-                                <input type="url" id="inp-ekraf-twitter"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://x.com/...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Link Facebook</label>
-                                <input type="url" id="inp-ekraf-facebook"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://facebook.com/...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Link TikTok</label>
-                                <input type="url" id="inp-ekraf-tiktok"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://tiktok.com/...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Link Website</label>
-                                <input type="url" id="inp-ekraf-website"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Link YouTube</label>
-                                <input type="url" id="inp-ekraf-youtube"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="https://youtube.com/...">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-ekraf-desc" rows="4"
-                                class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Ceritakan tentang brand/usaha ini..."></textarea>
-                        </div>
-                        <div class="pt-4">
-                            <button type="submit" id="btn-submit-ekraf"
-                                class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan
-                                Data Ekraf ke Supabase</button>
-                        </div>
-                    </form>
-
                     <!-- Manajemen Data -->
                     <div class="mt-12 pt-8 border-t border-gray-100">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Manajemen Data</h3>
@@ -977,20 +688,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-event" class="text-sm">
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div id="table-ekraf-container" class="overflow-x-auto hidden">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500">
-                                        <th class="p-3">Nama Brand</th>
-                                        <th class="p-3">Subsektor</th>
-                                        <th class="p-3">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody-ekraf" class="text-sm">
                                 </tbody>
                             </table>
                         </div>
@@ -1099,12 +796,6 @@
             { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'AGT', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.' }
         ];
 
-        let ekrafData = [
-            { id: 201, brand: 'Batik Gemawang', owner: 'Siti Aminah', subsektor: 'Kriya', lokasi: 'Batang', alamat: 'Jl. Raya Batang No. 12, Batang', telepon: '6281234567891', foto: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Batik tulis dan cap khas Batang dengan motif pesisiran yang kaya warna.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '' },
-            { id: 202, brand: 'Cita Rasa Batang', owner: 'Hendra Wijaya', subsektor: 'Kuliner', lokasi: 'Limpung', alamat: 'Jl. Limpung Raya No. 5, Limpung', telepon: '6289876543210', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800', deskripsi: 'Usaha kuliner oleh-oleh khas Batang: kerupuk ikan, bandeng presto, dan wajik.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '' },
-            { id: 203, brand: 'PixelBatang Studio', owner: 'Rizal Firmansyah', subsektor: 'Fotografi', lokasi: 'Batang', alamat: 'Ruko Jl. Pemuda No. 8, Batang', telepon: '6285678901234', foto: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800', deskripsi: 'Studio foto profesional untuk wedding, produk, dan editorial di Kabupaten Batang.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '' }
-        ];
-
         // ---------------------------------------------------------
         // 3. CORE LOGIC (Fetch & SPA Router)
         // ---------------------------------------------------------
@@ -1120,10 +811,6 @@
                 // Fetch Event (Jika Anda buat tabel events)
                 const { data: eData, error: eErr } = await supabaseClient.from('events').select('*').order('id', { ascending: false });
                 if (!eErr && eData && eData.length > 0) eventData = eData;
-
-                // Fetch Ekraf
-                const { data: ekData, error: ekErr } = await supabaseClient.from('ekraf').select('*').order('id', { ascending: false });
-                if (!ekErr && ekData && ekData.length > 0) ekrafData = ekData;
             } catch (err) {
                 console.error("Gagal koneksi ke Supabase:", err);
             }
@@ -1209,41 +896,6 @@
             `;
         }
 
-        function createEkrafCard(item) {
-            const subsektorColors = {
-                'Kuliner': 'bg-orange-100 text-orange-700',
-                'Kriya': 'bg-amber-100 text-amber-700',
-                'Musik': 'bg-purple-100 text-purple-700',
-                'Fotografi': 'bg-sky-100 text-sky-700',
-                'Fesyen': 'bg-pink-100 text-pink-700',
-                'Gim': 'bg-green-100 text-green-700',
-            };
-            const colorClass = subsektorColors[item.subsektor] || 'bg-brand-100 text-brand-700';
-            return `
-                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
-                    <div class="h-44 relative overflow-hidden bg-gray-100">
-                        ${item.foto ? `<img src="${item.foto}" class="w-full h-full object-cover hover:scale-105 transition duration-500">` : `<div class="w-full h-full flex items-center justify-center text-gray-300"><i class="ph ph-storefront text-5xl"></i></div>`}
-                        <span class="absolute bottom-3 left-3 ${colorClass} text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">${item.subsektor}</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h4 class="font-bold text-gray-900 text-lg mb-0.5">${item.brand}</h4>
-                        <p class="text-xs text-gray-400 mb-2 flex items-center gap-1"><i class="ph-fill ph-user text-gray-300"></i> ${item.owner || '-'}</p>
-                        <p class="text-xs text-gray-500 line-clamp-2 mb-4 flex-grow">${item.deskripsi || ''}</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
-                                <i class="ph-fill ph-map-pin text-gray-300"></i> ${item.lokasi}
-                            </div>
-                            <div class="flex gap-2">
-                                ${item.instagram ? `<a href="${item.instagram}" target="_blank" class="w-7 h-7 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-600 hover:text-white transition text-xs"><i class="ph-fill ph-instagram-logo"></i></a>` : ''}
-                                ${item.telepon ? `<a href="https://wa.me/${item.telepon}" target="_blank" class="w-7 h-7 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-green-500 hover:text-white transition text-xs"><i class="ph-fill ph-whatsapp-logo"></i></a>` : ''}
-                                ${item.maps ? `<a href="${item.maps}" target="_blank" class="w-7 h-7 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-red-500 hover:text-white transition text-xs"><i class="ph-fill ph-map-pin"></i></a>` : ''}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
         function renderAllViews() {
             // Render Beranda
             document.getElementById('grid-home-wisata').innerHTML = wisataData.slice(0, 4).map(createWisataCard).join('');
@@ -1283,23 +935,6 @@
                     </tr>
                 `).join('');
             }
-
-            const tbodyEkraf = document.getElementById('tbody-ekraf');
-            if (tbodyEkraf) {
-                tbodyEkraf.innerHTML = ekrafData.map(ek => `
-                    <tr class="border-b border-gray-100 hover:bg-gray-50">
-                        <td class="p-3 font-medium">${ek.brand || ''}</td>
-                        <td class="p-3">${ek.subsektor || ''}</td>
-                        <td class="p-3 flex gap-2">
-                            <button onclick="editEkraf(${ek.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
-                            <button onclick="deleteEkraf(${ek.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
-                        </td>
-                    </tr>
-                `).join('');
-            }
-
-            // Render Ekraf page
-            renderEkrafGrid(ekrafData);
         }
 
         // ---------------------------------------------------------
@@ -1574,96 +1209,7 @@
             }
         }
 
-        function renderEkrafGrid(data) {
-            const grid = document.getElementById('grid-all-ekraf');
-            const empty = document.getElementById('ekraf-empty');
-            if (!grid) return;
-            if (data.length === 0) {
-                grid.innerHTML = '';
-                if (empty) empty.classList.remove('hidden');
-            } else {
-                grid.innerHTML = data.map(createEkrafCard).join('');
-                if (empty) empty.classList.add('hidden');
-            }
-        }
-
-        let ekrafFilterActive = null;
-
-        function filterEkrafSubsektor(subsektor) {
-            ekrafFilterActive = subsektor;
-            const filterBar = document.getElementById('ekraf-filter-bar');
-            const filterLabel = document.getElementById('ekraf-filter-label');
-            if (filterBar) { filterBar.classList.remove('hidden'); filterBar.classList.add('flex'); }
-            if (filterLabel) filterLabel.textContent = subsektor;
-
-            // Highlight active
-            document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => {
-                btn.querySelector('div').style.background = '';
-                btn.style.opacity = '0.6';
-            });
-            const activeBtn = document.querySelector(`.ekraf-subsektor-btn[data-subsektor="${subsektor}"]`);
-            if (activeBtn) { activeBtn.style.opacity = '1'; activeBtn.querySelector('div').style.background = '#b8d9f1'; }
-
-            const filtered = ekrafData.filter(e => e.subsektor === subsektor);
-            renderEkrafGrid(filtered);
-        }
-
-        function clearEkrafFilter() {
-            ekrafFilterActive = null;
-            const filterBar = document.getElementById('ekraf-filter-bar');
-            if (filterBar) { filterBar.classList.add('hidden'); filterBar.classList.remove('flex'); }
-            document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => { btn.style.opacity = '1'; btn.querySelector('div').style.background = ''; });
-            renderEkrafGrid(ekrafData);
-        }
-
-        // ---------------------------------------------------------
-        // EKRAF ADMIN CRUD
-        // ---------------------------------------------------------
-        let editEkrafId = null;
-
-        function editEkraf(id) {
-            const data = ekrafData.find(e => e.id == id);
-            if (!data) return;
-            editEkrafId = id;
-
-            document.getElementById('inp-ekraf-brand').value = data.brand || '';
-            document.getElementById('inp-ekraf-owner').value = data.owner || '';
-            document.getElementById('inp-ekraf-subsektor').value = data.subsektor || '';
-            document.getElementById('inp-ekraf-lokasi').value = data.lokasi || '';
-            document.getElementById('inp-ekraf-alamat').value = data.alamat || '';
-            document.getElementById('inp-ekraf-telepon').value = data.telepon || '';
-            document.getElementById('inp-ekraf-foto').value = data.foto || '';
-            document.getElementById('inp-ekraf-maps').value = data.maps || '';
-            document.getElementById('inp-ekraf-instagram').value = data.instagram || '';
-            document.getElementById('inp-ekraf-twitter').value = data.twitter || '';
-            document.getElementById('inp-ekraf-facebook').value = data.facebook || '';
-            document.getElementById('inp-ekraf-tiktok').value = data.tiktok || '';
-            document.getElementById('inp-ekraf-website').value = data.website || '';
-            document.getElementById('inp-ekraf-youtube').value = data.youtube || '';
-            document.getElementById('inp-ekraf-desc').value = data.deskripsi || '';
-
-            document.getElementById('btn-submit-ekraf').innerText = "Update Data Ekraf";
-            switchAdminTab('ekraf');
-            window.scrollTo(0, 0);
-        }
-
-        async function deleteEkraf(id) {
-            if (!confirm("Hapus data ekraf ini?")) return;
-            if (isSupabaseConnected) {
-                try {
-                    const { error } = await supabaseClient.from('ekraf').delete().eq('id', id);
-                    if (error) throw error;
-                    alert("Data ekraf berhasil dihapus.");
-                    await fetchRealData();
-                    renderAllViews();
-                } catch (error) {
-                    alert("Gagal menghapus: " + error.message);
-                }
-            } else {
-                ekrafData = ekrafData.filter(e => e.id != id);
-                renderAllViews();
-            }
-        }
+        function switchAdminTab(tab) {
             const formWisata = document.getElementById('admin-form-wisata');
             const formEvent = document.getElementById('admin-form-event');
             const tabWisata = document.getElementById('tab-wisata');
@@ -1851,79 +1397,6 @@
             }
 
             btn.innerText = "Simpan Data Event ke Supabase";
-            btn.classList.remove('opacity-70');
-        });
-
-        document.getElementById('admin-form-ekraf').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const btn = document.getElementById('btn-submit-ekraf');
-            btn.innerText = "Menyimpan...";
-            btn.classList.add('opacity-70');
-
-            const newData = {
-                brand: document.getElementById('inp-ekraf-brand').value,
-                owner: document.getElementById('inp-ekraf-owner').value,
-                subsektor: document.getElementById('inp-ekraf-subsektor').value,
-                lokasi: document.getElementById('inp-ekraf-lokasi').value,
-                alamat: document.getElementById('inp-ekraf-alamat').value,
-                telepon: document.getElementById('inp-ekraf-telepon').value,
-                foto: document.getElementById('inp-ekraf-foto').value,
-                maps: document.getElementById('inp-ekraf-maps').value,
-                instagram: document.getElementById('inp-ekraf-instagram').value,
-                twitter: document.getElementById('inp-ekraf-twitter').value,
-                facebook: document.getElementById('inp-ekraf-facebook').value,
-                tiktok: document.getElementById('inp-ekraf-tiktok').value,
-                website: document.getElementById('inp-ekraf-website').value,
-                youtube: document.getElementById('inp-ekraf-youtube').value,
-                deskripsi: document.getElementById('inp-ekraf-desc').value
-            };
-
-            if (isSupabaseConnected) {
-                try {
-                    let error;
-                    if (editEkrafId) {
-                        const res = await supabaseClient.from('ekraf').update(newData).eq('id', editEkrafId);
-                        error = res.error;
-                    } else {
-                        newData.id = Date.now();
-                        const res = await supabaseClient.from('ekraf').insert([newData]);
-                        error = res.error;
-                    }
-                    if (error) throw error;
-                    alert("Sukses! Data Ekraf berhasil " + (editEkrafId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
-                    this.reset();
-                    editEkrafId = null;
-                    btn.innerText = "Simpan Data Ekraf ke Supabase";
-                    await fetchRealData();
-                    renderAllViews();
-                } catch (error) {
-                    alert("Gagal menyimpan data: " + error.message);
-                }
-            } else {
-                setTimeout(() => {
-                    alert("SIMULASI SUKSES: Karena Supabase belum dikonfigurasi, data hanya dicatat di Console.");
-                    console.log("Mock Insert Ekraf:", newData);
-
-                    if (editEkrafId) {
-                        newData.id = editEkrafId;
-                        const idx = ekrafData.findIndex(e => e.id === editEkrafId);
-                        if (idx > -1) ekrafData[idx] = newData;
-                    } else {
-                        newData.id = Date.now();
-                        ekrafData.unshift(newData);
-                    }
-                    renderAllViews();
-
-                    this.reset();
-                    editEkrafId = null;
-                    btn.innerText = "Simpan Data Ekraf ke Supabase";
-                    btn.classList.remove('opacity-70');
-                    navigate('admin');
-                }, 1000);
-                return;
-            }
-
-            btn.innerText = "Simpan Data Ekraf ke Supabase";
             btn.classList.remove('opacity-70');
         });
 
