@@ -611,7 +611,12 @@
             </div>
         </section>
 
-        <!-- 7. VIEW: ADMIN SUPABASE (Input Form) -->
+        <!-- 7. VIEW: DETAIL EKRAF -->
+        <section id="view-detail-ekraf" class="page-view bg-white min-h-screen">
+            <div id="detail-ekraf-content"></div>
+        </section>
+
+        <!-- 8. VIEW: ADMIN SUPABASE (Input Form) -->
         <section id="view-admin" class="page-view bg-gray-50 min-h-screen py-16">
             <div class="max-w-4xl mx-auto px-4">
                 <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
@@ -1162,6 +1167,7 @@
 
             if (viewId === 'detail-wisata') buildDetailWisata(detailId);
             if (viewId === 'detail-event') buildDetailEvent(detailId);
+            if (viewId === 'detail-ekraf') buildDetailEkraf(detailId);
         }
 
         // ---------------------------------------------------------
@@ -1236,7 +1242,7 @@
             };
             const colorClass = subsektorColors[item.subsektor] || 'bg-brand-100 text-brand-700';
             return `
-                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+                <div onclick="navigate('detail-ekraf', ${item.id})" class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col cursor-pointer group">
                     <div class="h-44 relative overflow-hidden bg-gray-100">
                         ${item.foto ? `<img src="${item.foto}" class="w-full h-full object-cover hover:scale-105 transition duration-500">` : `<div class="w-full h-full flex items-center justify-center text-gray-300"><i class="ph ph-storefront text-5xl"></i></div>`}
                         <span class="absolute bottom-3 left-3 ${colorClass} text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">${item.subsektor || ''}</span>
@@ -1486,8 +1492,236 @@
         }
 
         // ---------------------------------------------------------
-        // 6. ADMIN & FORM HANDLING
+        // DETAIL EKRAF PAGE BUILDER
         // ---------------------------------------------------------
+        function buildDetailEkraf(id) {
+            const data = ekrafData.find(e => e.id == id) || ekrafData[0];
+            if (!data) return;
+
+            const subsektorThemes = {
+                'Kuliner':                 { bg: 'from-orange-500 to-amber-400',    badge: 'bg-orange-100 text-orange-700',   icon: 'ph-fork-knife',          accent: '#f97316' },
+                'Kriya':                   { bg: 'from-amber-600 to-yellow-400',    badge: 'bg-amber-100 text-amber-700',     icon: 'ph-wrench',              accent: '#d97706' },
+                'Musik':                   { bg: 'from-purple-600 to-violet-400',   badge: 'bg-purple-100 text-purple-700',   icon: 'ph-music-notes',         accent: '#9333ea' },
+                'Fotografi':               { bg: 'from-sky-600 to-cyan-400',        badge: 'bg-sky-100 text-sky-700',         icon: 'ph-camera',              accent: '#0284c7' },
+                'Fesyen':                  { bg: 'from-pink-500 to-rose-400',       badge: 'bg-pink-100 text-pink-700',       icon: 'ph-coat-hanger',         accent: '#ec4899' },
+                'Gim':                     { bg: 'from-green-600 to-emerald-400',   badge: 'bg-green-100 text-green-700',     icon: 'ph-game-controller',     accent: '#16a34a' },
+                'Aplikasi':                { bg: 'from-blue-600 to-indigo-400',     badge: 'bg-blue-100 text-blue-700',       icon: 'ph-app-window',          accent: '#2563eb' },
+                'Arsitektur':              { bg: 'from-stone-600 to-slate-400',     badge: 'bg-stone-100 text-stone-700',     icon: 'ph-buildings',           accent: '#78716c' },
+                'Desain Interior':         { bg: 'from-teal-600 to-cyan-400',       badge: 'bg-teal-100 text-teal-700',       icon: 'ph-couch',               accent: '#0d9488' },
+                'Desain Komunikasi Visual':{ bg: 'from-fuchsia-600 to-pink-400',    badge: 'bg-fuchsia-100 text-fuchsia-700', icon: 'ph-palette',             accent: '#c026d3' },
+                'Desain Produk':           { bg: 'from-indigo-600 to-blue-400',     badge: 'bg-indigo-100 text-indigo-700',   icon: 'ph-cube',                accent: '#4f46e5' },
+                'Film, Animasi dan Video': { bg: 'from-red-600 to-orange-400',      badge: 'bg-red-100 text-red-700',         icon: 'ph-film-strip',          accent: '#dc2626' },
+                'Penerbitan':              { bg: 'from-slate-600 to-gray-400',      badge: 'bg-slate-100 text-slate-700',     icon: 'ph-book-open',           accent: '#475569' },
+                'Periklanan':              { bg: 'from-yellow-500 to-lime-400',     badge: 'bg-yellow-100 text-yellow-700',   icon: 'ph-megaphone',           accent: '#eab308' },
+                'Seni Pertunjukan':        { bg: 'from-rose-600 to-pink-400',       badge: 'bg-rose-100 text-rose-700',       icon: 'ph-theater-masks',       accent: '#e11d48' },
+                'Seni Rupa':               { bg: 'from-violet-600 to-purple-400',   badge: 'bg-violet-100 text-violet-700',   icon: 'ph-paint-brush',         accent: '#7c3aed' },
+                'Televisi dan Radio':      { bg: 'from-cyan-600 to-sky-400',        badge: 'bg-cyan-100 text-cyan-700',       icon: 'ph-television',          accent: '#0891b2' },
+            };
+            const theme = subsektorThemes[data.subsektor] || { bg: 'from-brand-600 to-brand-400', badge: 'bg-brand-100 text-brand-700', icon: 'ph-star', accent: '#2563eb' };
+
+            const socialLinks = [
+                { key: 'instagram', icon: 'ph-fill ph-instagram-logo', label: 'Instagram', color: 'hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500' },
+                { key: 'tiktok',    icon: 'ph-fill ph-tiktok-logo',    label: 'TikTok',    color: 'hover:bg-gray-900' },
+                { key: 'facebook',  icon: 'ph-fill ph-facebook-logo',  label: 'Facebook',  color: 'hover:bg-blue-600' },
+                { key: 'twitter',   icon: 'ph-fill ph-twitter-logo',   label: 'Twitter/X', color: 'hover:bg-black' },
+                { key: 'youtube',   icon: 'ph-fill ph-youtube-logo',   label: 'YouTube',   color: 'hover:bg-red-600' },
+                { key: 'website',   icon: 'ph-fill ph-globe',          label: 'Website',   color: 'hover:bg-brand-600' },
+            ].filter(s => data[s.key]);
+
+            const relatedEkraf = ekrafData.filter(e => e.id != data.id && e.subsektor === data.subsektor).slice(0, 3);
+            const otherEkraf   = ekrafData.filter(e => e.id != data.id).slice(0, 3);
+            const suggestions  = relatedEkraf.length > 0 ? relatedEkraf : otherEkraf;
+
+            const html = `
+                <!-- HERO BANNER -->
+                <div class="relative w-full min-h-[400px] lg:min-h-[480px] overflow-hidden bg-gray-900">
+                    ${data.foto
+                        ? `<img src="${data.foto}" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" style="filter:blur(2px)">`
+                        : ''}
+                    <div class="absolute inset-0 bg-gradient-to-br ${theme.bg} opacity-80"></div>
+                    <!-- Decorative shapes -->
+                    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-white/10 pointer-events-none"></div>
+                    <div class="absolute -bottom-10 -left-10 w-56 h-56 rounded-full bg-white/10 pointer-events-none"></div>
+                    <div class="absolute top-1/3 right-1/4 w-10 h-10 rounded-full bg-white/20 pointer-events-none"></div>
+
+                    <div class="relative z-10 max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-10">
+                        <!-- Avatar / Photo -->
+                        <div class="shrink-0">
+                            <div class="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border-4 border-white/30 shadow-2xl bg-white/20 backdrop-blur-sm">
+                                ${data.foto
+                                    ? `<img src="${data.foto}" class="w-full h-full object-cover">`
+                                    : `<div class="w-full h-full flex items-center justify-center text-white/60"><i class="ph ${theme.icon} text-7xl"></i></div>`}
+                            </div>
+                        </div>
+                        <!-- Info -->
+                        <div class="text-white flex-grow">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="bg-white/20 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/30">
+                                    <i class="ph-fill ${theme.icon} mr-1"></i>${data.subsektor}
+                                </span>
+                                ${data.lokasi ? `<span class="bg-white/10 text-white/80 text-[11px] font-medium px-3 py-1 rounded-full border border-white/20"><i class="ph-fill ph-map-pin mr-1"></i>${data.lokasi}</span>` : ''}
+                            </div>
+                            <h1 class="text-4xl md:text-5xl font-extrabold mb-2 leading-tight drop-shadow">${data.brand || ''}</h1>
+                            <p class="text-white/70 text-base mb-6 flex items-center gap-2"><i class="ph-fill ph-user-circle text-xl"></i> ${data.owner || '-'}</p>
+                            <div class="flex flex-wrap gap-3">
+                                ${data.telepon ? `<a href="https://wa.me/${data.telepon}" target="_blank" class="flex items-center gap-2 bg-white text-gray-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg hover:scale-105 transition"><i class="ph-fill ph-whatsapp-logo text-green-500 text-lg"></i> Hubungi via WA</a>` : ''}
+                                ${data.maps ? `<a href="${data.maps}" target="_blank" class="flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/30 hover:bg-white/30 transition"><i class="ph-fill ph-map-trifold text-lg"></i> Lihat Lokasi</a>` : ''}
+                                <button onclick="navigate('ekraf')" class="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/80 font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/20 hover:bg-white/20 transition"><i class="ph ph-arrow-left text-lg"></i> Kembali</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-10">
+
+                    <!-- LEFT: Main Info -->
+                    <div class="w-full lg:w-2/3 space-y-10">
+
+                        <!-- Deskripsi -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-1 h-7 rounded-full" style="background:${theme.accent}"></div>
+                                <h2 class="text-2xl font-bold text-gray-900">Tentang Brand</h2>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed text-[15px]">${data.deskripsi || '<span class="text-gray-400 italic">Belum ada deskripsi.</span>'}</p>
+                        </div>
+
+                        <!-- Informasi Usaha -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-1 h-7 rounded-full" style="background:${theme.accent}"></div>
+                                <h2 class="text-2xl font-bold text-gray-900">Informasi Usaha</h2>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-storefront"></i></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Nama Brand</p><p class="font-semibold text-gray-800 mt-0.5">${data.brand || '-'}</p></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-user"></i></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Pemilik / Owner</p><p class="font-semibold text-gray-800 mt-0.5">${data.owner || '-'}</p></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ${theme.icon}"></i></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Subsektor Ekraf</p><p class="font-semibold text-gray-800 mt-0.5">${data.subsektor || '-'}</p></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-map-pin"></i></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Lokasi</p><p class="font-semibold text-gray-800 mt-0.5">${data.lokasi || '-'}</p></div>
+                                </div>
+                                ${data.alamat ? `
+                                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 sm:col-span-2">
+                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-house"></i></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Alamat Lengkap</p><p class="font-semibold text-gray-800 mt-0.5">${data.alamat}</p></div>
+                                </div>` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Sosial Media & Link -->
+                        ${socialLinks.length > 0 ? `
+                        <div>
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-1 h-7 rounded-full" style="background:${theme.accent}"></div>
+                                <h2 class="text-2xl font-bold text-gray-900">Media & Tautan</h2>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                ${socialLinks.map(s => `
+                                <a href="${data[s.key]}" target="_blank"
+                                   class="flex items-center gap-3 p-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 font-semibold text-sm ${s.color} hover:text-white hover:border-transparent transition-all duration-200 group">
+                                    <i class="${s.icon} text-xl group-hover:scale-110 transition"></i>
+                                    <span>${s.label}</span>
+                                    <i class="ph ph-arrow-square-out text-xs ml-auto opacity-50"></i>
+                                </a>`).join('')}
+                            </div>
+                        </div>` : ''}
+                    </div>
+
+                    <!-- RIGHT: Sidebar -->
+                    <div class="w-full lg:w-1/3 space-y-6">
+
+                        <!-- Contact Card -->
+                        <div class="rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                            <div class="p-4 text-white font-bold text-sm bg-gradient-to-r ${theme.bg}">
+                                <i class="ph-fill ph-address-book mr-2"></i>Kontak & Lokasi
+                            </div>
+                            <div class="p-5 space-y-4">
+                                ${data.telepon ? `
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-green-50 flex items-center justify-center text-green-600"><i class="ph-fill ph-phone text-lg"></i></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Telepon / WhatsApp</p><p class="text-sm font-semibold text-gray-800">+${data.telepon}</p></div>
+                                </div>` : ''}
+                                ${data.lokasi ? `
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-red-500"><i class="ph-fill ph-map-pin text-lg"></i></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Kecamatan</p><p class="text-sm font-semibold text-gray-800">${data.lokasi}, Kab. Batang</p></div>
+                                </div>` : ''}
+                                ${data.alamat ? `
+                                <div class="flex items-start gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 shrink-0 mt-0.5"><i class="ph-fill ph-house-line text-lg"></i></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Alamat</p><p class="text-sm font-medium text-gray-700 leading-snug">${data.alamat}</p></div>
+                                </div>` : ''}
+                                ${data.maps ? `
+                                <a href="${data.maps}" target="_blank"
+                                   class="flex items-center justify-center gap-2 w-full mt-2 py-3 rounded-xl text-white font-bold text-sm shadow hover:opacity-90 transition bg-gradient-to-r ${theme.bg}">
+                                    <i class="ph-fill ph-map-trifold text-lg"></i> Buka Google Maps
+                                </a>` : ''}
+                                ${data.telepon ? `
+                                <a href="https://wa.me/${data.telepon}" target="_blank"
+                                   class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold text-sm shadow transition">
+                                    <i class="ph-fill ph-whatsapp-logo text-lg"></i> Chat WhatsApp
+                                </a>` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Subsektor Badge -->
+                        <div class="rounded-2xl border border-gray-100 shadow-sm p-5 bg-gradient-to-br from-gray-50 to-white">
+                            <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">Kategori Subsektor</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl shadow" style="background:${theme.accent}">
+                                    <i class="ph-fill ${theme.icon}"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">${data.subsektor || '-'}</p>
+                                    <p class="text-xs text-gray-400">Ekonomi Kreatif Indonesia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RELATED SECTION -->
+                ${suggestions.length > 0 ? `
+                <div class="border-t border-gray-100 bg-gray-50 py-12">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="flex justify-between items-end mb-6">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Pelaku Ekraf Lainnya</h3>
+                                <p class="text-sm text-gray-400 mt-1">Temukan lebih banyak pelaku ekonomi kreatif di Batang</p>
+                            </div>
+                            <button onclick="navigate('ekraf')" class="text-xs font-semibold text-gray-500 hover:text-brand-600 flex items-center gap-1">Lihat Semua <i class="ph ph-arrow-right"></i></button>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                            ${suggestions.map(e => {
+                                const t = subsektorThemes[e.subsektor] || { bg: 'from-brand-600 to-brand-400', badge: 'bg-brand-100 text-brand-700' };
+                                return `
+                                <div onclick="navigate('detail-ekraf', ${e.id})" class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer group flex flex-col">
+                                    <div class="h-36 relative overflow-hidden bg-gray-100">
+                                        ${e.foto ? `<img src="${e.foto}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">` : `<div class="w-full h-full bg-gradient-to-br ${t.bg} opacity-50"></div>`}
+                                        <span class="absolute bottom-2 left-2 ${t.badge} text-[9px] font-bold px-2 py-0.5 rounded uppercase">${e.subsektor}</span>
+                                    </div>
+                                    <div class="p-4 flex-grow">
+                                        <p class="font-bold text-gray-900 text-sm group-hover:text-brand-600 transition">${e.brand}</p>
+                                        <p class="text-xs text-gray-400 mt-1">${e.owner || ''}</p>
+                                    </div>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>` : ''}
+            `;
+            document.getElementById('detail-ekraf-content').innerHTML = html;
+        }
 
         function checkAdminStatus() {
             const statusDiv = document.getElementById('supabase-status');
