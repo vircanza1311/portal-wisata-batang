@@ -947,6 +947,28 @@
                             <textarea id="inp-ekraf-desc" rows="4"
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm" placeholder="Ceritakan tentang brand/usaha ini..."></textarea>
                         </div>
+
+                        <!-- Galeri Foto -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i class="ph-fill ph-images text-brand-600 text-base"></i> Galeri Foto <span class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto untuk ditampilkan di halaman detail.</p>
+                                </div>
+                                <button type="button" onclick="addGaleriInput()" id="btn-add-galeri"
+                                    class="flex items-center gap-1.5 text-xs font-bold text-brand-600 border border-brand-300 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <!-- Preview strip -->
+                            <div id="galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <!-- URL inputs container -->
+                            <div id="galeri-inputs-container" class="space-y-2">
+                                <!-- dynamic rows -->
+                            </div>
+                            <p id="galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
+
                         <div class="pt-4">
                             <button type="submit" id="btn-submit-ekraf"
                                 class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan
@@ -1066,6 +1088,15 @@
     </footer>
 
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[200] hidden flex items-center justify-center" onclick="closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl z-10"><i class="ph ph-x-circle"></i></button>
+        <button onclick="lightboxPrev(event)" class="absolute left-4 text-white/70 hover:text-white text-4xl z-10 p-2"><i class="ph ph-caret-left"></i></button>
+        <button onclick="lightboxNext(event)" class="absolute right-16 text-white/70 hover:text-white text-4xl z-10 p-2"><i class="ph ph-caret-right"></i></button>
+        <img id="lightbox-img" src="" class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl" onclick="event.stopPropagation()">
+        <p id="lightbox-counter" class="absolute bottom-4 text-white/60 text-sm font-medium"></p>
+    </div>
+
     <!-- PIN Modal -->
     <div id="pin-modal"
         class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
@@ -1127,9 +1158,9 @@
         ];
 
         let ekrafData = [
-            { id: 201, brand: 'Batik Gemawang', owner: 'Siti Aminah', subsektor: 'Kriya', lokasi: 'Batang', alamat: 'Jl. Raya Batang No. 12, Batang', telepon: '6281234567891', foto: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Batik tulis dan cap khas Batang dengan motif pesisiran yang kaya warna.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '' },
-            { id: 202, brand: 'Cita Rasa Batang', owner: 'Hendra Wijaya', subsektor: 'Kuliner', lokasi: 'Limpung', alamat: 'Jl. Limpung Raya No. 5, Limpung', telepon: '6289876543210', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800', deskripsi: 'Usaha kuliner oleh-oleh khas Batang: kerupuk ikan, bandeng presto, dan wajik.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '' },
-            { id: 203, brand: 'PixelBatang Studio', owner: 'Rizal Firmansyah', subsektor: 'Fotografi', lokasi: 'Batang', alamat: 'Ruko Jl. Pemuda No. 8, Batang', telepon: '6285678901234', foto: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800', deskripsi: 'Studio foto profesional untuk wedding, produk, dan editorial di Kabupaten Batang.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '' }
+            { id: 201, brand: 'Batik Gemawang', owner: 'Siti Aminah', subsektor: 'Kriya', lokasi: 'Batang', alamat: 'Jl. Raya Batang No. 12, Batang', telepon: '6281234567891', foto: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Batik tulis dan cap khas Batang dengan motif pesisiran yang kaya warna.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: ['https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&q=80&w=800'] },
+            { id: 202, brand: 'Cita Rasa Batang', owner: 'Hendra Wijaya', subsektor: 'Kuliner', lokasi: 'Limpung', alamat: 'Jl. Limpung Raya No. 5, Limpung', telepon: '6289876543210', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800', deskripsi: 'Usaha kuliner oleh-oleh khas Batang: kerupuk ikan, bandeng presto, dan wajik.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: ['https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800'] },
+            { id: 203, brand: 'PixelBatang Studio', owner: 'Rizal Firmansyah', subsektor: 'Fotografi', lokasi: 'Batang', alamat: 'Ruko Jl. Pemuda No. 8, Batang', telepon: '6285678901234', foto: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800', deskripsi: 'Studio foto profesional untuk wedding, produk, dan editorial di Kabupaten Batang.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: [] }
         ];
 
         // ---------------------------------------------------------
@@ -1156,6 +1187,8 @@
             await fetchRealData();
             renderAllViews();
             checkAdminStatus();
+            // Init gallery with 1 empty row
+            addGaleriInput();
         }
 
         function navigate(viewId, detailId = null) {
@@ -1618,6 +1651,28 @@
                             </div>
                         </div>
 
+                        <!-- Galeri Foto -->
+                        ${(data.galeri && data.galeri.length > 0) ? `
+                        <div>
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-1 h-7 rounded-full" style="background:${theme.accent}"></div>
+                                <h2 class="text-2xl font-bold text-gray-900">Galeri Foto</h2>
+                            </div>
+                            <div class="grid gap-3 ${data.galeri.length === 1 ? 'grid-cols-1' : data.galeri.length === 2 ? 'grid-cols-2' : data.galeri.length === 3 ? 'grid-cols-3' : data.galeri.length <= 6 ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}">
+                                ${data.galeri.map((url, i) => `
+                                <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
+                                     style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
+                                     onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
+                                    <img src="${url}" alt="Galeri ${i+1}"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
+                                        <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
+                                    </div>
+                                </div>`).join('')}
+                            </div>
+                        </div>` : ''}
+
                         <!-- Sosial Media & Link -->
                         ${socialLinks.length > 0 ? `
                         <div>
@@ -1830,6 +1885,13 @@
             document.getElementById('inp-ekraf-website').value = data.website || '';
             document.getElementById('inp-ekraf-youtube').value = data.youtube || '';
             document.getElementById('inp-ekraf-desc').value = data.deskripsi || '';
+            // Restore gallery
+            resetGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addGaleriInput(url));
+            } else {
+                addGaleriInput();
+            }
             document.getElementById('btn-submit-ekraf').innerText = "Update Data Ekraf";
             switchAdminTab('ekraf');
             window.scrollTo(0, 0);
@@ -2027,7 +2089,8 @@
                 tiktok: document.getElementById('inp-ekraf-tiktok').value,
                 website: document.getElementById('inp-ekraf-website').value,
                 youtube: document.getElementById('inp-ekraf-youtube').value,
-                deskripsi: document.getElementById('inp-ekraf-desc').value
+                deskripsi: document.getElementById('inp-ekraf-desc').value,
+                galeri: getGaleriUrls()
             };
 
             if (isSupabaseConnected) {
@@ -2044,6 +2107,7 @@
                     if (error) throw error;
                     alert("Sukses! Data Ekraf berhasil " + (editEkrafId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
                     this.reset(); editEkrafId = null;
+                    resetGaleriInputs(); addGaleriInput();
                     btn.innerText = "Simpan Data Ekraf ke Supabase";
                     btn.classList.remove('opacity-70');
                     await fetchRealData(); renderAllViews();
@@ -2062,11 +2126,167 @@
                         if (idx > -1) ekrafData[idx] = newData;
                     } else { newData.id = Date.now(); ekrafData.unshift(newData); }
                     renderAllViews(); this.reset(); editEkrafId = null;
+                    resetGaleriInputs(); addGaleriInput();
                     btn.innerText = "Simpan Data Ekraf ke Supabase";
                     btn.classList.remove('opacity-70');
                     navigate('admin');
                 }, 1000);
             }
+        });
+
+        // ---------------------------------------------------------
+        // GALERI FOTO — Admin Helpers
+        // ---------------------------------------------------------
+        const MAX_GALERI = 10;
+
+        function getGaleriUrls() {
+            return Array.from(document.querySelectorAll('.galeri-url-input'))
+                .map(i => i.value.trim())
+                .filter(v => v.length > 0);
+        }
+
+        function updateGaleriPreview() {
+            const strip = document.getElementById('galeri-preview-strip');
+            const urls = getGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
+                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src=''; this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i+1}</span>
+                    </div>
+                </div>`).join('');
+        }
+
+        function updateGaleriLimitMsg() {
+            const count = document.querySelectorAll('.galeri-url-input').length;
+            const btn = document.getElementById('btn-add-galeri');
+            const msg = document.getElementById('galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true;
+                btn.classList.add('opacity-40', 'cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false;
+                btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+
+        function addGaleriInput(value = '') {
+            const container = document.getElementById('galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-brand-400 transition">
+                    <span class="text-xs font-bold text-gray-400 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}"
+                        class="galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300"
+                        placeholder="https://contoh.com/foto-${idx}.jpg"
+                        oninput="updateGaleriPreview()">
+                    ${value ? `<img src="${value}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 galeri-thumb" onerror="this.style.display='none'">` : `<span class="galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removeGaleriRow(this)"
+                    class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200">
+                    <i class="ph ph-trash text-sm"></i>
+                </button>`;
+            // Live thumb update
+            const input = row.querySelector('.galeri-url-input');
+            const thumb = row.querySelector('.galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 galeri-thumb';
+                    img.onerror = () => { img.style.display='none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url;
+                    thumb.style.display = url ? 'block' : 'none';
+                }
+                updateGaleriPreview();
+            });
+            container.appendChild(row);
+            updateGaleriLimitMsg();
+            // Re-number all rows
+            renumberGaleriRows();
+        }
+
+        function removeGaleriRow(btn) {
+            const row = btn.closest('.galeri-row');
+            if (row) row.remove();
+            renumberGaleriRows();
+            updateGaleriPreview();
+            updateGaleriLimitMsg();
+        }
+
+        function renumberGaleriRows() {
+            document.querySelectorAll('.galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-gray-400');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i+1}.jpg`;
+            });
+        }
+
+        function resetGaleriInputs() {
+            const container = document.getElementById('galeri-inputs-container');
+            const strip = document.getElementById('galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updateGaleriLimitMsg();
+        }
+
+        // ---------------------------------------------------------
+        // LIGHTBOX
+        // ---------------------------------------------------------
+        let _lbUrls = [], _lbIdx = 0;
+
+        function openLightbox(url, idx, urlsJson) {
+            try { _lbUrls = typeof urlsJson === 'string' ? JSON.parse(urlsJson) : urlsJson; } catch(e) { _lbUrls = [url]; }
+            _lbIdx = idx;
+            _showLightbox();
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+            document.getElementById('lightbox-modal').classList.add('flex');
+        }
+
+        function _showLightbox() {
+            const img = document.getElementById('lightbox-img');
+            const ctr = document.getElementById('lightbox-counter');
+            if (img) img.src = _lbUrls[_lbIdx] || '';
+            if (ctr) ctr.textContent = `${_lbIdx + 1} / ${_lbUrls.length}`;
+        }
+
+        function closeLightbox() {
+            const m = document.getElementById('lightbox-modal');
+            m.classList.add('hidden'); m.classList.remove('flex');
+        }
+
+        function lightboxPrev(e) {
+            e.stopPropagation();
+            _lbIdx = (_lbIdx - 1 + _lbUrls.length) % _lbUrls.length;
+            _showLightbox();
+        }
+
+        function lightboxNext(e) {
+            e.stopPropagation();
+            _lbIdx = (_lbIdx + 1) % _lbUrls.length;
+            _showLightbox();
+        }
+
+        document.addEventListener('keydown', e => {
+            const m = document.getElementById('lightbox-modal');
+            if (!m || m.classList.contains('hidden')) return;
+            if (e.key === 'ArrowLeft') lightboxPrev(e);
+            if (e.key === 'ArrowRight') lightboxNext(e);
+            if (e.key === 'Escape') closeLightbox();
         });
 
         // Initialize Application
