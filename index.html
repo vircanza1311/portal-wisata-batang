@@ -503,12 +503,18 @@
                             <select id="filter-event-bulan" onchange="applyEventFilter()"
                                 class="border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-600 bg-white hover:border-brand-300 focus:outline-none focus:border-brand-500 transition min-w-[130px]">
                                 <option value="">Semua Bulan</option>
-                                <option value="JAN">Januari</option><option value="FEB">Februari</option>
-                                <option value="MAR">Maret</option><option value="APR">April</option>
-                                <option value="MEI">Mei</option><option value="JUN">Juni</option>
-                                <option value="JUL">Juli</option><option value="AGT">Agustus</option>
-                                <option value="SEP">September</option><option value="OKT">Oktober</option>
-                                <option value="NOV">November</option><option value="DES">Desember</option>
+                                <option value="Januari">Januari</option>
+                                <option value="Februari">Februari</option>
+                                <option value="Maret">Maret</option>
+                                <option value="April">April</option>
+                                <option value="Mei">Mei</option>
+                                <option value="Juni">Juni</option>
+                                <option value="Juli">Juli</option>
+                                <option value="Agustus">Agustus</option>
+                                <option value="September">September</option>
+                                <option value="Oktober">Oktober</option>
+                                <option value="November">November</option>
+                                <option value="Desember">Desember</option>
                             </select>
                             <select id="filter-event-lokasi" onchange="applyEventFilter()"
                                 class="border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-600 bg-white hover:border-brand-300 focus:outline-none focus:border-brand-500 transition min-w-[130px]">
@@ -885,10 +891,23 @@
                                     placeholder="Contoh: 15">
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan (Singkatan)</label>
-                                <input type="text" id="inp-event-bulan"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
-                                    placeholder="Contoh: JUN">
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan</label>
+                                <select id="inp-event-bulan"
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
+                                    <option value="" disabled selected>Pilih Bulan...</option>
+                                    <option value="Januari">Januari</option>
+                                    <option value="Februari">Februari</option>
+                                    <option value="Maret">Maret</option>
+                                    <option value="April">April</option>
+                                    <option value="Mei">Mei</option>
+                                    <option value="Juni">Juni</option>
+                                    <option value="Juli">Juli</option>
+                                    <option value="Agustus">Agustus</option>
+                                    <option value="September">September</option>
+                                    <option value="Oktober">Oktober</option>
+                                    <option value="November">November</option>
+                                    <option value="Desember">Desember</option>
+                                </select>
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Waktu / Jadwal</label>
@@ -1246,10 +1265,10 @@
         ];
 
         let eventData = [
-            { id: 101, judul: 'Festival Batang Bersholawat', tanggal: '15', bulan: 'JUN', lokasi: 'Alun-alun Batang', waktu: '15 Juni 2026', foto: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', deskripsi: 'Festival tahunan yang diisi dengan lantunan sholawat, tausiyah, dan doa bersama untuk kemajuan Kabupaten Batang.' },
-            { id: 102, judul: 'Batang Creative Festival', tanggal: '22', bulan: 'JUN', lokasi: 'Alun-alun Batang', waktu: '22 Juni 2026', foto: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pameran karya kreatif pemuda Batang, UMKM, dan pertunjukan musik lokal.' },
-            { id: 103, judul: 'Karnaval Budaya Batang', tanggal: '05', bulan: 'JUL', lokasi: 'Jl. Veteran, Batang', waktu: '5 Juli 2026', foto: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pawai pakaian adat dan kesenian tradisional dari berbagai kecamatan.' },
-            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'AGT', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.' }
+            { id: 101, judul: 'Festival Batang Bersholawat', tanggal: '15', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '15 Juni 2026', foto: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', deskripsi: 'Festival tahunan yang diisi dengan lantunan sholawat, tausiyah, dan doa bersama untuk kemajuan Kabupaten Batang.' },
+            { id: 102, judul: 'Batang Creative Festival', tanggal: '22', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '22 Juni 2026', foto: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pameran karya kreatif pemuda Batang, UMKM, dan pertunjukan musik lokal.' },
+            { id: 103, judul: 'Karnaval Budaya Batang', tanggal: '05', bulan: 'Juli', lokasi: 'Jl. Veteran, Batang', waktu: '5 Juli 2026', foto: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pawai pakaian adat dan kesenian tradisional dari berbagai kecamatan.' },
+            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'Agustus', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.' }
         ];
 
         let ekrafData = [
@@ -2238,7 +2257,20 @@
         // INTERACTIVE CALENDAR & EVENT PAGE
         // ---------------------------------------------------------
         const MONTHS_ID = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-        const BULAN_SHORT = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGT','SEP','OKT','NOV','DES'];
+        // Full names (lowercase) for flexible matching — supports data from Supabase in any case
+        const BULAN_FULL = ['januari','februari','maret','april','mei','juni','juli','agustus','september','oktober','november','desember'];
+        // Legacy short codes → index (for old data already saved to Supabase)
+        const BULAN_LEGACY = {'jan':0,'feb':1,'mar':2,'apr':3,'mei':4,'jun':5,'jul':6,'agt':7,'sep':8,'okt':9,'nov':10,'des':11,
+                              'january':0,'february':1,'march':2,'april':3,'may':4,'june':5,'july':6,'august':7,'september':8,'october':9,'november':10,'december':11};
+
+        /** Normalise any bulan string → 0-indexed month number, or -1 if unrecognised */
+        function parseBulanIdx(bulan) {
+            if (!bulan) return -1;
+            const s = bulan.trim().toLowerCase();
+            const fi = BULAN_FULL.indexOf(s);
+            if (fi >= 0) return fi;
+            return BULAN_LEGACY[s] ?? -1;
+        }
 
         let calYear  = new Date().getFullYear();
         let calMonth = new Date().getMonth(); // 0-indexed
@@ -2254,7 +2286,7 @@
             let nearest = null;
             eventData.forEach(ev => {
                 const day  = parseInt(ev.tanggal, 10);
-                const mIdx = BULAN_SHORT.indexOf((ev.bulan || '').toUpperCase());
+                const mIdx = parseBulanIdx(ev.bulan);
                 let year   = now.getFullYear();
                 if (ev.waktu) { const m = ev.waktu.match(/\b(20\d{2})\b/); if (m) year = parseInt(m[1], 10); }
                 if (isNaN(day) || mIdx < 0) return;
@@ -2270,15 +2302,10 @@
         function buildEventDateMap() {
             const map = {};
             eventData.forEach(ev => {
-                // Parse day + month from event fields
-                const day   = parseInt(ev.tanggal, 10);
-                const mIdx  = BULAN_SHORT.indexOf((ev.bulan || '').toUpperCase());
-                // Try to extract year from ev.waktu e.g. "15 Juni 2026"
+                const day  = parseInt(ev.tanggal, 10);
+                const mIdx = parseBulanIdx(ev.bulan);
                 let year = new Date().getFullYear();
-                if (ev.waktu) {
-                    const m = ev.waktu.match(/\b(20\d{2})\b/);
-                    if (m) year = parseInt(m[1], 10);
-                }
+                if (ev.waktu) { const m = ev.waktu.match(/\b(20\d{2})\b/); if (m) year = parseInt(m[1], 10); }
                 if (!isNaN(day) && mIdx >= 0) {
                     const key = `${year}-${String(mIdx+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
                     if (!map[key]) map[key] = [];
@@ -2442,10 +2469,9 @@
             let evList = [];
 
             if (eventTabMode === 'upcoming') {
-                // Events from today onward
                 evList = eventData.filter(ev => {
-                    const day = parseInt(ev.tanggal, 10);
-                    const mIdx = BULAN_SHORT.indexOf((ev.bulan || '').toUpperCase());
+                    const day  = parseInt(ev.tanggal, 10);
+                    const mIdx = parseBulanIdx(ev.bulan);
                     let year = now.getFullYear();
                     if (ev.waktu) { const m = ev.waktu.match(/\b(20\d{2})\b/); if (m) year = parseInt(m[1], 10); }
                     if (isNaN(day) || mIdx < 0) return true;
@@ -2507,7 +2533,7 @@
             const bulan  = (document.getElementById('filter-event-bulan')?.value  || '').toUpperCase();
             const lokasi = document.getElementById('filter-event-lokasi')?.value || '';
             let filtered = eventData.filter(ev => {
-                const matchBulan  = !bulan  || (ev.bulan || '').toUpperCase() === bulan;
+                const matchBulan  = !bulan  || parseBulanIdx(ev.bulan) === parseBulanIdx(bulan);
                 const matchLokasi = !lokasi || ev.lokasi === lokasi;
                 return matchBulan && matchLokasi;
             });
