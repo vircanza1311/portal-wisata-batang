@@ -398,100 +398,153 @@
         </section>
 
         <!-- 4. VIEW: HALAMAN EVENT -->
-        <section id="view-event" class="page-view bg-white min-h-screen">
-            <div class="bg-gray-50 border-b border-gray-100 py-10">
-                <div class="max-w-7xl mx-auto px-4 text-center">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Event Kabupaten Batang</h2>
-                    <p class="text-gray-500">Jadwal event dan kegiatan menarik di Kabupaten Batang</p>
+        <section id="view-event" class="page-view bg-[#f8fafc] min-h-screen">
+
+            <!-- Hero Header -->
+            <div class="relative overflow-hidden bg-gradient-to-br from-brand-800 via-brand-700 to-indigo-600 pt-14 pb-20 px-4">
+                <!-- Decorative blobs -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-10 w-64 h-64 bg-white/5 rounded-full translate-y-1/2 pointer-events-none"></div>
+                <div class="max-w-7xl mx-auto text-center relative z-10">
+                    <span class="inline-block bg-white/15 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/20">Kalender Kegiatan</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">Event Kabupaten Batang</h1>
+                    <p class="text-white/70 text-base md:text-lg max-w-xl mx-auto">Jadwal event, festival, dan kegiatan menarik sepanjang tahun</p>
                 </div>
             </div>
 
-            <div class="max-w-7xl mx-auto px-4 py-10">
-                <div class="flex flex-col lg:flex-row gap-10 mb-12">
-                    <!-- Calendar Mockup -->
-                    <div class="w-full lg:w-1/3 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-                        <div class="flex justify-between items-center mb-6">
-                            <button><i class="ph ph-caret-left text-gray-400"></i></button>
-                            <h3 class="font-bold text-gray-800">Juni 2026</h3>
-                            <button><i class="ph ph-caret-right text-gray-400"></i></button>
-                        </div>
-                        <div class="calendar-grid grid grid-cols-7 text-gray-400 font-medium mb-2">
-                            <div>Su</div>
-                            <div>Mo</div>
-                            <div>Tu</div>
-                            <div>We</div>
-                            <div>Th</div>
-                            <div>Fr</div>
-                            <div>Sa</div>
-                        </div>
-                        <div class="calendar-grid grid grid-cols-7 text-gray-700 font-medium">
-                            <div class="text-gray-300">31</div>
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>5</div>
-                            <div>6</div>
-                            <div>7</div>
-                            <div>8</div>
-                            <div>9</div>
-                            <div>10</div>
-                            <div>11</div>
-                            <div>12</div>
-                            <div>13</div>
-                            <div>14</div>
-                            <div class="bg-brand-600 text-white rounded-full w-8 h-8 mx-auto shadow-md">15</div>
-                            <div>16</div>
-                            <div>17</div>
-                            <div>18</div>
-                            <div>19</div>
-                            <div>20</div>
-                            <div>21</div>
-                            <div class="bg-brand-600 text-white rounded-full w-8 h-8 mx-auto shadow-md">22</div>
-                            <div>23</div>
-                            <div>24</div>
-                            <div>25</div>
-                            <div>26</div>
-                            <div>27</div>
-                            <div>28</div>
-                            <div>29</div>
-                            <div>30</div>
-                            <div class="text-gray-300">1</div>
-                            <div class="text-gray-300">2</div>
-                            <div class="text-gray-300">3</div>
-                            <div class="text-gray-300">4</div>
-                        </div>
-                    </div>
+            <!-- Curved separator -->
+            <div class="relative -mt-8 z-10 mx-4 md:mx-auto md:max-w-7xl">
 
-                    <!-- Event List -->
-                    <div class="w-full lg:w-2/3">
-                        <h3 class="font-bold text-gray-900 mb-6 text-lg">Event Mendatang</h3>
-                        <div id="list-home-event" class="space-y-4">
-                            <!-- Injected via JS -->
+                <!-- Calendar + Upcoming -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden mb-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-5">
+
+                        <!-- Interactive Calendar -->
+                        <div class="lg:col-span-2 border-b lg:border-b-0 lg:border-r border-gray-100 p-6 md:p-8">
+                            <!-- Month / Year nav -->
+                            <div class="flex items-center justify-between mb-6">
+                                <button onclick="calPrev()" class="w-9 h-9 rounded-xl bg-gray-50 border border-gray-200 hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition flex items-center justify-center text-gray-500">
+                                    <i class="ph ph-caret-left text-base"></i>
+                                </button>
+                                <div class="text-center cursor-pointer" onclick="toggleYearPicker()">
+                                    <p id="cal-month-label" class="font-extrabold text-gray-900 text-lg leading-none hover:text-brand-600 transition"></p>
+                                    <p id="cal-year-label" class="text-xs text-brand-600 font-semibold mt-0.5 hover:underline"></p>
+                                </div>
+                                <button onclick="calNext()" class="w-9 h-9 rounded-xl bg-gray-50 border border-gray-200 hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition flex items-center justify-center text-gray-500">
+                                    <i class="ph ph-caret-right text-base"></i>
+                                </button>
+                            </div>
+
+                            <!-- Year picker (hidden by default) -->
+                            <div id="year-picker" class="hidden mb-4 grid grid-cols-4 gap-1.5">
+                                <!-- filled by JS -->
+                            </div>
+
+                            <!-- Day headers -->
+                            <div class="grid grid-cols-7 mb-2">
+                                <div class="text-[11px] font-bold text-red-400 text-center py-1">Min</div>
+                                <div class="text-[11px] font-bold text-gray-400 text-center py-1">Sen</div>
+                                <div class="text-[11px] font-bold text-gray-400 text-center py-1">Sel</div>
+                                <div class="text-[11px] font-bold text-gray-400 text-center py-1">Rab</div>
+                                <div class="text-[11px] font-bold text-gray-400 text-center py-1">Kam</div>
+                                <div class="text-[11px] font-bold text-gray-400 text-center py-1">Jum</div>
+                                <div class="text-[11px] font-bold text-blue-400 text-center py-1">Sab</div>
+                            </div>
+
+                            <!-- Days grid -->
+                            <div id="cal-days" class="grid grid-cols-7 gap-y-1"></div>
+
+                            <!-- Legend -->
+                            <div class="flex items-center gap-4 mt-5 pt-4 border-t border-gray-100">
+                                <div class="flex items-center gap-1.5 text-xs text-gray-500"><span class="w-2.5 h-2.5 rounded-full bg-brand-600 inline-block"></span> Ada Event</div>
+                                <div class="flex items-center gap-1.5 text-xs text-gray-500"><span class="w-2.5 h-2.5 rounded-full bg-orange-400 inline-block"></span> Hari Ini</div>
+                                <div class="flex items-center gap-1.5 text-xs text-gray-500"><span class="w-2.5 h-2.5 rounded-sm border-2 border-brand-300 inline-block"></span> Dipilih</div>
+                            </div>
+                        </div>
+
+                        <!-- Event Popup / Selected Day / Upcoming -->
+                        <div class="lg:col-span-3 p-6 md:p-8 flex flex-col">
+                            <!-- Selected day events (hidden when no day selected) -->
+                            <div id="cal-day-events" class="hidden mb-6">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h4 id="cal-day-events-title" class="font-bold text-gray-900 text-base flex items-center gap-2"><i class="ph-fill ph-calendar-check text-brand-600"></i> </h4>
+                                    <button onclick="clearCalSelection()" class="text-xs text-gray-400 hover:text-gray-600 flex items-center gap-1"><i class="ph ph-x text-xs"></i> Tutup</button>
+                                </div>
+                                <div id="cal-day-events-list" class="space-y-2"></div>
+                            </div>
+
+                            <!-- Upcoming events header + filter tabs -->
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-bold text-gray-900 text-lg flex items-center gap-2">
+                                    <i class="ph-fill ph-lightning text-brand-500"></i> Event Mendatang
+                                </h3>
+                                <div class="flex gap-1 bg-gray-100 rounded-xl p-1">
+                                    <button id="tab-upcoming" onclick="setEventTab('upcoming')" class="px-3 py-1 rounded-lg text-xs font-bold text-white bg-brand-600 transition">Akan Datang</button>
+                                    <button id="tab-all" onclick="setEventTab('all')" class="px-3 py-1 rounded-lg text-xs font-semibold text-gray-500 hover:text-gray-700 transition">Semua</button>
+                                </div>
+                            </div>
+                            <div id="event-sidebar-list" class="space-y-3 overflow-y-auto max-h-72 lg:max-h-80 pr-1 flex-grow
+                                [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-gray-50 [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+                                <!-- injected by JS -->
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Filters for bottom grid -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-6 pt-8 border-t border-gray-100">
-                    <select
-                        class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]">
-                        <option>Semua Bulan</option>
-                    </select>
-                    <select
-                        class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]">
-                        <option>Semua Lokasi</option>
-                    </select>
-                    <select
-                        class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 bg-white min-w-[150px]">
-                        <option>Semua Jenis</option>
-                    </select>
+                <!-- All Events Grid -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+                    <!-- Section header + search/filter bar -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h3 class="font-extrabold text-gray-900 text-xl">Semua Event</h3>
+                            <p id="event-grid-count" class="text-sm text-gray-400 mt-0.5"></p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <select id="filter-event-bulan" onchange="applyEventFilter()"
+                                class="border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-600 bg-white hover:border-brand-300 focus:outline-none focus:border-brand-500 transition min-w-[130px]">
+                                <option value="">Semua Bulan</option>
+                                <option value="JAN">Januari</option><option value="FEB">Februari</option>
+                                <option value="MAR">Maret</option><option value="APR">April</option>
+                                <option value="MEI">Mei</option><option value="JUN">Juni</option>
+                                <option value="JUL">Juli</option><option value="AGT">Agustus</option>
+                                <option value="SEP">September</option><option value="OKT">Oktober</option>
+                                <option value="NOV">November</option><option value="DES">Desember</option>
+                            </select>
+                            <select id="filter-event-lokasi" onchange="applyEventFilter()"
+                                class="border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-600 bg-white hover:border-brand-300 focus:outline-none focus:border-brand-500 transition min-w-[130px]">
+                                <option value="">Semua Lokasi</option>
+                            </select>
+                            <button onclick="applyEventFilter(true)" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-500 text-sm font-semibold hover:bg-gray-200 transition flex items-center gap-1.5">
+                                <i class="ph ph-funnel-simple"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Toggle view mode -->
+                    <div class="flex gap-2 mb-6">
+                        <button id="view-grid-btn" onclick="setEventView('grid')" class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow"><i class="ph-fill ph-squares-four text-base"></i></button>
+                        <button id="view-list-btn" onclick="setEventView('list')" class="w-9 h-9 rounded-xl bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center transition"><i class="ph ph-list-dashes text-base"></i></button>
+                    </div>
+
+                    <div id="grid-all-event" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        <!-- Injected via JS -->
+                    </div>
+                    <p id="event-empty-msg" class="hidden text-center text-gray-400 py-16 text-sm">Tidak ada event yang sesuai filter.</p>
                 </div>
 
-                <div id="grid-all-event" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Injected via JS -->
+            </div>
+
+            <!-- Calendar Day Popup (floating, for mobile) -->
+            <div id="cal-popup" class="hidden fixed inset-0 bg-black/50 z-[90] flex items-end sm:items-center justify-center p-4" onclick="closeCalPopup(event)">
+                <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 transform transition-all" onclick="event.stopPropagation()">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 id="popup-title" class="font-bold text-gray-900 text-base"></h4>
+                        <button onclick="document.getElementById('cal-popup').classList.add('hidden')" class="text-gray-400 hover:text-gray-700"><i class="ph ph-x text-lg"></i></button>
+                    </div>
+                    <div id="popup-list" class="space-y-3 max-h-64 overflow-y-auto"></div>
                 </div>
             </div>
+
         </section>
 
         <!-- 5. VIEW: DETAIL EVENT -->
@@ -1386,10 +1439,14 @@
             // Wisata
             document.getElementById('grid-all-wisata').innerHTML = wisataData.map(createWisataCard).join('');
             // Event
-            document.getElementById('list-home-event').innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
+            const lhe = document.getElementById('list-home-event');
+            if (lhe) lhe.innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
             document.getElementById('grid-all-event').innerHTML = eventData.map(createEventCardBlock).join('');
             // Ekraf
             renderEkrafGrid(ekrafFilterActive ? ekrafData.filter(e => e.subsektor === ekrafFilterActive) : ekrafData);
+
+            // Calendar & Event page
+            renderCalendar();
 
             // Admin tables
             const tbodyWisata = document.getElementById('tbody-wisata');
@@ -2175,6 +2232,299 @@
                 }, 1000);
             }
         });
+
+        // ---------------------------------------------------------
+        // INTERACTIVE CALENDAR & EVENT PAGE
+        // ---------------------------------------------------------
+        const MONTHS_ID = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+        const BULAN_SHORT = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGT','SEP','OKT','NOV','DES'];
+
+        let calYear  = new Date().getFullYear();
+        let calMonth = new Date().getMonth(); // 0-indexed
+        let calSelectedDay = null;
+        let calSelectedMonth = null;
+        let calSelectedYear = null;
+        let eventViewMode = 'grid';
+        let eventTabMode  = 'upcoming';
+
+        /** Build a map: "YYYY-MM-DD" → [event, ...] */
+        function buildEventDateMap() {
+            const map = {};
+            eventData.forEach(ev => {
+                // Parse day + month from event fields
+                const day   = parseInt(ev.tanggal, 10);
+                const mIdx  = BULAN_SHORT.indexOf((ev.bulan || '').toUpperCase());
+                // Try to extract year from ev.waktu e.g. "15 Juni 2026"
+                let year = new Date().getFullYear();
+                if (ev.waktu) {
+                    const m = ev.waktu.match(/\b(20\d{2})\b/);
+                    if (m) year = parseInt(m[1], 10);
+                }
+                if (!isNaN(day) && mIdx >= 0) {
+                    const key = `${year}-${String(mIdx+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+                    if (!map[key]) map[key] = [];
+                    map[key].push(ev);
+                }
+            });
+            return map;
+        }
+
+        function renderCalendar() {
+            const map   = buildEventDateMap();
+            const today = new Date();
+            const firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
+            const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+            const daysInPrev  = new Date(calYear, calMonth, 0).getDate();
+
+            document.getElementById('cal-month-label').textContent = MONTHS_ID[calMonth];
+            document.getElementById('cal-year-label').textContent  = calYear;
+
+            let html = '';
+            // Prev month filler
+            for (let i = firstDay - 1; i >= 0; i--) {
+                html += `<div class="flex items-center justify-center h-9 text-[12px] text-gray-300 font-medium">${daysInPrev - i}</div>`;
+            }
+            // Current month days
+            for (let d = 1; d <= daysInMonth; d++) {
+                const key   = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                const evs   = map[key] || [];
+                const isToday    = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+                const isSelected = calSelectedDay === d && calSelectedMonth === calMonth && calSelectedYear === calYear;
+                const hasEvent   = evs.length > 0;
+                const isSun = (firstDay + d - 1) % 7 === 0;
+                const isSat = (firstDay + d - 1) % 7 === 6;
+
+                let base = 'relative flex flex-col items-center justify-center h-9 w-full rounded-xl text-[13px] font-semibold cursor-pointer transition-all duration-150 select-none ';
+                if (isSelected)   base += 'bg-brand-600 text-white shadow-md scale-105 ';
+                else if (isToday) base += 'bg-orange-400 text-white shadow ';
+                else if (hasEvent) base += 'bg-brand-50 text-brand-700 hover:bg-brand-100 border border-brand-200 ';
+                else if (isSun)   base += 'text-red-400 hover:bg-red-50 ';
+                else if (isSat)   base += 'text-blue-400 hover:bg-blue-50 ';
+                else              base += 'text-gray-700 hover:bg-gray-100 ';
+
+                const dotColor = isSelected ? 'bg-white' : (isToday ? 'bg-white' : 'bg-brand-500');
+                const dot = hasEvent ? `<span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full ${dotColor}"></span>` : '';
+
+                html += `<div class="${base}" onclick="calSelectDay(${d}, event)" title="${hasEvent ? evs.map(e=>e.judul).join(', ') : ''}">${d}${dot}</div>`;
+            }
+            // Next month filler
+            const totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
+            for (let d = 1; d <= totalCells - firstDay - daysInMonth; d++) {
+                html += `<div class="flex items-center justify-center h-9 text-[12px] text-gray-300 font-medium">${d}</div>`;
+            }
+            document.getElementById('cal-days').innerHTML = html;
+
+            // Update sidebar list
+            renderEventSidebar();
+            renderEventGrid();
+        }
+
+        function calSelectDay(d, e) {
+            const key = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+            const map = buildEventDateMap();
+            const evs = map[key] || [];
+
+            if (calSelectedDay === d && calSelectedMonth === calMonth && calSelectedYear === calYear) {
+                clearCalSelection();
+                return;
+            }
+            calSelectedDay   = d;
+            calSelectedMonth = calMonth;
+            calSelectedYear  = calYear;
+            renderCalendar();
+
+            const dateLabel = `${d} ${MONTHS_ID[calMonth]} ${calYear}`;
+            if (evs.length === 0) {
+                // Still update selection highlight, but clear popup
+                const panel = document.getElementById('cal-day-events');
+                panel.classList.add('hidden');
+                return;
+            }
+
+            // Show inline panel on desktop
+            const panel = document.getElementById('cal-day-events');
+            const title = document.getElementById('cal-day-events-title');
+            const list  = document.getElementById('cal-day-events-list');
+            title.textContent = `${evs.length} Event — ${dateLabel}`;
+            list.innerHTML = evs.map(ev => `
+                <div onclick="navigate('detail-event', ${ev.id})"
+                     class="flex items-center gap-3 p-3 rounded-xl bg-brand-50 border border-brand-100 hover:bg-brand-100 cursor-pointer transition">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden shrink-0 bg-gray-200">
+                        ${ev.foto ? `<img src="${ik.thumb(ev.foto)}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-brand-200 flex items-center justify-center"><i class="ph-fill ph-calendar text-brand-600 text-lg"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="font-bold text-gray-900 text-sm truncate">${ev.judul}</p>
+                        <p class="text-xs text-gray-500 flex items-center gap-1 mt-0.5"><i class="ph-fill ph-map-pin text-gray-300"></i>${ev.lokasi}</p>
+                    </div>
+                    <i class="ph ph-arrow-right text-brand-400 shrink-0"></i>
+                </div>`).join('');
+            panel.classList.remove('hidden');
+
+            // Also show popup on mobile (sm and below)
+            if (window.innerWidth < 640) {
+                document.getElementById('popup-title').textContent = `${evs.length} Event — ${dateLabel}`;
+                document.getElementById('popup-list').innerHTML = list.innerHTML;
+                document.getElementById('cal-popup').classList.remove('hidden');
+            }
+        }
+
+        function clearCalSelection() {
+            calSelectedDay = null;
+            renderCalendar();
+            document.getElementById('cal-day-events').classList.add('hidden');
+        }
+
+        function closeCalPopup(e) {
+            document.getElementById('cal-popup').classList.add('hidden');
+        }
+
+        function calPrev() {
+            calMonth--;
+            if (calMonth < 0) { calMonth = 11; calYear--; }
+            clearCalSelection();
+            renderCalendar();
+        }
+
+        function calNext() {
+            calMonth++;
+            if (calMonth > 11) { calMonth = 0; calYear++; }
+            clearCalSelection();
+            renderCalendar();
+        }
+
+        function toggleYearPicker() {
+            const el = document.getElementById('year-picker');
+            if (el.classList.contains('hidden')) {
+                const base = calYear - 4;
+                let html = '';
+                for (let y = base; y <= base + 11; y++) {
+                    const active = y === calYear ? 'bg-brand-600 text-white font-bold' : 'bg-gray-100 text-gray-700 hover:bg-brand-50 hover:text-brand-700';
+                    html += `<button type="button" onclick="calSetYear(${y})" class="${active} rounded-lg py-1.5 text-xs font-semibold transition">${y}</button>`;
+                }
+                el.innerHTML = html;
+                el.className = 'mb-4 grid grid-cols-4 gap-1.5';
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+
+        function calSetYear(y) {
+            calYear = y;
+            document.getElementById('year-picker').classList.add('hidden');
+            clearCalSelection();
+            renderCalendar();
+        }
+
+        function renderEventSidebar() {
+            const now = new Date();
+            const map = buildEventDateMap();
+            let evList = [];
+
+            if (eventTabMode === 'upcoming') {
+                // Events from today onward
+                evList = eventData.filter(ev => {
+                    const day = parseInt(ev.tanggal, 10);
+                    const mIdx = BULAN_SHORT.indexOf((ev.bulan || '').toUpperCase());
+                    let year = now.getFullYear();
+                    if (ev.waktu) { const m = ev.waktu.match(/\b(20\d{2})\b/); if (m) year = parseInt(m[1], 10); }
+                    if (isNaN(day) || mIdx < 0) return true;
+                    return new Date(year, mIdx, day) >= new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                });
+            } else {
+                evList = [...eventData];
+            }
+
+            const container = document.getElementById('event-sidebar-list');
+            if (!container) return;
+            if (evList.length === 0) {
+                container.innerHTML = `<p class="text-sm text-gray-400 py-6 text-center">Tidak ada event mendatang.</p>`;
+                return;
+            }
+
+            // Populate lokasi filter
+            const lokasiSel = document.getElementById('filter-event-lokasi');
+            if (lokasiSel && lokasiSel.options.length <= 1) {
+                const locs = [...new Set(eventData.map(e => e.lokasi).filter(Boolean))];
+                locs.forEach(l => { const o = document.createElement('option'); o.value = l; o.textContent = l; lokasiSel.appendChild(o); });
+            }
+
+            container.innerHTML = evList.slice(0, 8).map(ev => `
+                <div onclick="navigate('detail-event', ${ev.id})"
+                     class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 border border-transparent hover:border-gray-100 cursor-pointer transition group">
+                    <div class="text-center w-12 shrink-0">
+                        <div class="text-xl font-extrabold text-brand-600 leading-none">${ev.tanggal || ''}</div>
+                        <div class="text-[9px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 rounded-sm mt-0.5 px-1">${ev.bulan || ''}</div>
+                    </div>
+                    <div class="w-px h-10 bg-gray-100 shrink-0"></div>
+                    <div class="flex-grow min-w-0">
+                        <p class="font-bold text-gray-900 text-sm truncate group-hover:text-brand-600 transition">${ev.judul || ''}</p>
+                        <p class="text-xs text-gray-400 flex items-center gap-1 mt-0.5"><i class="ph-fill ph-map-pin text-gray-300 text-[10px]"></i> ${ev.lokasi || ''}</p>
+                    </div>
+                    <i class="ph ph-arrow-right text-gray-300 group-hover:text-brand-400 transition shrink-0"></i>
+                </div>`).join('');
+        }
+
+        function setEventTab(tab) {
+            eventTabMode = tab;
+            document.getElementById('tab-upcoming').className = tab === 'upcoming'
+                ? 'px-3 py-1 rounded-lg text-xs font-bold text-white bg-brand-600 transition'
+                : 'px-3 py-1 rounded-lg text-xs font-semibold text-gray-500 hover:text-gray-700 transition';
+            document.getElementById('tab-all').className = tab === 'all'
+                ? 'px-3 py-1 rounded-lg text-xs font-bold text-white bg-brand-600 transition'
+                : 'px-3 py-1 rounded-lg text-xs font-semibold text-gray-500 hover:text-gray-700 transition';
+            renderEventSidebar();
+        }
+
+        function applyEventFilter(reset = false) {
+            const bulanSel  = document.getElementById('filter-event-bulan');
+            const lokasiSel = document.getElementById('filter-event-lokasi');
+            if (reset) { if (bulanSel) bulanSel.value = ''; if (lokasiSel) lokasiSel.value = ''; }
+            renderEventGrid();
+        }
+
+        function renderEventGrid() {
+            const bulan  = (document.getElementById('filter-event-bulan')?.value  || '').toUpperCase();
+            const lokasi = document.getElementById('filter-event-lokasi')?.value || '';
+            let filtered = eventData.filter(ev => {
+                const matchBulan  = !bulan  || (ev.bulan || '').toUpperCase() === bulan;
+                const matchLokasi = !lokasi || ev.lokasi === lokasi;
+                return matchBulan && matchLokasi;
+            });
+
+            const grid  = document.getElementById('grid-all-event');
+            const empty = document.getElementById('event-empty-msg');
+            const count = document.getElementById('event-grid-count');
+            if (!grid) return;
+
+            if (count) count.textContent = `Menampilkan ${filtered.length} event`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                if (empty) empty.classList.remove('hidden');
+            } else {
+                if (empty) empty.classList.add('hidden');
+                if (eventViewMode === 'list') {
+                    grid.className = 'space-y-3';
+                    grid.innerHTML = filtered.map(createEventCardList).join('');
+                } else {
+                    grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5';
+                    grid.innerHTML = filtered.map(createEventCardBlock).join('');
+                }
+            }
+        }
+
+        function setEventView(mode) {
+            eventViewMode = mode;
+            const gBtn = document.getElementById('view-grid-btn');
+            const lBtn = document.getElementById('view-list-btn');
+            if (gBtn) gBtn.className = mode === 'grid'
+                ? 'w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow'
+                : 'w-9 h-9 rounded-xl bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center transition';
+            if (lBtn) lBtn.className = mode === 'list'
+                ? 'w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow'
+                : 'w-9 h-9 rounded-xl bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center transition';
+            renderEventGrid();
+        }
 
         // ---------------------------------------------------------
         // GALERI FOTO — Admin Helpers
