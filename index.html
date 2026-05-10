@@ -205,34 +205,33 @@
 
             <!-- Stats (Overlapping) -->
             <div class="max-w-6xl mx-auto px-4 relative z-20 -mt-12">
-                <div
-                    class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-gray-100 text-center">
+                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-gray-100 text-center">
                     <div class="flex items-center justify-center gap-3">
                         <i class="ph-fill ph-map-pin text-3xl text-brand-600"></i>
                         <div class="text-left">
-                            <h3 class="text-xl font-bold text-gray-900">50+</h3>
+                            <h3 id="stat-wisata" class="text-xl font-bold text-gray-900">—</h3>
                             <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Destinasi Wisata</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-center gap-3">
                         <i class="ph-fill ph-calendar-check text-3xl text-brand-600"></i>
                         <div class="text-left">
-                            <h3 class="text-xl font-bold text-gray-900">12+</h3>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Event Tahunan</p>
+                            <h3 id="stat-event" class="text-xl font-bold text-gray-900">—</h3>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Event Terdaftar</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-center gap-3">
-                        <i class="ph-fill ph-mountains text-3xl text-brand-600"></i>
+                        <i class="ph-fill ph-storefront text-3xl text-brand-600"></i>
                         <div class="text-left">
-                            <h3 class="text-xl font-bold text-gray-900">6</h3>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Kategori Wisata</p>
+                            <h3 id="stat-ekraf" class="text-xl font-bold text-gray-900">—</h3>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Pelaku Ekraf</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-center gap-3">
-                        <i class="ph-fill ph-users text-3xl text-brand-600"></i>
+                        <i class="ph-fill ph-squares-four text-3xl text-brand-600"></i>
                         <div class="text-left">
-                            <h3 class="text-xl font-bold text-gray-900">15K+</h3>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Pengunjung</p>
+                            <h3 id="stat-subsektor" class="text-xl font-bold text-gray-900">—</h3>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Subsektor Ekraf</p>
                         </div>
                     </div>
                 </div>
@@ -1451,7 +1450,26 @@
             renderEkrafGrid(ekrafData);
         }
 
+        function updateStats() {
+            const jumlahWisata    = wisataData.length;
+            const jumlahEvent     = eventData.length;
+            const jumlahEkraf     = ekrafData.length;
+            const jumlahSubsektor = new Set(ekrafData.map(e => e.subsektor).filter(Boolean)).size;
+
+            const fmt = n => n >= 1000 ? (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K+' : n > 0 ? String(n) : '0';
+
+            const sw = document.getElementById('stat-wisata');
+            const se = document.getElementById('stat-event');
+            const sk = document.getElementById('stat-ekraf');
+            const ss = document.getElementById('stat-subsektor');
+            if (sw) sw.textContent = fmt(jumlahWisata);
+            if (se) se.textContent = fmt(jumlahEvent);
+            if (sk) sk.textContent = fmt(jumlahEkraf);
+            if (ss) ss.textContent = jumlahSubsektor > 0 ? String(jumlahSubsektor) : '0';
+        }
+
         function renderAllViews() {
+            updateStats();
             // Beranda
             document.getElementById('grid-home-wisata').innerHTML = wisataData.slice(0, 4).map(createWisataCard).join('');
             document.getElementById('grid-home-event').innerHTML = eventData.slice(0, 4).map(createEventCardBlock).join('');
