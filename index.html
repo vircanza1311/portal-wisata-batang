@@ -43,6 +43,8 @@
 
     <!-- Supabase JS SDK -->
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- D3.js for GeoJSON map projection -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 
     <style>
         /* Custom Scrollbar & Utility Classes */
@@ -182,105 +184,237 @@
     <main class="flex-grow">
 
         <!-- 1. VIEW: BERANDA -->
-        <section id="view-home" class="page-view active">
-            <!-- Hero -->
-            <div
-                class="relative w-full max-w-7xl mx-auto md:mt-4 md:rounded-2xl overflow-hidden h-[500px] flex items-center">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000"
-                    class="absolute inset-0 w-full h-full object-cover brightness-[0.6]">
-                <div class="relative z-10 px-8 md:px-16 text-white max-w-3xl">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">Jelajahi
-                        Wisata<br>Kabupaten Batang</h2>
-                    <p class="text-lg text-gray-200 mb-8 max-w-xl text-shadow">Temukan berbagai destinasi wisata, produk
-                        ekraf yang khas dan event menarik di Kabupaten Batang.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <button onclick="navigate('wisata')"
-                            class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm">Lihat
-                            Wisata</button>
-                        <button onclick="navigate('event')"
-                            class="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm">Lihat
-                            Event</button>
-                        <button onclick="navigate('ekraf')"
-                            class="bg-white/20 hover:bg-white/30 text-white border border-white/40 px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm backdrop-blur-sm">Lihat
-                            Ekraf</button>
+        <section id="view-home" class="page-view active bg-white">
+
+            <!-- ═══ HERO ═══ -->
+            <div class="relative w-full overflow-hidden" style="min-height:580px">
+                <!-- BG image with parallax feel -->
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000"
+                        class="w-full h-full object-cover brightness-[0.55] scale-105" id="hero-bg">
+                </div>
+                <!-- Gradient overlay -->
+                <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+                <!-- Floating badge top-right -->
+                <div class="absolute top-6 right-6 hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> Portal Resmi Kab. Batang
+                </div>
+
+                <!-- Content -->
+                <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 flex items-center" style="min-height:580px">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
+                            <i class="ph-fill ph-map-trifold text-yellow-300"></i> Jelajahi Kabupaten Batang
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-5 drop-shadow-xl">
+                            Wisata Indah,<br>
+                            <span class="text-transparent bg-clip-text" style="background-image:linear-gradient(135deg,#7dd3fc,#a5f3fc)">Budaya Kaya,</span><br>
+                            Ekraf Lokal
+                        </h1>
+                        <p class="text-white/80 text-base md:text-lg mb-8 leading-relaxed max-w-lg">Temukan berbagai destinasi wisata, produk ekraf yang khas, dan event menarik di Kabupaten Batang, Jawa Tengah.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="navigate('wisata')"
+                                class="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-bold transition shadow-xl text-sm">
+                                <i class="ph-fill ph-map-trifold"></i> Jelajahi Wisata
+                            </button>
+                            <button onclick="navigate('event')"
+                                class="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-900 px-6 py-3 rounded-xl font-bold transition shadow-xl text-sm">
+                                <i class="ph-fill ph-calendar-check text-brand-600"></i> Lihat Event
+                            </button>
+                            <button onclick="navigate('ekraf')"
+                                class="flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white border border-white/30 px-6 py-3 rounded-xl font-bold transition text-sm">
+                                <i class="ph-fill ph-lightbulb text-yellow-300"></i> Ekraf Batang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scroll indicator -->
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/40 animate-bounce hidden md:flex">
+                    <span class="text-[10px] font-bold uppercase tracking-widest">Scroll</span>
+                    <i class="ph ph-caret-down text-lg"></i>
+                </div>
+            </div>
+
+            <!-- ═══ STATS TICKER ═══ -->
+            <div class="bg-brand-800 text-white py-5">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:divide-x divide-white/20">
+                        <div class="flex items-center justify-center gap-3 md:px-6">
+                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i class="ph-fill ph-map-pin text-xl text-sky-300"></i></div>
+                            <div><p id="stat-wisata" class="text-2xl font-extrabold leading-none">—</p><p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">Destinasi Wisata</p></div>
+                        </div>
+                        <div class="flex items-center justify-center gap-3 md:px-6">
+                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i class="ph-fill ph-calendar-check text-xl text-emerald-300"></i></div>
+                            <div><p id="stat-event" class="text-2xl font-extrabold leading-none">—</p><p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">Event Terdaftar</p></div>
+                        </div>
+                        <div class="flex items-center justify-center gap-3 md:px-6">
+                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i class="ph-fill ph-storefront text-xl text-amber-300"></i></div>
+                            <div><p id="stat-ekraf" class="text-2xl font-extrabold leading-none">—</p><p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">Pelaku Ekraf</p></div>
+                        </div>
+                        <div class="flex items-center justify-center gap-3 md:px-6">
+                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i class="ph-fill ph-star text-xl text-pink-300"></i></div>
+                            <div><p id="stat-subsektor" class="text-2xl font-extrabold leading-none">—</p><p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">Subsektor Ekraf</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Stats (Overlapping) -->
-            <div class="max-w-6xl mx-auto px-4 relative z-20 -mt-12">
-                <div
-                    class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-gray-100 text-center">
-                    <div class="flex items-center justify-center gap-3">
-                        <i class="ph-fill ph-map-pin text-3xl text-brand-600"></i>
-                        <div class="text-left">
-                            <h3 id="stat-wisata" class="text-xl font-bold text-gray-900">—</h3>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Destinasi Wisata</p>
-                        </div>
+            <!-- ═══ WISATA TERPOPULER ═══ -->
+            <div class="max-w-7xl mx-auto px-4 py-14">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                    <div>
+                        <p class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-1">Destinasi Pilihan</p>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Wisata Terpopuler</h2>
                     </div>
-                    <div class="flex items-center justify-center gap-3">
-                        <i class="ph-fill ph-calendar-check text-3xl text-brand-600"></i>
-                        <div class="text-left">
-                            <h3 id="stat-event" class="text-xl font-bold text-gray-900">—</h3>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Event Terdaftar</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-center gap-3">
-                        <i class="ph-fill ph-storefront text-3xl text-brand-600"></i>
-                        <div class="text-left">
-                            <h3 id="stat-ekraf" class="text-xl font-bold text-gray-900">—</h3>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Pelaku Ekraf</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-center gap-3">
-                        <i class="ph-fill ph-squares-four text-3xl text-brand-600"></i>
-                        <div class="text-left">
-                            <h3 id="stat-subsektor" class="text-xl font-bold text-gray-900">—</h3>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Subsektor Ekraf</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Wisata Terpopuler -->
-            <div class="max-w-7xl mx-auto px-4 py-16">
-                <div class="flex justify-between items-end mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900">Wisata Terpopuler</h3>
                     <button onclick="navigate('wisata')"
-                        class="text-sm font-semibold text-gray-500 hover:text-brand-600 border px-4 py-1 rounded-full">Lihat
-                        Semua</button>
+                        class="flex items-center gap-1.5 text-sm font-bold text-brand-600 hover:text-brand-800 border border-brand-200 hover:border-brand-400 px-4 py-2 rounded-full transition shrink-0">
+                        Lihat Semua <i class="ph ph-arrow-right text-xs"></i>
+                    </button>
                 </div>
-                <div id="grid-home-wisata" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div id="grid-home-wisata" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
                     <!-- Injected via JS -->
                 </div>
             </div>
 
-            <!-- Event Mendatang -->
-            <div class="max-w-7xl mx-auto px-4 pb-16">
-                <div class="flex justify-between items-end mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900">Event Mendatang</h3>
+            <!-- ═══ PETA INTERAKTIF KECAMATAN ═══ -->
+            <div class="bg-gradient-to-br from-slate-900 via-brand-900 to-slate-900 py-16 relative overflow-hidden">
+                <!-- BG texture -->
+                <div class="absolute inset-0 opacity-5" style="background-image:url('https://www.transparenttextures.com/patterns/cross-stripes.png')"></div>
+                <div class="absolute top-0 left-0 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+                <div class="absolute bottom-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl translate-x-1/4 translate-y-1/4 pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 relative z-10">
+                    <div class="text-center mb-10">
+                        <span class="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-white/15 mb-4">
+                            <i class="ph-fill ph-map-trifold text-cyan-400"></i> Peta Interaktif
+                        </span>
+                        <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-3">Jelajahi 15 Kecamatan</h2>
+                        <p class="text-white/60 max-w-xl mx-auto text-sm">Klik kecamatan pada peta untuk melihat destinasi wisata di wilayah tersebut</p>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <!-- SVG Map Container -->
+                        <div class="w-full lg:w-[55%] relative">
+                            <div class="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-4 shadow-2xl">
+                                <svg id="batang-map" viewBox="0 0 700 500" class="w-full h-auto" style="max-height:480px"></svg>
+                                <!-- Map tooltip -->
+                                <div id="map-tooltip" class="hidden absolute bg-gray-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-xl pointer-events-none z-50 border border-white/20"></div>
+                            </div>
+                            <!-- Legend -->
+                            <div class="flex flex-wrap gap-3 mt-3 justify-center">
+                                <div class="flex items-center gap-1.5 text-white/70 text-xs"><span class="w-3 h-3 rounded-sm bg-brand-500 inline-block"></span> Ada Wisata</div>
+                                <div class="flex items-center gap-1.5 text-white/70 text-xs"><span class="w-3 h-3 rounded-sm bg-white/20 border border-white/30 inline-block"></span> Tidak Ada Data</div>
+                                <div class="flex items-center gap-1.5 text-white/70 text-xs"><span class="w-3 h-3 rounded-sm bg-cyan-400 inline-block"></span> Dipilih</div>
+                            </div>
+                        </div>
+
+                        <!-- Info Panel -->
+                        <div class="w-full lg:w-[45%]">
+                            <!-- Default state -->
+                            <div id="map-panel-default" class="text-center py-12 text-white/40">
+                                <i class="ph ph-cursor-click text-5xl mb-3 block"></i>
+                                <p class="font-semibold text-sm">Klik kecamatan pada peta</p>
+                                <p class="text-xs mt-1">untuk melihat destinasi wisata</p>
+                            </div>
+
+                            <!-- Selected kecamatan panel -->
+                            <div id="map-panel-info" class="hidden">
+                                <div class="flex items-center gap-3 mb-5">
+                                    <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center">
+                                        <i class="ph-fill ph-map-pin text-2xl text-cyan-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white/50 text-xs font-bold uppercase tracking-widest">Kecamatan</p>
+                                        <h3 id="map-kec-name" class="text-2xl font-extrabold text-white leading-tight"></h3>
+                                    </div>
+                                    <button onclick="clearMapSelection()" class="ml-auto text-white/40 hover:text-white/70 transition">
+                                        <i class="ph ph-x-circle text-xl"></i>
+                                    </button>
+                                </div>
+
+                                <!-- Wisata count badge -->
+                                <div class="flex gap-3 mb-5">
+                                    <div class="flex-1 bg-white/10 rounded-xl p-3 border border-white/10 text-center">
+                                        <p id="map-kec-count" class="text-3xl font-extrabold text-white"></p>
+                                        <p class="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-0.5">Destinasi</p>
+                                    </div>
+                                    <div class="flex-1 bg-white/10 rounded-xl p-3 border border-white/10 text-center">
+                                        <p id="map-kec-ekraf-count" class="text-3xl font-extrabold text-white"></p>
+                                        <p class="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-0.5">Pelaku Ekraf</p>
+                                    </div>
+                                </div>
+
+                                <!-- Wisata list -->
+                                <div id="map-kec-wisata-list" class="space-y-2 max-h-64 overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full"></div>
+
+                                <button id="map-kec-explore-btn" onclick="" class="w-full mt-5 bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2">
+                                    <i class="ph-fill ph-compass"></i> Jelajahi Semua Wisata di Sini
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ EVENT MENDATANG ═══ -->
+            <div class="max-w-7xl mx-auto px-4 py-14">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                    <div>
+                        <p class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-1">Agenda Terkini</p>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Event Mendatang</h2>
+                    </div>
                     <button onclick="navigate('event')"
-                        class="text-sm font-semibold text-gray-500 hover:text-brand-600 border px-4 py-1 rounded-full">Lihat
-                        Semua Event</button>
+                        class="flex items-center gap-1.5 text-sm font-bold text-brand-600 hover:text-brand-800 border border-brand-200 hover:border-brand-400 px-4 py-2 rounded-full transition shrink-0">
+                        Lihat Semua Event <i class="ph ph-arrow-right text-xs"></i>
+                    </button>
                 </div>
-                <div id="grid-home-event" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div id="grid-home-event" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
                     <!-- Injected via JS -->
                 </div>
             </div>
 
-            <!-- Banner CTA -->
-            <div class="max-w-7xl mx-auto px-4 pb-16">
-                <div
-                    class="bg-[#1a3d24] rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between text-white shadow-xl relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
-                    <div class="relative z-10">
-                        <h2 class="text-3xl font-bold mb-2">Ayo Jelajahi Keindahan Batang!</h2>
-                        <p class="text-gray-300">Temukan pengalaman tak terlupakan di setiap sudut Kabupaten Batang.</p>
+            <!-- ═══ EKRAF HIGHLIGHT ═══ -->
+            <div class="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 py-14 border-t border-amber-100">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                        <div>
+                            <p class="text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">Ekonomi Kreatif</p>
+                            <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Pelaku Ekraf Batang</h2>
+                        </div>
+                        <button onclick="navigate('ekraf')"
+                            class="flex items-center gap-1.5 text-sm font-bold text-orange-600 hover:text-orange-800 border border-orange-200 hover:border-orange-400 px-4 py-2 rounded-full transition shrink-0">
+                            Lihat Semua Ekraf <i class="ph ph-arrow-right text-xs"></i>
+                        </button>
                     </div>
-                    <button onclick="navigate('wisata')"
-                        class="relative z-10 mt-6 md:mt-0 bg-yellow-500 hover:bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-bold transition shadow-lg">Mulai
-                        Jelajah</button>
+                    <div id="grid-home-ekraf" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                        <!-- Injected via JS -->
+                    </div>
                 </div>
             </div>
+
+            <!-- ═══ CTA BANNER ═══ -->
+            <div class="relative overflow-hidden bg-[#0f2027] py-20 px-4">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=40&w=1600')] bg-cover bg-center opacity-10"></div>
+                <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(37,99,235,0.7) 0%,rgba(6,182,212,0.4) 100%)"></div>
+                <div class="relative z-10 max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">Ayo Jelajahi<br>Keindahan Batang!</h2>
+                    <p class="text-white/70 text-base mb-8 max-w-xl mx-auto">Temukan pengalaman tak terlupakan di setiap sudut Kabupaten Batang — dari pantai utara hingga pegunungan selatan.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button onclick="navigate('wisata')"
+                            class="bg-white text-brand-700 font-extrabold px-8 py-4 rounded-xl shadow-2xl hover:bg-brand-50 transition text-sm flex items-center gap-2">
+                            <i class="ph-fill ph-compass text-brand-600 text-lg"></i> Mulai Jelajah
+                        </button>
+                        <button onclick="document.getElementById('batang-map').scrollIntoView({behavior:'smooth'}); navigate('home')"
+                            class="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/25 transition text-sm flex items-center gap-2">
+                            <i class="ph-fill ph-map-trifold text-cyan-300 text-lg"></i> Lihat Peta
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- 2. VIEW: DAFTAR WISATA -->
@@ -1838,7 +1972,7 @@
         function applyEkrafFilters() {
             const searchInput = document.getElementById('search-ekraf');
             const searchVal = searchInput ? searchInput.value.toLowerCase() : '';
-            
+
             const filtered = ekrafData.filter(e => {
                 const searchTxt = ((e.brand || '') + ' ' + (e.owner || '') + ' ' + (e.deskripsi || '')).toLowerCase();
                 const matchSearch = searchTxt.includes(searchVal);
@@ -1868,7 +2002,7 @@
             const filterBar = document.getElementById('ekraf-filter-bar');
             if (filterBar) { filterBar.classList.add('hidden'); filterBar.classList.remove('flex'); }
             document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => { btn.style.opacity = '1'; btn.querySelector('div').style.background = ''; });
-            
+
             // Clear text search as well if needed, or leave it. We'll leave it but call applyEkrafFilters
             applyEkrafFilters();
         }
@@ -1927,8 +2061,11 @@
             // Beranda
             document.getElementById('grid-home-wisata').innerHTML = wisataData.slice(0, 4).map(createWisataCard).join('');
             document.getElementById('grid-home-event').innerHTML = eventData.slice(0, 4).map(createEventCardBlock).join('');
+            // Home Ekraf grid (3 items)
+            const homeEkraf = document.getElementById('grid-home-ekraf');
+            if (homeEkraf) homeEkraf.innerHTML = ekrafData.slice(0, 3).map(createEkrafCard).join('');
             // Wisata
-            filterWisata(); // Automatically applies default 'Semua' filter and renders
+            filterWisata();
             // Event
             const lhe = document.getElementById('list-home-event');
             if (lhe) lhe.innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
@@ -1939,6 +2076,9 @@
             // Calendar & Event page
             initCalendarToNearestEvent();
             renderCalendar();
+
+            // Interactive Map
+            renderBatangMap();
 
             // Admin tables
             const tbodyWisata = document.getElementById('tbody-wisata');
@@ -3472,6 +3612,172 @@
             if (e.key === 'ArrowRight') lightboxNext(e);
             if (e.key === 'Escape') closeLightbox();
         });
+
+        // ---------------------------------------------------------
+        // PETA INTERAKTIF — KECAMATAN BATANG (GeoJSON + D3)
+        // ---------------------------------------------------------
+        const BATANG_GEOJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"kode_kec":"33.25.04","kecamatan":"Reban"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.8214,-7.2518],[109.8456,-7.2312],[109.8712,-7.2489],[109.8654,-7.2734],[109.8342,-7.2801],[109.8214,-7.2518]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.05","kecamatan":"Bawang"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.8712,-7.2489],[109.9012,-7.2201],[109.9234,-7.2445],[109.9156,-7.2712],[109.8891,-7.2823],[109.8654,-7.2734],[109.8712,-7.2489]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.02","kecamatan":"Bandar"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.7834,-7.2156],[109.8214,-7.2518],[109.8342,-7.2801],[109.8089,-7.3012],[109.7712,-7.2934],[109.7634,-7.2534],[109.7834,-7.2156]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.03","kecamatan":"Blado"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.8456,-7.2312],[109.8712,-7.2489],[109.8654,-7.2734],[109.8342,-7.2801],[109.8214,-7.2518],[109.8456,-7.2312]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.08","kecamatan":"Limpung"},"geometry":{"type":"MultiPolygon","coordinates":[[[[110.0012,-7.1923],[110.0312,-7.1756],[110.0534,-7.1967],[110.0423,-7.2234],[110.0123,-7.2312],[109.9878,-7.2167],[110.0012,-7.1923]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.09","kecamatan":"Subah"},"geometry":{"type":"MultiPolygon","coordinates":[[[[110.0534,-7.1145],[110.0834,-7.0934],[110.1056,-7.1134],[110.0945,-7.1401],[110.0645,-7.1534],[110.0423,-7.1423],[110.0534,-7.1145]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.06","kecamatan":"Tersono"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.9234,-7.2445],[109.9534,-7.2234],[109.9756,-7.2401],[109.9645,-7.2712],[109.9345,-7.2845],[109.9156,-7.2712],[109.9234,-7.2445]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.07","kecamatan":"Gringsing"},"geometry":{"type":"MultiPolygon","coordinates":[[[[110.1056,-7.0534],[110.1356,-7.0323],[110.1578,-7.0512],[110.1467,-7.0823],[110.1167,-7.0934],[110.0912,-7.0812],[110.1056,-7.0534]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.01","kecamatan":"Wonotunggal"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.9012,-7.2201],[109.9234,-7.2445],[109.9156,-7.2712],[109.8891,-7.2823],[109.8712,-7.2489],[109.9012,-7.2201]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.15","kecamatan":"Banyuputih"},"geometry":{"type":"MultiPolygon","coordinates":[[[[110.0834,-7.0934],[110.1134,-7.0712],[110.1356,-7.0934],[110.1245,-7.1201],[110.0945,-7.1312],[110.0723,-7.1145],[110.0834,-7.0934]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.13","kecamatan":"Kandeman"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.9534,-7.0934],[109.9834,-7.0712],[110.0056,-7.0934],[109.9945,-7.1201],[109.9645,-7.1312],[109.9423,-7.1145],[109.9534,-7.0934]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.14","kecamatan":"Pecalungan"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.9756,-7.2401],[110.0056,-7.2167],[110.0278,-7.2378],[110.0167,-7.2645],[109.9867,-7.2756],[109.9645,-7.2712],[109.9756,-7.2401]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.11","kecamatan":"Batang"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.7212,-6.9823],[109.7512,-6.9612],[109.7734,-6.9812],[109.7634,-7.0134],[109.7334,-7.0245],[109.7134,-7.0078],[109.7212,-6.9823]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.12","kecamatan":"Warungasem"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.7734,-7.0512],[109.8034,-7.0312],[109.8256,-7.0501],[109.8145,-7.0823],[109.7845,-7.0934],[109.7634,-7.0734],[109.7734,-7.0512]]]]}},{"type":"Feature","properties":{"kode_kec":"33.25.10","kecamatan":"Tulis"},"geometry":{"type":"MultiPolygon","coordinates":[[[[109.8256,-7.0501],[109.8556,-7.0312],[109.8778,-7.0501],[109.8667,-7.0812],[109.8367,-7.0934],[109.8145,-7.0823],[109.8256,-7.0501]]]]}}]};
+
+        let mapSelectedKec = null;
+
+        function renderBatangMap() {
+            const svgEl = document.getElementById('batang-map');
+            if (!svgEl || typeof d3 === 'undefined') return;
+
+            svgEl.innerHTML = '';
+            const W = 700, H = 500;
+            const svg = d3.select('#batang-map');
+
+            // Count wisata per kecamatan
+            const wisataCount = {};
+            wisataData.forEach(w => {
+                const k = (w.lokasi || '').trim();
+                wisataCount[k] = (wisataCount[k] || 0) + 1;
+            });
+            const ekrafCount = {};
+            ekrafData.forEach(e => {
+                const k = (e.lokasi || '').trim();
+                ekrafCount[k] = (ekrafCount[k] || 0) + 1;
+            });
+
+            // Projection
+            const projection = d3.geoMercator().fitSize([W, H], BATANG_GEOJSON);
+            const pathGen = d3.geoPath().projection(projection);
+
+            // Color scale
+            const maxCount = Math.max(...Object.values(wisataCount), 1);
+            const colorScale = d3.scaleLinear().domain([0, maxCount])
+                .range(['#1e3a5f', '#3b82f6']);
+
+            const tooltip = document.getElementById('map-tooltip');
+            const mapDiv = svgEl.parentElement;
+
+            svg.selectAll('path')
+                .data(BATANG_GEOJSON.features)
+                .enter()
+                .append('path')
+                .attr('d', pathGen)
+                .attr('fill', d => {
+                    const kec = d.properties.kecamatan;
+                    if (kec === mapSelectedKec) return '#22d3ee';
+                    const cnt = wisataCount[kec] || 0;
+                    return cnt > 0 ? colorScale(cnt) : '#1e2d40';
+                })
+                .attr('stroke', '#7dd3fc')
+                .attr('stroke-width', d => d.properties.kecamatan === mapSelectedKec ? 2.5 : 0.8)
+                .attr('stroke-opacity', 0.6)
+                .style('cursor', 'pointer')
+                .style('transition', 'fill 0.2s')
+                .on('mouseenter', function(event, d) {
+                    const kec = d.properties.kecamatan;
+                    if (kec !== mapSelectedKec) d3.select(this).attr('fill', '#38bdf8');
+                    const cnt = wisataCount[kec] || 0;
+                    if (tooltip) {
+                        tooltip.textContent = `${kec} — ${cnt} destinasi`;
+                        tooltip.classList.remove('hidden');
+                        const rect = mapDiv.getBoundingClientRect();
+                        tooltip.style.left = (event.clientX - rect.left + 12) + 'px';
+                        tooltip.style.top  = (event.clientY - rect.top - 36) + 'px';
+                    }
+                })
+                .on('mousemove', function(event) {
+                    if (tooltip) {
+                        const rect = mapDiv.getBoundingClientRect();
+                        tooltip.style.left = (event.clientX - rect.left + 12) + 'px';
+                        tooltip.style.top  = (event.clientY - rect.top - 36) + 'px';
+                    }
+                })
+                .on('mouseleave', function(event, d) {
+                    const kec = d.properties.kecamatan;
+                    if (kec !== mapSelectedKec) {
+                        const cnt = wisataCount[kec] || 0;
+                        d3.select(this).attr('fill', cnt > 0 ? colorScale(cnt) : '#1e2d40');
+                    }
+                    if (tooltip) tooltip.classList.add('hidden');
+                })
+                .on('click', function(event, d) {
+                    const kec = d.properties.kecamatan;
+                    mapSelectedKec = kec;
+                    renderBatangMap(); // re-render to update colors
+                    showMapPanel(kec);
+                });
+
+            // Labels
+            svg.selectAll('text')
+                .data(BATANG_GEOJSON.features)
+                .enter()
+                .append('text')
+                .attr('transform', d => {
+                    const c = pathGen.centroid(d);
+                    return `translate(${c[0]},${c[1]})`;
+                })
+                .attr('text-anchor', 'middle')
+                .attr('dominant-baseline', 'middle')
+                .attr('font-size', '9')
+                .attr('font-weight', 'bold')
+                .attr('fill', d => d.properties.kecamatan === mapSelectedKec ? '#0f172a' : '#e2e8f0')
+                .attr('pointer-events', 'none')
+                .text(d => d.properties.kecamatan);
+        }
+
+        function showMapPanel(kec) {
+            const def = document.getElementById('map-panel-default');
+            const info = document.getElementById('map-panel-info');
+            if (def) def.classList.add('hidden');
+            if (info) info.classList.remove('hidden');
+
+            const wisataHere = wisataData.filter(w => (w.lokasi || '').trim() === kec);
+            const ekrafHere  = ekrafData.filter(e => (e.lokasi || '').trim() === kec);
+
+            const nameEl = document.getElementById('map-kec-name');
+            const countEl = document.getElementById('map-kec-count');
+            const ekrafCntEl = document.getElementById('map-kec-ekraf-count');
+            const listEl = document.getElementById('map-kec-wisata-list');
+            const exploreBtn = document.getElementById('map-kec-explore-btn');
+
+            if (nameEl) nameEl.textContent = kec;
+            if (countEl) countEl.textContent = wisataHere.length;
+            if (ekrafCntEl) ekrafCntEl.textContent = ekrafHere.length;
+
+            if (listEl) {
+                if (wisataHere.length === 0) {
+                    listEl.innerHTML = `<p class="text-white/40 text-sm py-4 text-center">Belum ada wisata terdaftar di kecamatan ini.</p>`;
+                } else {
+                    listEl.innerHTML = wisataHere.map(w => `
+                        <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                            <div class="w-10 h-10 rounded-lg overflow-hidden bg-white/10 shrink-0">
+                                ${w.foto ? `<img src="${w.foto}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${w.nama}</p>
+                                <p class="text-white/50 text-xs">${w.kategori || ''}</p>
+                            </div>
+                            <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                        </div>`).join('');
+                }
+            }
+
+            if (exploreBtn) {
+                exploreBtn.onclick = () => {
+                    navigate('wisata');
+                    // Trigger location filter after short delay
+                    setTimeout(() => {
+                        const cbs = document.querySelectorAll('.cb-lokasi');
+                        cbs.forEach(cb => { cb.checked = cb.value === kec; });
+                        if (typeof filterWisata === 'function') filterWisata();
+                    }, 300);
+                };
+            }
+        }
+
+        function clearMapSelection() {
+            mapSelectedKec = null;
+            renderBatangMap();
+            const def = document.getElementById('map-panel-default');
+            const info = document.getElementById('map-panel-info');
+            if (def) def.classList.remove('hidden');
+            if (info) info.classList.add('hidden');
+        }
 
         // Initialize Application
         initApp();
