@@ -1182,6 +1182,31 @@
                             <textarea id="inp-desc" rows="4"
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
+
+                        <!-- Galeri Foto Wisata -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i
+                                            class="ph-fill ph-images text-brand-600 text-base"></i> Galeri Foto <span
+                                            class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto untuk ditampilkan di
+                                        halaman detail wisata.</p>
+                                </div>
+                                <button type="button" onclick="addWisataGaleriInput()" id="btn-add-wisata-galeri"
+                                    class="flex items-center gap-1.5 text-xs font-bold text-brand-600 border border-brand-300 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <!-- Preview strip -->
+                            <div id="wisata-galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <!-- URL inputs container -->
+                            <div id="wisata-galeri-inputs-container" class="space-y-2">
+                                <!-- dynamic rows -->
+                            </div>
+                            <p id="wisata-galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i
+                                    class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
                         <div class="pt-4">
                             <button type="submit" id="btn-submit-wisata"
                                 class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan
@@ -1512,7 +1537,6 @@
                     <li><button onclick="navigate('home')" class="hover:text-brand-600">Beranda</button></li>
                     <li><button onclick="navigate('wisata')" class="hover:text-brand-600">Wisata</button></li>
                     <li><button onclick="navigate('event')" class="hover:text-brand-600">Event</button></li>
-                    <li><button onclick="navigate('ekraf')" class="hover:text-brand-600">Ekonomi Kreatif</button></li>
                     <li><button class="hover:text-brand-600">Tentang</button></li>
                     <li><button class="hover:text-brand-600">Kontak</button></li>
                 </ul>
@@ -1619,12 +1643,12 @@
         // 2. MOCK DATA (FALLBACK)
         // ---------------------------------------------------------
         let wisataData = [
-            { id: 1, nama: 'Pantai Sigandu', kategori: 'Wisata Alam', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pantai Sigandu merupakan salah satu pantai terindah di Kabupaten Batang. Dikenal dengan pemandangan sunset yang memukau dan suasana yang tenang. Pantai ini cocok untuk bersantai, menikmati kuliner laut, dan berbagai aktivitas air lainnya.', harga: 'Rp 5.000 / orang', jam: '06.00 - 18.00 WIB' },
-            { id: 2, nama: 'Curug Gombong', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1432405972618-c600f44af205?auto=format&fit=crop&q=80&w=800', deskripsi: 'Air terjun cantik di kaki Gunung Prau dengan udara yang sangat sejuk dan segar.', harga: 'Rp 10.000 / orang', jam: '07.00 - 17.00 WIB' },
-            { id: 3, nama: 'Safari Beach Jateng', kategori: 'Wisata Buatan', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1544735047-890250669299?auto=format&fit=crop&q=80&w=800', deskripsi: 'Taman hiburan dan edukasi satwa yang cocok untuk rekreasi keluarga di tepi pantai.', harga: 'Rp 50.000 / orang', jam: '08.00 - 16.00 WIB' },
-            { id: 4, nama: 'Pemandian Air Panas', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1540544660406-6a69dacb2804?auto=format&fit=crop&q=80&w=800', deskripsi: 'Relaksasi alami dengan air panas bumi yang dipercaya menyembuhkan berbagai penyakit kulit.', harga: 'Rp 8.000 / orang', jam: '24 Jam' },
-            { id: 5, nama: 'Makam Syekh Maulana Maghribi', kategori: 'Wisata Religi dan Budaya', lokasi: 'Kandeman', foto: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800', deskripsi: 'Kawasan wisata religi dan ziarah makam tokoh penyebar agama Islam di bukit Ujungnegoro.', harga: 'Gratis', jam: '24 Jam' },
-            { id: 6, nama: 'Telaga Dringo', kategori: 'Wisata Alam', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800', deskripsi: 'Danau vulkanik tertinggi di Jawa Tengah yang sering disebut Ranu Kumbolonya Jateng.', harga: 'Rp 10.000 / orang', jam: '24 Jam' }
+            { id: 1, nama: 'Pantai Sigandu', kategori: 'Wisata Alam', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pantai Sigandu merupakan salah satu pantai terindah di Kabupaten Batang. Dikenal dengan pemandangan sunset yang memukau dan suasana yang tenang. Pantai ini cocok untuk bersantai, menikmati kuliner laut, dan berbagai aktivitas air lainnya.', harga: 'Rp 5.000 / orang', jam: '06.00 - 18.00 WIB', galeri: ['https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800'] },
+            { id: 2, nama: 'Curug Gombong', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1432405972618-c600f44af205?auto=format&fit=crop&q=80&w=800', deskripsi: 'Air terjun cantik di kaki Gunung Prau dengan udara yang sangat sejuk dan segar.', harga: 'Rp 10.000 / orang', jam: '07.00 - 17.00 WIB', galeri: [] },
+            { id: 3, nama: 'Safari Beach Jateng', kategori: 'Wisata Buatan', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1544735047-890250669299?auto=format&fit=crop&q=80&w=800', deskripsi: 'Taman hiburan dan edukasi satwa yang cocok untuk rekreasi keluarga di tepi pantai.', harga: 'Rp 50.000 / orang', jam: '08.00 - 16.00 WIB', galeri: [] },
+            { id: 4, nama: 'Pemandian Air Panas', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1540544660406-6a69dacb2804?auto=format&fit=crop&q=80&w=800', deskripsi: 'Relaksasi alami dengan air panas bumi yang dipercaya menyembuhkan berbagai penyakit kulit.', harga: 'Rp 8.000 / orang', jam: '24 Jam', galeri: [] },
+            { id: 5, nama: 'Makam Syekh Maulana Maghribi', kategori: 'Wisata Religi dan Budaya', lokasi: 'Kandeman', foto: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800', deskripsi: 'Kawasan wisata religi dan ziarah makam tokoh penyebar agama Islam di bukit Ujungnegoro.', harga: 'Gratis', jam: '24 Jam', galeri: [] },
+            { id: 6, nama: 'Telaga Dringo', kategori: 'Wisata Alam', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800', deskripsi: 'Danau vulkanik tertinggi di Jawa Tengah yang sering disebut Ranu Kumbolonya Jateng.', harga: 'Rp 10.000 / orang', jam: '24 Jam', galeri: [] }
         ];
 
         let eventData = [
@@ -1954,29 +1978,24 @@
                         <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="ph-fill ph-info text-brand-600"></i> Deskripsi</h4>
                         <p class="text-gray-600 leading-relaxed text-base mb-12 bg-gray-50 p-6 rounded-2xl border border-gray-100">${data.deskripsi}</p>
                         
-                        <h4 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2"><i class="ph-fill ph-list-checks text-brand-600"></i> Fasilitas</h4>
-                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 border-b border-gray-100 pb-12">
-                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
-                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-car-profile"></i></div>
-                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Parkir</span>
+                        <!-- Galeri Foto -->
+                        ${(data.galeri && data.galeri.length > 0) ? `
+                        <div class="border-b border-gray-100 pb-12 mb-12">
+                            <h4 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2"><i class="ph-fill ph-images text-brand-600"></i> Galeri Foto</h4>
+                            <div class="grid gap-3 ${data.galeri.length === 1 ? 'grid-cols-1' : data.galeri.length === 2 ? 'grid-cols-2' : data.galeri.length === 3 ? 'grid-cols-3' : data.galeri.length <= 6 ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}">
+                                ${data.galeri.map((url, i) => `
+                                <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
+                                     style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
+                                     onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
+                                    <img src="${url}" alt="Galeri Wisata ${i + 1}"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
+                                        <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
+                                    </div>
+                                </div>`).join('')}
                             </div>
-                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
-                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-toilet"></i></div>
-                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Toilet</span>
-                            </div>
-                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
-                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-mosque"></i></div>
-                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Mushola</span>
-                            </div>
-                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
-                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-storefront"></i></div>
-                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Kuliner</span>
-                            </div>
-                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
-                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-bed"></i></div>
-                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Penginapan</span>
-                            </div>
-                        </div>
+                        </div>` : ''}
                     </div>
                     
                     <div class="w-full lg:w-1/3">
@@ -2399,6 +2418,15 @@
             document.getElementById('inp-website').value = data.website || '';
             document.getElementById('inp-youtube').value = data.youtube || '';
             document.getElementById('inp-desc').value = data.deskripsi || '';
+            
+            // Restore Wisata Galeri
+            resetWisataGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addWisataGaleriInput(url));
+            } else {
+                addWisataGaleriInput();
+            }
+
             document.getElementById('btn-submit-wisata').innerText = "Update Data Wisata";
             switchAdminTab('wisata');
             window.scrollTo(0, 0);
@@ -2558,7 +2586,8 @@
                 facebook: document.getElementById('inp-facebook').value,
                 tiktok: document.getElementById('inp-tiktok').value,
                 website: document.getElementById('inp-website').value,
-                youtube: document.getElementById('inp-youtube').value
+                youtube: document.getElementById('inp-youtube').value,
+                galeri: getWisataGaleriUrls()
             };
 
             if (isSupabaseConnected) {
@@ -2574,7 +2603,7 @@
                     }
                     if (error) throw error;
                     alert("Sukses! Data Wisata berhasil " + (editWisataId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
-                    this.reset(); editWisataId = null;
+                    this.reset(); resetWisataGaleriInputs(); editWisataId = null;
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
                     await fetchRealData(); renderAllViews();
@@ -2592,7 +2621,7 @@
                         const idx = wisataData.findIndex(w => w.id === editWisataId);
                         if (idx > -1) wisataData[idx] = newData;
                     } else { newData.id = Date.now(); wisataData.unshift(newData); }
-                    renderAllViews(); this.reset(); editWisataId = null;
+                    renderAllViews(); this.reset(); resetWisataGaleriInputs(); editWisataId = null;
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
                     navigate('admin');
@@ -3053,6 +3082,107 @@
         }
 
         // ---------------------------------------------------------
+        // ---------------------------------------------------------
+        // GALERI FOTO WISATA — Admin Helpers
+        // ---------------------------------------------------------
+        function getWisataGaleriUrls() {
+            return Array.from(document.querySelectorAll('.wisata-galeri-url-input'))
+                .map(i => i.value.trim()).filter(v => v.length > 0);
+        }
+
+        function updateWisataGaleriPreview() {
+            const strip = document.getElementById('wisata-galeri-preview-strip');
+            const urls = getWisataGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
+                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i + 1}</span>
+                    </div>
+                </div>`).join('');
+        }
+
+        function updateWisataGaleriLimitMsg() {
+            const count = document.querySelectorAll('.wisata-galeri-url-input').length;
+            const btn = document.getElementById('btn-add-wisata-galeri');
+            const msg = document.getElementById('wisata-galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true; btn.classList.add('opacity-40', 'cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false; btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+
+        function addWisataGaleriInput(value = '') {
+            const container = document.getElementById('wisata-galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.wisata-galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'wisata-galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-brand-400 transition">
+                    <span class="text-xs font-bold text-gray-400 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}"
+                        class="wisata-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300"
+                        placeholder="https://contoh.com/foto-${idx}.jpg"
+                        oninput="updateWisataGaleriPreview()">
+                    ${value ? `<img src="${value}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 wisata-galeri-thumb" onerror="this.style.display='none'">` : `<span class="wisata-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removeWisataGaleriRow(this)"
+                    class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200">
+                    <i class="ph ph-trash text-sm"></i>
+                </button>`;
+            const input = row.querySelector('.wisata-galeri-url-input');
+            const thumb = row.querySelector('.wisata-galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url; img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 wisata-galeri-thumb';
+                    img.onerror = () => { img.style.display = 'none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url; thumb.style.display = url ? 'block' : 'none';
+                }
+                updateWisataGaleriPreview();
+            });
+            container.appendChild(row);
+            updateWisataGaleriLimitMsg();
+            renumberWisataGaleriRows();
+        }
+
+        function removeWisataGaleriRow(btn) {
+            const row = btn.closest('.wisata-galeri-row');
+            if (row) row.remove();
+            renumberWisataGaleriRows();
+            updateWisataGaleriPreview();
+            updateWisataGaleriLimitMsg();
+        }
+
+        function renumberWisataGaleriRows() {
+            document.querySelectorAll('.wisata-galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-gray-400');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.wisata-galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i + 1}.jpg`;
+            });
+        }
+
+        function resetWisataGaleriInputs() {
+            const container = document.getElementById('wisata-galeri-inputs-container');
+            const strip = document.getElementById('wisata-galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updateWisataGaleriLimitMsg();
+        }
+
         // GALERI FOTO EVENT — Admin Helpers (mirrors ekraf galeri)
         // ---------------------------------------------------------
         function getEventGaleriUrls() {
