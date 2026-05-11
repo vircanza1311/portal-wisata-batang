@@ -294,9 +294,9 @@
 
                     <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
                         <!-- SVG Map Container -->
-                        <div class="w-full lg:w-[60%] relative flex flex-col">
+                        <div class="w-full lg:w-2/3 relative flex flex-col">
                             <div class="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-2 sm:p-6 shadow-2xl flex-grow flex items-center justify-center">
-                                <svg id="batang-map" viewBox="0 0 700 500" class="w-full h-auto drop-shadow-lg transform hover:scale-[1.02] transition-transform duration-500" style="max-height:550px"></svg>
+                                <svg id="batang-map" viewBox="0 0 700 500" class="w-full h-auto drop-shadow-lg transform hover:scale-[1.02] transition-transform duration-500"></svg>
                                 <!-- Map tooltip -->
                                 <div id="map-tooltip" class="hidden absolute bg-gray-900/90 backdrop-blur text-white text-xs font-bold px-4 py-2 rounded-xl shadow-2xl pointer-events-none z-50 border border-white/20"></div>
                             </div>
@@ -304,7 +304,7 @@
                         </div>
 
                         <!-- Info Panel -->
-                        <div class="w-full lg:w-[40%] flex flex-col h-full min-h-[500px]">
+                        <div class="w-full lg:w-1/3 flex flex-col h-full min-h-[500px]">
                             <!-- Default state -->
                             <div id="map-panel-default" class="text-center py-12 text-white/40">
                                 <i class="ph ph-cursor-click text-5xl mb-3 block"></i>
@@ -3654,21 +3654,11 @@
             const projection = d3.geoMercator().fitSize([W, H], BATANG_GEOJSON);
             const pathGen = d3.geoPath().projection(projection);
 
-            // Color: intensity by total items count (Wisata + Event + Ekraf)
+            // No dynamic colors needed. Using static solid base for maximum contrast.
             const fillColor = d => {
                 const kec = d.properties.kecamatan;
                 if (kec === mapSelectedKec) return '#fde047'; // yellow-300: standout for selected
-                const cnt = itemCountsByKec[kec] || 0;
-                if (cnt === 0) return '#0f172a'; // slate-900: very dark for no data
-                
-                // gradient: sky-700 to cyan-400
-                const t = cnt / maxCount;
-                const minC = [3, 105, 161];   // rgb(3, 105, 161) -> sky-700
-                const maxC = [34, 211, 238];  // rgb(34, 211, 238) -> cyan-400
-                const r = Math.round(minC[0] + t * (maxC[0] - minC[0]));
-                const g = Math.round(minC[1] + t * (maxC[1] - minC[1]));
-                const b = Math.round(minC[2] + t * (maxC[2] - minC[2]));
-                return `rgb(${r},${g},${b})`;
+                return '#1e293b'; // slate-800: clean solid base color
             };
 
             const tooltip = document.getElementById('map-tooltip');
@@ -3688,8 +3678,12 @@
                 .style('cursor', 'pointer')
                 .style('transition', 'fill 0.3s ease')
                 .on('mouseenter', function(event, d) {
-                    if (d.properties.kecamatan !== mapSelectedKec)
-                        d3.select(this).attr('fill', '#67e8f9'); // cyan-300 hover
+                    if (d.properties.kecamatan !== mapSelectedKec) {
+                        d3.select(this).attr('fill', '#38bdf8'); // sky-400 hover
+                        svg.selectAll('text.kec-label')
+                           .filter(f => f.properties.kecamatan === d.properties.kecamatan)
+                           .attr('fill', '#0f172a'); // change text to dark on hover
+                    }
                     if (tooltip) {
                         const kec = d.properties.kecamatan;
                         const wCnt = wisataData.filter(w => (w.lokasi||'').trim() === kec).length;
@@ -3708,6 +3702,11 @@
                 })
                 .on('mouseleave', function(event, d) {
                     d3.select(this).attr('fill', fillColor(d));
+                    if (d.properties.kecamatan !== mapSelectedKec) {
+                        svg.selectAll('text.kec-label')
+                           .filter(f => f.properties.kecamatan === d.properties.kecamatan)
+                           .attr('fill', '#f8fafc'); // revert to white
+                    }
                     if (tooltip) tooltip.classList.add('hidden');
                 })
                 .on('click', function(event, d) {
@@ -3717,7 +3716,7 @@
                         .attr('fill', fillColor)
                         .attr('stroke-width', f => f.properties.kecamatan === mapSelectedKec ? 2.5 : 0.8);
                     svg.selectAll('text.kec-label')
-                        .attr('fill', f => f.properties.kecamatan === mapSelectedKec ? '#1e293b' : '#cbd5e1')
+                        .attr('fill', f => f.properties.kecamatan === mapSelectedKec ? '#0f172a' : '#f8fafc')
                         .attr('font-weight', f => f.properties.kecamatan === mapSelectedKec ? 'bold' : 'normal');
                     showMapPanel(mapSelectedKec);
                 });
@@ -3734,9 +3733,9 @@
                 })
                 .attr('text-anchor', 'middle')
                 .attr('dominant-baseline', 'middle')
-                .attr('font-size', '8.5')
+                .attr('font-size', '11')
                 .attr('font-weight', d => d.properties.kecamatan === mapSelectedKec ? 'bold' : 'normal')
-                .attr('fill', d => d.properties.kecamatan === mapSelectedKec ? '#1e293b' : '#cbd5e1')
+                .attr('fill', d => d.properties.kecamatan === mapSelectedKec ? '#0f172a' : '#f8fafc')
                 .attr('pointer-events', 'none')
                 .text(d => d.properties.kecamatan);
         }
