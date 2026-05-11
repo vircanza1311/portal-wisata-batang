@@ -290,149 +290,141 @@
                     <h2 class="text-3xl font-bold text-gray-900 mb-2">Daftar Wisata</h2>
                     <p class="text-gray-500">Temukan berbagai destinasi wisata terbaik di Kabupaten Batang</p>
                 </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-8">
-                <!-- Sidebar -->
-                <div class="w-full md:w-64 flex-shrink-0">
-                    <div class="sticky top-28">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="font-bold text-gray-900 text-sm uppercase tracking-wider">Kategori</h4>
+                      <!-- Filter Section -->
+            <div class="max-w-7xl mx-auto px-4 py-12 border-b border-gray-100">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Kategori & Lokasi</h3>
+                    <p class="text-gray-500 text-sm">Filter destinasi wisata sesuai keinginan Anda</p>
+                </div>
+                
+                <!-- Kategori Grid Centered -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 max-w-5xl mx-auto">
+                    <!-- Semua Kategori -->
+                    <label class="relative cursor-pointer group">
+                        <input type="radio" name="kat" checked class="peer sr-only">
+                        <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-300 peer-checked:bg-brand-600 peer-checked:border-brand-600 overflow-hidden">
+                            <div class="relative z-10 w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 peer-checked:bg-white/20 peer-checked:text-white">
+                                <i class="ph-fill ph-squares-four text-2xl"></i>
+                            </div>
+                            <span class="relative z-10 font-bold text-xs text-gray-700 peer-checked:text-white transition-colors text-center">Semua Kategori</span>
+                            <!-- Decorative overlay -->
+                            <div class="absolute right-0 top-0 w-24 h-24 bg-gradient-to-br from-brand-400/0 to-brand-400/10 rounded-full blur-xl -mr-8 -mt-8 peer-checked:from-white/0 peer-checked:to-white/20"></div>
                         </div>
-                        <div class="grid grid-cols-2 gap-3 mb-8">
-                            <!-- Semua Kategori (Full Width) -->
-                            <label class="col-span-2 relative cursor-pointer group">
-                                <input type="radio" name="kat" checked class="peer sr-only">
-                                <div class="flex items-center gap-4 p-3.5 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-300 peer-checked:bg-brand-600 peer-checked:border-brand-600 overflow-hidden">
-                                    <div class="relative z-10 w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 peer-checked:bg-white/20 peer-checked:text-white">
-                                        <i class="ph-fill ph-squares-four text-xl"></i>
-                                    </div>
-                                    <span class="relative z-10 font-bold text-sm text-gray-700 peer-checked:text-white transition-colors">Semua Kategori</span>
-                                    <!-- Decorative overlay -->
-                                    <div class="absolute right-0 top-0 w-24 h-24 bg-gradient-to-br from-brand-400/0 to-brand-400/10 rounded-full blur-xl -mr-8 -mt-8 peer-checked:from-white/0 peer-checked:to-white/20"></div>
-                                </div>
-                            </label>
-                            
-                            <!-- Wisata Alam -->
-                            <label class="relative cursor-pointer group">
-                                <input type="radio" name="kat" class="peer sr-only">
-                                <div class="flex flex-col items-center justify-center gap-2 p-3 h-24 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-green-300 hover:shadow-md transition-all duration-300 peer-checked:bg-green-500 peer-checked:border-green-500 overflow-hidden">
-                                    <div class="relative z-10 text-green-500 transition-transform duration-300 group-hover:-translate-y-1 peer-checked:text-white">
-                                        <i class="ph-fill ph-tree text-3xl"></i>
-                                    </div>
-                                    <span class="relative z-10 font-semibold text-[11px] text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Wisata Alam</span>
-                                </div>
-                            </label>
-
-                            <!-- Wisata Buatan -->
-                            <label class="relative cursor-pointer group">
-                                <input type="radio" name="kat" class="peer sr-only">
-                                <div class="flex flex-col items-center justify-center gap-2 p-3 h-24 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-300 peer-checked:bg-blue-500 peer-checked:border-blue-500 overflow-hidden">
-                                    <div class="relative z-10 text-blue-500 transition-transform duration-300 group-hover:-translate-y-1 peer-checked:text-white">
-                                        <i class="ph-fill ph-buildings text-3xl"></i>
-                                    </div>
-                                    <span class="relative z-10 font-semibold text-[11px] text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Wisata Buatan</span>
-                                </div>
-                            </label>
-
-                            <!-- Wisata Religi & Budaya -->
-                            <label class="relative cursor-pointer group">
-                                <input type="radio" name="kat" class="peer sr-only">
-                                <div class="flex flex-col items-center justify-center gap-2 p-3 h-24 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-purple-300 hover:shadow-md transition-all duration-300 peer-checked:bg-purple-500 peer-checked:border-purple-500 overflow-hidden">
-                                    <div class="relative z-10 text-purple-500 transition-transform duration-300 group-hover:-translate-y-1 peer-checked:text-white">
-                                        <i class="ph-fill ph-mask-happy text-3xl"></i>
-                                    </div>
-                                    <span class="relative z-10 font-semibold text-[10px] text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Religi & Budaya</span>
-                                </div>
-                            </label>
-
-                            <!-- Desa Wisata -->
-                            <label class="relative cursor-pointer group">
-                                <input type="radio" name="kat" class="peer sr-only">
-                                <div class="flex flex-col items-center justify-center gap-2 p-3 h-24 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-orange-300 hover:shadow-md transition-all duration-300 peer-checked:bg-orange-500 peer-checked:border-orange-500 overflow-hidden">
-                                    <div class="relative z-10 text-orange-500 transition-transform duration-300 group-hover:-translate-y-1 peer-checked:text-white">
-                                        <i class="ph-fill ph-house-line text-3xl"></i>
-                                    </div>
-                                    <span class="relative z-10 font-semibold text-[11px] text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Desa Wisata</span>
-                                </div>
-                            </label>
+                    </label>
+                    
+                    <!-- Wisata Alam -->
+                    <label class="relative cursor-pointer group">
+                        <input type="radio" name="kat" class="peer sr-only">
+                        <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-green-300 hover:shadow-md transition-all duration-300 peer-checked:bg-green-500 peer-checked:border-green-500 overflow-hidden">
+                            <div class="relative z-10 w-12 h-12 rounded-full bg-green-50 text-green-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                <i class="ph-fill ph-tree text-2xl"></i>
+                            </div>
+                            <span class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Wisata Alam</span>
                         </div>
+                    </label>
 
-                        <div class="flex items-center justify-between mb-4 mt-6">
-                            <h4 class="font-bold text-gray-900 text-sm uppercase tracking-wider">Lokasi</h4>
-                            <span class="text-[10px] bg-brand-50 text-brand-600 px-2.5 py-0.5 rounded-full font-bold border border-brand-100">15 Kec</span>
+                    <!-- Wisata Buatan -->
+                    <label class="relative cursor-pointer group">
+                        <input type="radio" name="kat" class="peer sr-only">
+                        <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-300 peer-checked:bg-blue-500 peer-checked:border-blue-500 overflow-hidden">
+                            <div class="relative z-10 w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                <i class="ph-fill ph-buildings text-2xl"></i>
+                            </div>
+                            <span class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Wisata Buatan</span>
                         </div>
-                        <div class="flex flex-wrap gap-2 mb-8 max-h-72 overflow-y-auto pr-2 custom-scrollbar">
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Bandar</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Banyuputih</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Batang</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Bawang</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Blado</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Gringsing</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Kandeman</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Limpung</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Pecalungan</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Reban</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Subah</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Tersono</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Tulis</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Warungasem</div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="peer sr-only">
-                                <div class="px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 text-xs font-semibold transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Wonotunggal</div>
-                            </label>
-                        </div>
+                    </label>
 
-                        <button
-                            class="w-full border border-gray-300 text-gray-600 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition">Reset
-                            Filter</button>
-                    </div>
+                    <!-- Wisata Religi & Budaya -->
+                    <label class="relative cursor-pointer group">
+                        <input type="radio" name="kat" class="peer sr-only">
+                        <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-purple-300 hover:shadow-md transition-all duration-300 peer-checked:bg-purple-500 peer-checked:border-purple-500 overflow-hidden">
+                            <div class="relative z-10 w-12 h-12 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                <i class="ph-fill ph-mask-happy text-2xl"></i>
+                            </div>
+                            <span class="relative z-10 font-semibold text-[11px] text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Religi & Budaya</span>
+                        </div>
+                    </label>
+
+                    <!-- Desa Wisata -->
+                    <label class="relative cursor-pointer group">
+                        <input type="radio" name="kat" class="peer sr-only">
+                        <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-orange-300 hover:shadow-md transition-all duration-300 peer-checked:bg-orange-500 peer-checked:border-orange-500 overflow-hidden">
+                            <div class="relative z-10 w-12 h-12 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                <i class="ph-fill ph-house-line text-2xl"></i>
+                            </div>
+                            <span class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Desa Wisata</span>
+                        </div>
+                    </label>
                 </div>
 
+                <!-- Lokasi Centered Wrap -->
+                <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto px-2">
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Bandar</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Banyuputih</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Batang</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Bawang</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Blado</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Gringsing</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Kandeman</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Limpung</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Pecalungan</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Reban</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Subah</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Tersono</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Tulis</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Warungasem</div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                        <input type="checkbox" class="peer sr-only">
+                        <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Wonotunggal</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 py-10">
                 <!-- Content Grid -->
-                <div class="flex-grow">
+                <div class="w-full">"flex-grow">
                     <div class="flex flex-col sm:flex-row justify-between mb-6 gap-4">
                         <div class="relative w-full sm:w-64">
                             <i class="ph ph-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
@@ -1850,58 +1842,83 @@
                         <div class="w-24 h-16 bg-black/50 rounded flex items-center justify-center text-white border-2 border-transparent cursor-pointer"><i class="ph ph-caret-right text-2xl"></i></div>
                     </div>
                 </div>
-                <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-10">
+                <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-12">
                     <div class="w-full lg:w-2/3">
-                        <div class="flex items-center gap-3 mb-2">
-                            <h2 class="text-3xl font-extrabold text-gray-900">${data.nama}</h2>
-                            <span class="bg-brand-100 text-brand-700 text-[10px] font-bold px-2 py-1 rounded uppercase">${data.kategori}</span>
+                        <div class="flex items-center justify-between mb-2">
+                            <h2 class="text-4xl font-black text-gray-900 tracking-tight">${data.nama}</h2>
+                            <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">${data.kategori}</span>
                         </div>
-                        <div class="flex items-center gap-1 text-yellow-400 text-sm mb-6">
+                        <div class="flex items-center gap-1 text-yellow-400 text-sm mb-8">
                             <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i>
-                            <span class="text-gray-500 text-xs ml-1 font-medium">4.8 (120 ulasan)</span>
+                            <span class="text-gray-500 text-sm ml-2 font-medium">4.8 (120 ulasan)</span>
                         </div>
-                        <div class="flex flex-wrap gap-3 mb-10">
-                            <a ${data.maps ? `href="${data.maps}" target="_blank"` : `href="#" onclick="alert('Link Google Maps belum tersedia.'); return false;"`} class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition shadow"><i class="ph-fill ph-map-trifold"></i> Buka di Maps</a>
-                            <a ${data.telepon ? `href="https://wa.me/${data.telepon}" target="_blank"` : `href="#" onclick="alert('Nomor telepon belum tersedia.'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-5 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition border border-brand-200"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
+                        
+                        <div class="flex flex-wrap gap-4 mb-12 border-b border-gray-100 pb-8">
+                            <a ${data.maps ? `href="${data.maps}" target="_blank"` : `href="#" onclick="alert('Link Google Maps belum tersedia.'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
+                            <a ${data.telepon ? `href="https://wa.me/${data.telepon}" target="_blank"` : `href="#" onclick="alert('Nomor telepon belum tersedia.'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all border border-brand-200 hover:border-brand-300"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
                         </div>
-                        <h4 class="text-lg font-bold text-gray-900 mb-3">Deskripsi</h4>
-                        <p class="text-gray-600 leading-relaxed text-sm mb-10">${data.deskripsi}</p>
-                        <h4 class="text-lg font-bold text-gray-900 mb-4">Fasilitas</h4>
-                        <div class="flex flex-wrap gap-6 border-b border-gray-100 pb-10">
-                            <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-600 text-xl"><i class="ph ph-parking"></i></div><span class="text-[10px] font-semibold text-gray-500 uppercase">Parkir</span></div>
-                            <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-600 text-xl"><i class="ph ph-toilet"></i></div><span class="text-[10px] font-semibold text-gray-500 uppercase">Toilet</span></div>
-                            <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-600 text-xl"><i class="ph ph-mosque"></i></div><span class="text-[10px] font-semibold text-gray-500 uppercase">Mushola</span></div>
-                            <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-600 text-xl"><i class="ph ph-fork-knife"></i></div><span class="text-[10px] font-semibold text-gray-500 uppercase">Kuliner</span></div>
-                            <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-600 text-xl"><i class="ph ph-bed"></i></div><span class="text-[10px] font-semibold text-gray-500 uppercase">Penginapan</span></div>
+                        
+                        <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="ph-fill ph-info text-brand-600"></i> Deskripsi</h4>
+                        <p class="text-gray-600 leading-relaxed text-base mb-12 bg-gray-50 p-6 rounded-2xl border border-gray-100">${data.deskripsi}</p>
+                        
+                        <h4 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2"><i class="ph-fill ph-list-checks text-brand-600"></i> Fasilitas</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 border-b border-gray-100 pb-12">
+                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-car-profile"></i></div>
+                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Parkir</span>
+                            </div>
+                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-toilet"></i></div>
+                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Toilet</span>
+                            </div>
+                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-mosque"></i></div>
+                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Mushola</span>
+                            </div>
+                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-storefront"></i></div>
+                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Kuliner</span>
+                            </div>
+                            <div class="group flex flex-col items-center justify-center gap-3 p-4 bg-white border border-gray-100 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-default">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition-colors"><i class="ph-fill ph-bed"></i></div>
+                                <span class="text-xs font-bold text-gray-600 uppercase tracking-wider group-hover:text-brand-600">Penginapan</span>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="w-full lg:w-1/3">
-                        <div class="border border-gray-100 rounded-2xl p-6 shadow-sm space-y-6">
-                            <div class="flex gap-4">
-                                <i class="ph-fill ph-map-pin text-brand-600 text-xl mt-0.5"></i>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Alamat</p><p class="text-sm text-gray-800 font-medium">${data.alamat || data.lokasi + ', Kabupaten Batang'}</p></div>
+                        <div class="bg-gradient-to-b from-brand-50/50 to-white border border-brand-100 rounded-3xl p-8 shadow-lg space-y-8 sticky top-28">
+                            <h4 class="font-bold text-gray-900 text-lg border-b border-gray-200/60 pb-3 mb-6">Informasi Detail</h4>
+                            
+                            <div class="flex gap-4 items-start group">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-map-pin text-xl"></i></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Alamat</p><p class="text-sm text-gray-800 font-semibold leading-snug">${data.alamat || data.lokasi + ', Kabupaten Batang'}</p></div>
                             </div>
-                            <div class="flex gap-4">
-                                <i class="ph-fill ph-phone text-brand-600 text-xl mt-0.5"></i>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Kontak</p><p class="text-sm text-gray-800 font-medium">${data.telepon || '-'}</p></div>
+                            
+                            <div class="flex gap-4 items-start group">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-phone text-xl"></i></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Kontak</p><p class="text-sm text-gray-800 font-semibold">${data.telepon || '-'}</p></div>
                             </div>
-                            <div class="flex gap-4">
-                                <i class="ph-fill ph-clock text-brand-600 text-xl mt-0.5"></i>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Jam Buka</p><p class="text-sm text-gray-800 font-medium">${data.jam || '-'}</p></div>
+                            
+                            <div class="flex gap-4 items-start group">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-clock text-xl"></i></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Jam Buka</p><p class="text-sm text-gray-800 font-semibold">${data.jam || '-'}</p></div>
                             </div>
-                            <div class="flex gap-4">
-                                <i class="ph-fill ph-ticket text-brand-600 text-xl mt-0.5"></i>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Harga Tiket</p><p class="text-sm text-gray-800 font-medium">${data.harga || '-'}</p></div>
+                            
+                            <div class="flex gap-4 items-start group">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-ticket text-xl"></i></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Harga Tiket</p><p class="text-sm text-gray-800 font-semibold">${data.harga || '-'}</p></div>
                             </div>
-                            <div class="pt-4 border-t border-gray-100">
-                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Sosial Media</p>
-                                <div class="flex flex-col gap-2">
-                                    ${data.instagram ? `<a href="${data.instagram}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-instagram-logo text-xl"></i><span class="text-sm font-medium">Instagram</span></a>` : ''}
-                                    ${data.twitter ? `<a href="${data.twitter}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-twitter-logo text-xl"></i><span class="text-sm font-medium">X (Twitter)</span></a>` : ''}
-                                    ${data.facebook ? `<a href="${data.facebook}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-facebook-logo text-xl"></i><span class="text-sm font-medium">Facebook</span></a>` : ''}
-                                    ${data.tiktok ? `<a href="${data.tiktok}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-tiktok-logo text-xl"></i><span class="text-sm font-medium">TikTok</span></a>` : ''}
-                                    ${data.youtube ? `<a href="${data.youtube}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-youtube-logo text-xl"></i><span class="text-sm font-medium">YouTube</span></a>` : ''}
-                                    ${data.website ? `<a href="${data.website}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i class="ph-fill ph-globe text-xl"></i><span class="text-sm font-medium">Website</span></a>` : ''}
+                            
+                            <div class="pt-6 border-t border-gray-200/60">
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Sosial Media</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    ${data.instagram ? `<a href="${data.instagram}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-instagram-logo text-lg"></i><span class="text-xs font-bold">Instagram</span></a>` : ''}
+                                    ${data.twitter ? `<a href="${data.twitter}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-twitter-logo text-lg"></i><span class="text-xs font-bold">X (Twitter)</span></a>` : ''}
+                                    ${data.facebook ? `<a href="${data.facebook}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-facebook-logo text-lg"></i><span class="text-xs font-bold">Facebook</span></a>` : ''}
+                                    ${data.tiktok ? `<a href="${data.tiktok}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-tiktok-logo text-lg"></i><span class="text-xs font-bold">TikTok</span></a>` : ''}
+                                    ${data.youtube ? `<a href="${data.youtube}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-youtube-logo text-lg"></i><span class="text-xs font-bold">YouTube</span></a>` : ''}
+                                    ${data.website ? `<a href="${data.website}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-globe text-lg"></i><span class="text-xs font-bold">Website</span></a>` : ''}
                                 </div>
                             </div>
                         </div>
