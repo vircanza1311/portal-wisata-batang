@@ -1022,7 +1022,15 @@
                 </div>
 
                 <!-- Ekraf Grid -->
-                <h3 class="text-xl font-bold text-gray-900 mb-6">Pelaku Ekonomi Kreatif</h3>
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                    <h3 class="text-xl font-bold text-gray-900">Pelaku Ekonomi Kreatif</h3>
+                    <div class="relative w-full sm:w-64">
+                        <i class="ph ph-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
+                        <input type="text" id="search-ekraf" placeholder="Cari pelaku ekraf..."
+                            class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-500"
+                            oninput="applyEkrafFilters()">
+                    </div>
+                </div>
                 <div id="grid-all-ekraf" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Injected via JS -->
                 </div>
@@ -1827,6 +1835,19 @@
 
         let ekrafFilterActive = null;
 
+        function applyEkrafFilters() {
+            const searchInput = document.getElementById('search-ekraf');
+            const searchVal = searchInput ? searchInput.value.toLowerCase() : '';
+            
+            const filtered = ekrafData.filter(e => {
+                const searchTxt = ((e.brand || '') + ' ' + (e.owner || '') + ' ' + (e.deskripsi || '')).toLowerCase();
+                const matchSearch = searchTxt.includes(searchVal);
+                const matchSubsektor = ekrafFilterActive === null || e.subsektor === ekrafFilterActive;
+                return matchSearch && matchSubsektor;
+            });
+            renderEkrafGrid(filtered);
+        }
+
         function filterEkrafSubsektor(subsektor) {
             ekrafFilterActive = subsektor;
             const filterBar = document.getElementById('ekraf-filter-bar');
@@ -1839,8 +1860,7 @@
             });
             const activeBtn = document.querySelector('.ekraf-subsektor-btn[data-subsektor="' + subsektor + '"]');
             if (activeBtn) { activeBtn.style.opacity = '1'; activeBtn.querySelector('div').style.background = '#b8d9f1'; }
-            const filtered = ekrafData.filter(e => e.subsektor === subsektor);
-            renderEkrafGrid(filtered);
+            applyEkrafFilters();
         }
 
         function clearEkrafFilter() {
@@ -1848,7 +1868,9 @@
             const filterBar = document.getElementById('ekraf-filter-bar');
             if (filterBar) { filterBar.classList.add('hidden'); filterBar.classList.remove('flex'); }
             document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => { btn.style.opacity = '1'; btn.querySelector('div').style.background = ''; });
-            renderEkrafGrid(ekrafData);
+            
+            // Clear text search as well if needed, or leave it. We'll leave it but call applyEkrafFilters
+            applyEkrafFilters();
         }
 
         // --- WISATA FILTERING ---
