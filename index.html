@@ -301,7 +301,7 @@
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 max-w-5xl mx-auto">
                     <!-- Semua Kategori -->
                     <label class="relative cursor-pointer group">
-                        <input type="radio" name="kat" checked class="peer sr-only">
+                        <input type="radio" name="kat" value="Semua" checked class="peer sr-only" onchange="filterWisata()">
                         <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-300 peer-checked:bg-brand-600 peer-checked:border-brand-600 overflow-hidden">
                             <div class="relative z-10 w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 peer-checked:bg-white/20 peer-checked:text-white">
                                 <i class="ph-fill ph-squares-four text-2xl"></i>
@@ -314,7 +314,7 @@
                     
                     <!-- Wisata Alam -->
                     <label class="relative cursor-pointer group">
-                        <input type="radio" name="kat" class="peer sr-only">
+                        <input type="radio" name="kat" value="Wisata Alam" class="peer sr-only" onchange="filterWisata()">
                         <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-green-300 hover:shadow-md transition-all duration-300 peer-checked:bg-green-500 peer-checked:border-green-500 overflow-hidden">
                             <div class="relative z-10 w-12 h-12 rounded-full bg-green-50 text-green-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
                                 <i class="ph-fill ph-tree text-2xl"></i>
@@ -325,7 +325,7 @@
 
                     <!-- Wisata Buatan -->
                     <label class="relative cursor-pointer group">
-                        <input type="radio" name="kat" class="peer sr-only">
+                        <input type="radio" name="kat" value="Wisata Buatan" class="peer sr-only" onchange="filterWisata()">
                         <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-300 peer-checked:bg-blue-500 peer-checked:border-blue-500 overflow-hidden">
                             <div class="relative z-10 w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
                                 <i class="ph-fill ph-buildings text-2xl"></i>
@@ -336,7 +336,7 @@
 
                     <!-- Wisata Religi & Budaya -->
                     <label class="relative cursor-pointer group">
-                        <input type="radio" name="kat" class="peer sr-only">
+                        <input type="radio" name="kat" value="Religi & Budaya" class="peer sr-only" onchange="filterWisata()">
                         <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-purple-300 hover:shadow-md transition-all duration-300 peer-checked:bg-purple-500 peer-checked:border-purple-500 overflow-hidden">
                             <div class="relative z-10 w-12 h-12 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
                                 <i class="ph-fill ph-mask-happy text-2xl"></i>
@@ -347,7 +347,7 @@
 
                     <!-- Desa Wisata -->
                     <label class="relative cursor-pointer group">
-                        <input type="radio" name="kat" class="peer sr-only">
+                        <input type="radio" name="kat" value="Desa Wisata" class="peer sr-only" onchange="filterWisata()">
                         <div class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-orange-300 hover:shadow-md transition-all duration-300 peer-checked:bg-orange-500 peer-checked:border-orange-500 overflow-hidden">
                             <div class="relative z-10 w-12 h-12 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
                                 <i class="ph-fill ph-house-line text-2xl"></i>
@@ -360,63 +360,63 @@
                 <!-- Lokasi Centered Wrap -->
                 <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto px-2">
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Bandar" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Bandar</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Banyuputih" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Banyuputih</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Batang" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Batang</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Bawang" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Bawang</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Blado" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Blado</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Gringsing" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Gringsing</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Kandeman" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Kandeman</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Limpung" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Limpung</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Pecalungan" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Pecalungan</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Reban" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Reban</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Subah" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Subah</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Tersono" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Tersono</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Tulis" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Tulis</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Warungasem" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Warungasem</div>
                     </label>
                     <label class="relative cursor-pointer">
-                        <input type="checkbox" class="peer sr-only">
+                        <input type="checkbox" value="Wonotunggal" class="peer sr-only cb-lokasi" onchange="filterWisata()">
                         <div class="px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium transition-all duration-300 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:border-brand-600 hover:border-brand-400 hover:shadow-sm">Wonotunggal</div>
                     </label>
                 </div>
@@ -424,20 +424,12 @@
 
             <div class="max-w-7xl mx-auto px-4 py-10">
                 <!-- Content Grid -->
-                <div class="w-full">"flex-grow">
+                <div class="w-full">
                     <div class="flex flex-col sm:flex-row justify-between mb-6 gap-4">
                         <div class="relative w-full sm:w-64">
                             <i class="ph ph-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
-                            <input type="text" placeholder="Cari wisata..."
-                                class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div class="flex gap-2">
-                            <select class="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white">
-                                <option>Semua Kategori</option>
-                            </select>
-                            <select class="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white">
-                                <option>Semua Lokasi</option>
-                            </select>
+                            <input type="text" id="search-wisata" placeholder="Cari wisata..."
+                                class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-500" oninput="filterWisata()">
                         </div>
                     </div>
 
@@ -1752,6 +1744,37 @@
             renderEkrafGrid(ekrafData);
         }
 
+        // --- WISATA FILTERING ---
+        function renderWisataGrid(data) {
+            const grid = document.getElementById('grid-all-wisata');
+            if (!grid) return;
+            if (!data || data.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500 font-medium bg-gray-50 rounded-2xl border border-dashed border-gray-200">Wisata tidak ditemukan dengan filter tersebut.</div>';
+            } else {
+                grid.innerHTML = data.map(createWisataCard).join('');
+            }
+        }
+
+        function filterWisata() {
+            const searchInput = document.getElementById('search-wisata');
+            const searchVal = searchInput ? searchInput.value.toLowerCase() : '';
+            
+            const activeKat = document.querySelector('input[name="kat"]:checked');
+            const katVal = activeKat ? activeKat.value : 'Semua';
+            
+            const checkedLokasi = Array.from(document.querySelectorAll('.cb-lokasi:checked')).map(cb => cb.value);
+
+            const filtered = wisataData.filter(w => {
+                const searchTxt = ((w.nama || '') + ' ' + (w.deskripsi || '')).toLowerCase();
+                const matchSearch = searchTxt.includes(searchVal);
+                const matchKat = katVal === 'Semua' || w.kategori === katVal;
+                const matchLokasi = checkedLokasi.length === 0 || checkedLokasi.includes(w.lokasi);
+                return matchSearch && matchKat && matchLokasi;
+            });
+
+            renderWisataGrid(filtered);
+        }
+
         function updateStats() {
             const jumlahWisata = wisataData.length;
             const jumlahEvent = eventData.length;
@@ -1776,7 +1799,7 @@
             document.getElementById('grid-home-wisata').innerHTML = wisataData.slice(0, 4).map(createWisataCard).join('');
             document.getElementById('grid-home-event').innerHTML = eventData.slice(0, 4).map(createEventCardBlock).join('');
             // Wisata
-            document.getElementById('grid-all-wisata').innerHTML = wisataData.map(createWisataCard).join('');
+            filterWisata(); // Automatically applies default 'Semua' filter and renders
             // Event
             const lhe = document.getElementById('list-home-event');
             if (lhe) lhe.innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
