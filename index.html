@@ -1626,7 +1626,20 @@
     <!-- ==================== LOGIC & SUPABASE INTEGRATION ==================== -->
     <script>
         // ---------------------------------------------------------
-        // 1. SUPABASE CONFIGURATION
+        // 1. IMAGEKIT OPTIMIZATION
+        // ---------------------------------------------------------
+        const IMAGEKIT_URL = 'https://ik.imagekit.io/jester96'; // Ganti dengan ImageKit Endpoint Anda
+        function optimizeImage(url, width = 800, quality = 80) {
+            if (!url) return '';
+            // Hindari double-proxy
+            if (url.includes('ik.imagekit.io') || url.includes('.svg') || url.startsWith('data:')) return url;
+
+            // Format URL dengan query parameter
+            return `${IMAGEKIT_URL}/${url}?tr=w-${width},q-${quality},f-auto`;
+        }
+
+        // ---------------------------------------------------------
+        // 2. SUPABASE CONFIGURATION
         // ---------------------------------------------------------
         const SUPABASE_URL = 'https://puitcehmhgizfioeybsz.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1aXRjZWhtaGdpemZpb2V5YnN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4NTc1NDUsImV4cCI6MjA5MzQzMzU0NX0.d0P4ltoa_f65_PNXzwTDFGsSTz4rGGh7O9XwKiIblvc';
@@ -1715,7 +1728,7 @@
             return `
                 <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-wisata', ${item.id})">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="${item.foto || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800'}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="${optimizeImage(item.foto || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', 800)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <span class="absolute bottom-3 left-3 ${catBg} text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">${item.kategori || ''}</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
@@ -1732,7 +1745,7 @@
             return `
                 <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer" onclick="navigate('detail-event', ${item.id})">
                     <div class="h-40 relative">
-                        <img src="${item.foto || ''}" class="w-full h-full object-cover">
+                        <img src="${optimizeImage(item.foto || '', 400)}" class="w-full h-full object-cover">
                         <div class="absolute top-2 left-2 bg-white rounded-lg p-2 text-center shadow min-w-[3rem]">
                             <div class="text-lg font-black text-gray-900 leading-none">${item.tanggal || ''}</div>
                             <div class="text-[9px] font-bold text-gray-400 uppercase">${item.bulan || ''}</div>
@@ -1778,7 +1791,7 @@
             return `
                 <div onclick="navigate('detail-ekraf', ${item.id})" class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col cursor-pointer group">
                     <div class="h-44 relative overflow-hidden bg-gray-100">
-                        ${item.foto ? `<img src="${item.foto}" class="w-full h-full object-cover hover:scale-105 transition duration-500">` : `<div class="w-full h-full flex items-center justify-center text-gray-300"><i class="ph ph-storefront text-5xl"></i></div>`}
+                        ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover hover:scale-105 transition duration-500">` : `<div class="w-full h-full flex items-center justify-center text-gray-300"><i class="ph ph-storefront text-5xl"></i></div>`}
                         <span class="absolute bottom-3 left-3 ${colorClass} text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">${item.subsektor || ''}</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
@@ -1952,9 +1965,9 @@
             const data = wisataData.find(w => w.id == id) || wisataData[0];
             const html = `
                 <div class="bg-gray-900 w-full h-[500px] relative">
-                    <img src="${data.foto}" class="w-full h-full object-cover opacity-80">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80">
                     <div class="absolute bottom-6 right-6 flex gap-2">
-                        <img src="${data.foto}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer">
+                        <img src="${optimizeImage(data.foto, 200, 70)}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=200" class="w-24 h-16 object-cover border-2 border-transparent hover:border-white rounded cursor-pointer opacity-70 hover:opacity-100 transition">
                         <div class="w-24 h-16 bg-black/50 rounded flex items-center justify-center text-white border-2 border-transparent cursor-pointer"><i class="ph ph-caret-right text-2xl"></i></div>
                     </div>
@@ -1987,7 +2000,7 @@
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
-                                    <img src="${url}" alt="Galeri Wisata ${i + 1}"
+                                    <img src="${optimizeImage(url, 600)}" alt="Galeri Wisata ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
@@ -2052,7 +2065,7 @@
             const data = eventData.find(e => e.id == id) || eventData[0];
             const html = `
                 <div class="w-full h-[400px] relative bg-gray-900">
-                    <img src="${data.foto}" class="w-full h-full object-cover opacity-60">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-60">
                 </div>
                 <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-10">
                     <div class="w-full lg:w-2/3">
@@ -2089,7 +2102,7 @@
                                 <div class="relative overflow-hidden cursor-pointer group ${i === 0 && data.galeri.length >= 3 ? 'col-span-2' : ''}"
                                      style="aspect-ratio:${i === 0 && data.galeri.length >= 3 ? '16/9' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, '&#39;')})">
-                                    <img src="${url}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                                    <img src="${optimizeImage(url, 600)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
@@ -2174,7 +2187,7 @@
                 <!-- HERO BANNER -->
                 <div class="relative w-full min-h-[400px] lg:min-h-[480px] overflow-hidden bg-gray-900">
                     ${data.foto
-                    ? `<img src="${data.foto}" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" style="filter:blur(2px)">`
+                    ? `<img src="${optimizeImage(data.foto, 400, 60)}" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" style="filter:blur(2px)">`
                     : ''}
                     <div class="absolute inset-0 bg-gradient-to-br ${theme.bg} opacity-80"></div>
                     <!-- Decorative shapes -->
@@ -2187,7 +2200,7 @@
                         <div class="shrink-0">
                             <div class="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border-4 border-white/30 shadow-2xl bg-white/20 backdrop-blur-sm">
                                 ${data.foto
-                    ? `<img src="${data.foto}" class="w-full h-full object-cover">`
+                    ? `<img src="${optimizeImage(data.foto, 800)}" class="w-full h-full object-cover">`
                     : `<div class="w-full h-full flex items-center justify-center text-white/60"><i class="ph ${theme.icon} text-7xl"></i></div>`}
                             </div>
                         </div>
@@ -2268,7 +2281,7 @@
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
-                                    <img src="${url}" alt="Galeri ${i + 1}"
+                                    <img src="${optimizeImage(url, 600)}" alt="Galeri ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
@@ -2367,7 +2380,7 @@
                         return `
                                 <div onclick="navigate('detail-ekraf', ${e.id})" class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer group flex flex-col">
                                     <div class="h-36 relative overflow-hidden bg-gray-100">
-                                        ${e.foto ? `<img src="${e.foto}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">` : `<div class="w-full h-full bg-gradient-to-br ${t.bg} opacity-50"></div>`}
+                                        ${e.foto ? `<img src="${optimizeImage(e.foto, 600)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">` : `<div class="w-full h-full bg-gradient-to-br ${t.bg} opacity-50"></div>`}
                                         <span class="absolute bottom-2 left-2 ${t.badge} text-[9px] font-bold px-2 py-0.5 rounded uppercase">${e.subsektor}</span>
                                     </div>
                                     <div class="p-4 flex-grow">
@@ -2418,7 +2431,7 @@
             document.getElementById('inp-website').value = data.website || '';
             document.getElementById('inp-youtube').value = data.youtube || '';
             document.getElementById('inp-desc').value = data.deskripsi || '';
-            
+
             // Restore Wisata Galeri
             resetWisataGaleriInputs();
             if (data.galeri && data.galeri.length > 0) {
@@ -2906,7 +2919,7 @@
                 <div onclick="navigate('detail-event', ${ev.id})"
                      class="flex items-center gap-3 p-3 rounded-xl bg-brand-50 border border-brand-100 hover:bg-brand-100 cursor-pointer transition">
                     <div class="w-10 h-10 rounded-xl overflow-hidden shrink-0 bg-gray-200">
-                        ${ev.foto ? `<img src="${ik.thumb(ev.foto)}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-brand-200 flex items-center justify-center"><i class="ph-fill ph-calendar text-brand-600 text-lg"></i></div>`}
+                        ${ev.foto ? `<img src="${optimizeImage(ev.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-brand-200 flex items-center justify-center"><i class="ph-fill ph-calendar text-brand-600 text-lg"></i></div>`}
                     </div>
                     <div class="flex-grow min-w-0">
                         <p class="font-bold text-gray-900 text-sm truncate">${ev.judul}</p>
@@ -3096,7 +3109,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -3133,7 +3146,7 @@
                         class="wisata-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300"
                         placeholder="https://contoh.com/foto-${idx}.jpg"
                         oninput="updateWisataGaleriPreview()">
-                    ${value ? `<img src="${value}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 wisata-galeri-thumb" onerror="this.style.display='none'">` : `<span class="wisata-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 wisata-galeri-thumb" onerror="this.style.display='none'">` : `<span class="wisata-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
                 </div>
                 <button type="button" onclick="removeWisataGaleriRow(this)"
                     class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200">
@@ -3196,7 +3209,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -3233,7 +3246,7 @@
                         class="event-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300"
                         placeholder="https://contoh.com/foto-${idx}.jpg"
                         oninput="updateEventGaleriPreview()">
-                    ${value ? `<img src="${value}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 event-galeri-thumb" onerror="this.style.display='none'">` : `<span class="event-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 event-galeri-thumb" onerror="this.style.display='none'">` : `<span class="event-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
                 </div>
                 <button type="button" onclick="removeEventGaleriRow(this)"
                     class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200">
@@ -3300,7 +3313,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src=''; this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src=''; this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -3339,7 +3352,7 @@
                         class="galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300"
                         placeholder="https://contoh.com/foto-${idx}.jpg"
                         oninput="updateGaleriPreview()">
-                    ${value ? `<img src="${value}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 galeri-thumb" onerror="this.style.display='none'">` : `<span class="galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 galeri-thumb" onerror="this.style.display='none'">` : `<span class="galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
                 </div>
                 <button type="button" onclick="removeGaleriRow(this)"
                     class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200">
