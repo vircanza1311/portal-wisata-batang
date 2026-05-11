@@ -288,31 +288,28 @@
 
                 <div class="max-w-7xl mx-auto px-4 relative z-10">
                     <div class="text-center mb-10">
-                        <span class="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-white/15 mb-4">
-                            <i class="ph-fill ph-map-trifold text-cyan-400"></i> Peta Interaktif
-                        </span>
                         <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-3">Jelajahi 15 Kecamatan</h2>
                         <p class="text-white/60 max-w-xl mx-auto text-sm">Klik kecamatan pada peta untuk melihat destinasi wisata di wilayah tersebut</p>
                     </div>
 
-                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
                         <!-- SVG Map Container -->
-                        <div class="w-full lg:w-[55%] relative">
-                            <div class="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-4 shadow-2xl">
-                                <svg id="batang-map" viewBox="0 0 700 500" class="w-full h-auto" style="max-height:480px"></svg>
+                        <div class="w-full lg:w-[60%] relative flex flex-col">
+                            <div class="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-2 sm:p-6 shadow-2xl flex-grow flex items-center justify-center">
+                                <svg id="batang-map" viewBox="0 0 700 500" class="w-full h-auto drop-shadow-lg transform hover:scale-[1.02] transition-transform duration-500" style="max-height:550px"></svg>
                                 <!-- Map tooltip -->
-                                <div id="map-tooltip" class="hidden absolute bg-gray-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-xl pointer-events-none z-50 border border-white/20"></div>
+                                <div id="map-tooltip" class="hidden absolute bg-gray-900/90 backdrop-blur text-white text-xs font-bold px-4 py-2 rounded-xl shadow-2xl pointer-events-none z-50 border border-white/20"></div>
                             </div>
                             <!-- Legend -->
-                            <div class="flex flex-wrap gap-3 mt-3 justify-center">
-                                <div class="flex items-center gap-1.5 text-white/70 text-xs"><span class="w-3 h-3 rounded-sm bg-brand-500 inline-block"></span> Ada Wisata</div>
-                                <div class="flex items-center gap-1.5 text-white/70 text-xs"><span class="w-3 h-3 rounded-sm bg-white/20 border border-white/30 inline-block"></span> Tidak Ada Data</div>
-                                <div class="flex items-center gap-1.5 text-white/70 text-xs"><span class="w-3 h-3 rounded-sm bg-cyan-400 inline-block"></span> Dipilih</div>
+                            <div class="flex flex-wrap gap-4 mt-5 justify-center bg-white/5 backdrop-blur-sm px-6 py-3 rounded-2xl border border-white/10 w-fit mx-auto">
+                                <div class="flex items-center gap-2 text-white/80 text-xs font-semibold"><span class="w-3 h-3 rounded bg-brand-500 shadow-[0_0_8px_rgba(59,130,246,0.8)] inline-block"></span> Ada Wisata</div>
+                                <div class="flex items-center gap-2 text-white/80 text-xs font-semibold"><span class="w-3 h-3 rounded bg-[#1e2d40] border border-white/20 inline-block"></span> Tidak Ada Data</div>
+                                <div class="flex items-center gap-2 text-white/80 text-xs font-semibold"><span class="w-3 h-3 rounded bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)] inline-block"></span> Dipilih</div>
                             </div>
                         </div>
 
                         <!-- Info Panel -->
-                        <div class="w-full lg:w-[45%]">
+                        <div class="w-full lg:w-[40%] flex flex-col h-full min-h-[500px]">
                             <!-- Default state -->
                             <div id="map-panel-default" class="text-center py-12 text-white/40">
                                 <i class="ph ph-cursor-click text-5xl mb-3 block"></i>
@@ -321,37 +318,54 @@
                             </div>
 
                             <!-- Selected kecamatan panel -->
-                            <div id="map-panel-info" class="hidden">
+                            <div id="map-panel-info" class="hidden flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-5">
-                                    <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center">
+                                    <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center shrink-0">
                                         <i class="ph-fill ph-map-pin text-2xl text-cyan-400"></i>
                                     </div>
-                                    <div>
+                                    <div class="flex-grow min-w-0">
                                         <p class="text-white/50 text-xs font-bold uppercase tracking-widest">Kecamatan</p>
-                                        <h3 id="map-kec-name" class="text-2xl font-extrabold text-white leading-tight"></h3>
+                                        <h3 id="map-kec-name" class="text-2xl font-extrabold text-white leading-tight truncate"></h3>
                                     </div>
-                                    <button onclick="clearMapSelection()" class="ml-auto text-white/40 hover:text-white/70 transition">
+                                    <button onclick="clearMapSelection()" class="shrink-0 text-white/40 hover:text-white/70 transition">
                                         <i class="ph ph-x-circle text-xl"></i>
                                     </button>
                                 </div>
 
-                                <!-- Wisata count badge -->
-                                <div class="flex gap-3 mb-5">
-                                    <div class="flex-1 bg-white/10 rounded-xl p-3 border border-white/10 text-center">
-                                        <p id="map-kec-count" class="text-3xl font-extrabold text-white"></p>
-                                        <p class="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-0.5">Destinasi</p>
-                                    </div>
-                                    <div class="flex-1 bg-white/10 rounded-xl p-3 border border-white/10 text-center">
-                                        <p id="map-kec-ekraf-count" class="text-3xl font-extrabold text-white"></p>
-                                        <p class="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-0.5">Pelaku Ekraf</p>
+                                <!-- Wisata, Event, Ekraf count badges -->
+                                <div class="grid grid-cols-3 gap-2 mb-5">
+                                    <button onclick="setMapTab('wisata')" id="map-tab-wisata" class="bg-cyan-500/20 border border-cyan-400/50 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer">
+                                        <p id="map-kec-count" class="text-2xl font-extrabold text-white"></p>
+                                        <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">Destinasi</p>
+                                    </button>
+                                    <button onclick="setMapTab('event')" id="map-tab-event" class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer">
+                                        <p id="map-kec-event-count" class="text-2xl font-extrabold text-white"></p>
+                                        <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">Event</p>
+                                    </button>
+                                    <button onclick="setMapTab('ekraf')" id="map-tab-ekraf" class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer">
+                                        <p id="map-kec-ekraf-count" class="text-2xl font-extrabold text-white"></p>
+                                        <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">Ekraf</p>
+                                    </button>
+                                </div>
+
+                                <!-- Dynamic List Container -->
+                                <div class="flex-grow flex flex-col bg-white/5 rounded-2xl border border-white/10 p-3 mb-4">
+                                    <div id="map-kec-dynamic-list" class="flex-grow space-y-2 h-[280px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/40 transition-colors"></div>
+                                    
+                                    <!-- Pagination Controls -->
+                                    <div id="map-pagination" class="flex justify-between items-center mt-3 pt-3 border-t border-white/10 hidden shrink-0">
+                                        <button id="map-prev-btn" class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                                            <i class="ph ph-caret-left"></i>
+                                        </button>
+                                        <span id="map-page-info" class="text-xs text-white/50 font-medium"></span>
+                                        <button id="map-next-btn" class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                                            <i class="ph ph-caret-right"></i>
+                                        </button>
                                     </div>
                                 </div>
 
-                                <!-- Wisata list -->
-                                <div id="map-kec-wisata-list" class="space-y-2 max-h-64 overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full"></div>
-
-                                <button id="map-kec-explore-btn" onclick="" class="w-full mt-5 bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2">
-                                    <i class="ph-fill ph-compass"></i> Jelajahi Semua Wisata di Sini
+                                <button id="map-kec-explore-btn" onclick="" class="w-full mt-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2 shrink-0">
+                                    <i class="ph-fill ph-compass text-lg"></i> Jelajahi <span id="map-explore-type">Wisata</span>
                                 </button>
                             </div>
                         </div>
@@ -3730,54 +3744,177 @@
                 .attr('pointer-events', 'none')
                 .text(d => d.properties.kecamatan);
         }
+        let mapCurrentData = [];
+        let mapCurrentPage = 1;
+        const MAP_ITEMS_PER_PAGE = 4;
+        let mapCurrentTab = 'wisata';
+        let mapCurrentKec = '';
+
+        function setMapTab(tab) {
+            mapCurrentTab = tab;
+            const tabs = ['wisata', 'event', 'ekraf'];
+            tabs.forEach(t => {
+                const el = document.getElementById('map-tab-' + t);
+                if (el) {
+                    if (t === tab) {
+                        el.className = 'bg-cyan-500/20 border border-cyan-400/50 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer';
+                    } else {
+                        el.className = 'bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer';
+                    }
+                }
+            });
+            
+            const exploreType = document.getElementById('map-explore-type');
+            if (exploreType) {
+                exploreType.textContent = tab === 'wisata' ? 'Wisata' : (tab === 'event' ? 'Event' : 'Ekraf');
+            }
+
+            renderMapList();
+            updateMapExploreAction();
+        }
+
+        function renderMapList() {
+            let data = [];
+            let emptyMsg = '';
+            let renderItem = null;
+
+            if (mapCurrentTab === 'wisata') {
+                data = wisataData.filter(w => (w.lokasi || '').trim() === mapCurrentKec);
+                emptyMsg = 'Belum ada wisata terdaftar di kecamatan ini.';
+                renderItem = w => `
+                    <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
+                            ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${w.nama}</p>
+                            <p class="text-white/50 text-xs truncate">${w.kategori || ''}</p>
+                        </div>
+                        <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                    </div>`;
+            } else if (mapCurrentTab === 'event') {
+                data = eventData.filter(e => (e.lokasi || '').trim() === mapCurrentKec);
+                emptyMsg = 'Belum ada event terdaftar di kecamatan ini.';
+                renderItem = e => `
+                    <div onclick="navigate('detail-event', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0 flex flex-col justify-center items-center">
+                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${e.tanggal || '-'}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${e.bulan || '-'}</div>`}
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.judul}</p>
+                            <p class="text-white/50 text-xs truncate">${e.waktu || ''}</p>
+                        </div>
+                        <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                    </div>`;
+            } else if (mapCurrentTab === 'ekraf') {
+                data = ekrafData.filter(e => (e.lokasi || '').trim() === mapCurrentKec);
+                emptyMsg = 'Belum ada pelaku ekraf terdaftar di kecamatan ini.';
+                renderItem = e => `
+                    <div onclick="navigate('detail-ekraf', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
+                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.brand}</p>
+                            <p class="text-white/50 text-xs truncate">${e.subsektor || ''}</p>
+                        </div>
+                        <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                    </div>`;
+            }
+
+            mapCurrentData = data;
+            
+            const totalPages = Math.ceil(data.length / MAP_ITEMS_PER_PAGE);
+            if (mapCurrentPage > totalPages) mapCurrentPage = Math.max(1, totalPages);
+            
+            const listEl = document.getElementById('map-kec-dynamic-list');
+            if (listEl) {
+                if (data.length === 0) {
+                    listEl.innerHTML = `<div class="h-full flex items-center justify-center"><p class="text-white/40 text-sm px-4 text-center">${emptyMsg}</p></div>`;
+                    document.getElementById('map-pagination').classList.add('hidden');
+                } else {
+                    const startIdx = (mapCurrentPage - 1) * MAP_ITEMS_PER_PAGE;
+                    const pageData = data.slice(startIdx, startIdx + MAP_ITEMS_PER_PAGE);
+                    listEl.innerHTML = pageData.map(renderItem).join('');
+                    
+                    if (totalPages > 1) {
+                        document.getElementById('map-pagination').classList.remove('hidden');
+                        document.getElementById('map-page-info').textContent = `${mapCurrentPage} / ${totalPages}`;
+                        
+                        const prevBtn = document.getElementById('map-prev-btn');
+                        const nextBtn = document.getElementById('map-next-btn');
+                        
+                        prevBtn.disabled = mapCurrentPage === 1;
+                        nextBtn.disabled = mapCurrentPage === totalPages;
+                        
+                        prevBtn.onclick = () => {
+                            if (mapCurrentPage > 1) {
+                                mapCurrentPage--;
+                                renderMapList();
+                            }
+                        };
+                        
+                        nextBtn.onclick = () => {
+                            if (mapCurrentPage < totalPages) {
+                                mapCurrentPage++;
+                                renderMapList();
+                            }
+                        };
+                    } else {
+                        document.getElementById('map-pagination').classList.add('hidden');
+                    }
+                }
+            }
+        }
+
+        function updateMapExploreAction() {
+            const exploreBtn = document.getElementById('map-kec-explore-btn');
+            if (exploreBtn) {
+                exploreBtn.onclick = () => {
+                    navigate(mapCurrentTab);
+                    setTimeout(() => {
+                        if (mapCurrentTab === 'wisata') {
+                            const cbs = document.querySelectorAll('.cb-lokasi');
+                            cbs.forEach(cb => { cb.checked = cb.value === mapCurrentKec; });
+                            if (typeof filterWisata === 'function') filterWisata();
+                        } else if (mapCurrentTab === 'event') {
+                            const sel = document.getElementById('filter-event-lokasi');
+                            if (sel) sel.value = mapCurrentKec;
+                            if (typeof applyEventFilter === 'function') applyEventFilter();
+                        } else if (mapCurrentTab === 'ekraf') {
+                            const sel = document.getElementById('filter-ekraf-lokasi');
+                            if (sel) sel.value = mapCurrentKec;
+                            if (typeof applyEkrafFilter === 'function') applyEkrafFilter();
+                        }
+                    }, 300);
+                };
+            }
+        }
+
         function showMapPanel(kec) {
             const def = document.getElementById('map-panel-default');
             const info = document.getElementById('map-panel-info');
             if (def) def.classList.add('hidden');
             if (info) info.classList.remove('hidden');
 
+            mapCurrentKec = kec;
+            mapCurrentPage = 1;
+
             const wisataHere = wisataData.filter(w => (w.lokasi || '').trim() === kec);
+            const eventHere  = eventData.filter(e => (e.lokasi || '').trim() === kec);
             const ekrafHere  = ekrafData.filter(e => (e.lokasi || '').trim() === kec);
 
             const nameEl = document.getElementById('map-kec-name');
             const countEl = document.getElementById('map-kec-count');
+            const eventCntEl = document.getElementById('map-kec-event-count');
             const ekrafCntEl = document.getElementById('map-kec-ekraf-count');
-            const listEl = document.getElementById('map-kec-wisata-list');
-            const exploreBtn = document.getElementById('map-kec-explore-btn');
 
             if (nameEl) nameEl.textContent = kec;
             if (countEl) countEl.textContent = wisataHere.length;
+            if (eventCntEl) eventCntEl.textContent = eventHere.length;
             if (ekrafCntEl) ekrafCntEl.textContent = ekrafHere.length;
 
-            if (listEl) {
-                if (wisataHere.length === 0) {
-                    listEl.innerHTML = `<p class="text-white/40 text-sm py-4 text-center">Belum ada wisata terdaftar di kecamatan ini.</p>`;
-                } else {
-                    listEl.innerHTML = wisataHere.map(w => `
-                        <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
-                            <div class="w-10 h-10 rounded-lg overflow-hidden bg-white/10 shrink-0">
-                                ${w.foto ? `<img src="${w.foto}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
-                            </div>
-                            <div class="flex-grow min-w-0">
-                                <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${w.nama}</p>
-                                <p class="text-white/50 text-xs">${w.kategori || ''}</p>
-                            </div>
-                            <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
-                        </div>`).join('');
-                }
-            }
-
-            if (exploreBtn) {
-                exploreBtn.onclick = () => {
-                    navigate('wisata');
-                    // Trigger location filter after short delay
-                    setTimeout(() => {
-                        const cbs = document.querySelectorAll('.cb-lokasi');
-                        cbs.forEach(cb => { cb.checked = cb.value === kec; });
-                        if (typeof filterWisata === 'function') filterWisata();
-                    }, 300);
-                };
-            }
+            setMapTab('wisata');
         }
 
         function clearMapSelection() {
