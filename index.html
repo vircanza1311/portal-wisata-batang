@@ -407,7 +407,7 @@
                 <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
                 <div class="absolute bottom-0 left-10 w-64 h-64 bg-white/5 rounded-full translate-y-1/2 pointer-events-none"></div>
                 <div class="max-w-7xl mx-auto text-center relative z-10">
-                    <span class="inline-block bg-white/15 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/20">Kalender Event</span>
+                    <span class="inline-block bg-white/15 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/20">Kalender Kegiatan</span>
                     <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">Event Kabupaten Batang</h1>
                     <p class="text-white/70 text-base md:text-lg max-w-xl mx-auto">Jadwal event, festival, dan kegiatan menarik sepanjang tahun</p>
                 </div>
@@ -928,6 +928,24 @@
                             <textarea id="inp-event-desc" rows="4"
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
+
+                        <!-- Galeri Foto Event -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i class="ph-fill ph-images text-brand-600 text-base"></i> Galeri Foto Event <span class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto untuk ditampilkan di halaman detail event.</p>
+                                </div>
+                                <button type="button" onclick="addEventGaleriInput()" id="btn-add-event-galeri"
+                                    class="flex items-center gap-1.5 text-xs font-bold text-brand-600 border border-brand-300 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <div id="event-galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <div id="event-galeri-inputs-container" class="space-y-2"></div>
+                            <p id="event-galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
+
                         <div class="pt-4">
                             <button type="submit" id="btn-submit-event"
                                 class="w-full bg-brand-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan
@@ -1266,10 +1284,10 @@
         ];
 
         let eventData = [
-            { id: 101, judul: 'Festival Batang Bersholawat', tanggal: '15', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '15 Juni 2026', foto: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', deskripsi: 'Festival tahunan yang diisi dengan lantunan sholawat, tausiyah, dan doa bersama untuk kemajuan Kabupaten Batang.' },
-            { id: 102, judul: 'Batang Creative Festival', tanggal: '22', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '22 Juni 2026', foto: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pameran karya kreatif pemuda Batang, UMKM, dan pertunjukan musik lokal.' },
-            { id: 103, judul: 'Karnaval Budaya Batang', tanggal: '05', bulan: 'Juli', lokasi: 'Jl. Veteran, Batang', waktu: '5 Juli 2026', foto: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pawai pakaian adat dan kesenian tradisional dari berbagai kecamatan.' },
-            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'Agustus', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.' }
+            { id: 101, judul: 'Festival Batang Bersholawat', tanggal: '15', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '15 Juni 2026', foto: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', deskripsi: 'Festival tahunan yang diisi dengan lantunan sholawat, tausiyah, dan doa bersama untuk kemajuan Kabupaten Batang.', galeri: ['https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800'] },
+            { id: 102, judul: 'Batang Creative Festival', tanggal: '22', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '22 Juni 2026', foto: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pameran karya kreatif pemuda Batang, UMKM, dan pertunjukan musik lokal.', galeri: ['https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800','https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800'] },
+            { id: 103, judul: 'Karnaval Budaya Batang', tanggal: '05', bulan: 'Juli', lokasi: 'Jl. Veteran, Batang', waktu: '5 Juli 2026', foto: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pawai pakaian adat dan kesenian tradisional dari berbagai kecamatan.', galeri: [] },
+            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'Agustus', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.', galeri: [] }
         ];
 
         let ekrafData = [
@@ -1302,8 +1320,8 @@
             await fetchRealData();
             renderAllViews();
             checkAdminStatus();
-            // Init gallery with 1 empty row
             addGaleriInput();
+            addEventGaleriInput();
         }
 
         function navigate(viewId, detailId = null) {
@@ -1642,11 +1660,40 @@
                         </div>
                     </div>
                     <div class="w-full lg:w-1/3">
-                        <div class="border border-gray-100 rounded-2xl p-6 shadow-sm">
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Lokasi Penyelenggaraan</p>
-                            <div class="bg-gray-100 h-48 rounded-lg flex items-center justify-center text-gray-400 text-sm border border-gray-200 relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=400" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale">
-                                <span class="relative z-10 bg-white px-3 py-1 rounded-full shadow text-xs font-bold text-brand-600 cursor-pointer">Lihat Google Maps</span>
+                        <div class="border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+                            ${(data.galeri && data.galeri.length > 0) ? `
+                            <div class="p-4 border-b border-gray-100">
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2"><i class="ph-fill ph-images text-brand-400"></i> Foto Event</p>
+                            </div>
+                            <div class="grid ${data.galeri.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} gap-0.5 bg-gray-100">
+                                ${data.galeri.slice(0, 6).map((url, i) => `
+                                <div class="relative overflow-hidden cursor-pointer group ${i === 0 && data.galeri.length >= 3 ? 'col-span-2' : ''}"
+                                     style="aspect-ratio:${i === 0 && data.galeri.length >= 3 ? '16/9' : '1/1'}"
+                                     onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g,'&#39;')})">
+                                    <img src="${url}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
+                                        <i class="ph-fill ph-magnifying-glass-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                                    </div>
+                                    ${i === 5 && data.galeri.length > 6 ? `<div class="absolute inset-0 bg-black/50 flex items-center justify-center"><span class="text-white font-bold text-xl">+${data.galeri.length - 6}</span></div>` : ''}
+                                </div>`).join('')}
+                            </div>` : `
+                            <div class="p-6">
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2"><i class="ph-fill ph-image text-gray-300"></i> Foto Event</p>
+                                <div class="bg-gray-50 rounded-xl h-40 flex flex-col items-center justify-center border-2 border-dashed border-gray-200">
+                                    <i class="ph ph-image text-3xl text-gray-300 mb-2"></i>
+                                    <p class="text-xs text-gray-400">Belum ada foto galeri</p>
+                                </div>
+                            </div>`}
+                            <div class="p-4 space-y-3">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600 shrink-0 mt-0.5"><i class="ph-fill ph-map-pin text-sm"></i></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Lokasi</p><p class="text-sm font-semibold text-gray-800">${data.lokasi || '-'}</p></div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600 shrink-0 mt-0.5"><i class="ph-fill ph-calendar text-sm"></i></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Tanggal</p><p class="text-sm font-semibold text-gray-800">${data.waktu || '-'}</p></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1984,6 +2031,13 @@
             document.getElementById('inp-event-waktu').value = data.waktu || '';
             document.getElementById('inp-event-foto').value = data.foto || '';
             document.getElementById('inp-event-desc').value = data.deskripsi || '';
+            // Restore gallery
+            resetEventGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addEventGaleriInput(url));
+            } else {
+                addEventGaleriInput();
+            }
             document.getElementById('btn-submit-event').innerText = "Update Data Event";
             switchAdminTab('event');
             window.scrollTo(0, 0);
@@ -2162,7 +2216,8 @@
                 lokasi: document.getElementById('inp-event-lokasi').value,
                 waktu: document.getElementById('inp-event-waktu').value,
                 foto: document.getElementById('inp-event-foto').value,
-                deskripsi: document.getElementById('inp-event-desc').value
+                deskripsi: document.getElementById('inp-event-desc').value,
+                galeri: getEventGaleriUrls()
             };
 
             if (isSupabaseConnected) {
@@ -2179,6 +2234,7 @@
                     if (error) throw error;
                     alert("Sukses! Data Event berhasil " + (editEventId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
                     this.reset(); editEventId = null;
+                    resetEventGaleriInputs(); addEventGaleriInput();
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
                     await fetchRealData(); renderAllViews();
@@ -2197,6 +2253,7 @@
                         if (idx > -1) eventData[idx] = newData;
                     } else { newData.id = Date.now(); eventData.unshift(newData); }
                     renderAllViews(); this.reset(); editEventId = null;
+                    resetEventGaleriInputs(); addEventGaleriInput();
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
                     navigate('admin');
@@ -2591,6 +2648,107 @@
                 ? 'w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow'
                 : 'w-9 h-9 rounded-xl bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center transition';
             renderEventGrid();
+        }
+
+        // ---------------------------------------------------------
+        // GALERI FOTO EVENT — Admin Helpers (mirrors ekraf galeri)
+        // ---------------------------------------------------------
+        function getEventGaleriUrls() {
+            return Array.from(document.querySelectorAll('.event-galeri-url-input'))
+                .map(i => i.value.trim()).filter(v => v.length > 0);
+        }
+
+        function updateEventGaleriPreview() {
+            const strip = document.getElementById('event-galeri-preview-strip');
+            const urls = getEventGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
+                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i+1}</span>
+                    </div>
+                </div>`).join('');
+        }
+
+        function updateEventGaleriLimitMsg() {
+            const count = document.querySelectorAll('.event-galeri-url-input').length;
+            const btn = document.getElementById('btn-add-event-galeri');
+            const msg = document.getElementById('event-galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true; btn.classList.add('opacity-40','cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false; btn.classList.remove('opacity-40','cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+
+        function addEventGaleriInput(value = '') {
+            const container = document.getElementById('event-galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.event-galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'event-galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-brand-400 transition">
+                    <span class="text-xs font-bold text-gray-400 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}"
+                        class="event-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300"
+                        placeholder="https://contoh.com/foto-${idx}.jpg"
+                        oninput="updateEventGaleriPreview()">
+                    ${value ? `<img src="${value}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 event-galeri-thumb" onerror="this.style.display='none'">` : `<span class="event-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removeEventGaleriRow(this)"
+                    class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200">
+                    <i class="ph ph-trash text-sm"></i>
+                </button>`;
+            const input = row.querySelector('.event-galeri-url-input');
+            const thumb = row.querySelector('.event-galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url; img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 event-galeri-thumb';
+                    img.onerror = () => { img.style.display='none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url; thumb.style.display = url ? 'block' : 'none';
+                }
+                updateEventGaleriPreview();
+            });
+            container.appendChild(row);
+            updateEventGaleriLimitMsg();
+            renumberEventGaleriRows();
+        }
+
+        function removeEventGaleriRow(btn) {
+            const row = btn.closest('.event-galeri-row');
+            if (row) row.remove();
+            renumberEventGaleriRows();
+            updateEventGaleriPreview();
+            updateEventGaleriLimitMsg();
+        }
+
+        function renumberEventGaleriRows() {
+            document.querySelectorAll('.event-galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-gray-400');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.event-galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i+1}.jpg`;
+            });
+        }
+
+        function resetEventGaleriInputs() {
+            const container = document.getElementById('event-galeri-inputs-container');
+            const strip = document.getElementById('event-galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updateEventGaleriLimitMsg();
         }
 
         // ---------------------------------------------------------
