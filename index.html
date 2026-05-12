@@ -1429,14 +1429,20 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Urutan</label>
-                                    <select id="inp-home-wisata-sort"
-                                        class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
-                                        <option value="latest">Terbaru (default)</option>
-                                        <option value="az">Nama A–Z</option>
-                                        <option value="za">Nama Z–A</option>
-                                    </select>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Data Wisata yang Dipilih</label>
+                                    <p class="text-xs text-gray-400 bg-white border border-gray-200 rounded-lg p-2.5">
+                                        Centang wisata pada daftar di bawah. Beranda akan menampilkan sesuai urutan pilihan dan batas jumlah.
+                                    </p>
                                 </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Pilih Wisata</label>
+                                <div id="home-wisata-picker"
+                                    class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-64 overflow-y-auto bg-white border border-gray-200 rounded-xl p-3">
+                                </div>
+                                <p id="home-wisata-picker-empty" class="hidden text-xs text-gray-400 mt-2">
+                                    Belum ada data wisata. Tambahkan data dari tab Data Wisata terlebih dahulu.
+                                </p>
                             </div>
                             <!-- Preview mini cards -->
                             <div class="mt-4">
@@ -1463,29 +1469,20 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Filter Subsektor</label>
-                                    <select id="inp-home-ekraf-subsektor"
-                                        class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
-                                        <option value="">Semua Subsektor</option>
-                                        <option value="Kuliner">Kuliner</option>
-                                        <option value="Kriya">Kriya</option>
-                                        <option value="Musik">Musik</option>
-                                        <option value="Fotografi">Fotografi</option>
-                                        <option value="Fesyen">Fesyen</option>
-                                        <option value="Gim">Gim</option>
-                                        <option value="Aplikasi">Aplikasi</option>
-                                        <option value="Arsitektur">Arsitektur</option>
-                                        <option value="Desain Interior">Desain Interior</option>
-                                        <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
-                                        <option value="Desain Produk">Desain Produk</option>
-                                        <option value="Film, Animasi dan Video">Film, Animasi dan Video</option>
-                                        <option value="Penerbitan">Penerbitan</option>
-                                        <option value="Periklanan">Periklanan</option>
-                                        <option value="Seni Pertunjukan">Seni Pertunjukan</option>
-                                        <option value="Seni Rupa">Seni Rupa</option>
-                                        <option value="Televisi dan Radio">Televisi dan Radio</option>
-                                    </select>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Data Ekraf yang Dipilih</label>
+                                    <p class="text-xs text-gray-400 bg-white border border-gray-200 rounded-lg p-2.5">
+                                        Centang pelaku ekraf pada daftar di bawah. Beranda akan menampilkan sesuai urutan pilihan dan batas jumlah.
+                                    </p>
                                 </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Pilih Pelaku Ekraf</label>
+                                <div id="home-ekraf-picker"
+                                    class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-64 overflow-y-auto bg-white border border-gray-200 rounded-xl p-3">
+                                </div>
+                                <p id="home-ekraf-picker-empty" class="hidden text-xs text-gray-400 mt-2">
+                                    Belum ada data ekraf. Tambahkan data dari tab Data Ekraf terlebih dahulu.
+                                </p>
                             </div>
                             <div class="mt-4">
                                 <p class="text-xs font-semibold text-gray-500 mb-2">Preview:</p>
@@ -2111,6 +2108,11 @@
             { id: 203, brand: 'PixelBatang Studio', owner: 'Rizal Firmansyah', subsektor: 'Fotografi', lokasi: 'Batang', alamat: 'Ruko Jl. Pemuda No. 8, Batang', telepon: '6285678901234', foto: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800', deskripsi: 'Studio foto profesional untuk wedding, produk, dan editorial di Kabupaten Batang.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: [] }
         ];
 
+        let homeWisataSelectedIds = [];
+        let homeEkrafSelectedIds = [];
+        let homeWisataSelectionReady = false;
+        let homeEkrafSelectionReady = false;
+
         // ---------------------------------------------------------
         // 3. CORE LOGIC (Fetch & SPA Router)
         // ---------------------------------------------------------
@@ -2389,10 +2391,10 @@
             // Beranda
             const gwHomeCount = parseInt(document.getElementById('grid-home-wisata')?.dataset.count || '4', 10);
             const geHomeCount = parseInt(document.getElementById('grid-home-ekraf')?.dataset.count || '3', 10);
-            document.getElementById('grid-home-wisata').innerHTML = wisataData.slice(0, gwHomeCount).map(createWisataCard).join('');
+            document.getElementById('grid-home-wisata').innerHTML = getSelectedHomeItems(wisataData, homeWisataSelectedIds, gwHomeCount, homeWisataSelectionReady).map(createWisataCard).join('');
             document.getElementById('grid-home-event').innerHTML  = eventData.slice(0, 4).map(createEventCardBlock).join('');
             const homeEkraf = document.getElementById('grid-home-ekraf');
-            if (homeEkraf) homeEkraf.innerHTML = ekrafData.slice(0, geHomeCount).map(createEkrafCard).join('');
+            if (homeEkraf) homeEkraf.innerHTML = getSelectedHomeItems(ekrafData, homeEkrafSelectedIds, geHomeCount, homeEkrafSelectionReady).map(createEkrafCard).join('');
             // Wisata
             filterWisata();
             // Event
@@ -3066,8 +3068,9 @@
             }
             // Refresh beranda preview when switching to it
             if (tab === 'beranda') {
-                refreshHomePreview();
                 loadHeroSlidesAdmin();
+                renderHomePickers();
+                refreshHomePreview();
             }
         }
 
@@ -4420,38 +4423,121 @@
         // ---------------------------------------------------------
         // BERANDA ADMIN — Preview + settings
         // ---------------------------------------------------------
+        function getSelectedHomeItems(data, selectedIds, count, selectionReady = true) {
+            if (!selectionReady) return data.slice(0, count);
+            const idSet = selectedIds.map(id => String(id));
+            return idSet
+                .map(id => data.find(item => String(item.id) === id))
+                .filter(Boolean)
+                .slice(0, count);
+        }
+
+        function syncHomeSelectionDefaults() {
+            const wCount = parseInt(document.getElementById('inp-home-wisata-count')?.value || '4', 10);
+            const eCount = parseInt(document.getElementById('inp-home-ekraf-count')?.value || '3', 10);
+
+            if (!homeWisataSelectionReady) {
+                homeWisataSelectedIds = wisataData.slice(0, wCount).map(item => String(item.id));
+                homeWisataSelectionReady = true;
+            }
+            if (!homeEkrafSelectionReady) {
+                homeEkrafSelectedIds = ekrafData.slice(0, eCount).map(item => String(item.id));
+                homeEkrafSelectionReady = true;
+            }
+
+            const wisataIds = new Set(wisataData.map(item => String(item.id)));
+            const ekrafIds = new Set(ekrafData.map(item => String(item.id)));
+            homeWisataSelectedIds = homeWisataSelectedIds.filter(id => wisataIds.has(String(id)));
+            homeEkrafSelectedIds = homeEkrafSelectedIds.filter(id => ekrafIds.has(String(id)));
+        }
+
+        function renderHomePicker(type) {
+            const isWisata = type === 'wisata';
+            const data = isWisata ? wisataData : ekrafData;
+            const picker = document.getElementById(isWisata ? 'home-wisata-picker' : 'home-ekraf-picker');
+            const empty = document.getElementById(isWisata ? 'home-wisata-picker-empty' : 'home-ekraf-picker-empty');
+            const selectedIds = isWisata ? homeWisataSelectedIds : homeEkrafSelectedIds;
+            if (!picker) return;
+
+            if (!data.length) {
+                picker.innerHTML = '';
+                if (empty) empty.classList.remove('hidden');
+                return;
+            }
+            if (empty) empty.classList.add('hidden');
+
+            const selectedSet = new Set(selectedIds.map(id => String(id)));
+            picker.innerHTML = data.map(item => {
+                const id = String(item.id);
+                const title = isWisata ? (item.nama || 'Wisata tanpa nama') : (item.brand || 'Ekraf tanpa nama');
+                const meta = isWisata
+                    ? [item.kategori, item.lokasi].filter(Boolean).join(' - ')
+                    : [item.subsektor, item.lokasi].filter(Boolean).join(' - ');
+                const img = item.foto
+                    ? `<img src="${item.foto}" class="w-10 h-10 rounded-lg object-cover bg-gray-100 border border-gray-200" onerror="this.style.display='none'">`
+                    : `<div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300"><i class="ph ph-image"></i></div>`;
+
+                return `
+                    <label class="flex items-center gap-3 rounded-xl border border-gray-100 hover:border-brand-200 hover:bg-brand-50/40 p-2.5 cursor-pointer transition">
+                        <input type="checkbox" class="home-${type}-choice w-4 h-4 accent-brand-600"
+                            value="${id}" ${selectedSet.has(id) ? 'checked' : ''}
+                            onchange="updateHomeSelection('${type}', this.value, this.checked)">
+                        ${img}
+                        <span class="min-w-0">
+                            <span class="block text-sm font-bold text-gray-700 truncate">${title}</span>
+                            <span class="block text-xs text-gray-400 truncate">${meta || 'Tanpa detail'}</span>
+                        </span>
+                    </label>`;
+            }).join('');
+        }
+
+        function renderHomePickers() {
+            syncHomeSelectionDefaults();
+            renderHomePicker('wisata');
+            renderHomePicker('ekraf');
+        }
+
+        function updateHomeSelection(type, id, checked) {
+            const list = type === 'wisata' ? homeWisataSelectedIds : homeEkrafSelectedIds;
+            const next = checked
+                ? [...list.filter(itemId => String(itemId) !== String(id)), String(id)]
+                : list.filter(itemId => String(itemId) !== String(id));
+
+            if (type === 'wisata') {
+                homeWisataSelectedIds = next;
+                homeWisataSelectionReady = true;
+            } else {
+                homeEkrafSelectedIds = next;
+                homeEkrafSelectionReady = true;
+            }
+            refreshHomePreview();
+        }
+
         function refreshHomePreview() {
-            const wCount  = parseInt(document.getElementById('inp-home-wisata-count')?.value || '4', 10);
-            const wSort   = document.getElementById('inp-home-wisata-sort')?.value || 'latest';
-            const eCount  = parseInt(document.getElementById('inp-home-ekraf-count')?.value || '3', 10);
-            const eSub    = document.getElementById('inp-home-ekraf-subsektor')?.value || '';
+            const wCount = parseInt(document.getElementById('inp-home-wisata-count')?.value || '4', 10);
+            const eCount = parseInt(document.getElementById('inp-home-ekraf-count')?.value || '3', 10);
+            const selectedWisata = getSelectedHomeItems(wisataData, homeWisataSelectedIds, wCount, homeWisataSelectionReady);
+            const selectedEkraf = getSelectedHomeItems(ekrafData, homeEkrafSelectedIds, eCount, homeEkrafSelectionReady);
 
-            let sortedWisata = [...wisataData];
-            if (wSort === 'az') sortedWisata.sort((a, b) => (a.nama||'').localeCompare(b.nama||''));
-            else if (wSort === 'za') sortedWisata.sort((a, b) => (b.nama||'').localeCompare(a.nama||''));
-
-            let filteredEkraf = eSub ? ekrafData.filter(e => e.subsektor === eSub) : [...ekrafData];
-
-            // Mini preview cards
             const wPrev = document.getElementById('preview-home-wisata');
             const ePrev = document.getElementById('preview-home-ekraf');
             if (wPrev) {
-                wPrev.innerHTML = sortedWisata.slice(0, wCount).map(w => `
+                wPrev.innerHTML = selectedWisata.map(w => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${w.foto ? `<img src="${w.foto}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold">${w.nama || '?'}</div>`}
-                    </div>`).join('') || '<p class="text-xs text-gray-400 col-span-4">Belum ada data wisata.</p>';
+                    </div>`).join('') || '<p class="text-xs text-gray-400 col-span-4">Belum ada wisata yang dipilih.</p>';
             }
             if (ePrev) {
-                ePrev.innerHTML = filteredEkraf.slice(0, eCount).map(e => `
+                ePrev.innerHTML = selectedEkraf.map(e => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${e.foto ? `<img src="${e.foto}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center">${e.brand || '?'}</div>`}
-                    </div>`).join('') || '<p class="text-xs text-gray-400 col-span-3">Belum ada data ekraf.</p>';
+                    </div>`).join('') || '<p class="text-xs text-gray-400 col-span-3">Belum ada ekraf yang dipilih.</p>';
             }
         }
 
         // Live preview refresh on dropdown change
         document.addEventListener('change', e => {
-            if (['inp-home-wisata-count','inp-home-wisata-sort','inp-home-ekraf-count','inp-home-ekraf-subsektor'].includes(e.target.id)) {
+            if (['inp-home-wisata-count','inp-home-ekraf-count'].includes(e.target.id)) {
                 refreshHomePreview();
             }
         });
@@ -4464,34 +4550,36 @@
 
             const urls    = getHeroSlideUrls();
             const wCount  = parseInt(document.getElementById('inp-home-wisata-count').value, 10);
-            const wSort   = document.getElementById('inp-home-wisata-sort').value;
             const eCount  = parseInt(document.getElementById('inp-home-ekraf-count').value, 10);
-            const eSub    = document.getElementById('inp-home-ekraf-subsektor').value;
+
+            homeWisataSelectedIds = Array.from(document.querySelectorAll('.home-wisata-choice:checked')).map(cb => cb.value);
+            homeEkrafSelectedIds = Array.from(document.querySelectorAll('.home-ekraf-choice:checked')).map(cb => cb.value);
+            homeWisataSelectionReady = true;
+            homeEkrafSelectionReady = true;
 
             // Apply hero slides
             if (urls.length > 0) { heroSlides = urls; } else { heroSlides = [...HERO_DEFAULT_SLIDES]; }
             initHeroSlideshow();
 
-            // Apply wisata home
-            let sortedW = [...wisataData];
-            if (wSort === 'az') sortedW.sort((a, b) => (a.nama||'').localeCompare(b.nama||''));
-            else if (wSort === 'za') sortedW.sort((a, b) => (b.nama||'').localeCompare(a.nama||''));
+            // Apply selected wisata home
             const gridW = document.getElementById('grid-home-wisata');
             if (gridW) {
                 gridW.dataset.count = wCount;
-                gridW.innerHTML = sortedW.slice(0, wCount).map(createWisataCard).join('');
+                gridW.innerHTML = getSelectedHomeItems(wisataData, homeWisataSelectedIds, wCount, homeWisataSelectionReady).map(createWisataCard).join('');
                 // Adjust grid cols
                 gridW.className = `grid gap-6 xl:gap-8 grid-cols-1 sm:grid-cols-2 ${wCount <= 3 ? 'lg:grid-cols-3' : wCount <= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-4 xl:grid-cols-' + Math.min(wCount, 4)}`;
             }
 
-            // Apply ekraf home
-            let filtE = eSub ? ekrafData.filter(e => e.subsektor === eSub) : [...ekrafData];
+            // Apply selected ekraf home
             const gridE = document.getElementById('grid-home-ekraf');
             if (gridE) {
                 gridE.dataset.count = eCount;
-                gridE.innerHTML = filtE.slice(0, eCount).map(createEkrafCard).join('');
+                gridE.innerHTML = getSelectedHomeItems(ekrafData, homeEkrafSelectedIds, eCount, homeEkrafSelectionReady).map(createEkrafCard).join('');
                 gridE.className = `grid gap-6 xl:gap-8 grid-cols-1 sm:grid-cols-2 ${eCount <= 2 ? '' : eCount <= 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`;
             }
+
+            renderHomePickers();
+            refreshHomePreview();
 
             setTimeout(() => {
                 btn.innerText = 'Simpan Pengaturan Beranda';
