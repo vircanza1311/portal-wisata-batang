@@ -246,68 +246,56 @@
             </div>
 
             <!-- ═══ STATS TICKER ═══ -->
-            <div class="bg-brand-800 text-white py-5">
-                <div class="max-w-6xl mx-auto px-4">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:divide-x divide-white/20">
-                        <div class="flex items-center justify-center gap-3 md:px-6">
-                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i
-                                    class="ph-fill ph-map-pin text-xl text-sky-300"></i></div>
-                            <div>
-                                <p id="stat-wisata" class="text-2xl font-extrabold leading-none">—</p>
-                                <p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">
-                                    Destinasi Wisata</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-center gap-3 md:px-6">
-                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i
-                                    class="ph-fill ph-calendar-check text-xl text-emerald-300"></i></div>
-                            <div>
-                                <p id="stat-event" class="text-2xl font-extrabold leading-none">—</p>
-                                <p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">Event
-                                    Terdaftar</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-center gap-3 md:px-6">
-                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i
-                                    class="ph-fill ph-storefront text-xl text-amber-300"></i></div>
-                            <div>
-                                <p id="stat-ekraf" class="text-2xl font-extrabold leading-none">—</p>
-                                <p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">Pelaku
-                                    Ekraf</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-center gap-3 md:px-6">
-                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0"><i
-                                    class="ph-fill ph-star text-xl text-pink-300"></i></div>
-                            <div>
-                                <p id="stat-subsektor" class="text-2xl font-extrabold leading-none">—</p>
-                                <p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mt-0.5">
-                                    Subsektor Ekraf</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="relative bg-gradient-to-r from-brand-900 via-brand-800 to-brand-900 border-t border-brand-700 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] py-8 overflow-hidden z-20">
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                <div class="absolute top-0 left-1/4 w-64 h-64 bg-brand-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pointer-events-none"></div>
+                <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pointer-events-none"></div>
 
-            <!-- ═══ WISATA TERPOPULER ═══ -->
-            <div class="max-w-7xl mx-auto px-4 py-14">
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-                    <div>
-                        <p class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-1">Destinasi Pilihan</p>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Wisata Terpopuler</h2>
+                <div class="max-w-7xl mx-auto px-4 relative z-10">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 md:divide-x divide-brand-600/50">
+                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                <i class="ph-fill ph-map-pin text-3xl text-sky-400 drop-shadow-md group-hover:text-sky-300"></i>
+                            </div>
+                            <div>
+                                <p id="stat-wisata" class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—</p>
+                                <p class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">Destinasi Wisata</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                <i class="ph-fill ph-calendar-check text-3xl text-emerald-400 drop-shadow-md group-hover:text-emerald-300"></i>
+                            </div>
+                            <div>
+                                <p id="stat-event" class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—</p>
+                                <p class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">Event Terdaftar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                <i class="ph-fill ph-storefront text-3xl text-amber-400 drop-shadow-md group-hover:text-amber-300"></i>
+                            </div>
+                            <div>
+                                <p id="stat-ekraf" class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—</p>
+                                <p class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">Pelaku Ekraf</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                <i class="ph-fill ph-star text-3xl text-pink-400 drop-shadow-md group-hover:text-pink-300"></i>
+                            </div>
+                            <div>
+                                <p id="stat-subsektor" class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—</p>
+                                <p class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">Subsektor Ekraf</p>
+                            </div>
+                        </div>
                     </div>
-                    <button onclick="navigate('wisata')"
-                        class="flex items-center gap-1.5 text-sm font-bold text-brand-600 hover:text-brand-800 border border-brand-200 hover:border-brand-400 px-4 py-2 rounded-full transition shrink-0">
-                        Lihat Semua <i class="ph ph-arrow-right text-xs"></i>
-                    </button>
-                </div>
-                <div id="grid-home-wisata" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-                    <!-- Injected via JS -->
                 </div>
             </div>
 
             <!-- ═══ PETA INTERAKTIF KECAMATAN ═══ -->
-            <div class="bg-gradient-to-br from-slate-900 via-brand-900 to-slate-900 py-16 relative overflow-hidden">
+            <div class="bg-gradient-to-b from-brand-900 via-slate-900 to-[#0f2027] pt-12 pb-32 relative overflow-hidden z-10">
                 <!-- BG texture -->
                 <div class="absolute inset-0 opacity-5"
                     style="background-image:url('https://www.transparenttextures.com/patterns/cross-stripes.png')">
@@ -330,24 +318,25 @@
                         <!-- SVG Map Container -->
                         <div class="w-full lg:w-2/3 relative flex flex-col">
                             <div
-                                class="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-2 sm:p-6 shadow-2xl flex-grow flex items-center justify-center">
+                                class="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-2 sm:p-6 shadow-2xl flex-grow flex items-center justify-center group/map">
                                 <svg id="batang-map" viewBox="0 0 700 500"
-                                    class="w-full h-auto drop-shadow-lg transform hover:scale-[1.02] transition-transform duration-500"></svg>
+                                    class="w-full h-auto drop-shadow-lg transform group-hover/map:scale-[1.02] transition-transform duration-500"></svg>
                                 <!-- Map tooltip -->
                                 <div id="map-tooltip"
                                     class="hidden absolute bg-gray-900/90 backdrop-blur text-white text-xs font-bold px-4 py-2 rounded-xl shadow-2xl pointer-events-none z-50 border border-white/20">
                                 </div>
                             </div>
-                            <!-- Legend Removed -->
                         </div>
 
                         <!-- Info Panel -->
                         <div class="w-full lg:w-1/3 flex flex-col h-full min-h-[500px]">
                             <!-- Default state -->
-                            <div id="map-panel-default" class="text-center py-12 text-white/40">
-                                <i class="ph ph-cursor-click text-5xl mb-3 block"></i>
-                                <p class="font-semibold text-sm">Klik kecamatan pada peta</p>
-                                <p class="text-xs mt-1">untuk melihat destinasi wisata</p>
+                            <div id="map-panel-default" class="text-center py-12 text-white/40 flex-grow flex flex-col justify-center items-center">
+                                <div class="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-6 border border-white/10">
+                                    <i class="ph ph-cursor-click text-4xl animate-bounce"></i>
+                                </div>
+                                <p class="font-bold text-base text-white/80">Pilih Kecamatan</p>
+                                <p class="text-sm mt-2 max-w-[200px] text-center">Klik pada area peta untuk melihat detail destinasi, event, dan ekraf.</p>
                             </div>
 
                             <!-- Selected kecamatan panel -->
@@ -364,28 +353,28 @@
                                             class="text-2xl font-extrabold text-white leading-tight truncate"></h3>
                                     </div>
                                     <button onclick="clearMapSelection()"
-                                        class="shrink-0 text-white/40 hover:text-white/70 transition">
-                                        <i class="ph ph-x-circle text-xl"></i>
+                                        class="shrink-0 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/20 transition">
+                                        <i class="ph ph-x text-sm font-bold"></i>
                                     </button>
                                 </div>
 
                                 <!-- Wisata, Event, Ekraf count badges -->
                                 <div class="grid grid-cols-3 gap-2 mb-5">
                                     <button onclick="setMapTab('wisata')" id="map-tab-wisata"
-                                        class="bg-cyan-500/20 border border-cyan-400/50 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer">
-                                        <p id="map-kec-count" class="text-2xl font-extrabold text-white"></p>
+                                        class="bg-cyan-500/20 border border-cyan-400/50 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer group">
+                                        <p id="map-kec-count" class="text-2xl font-extrabold text-white group-hover:scale-110 transition-transform"></p>
                                         <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">
                                             Destinasi</p>
                                     </button>
                                     <button onclick="setMapTab('event')" id="map-tab-event"
-                                        class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer">
-                                        <p id="map-kec-event-count" class="text-2xl font-extrabold text-white"></p>
+                                        class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer group">
+                                        <p id="map-kec-event-count" class="text-2xl font-extrabold text-white group-hover:scale-110 transition-transform"></p>
                                         <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">
                                             Event</p>
                                     </button>
                                     <button onclick="setMapTab('ekraf')" id="map-tab-ekraf"
-                                        class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer">
-                                        <p id="map-kec-ekraf-count" class="text-2xl font-extrabold text-white"></p>
+                                        class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer group">
+                                        <p id="map-kec-ekraf-count" class="text-2xl font-extrabold text-white group-hover:scale-110 transition-transform"></p>
                                         <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">
                                             Ekraf</p>
                                     </button>
@@ -393,7 +382,7 @@
 
                                 <!-- Dynamic List Container -->
                                 <div
-                                    class="flex-grow flex flex-col bg-white/5 rounded-2xl border border-white/10 p-3 mb-4">
+                                    class="flex-grow flex flex-col bg-white/5 rounded-2xl border border-white/10 p-3 mb-4 shadow-inner">
                                     <div id="map-kec-dynamic-list"
                                         class="flex-grow space-y-2 h-[280px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/40 transition-colors">
                                     </div>
@@ -421,6 +410,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Bottom Wave for seamless transition -->
+                <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-0 pointer-events-none">
+                    <svg class="relative block w-full h-[50px] md:h-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.32,192.5,101.4,237.95,88.16,280.4,70.52,321.39,56.44Z" class="fill-white"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- ═══ WISATA TERPOPULER ═══ -->
+            <div class="max-w-7xl mx-auto px-4 pt-16 pb-14 relative z-10">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                    <div>
+                        <p class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-1">Destinasi Pilihan</p>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Wisata Terpopuler</h2>
+                    </div>
+                    <button onclick="navigate('wisata')"
+                        class="flex items-center gap-1.5 text-sm font-bold text-brand-600 hover:text-brand-800 border border-brand-200 hover:border-brand-400 px-4 py-2 rounded-full transition shrink-0">
+                        Lihat Semua <i class="ph ph-arrow-right text-xs"></i>
+                    </button>
+                </div>
+                <div id="grid-home-wisata" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+                    <!-- Injected via JS -->
                 </div>
             </div>
 
