@@ -328,8 +328,8 @@
             </div>
 
             <!-- ═══ PETA INTERAKTIF KECAMATAN ═══ -->
-            <div
-                class="bg-gradient-to-b from-brand-900 via-slate-900 to-[#0f2027] pt-12 pb-32 relative overflow-hidden z-10">
+            <div id="home-map-section"
+                class="bg-gradient-to-b from-brand-900 via-slate-900 to-[#0f2027] pt-12 pb-32 relative overflow-hidden z-10 scroll-mt-24">
                 <!-- BG texture -->
                 <div class="absolute inset-0 opacity-5"
                     style="background-image:url('https://www.transparenttextures.com/patterns/cross-stripes.png')">
@@ -581,7 +581,7 @@
                             <i class="ph-fill ph-compass text-brand-600 text-lg"></i> Mulai Jelajah
                         </button>
                         <button
-                            onclick="document.getElementById('batang-map').scrollIntoView({behavior:'smooth'}); navigate('home')"
+                            onclick="scrollToHomeMap()"
                             class="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/25 transition text-sm flex items-center gap-2">
                             <i class="ph-fill ph-map-trifold text-cyan-300 text-lg"></i> Lihat Peta
                         </button>
@@ -2151,6 +2151,28 @@
             if (viewId === 'detail-wisata') buildDetailWisata(detailId);
             if (viewId === 'detail-event') buildDetailEvent(detailId);
             if (viewId === 'detail-ekraf') buildDetailEkraf(detailId);
+        }
+
+        function scrollToHomeMap() {
+            navigate('home');
+
+            // Wait until the home view is visible again, then scroll to the whole map section
+            // instead of the SVG so the heading is not hidden behind the sticky navbar.
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    const section = document.getElementById('home-map-section');
+                    if (!section) return;
+
+                    const navbar = document.querySelector('nav');
+                    const navHeight = navbar ? navbar.getBoundingClientRect().height : 0;
+                    const targetY = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 16;
+
+                    window.scrollTo({
+                        top: Math.max(0, targetY),
+                        behavior: 'smooth'
+                    });
+                });
+            });
         }
 
         // ---------------------------------------------------------
