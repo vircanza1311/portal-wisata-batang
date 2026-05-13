@@ -2310,9 +2310,12 @@
 
                 <!-- Brand col (4/12) -->
                 <div class="lg:col-span-4">
-                    <div class="h-12 mb-5 cursor-pointer" onclick="navigate('home')">
+                    <!-- Logo: pakai bg putih agar logo berwarna tetap terlihat jelas -->
+                    <div class="inline-flex items-center mb-5 cursor-pointer bg-white/10 hover:bg-white/15 transition rounded-2xl px-4 py-2.5 border border-white/10 backdrop-blur-sm"
+                         onclick="navigate('home')">
                         <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
-                            alt="Dolan Batang" class="h-full object-contain brightness-0 invert">
+                            alt="Dolan Batang" class="h-9 object-contain max-w-[160px]"
+                            onerror="this.parentElement.innerHTML='<span class=\'font-extrabold text-white text-lg tracking-tight\'>Dolan Batang</span>'">
                     </div>
                     <p class="text-white/55 text-sm leading-relaxed mb-6 max-w-xs">
                         Portal informasi wisata resmi Kabupaten Batang. Jelajahi keindahan alam, budaya, dan kearifan lokal bersama kami.
@@ -2364,54 +2367,104 @@
 
                 <!-- Menu col (2/12) -->
                 <div class="lg:col-span-2">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5">Menu</h4>
-                    <ul class="space-y-3">
-                        <li><button onclick="navigate('home')"  class="footer-link"><i class="ph ph-house-simple text-xs opacity-60 mr-1.5"></i>Beranda</button></li>
-                        <li><button onclick="navigate('wisata')" class="footer-link"><i class="ph ph-map-trifold text-xs opacity-60 mr-1.5"></i>Wisata</button></li>
-                        <li><button onclick="navigate('event')"  class="footer-link"><i class="ph ph-calendar text-xs opacity-60 mr-1.5"></i>Event</button></li>
-                        <li><button onclick="navigate('ekraf')"  class="footer-link"><i class="ph ph-lightbulb text-xs opacity-60 mr-1.5"></i>Ekonomi Kreatif</button></li>
-                        <li><button onclick="navigate('kontak')" class="footer-link"><i class="ph ph-chat-dots text-xs opacity-60 mr-1.5"></i>Kontak</button></li>
+                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                        <span class="w-4 h-px bg-white/20 inline-block"></span>Menu Utama
+                    </h4>
+                    <ul class="space-y-1">
+                        <li>
+                            <button onclick="navigate('home')" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"><i class="ph-fill ph-house-simple"></i></span>
+                                Beranda
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('wisata')" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"><i class="ph-fill ph-map-trifold"></i></span>
+                                Wisata
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('event')" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"><i class="ph-fill ph-calendar-check"></i></span>
+                                Event
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('ekraf')" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"><i class="ph-fill ph-lightbulb"></i></span>
+                                Ekraf
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('kontak')" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"><i class="ph-fill ph-chat-dots"></i></span>
+                                Kontak
+                            </button>
+                        </li>
                     </ul>
                     <style>
-                        .footer-link { display:flex; align-items:center; font-size:13px; font-weight:500; color:rgba(255,255,255,.5); transition:color .15s; }
-                        .footer-link:hover { color:#fff; }
+                        .footer-nav-item {
+                            display:flex; align-items:center; gap:10px;
+                            font-size:13px; font-weight:500;
+                            color:rgba(255,255,255,.5);
+                            padding:7px 10px; border-radius:10px;
+                            transition:all .15s; text-align:left;
+                        }
+                        .footer-nav-item:hover { color:#fff; background:rgba(255,255,255,.06); }
+                        .footer-nav-icon {
+                            width:28px; height:28px; border-radius:8px; shrink-0;
+                            background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+                            display:flex; align-items:center; justify-content:center;
+                            font-size:13px; color:rgba(255,255,255,.5); flex-shrink:0;
+                            transition:all .15s;
+                        }
+                        .footer-nav-item:hover .footer-nav-icon { background:rgba(59,130,246,.25); border-color:rgba(59,130,246,.4); color:#93c5fd; }
                     </style>
                 </div>
 
-                <!-- Kategori Wisata col (3/12) -->
+                <!-- Jelajahi col — replaces Kategori Wisata (3/12) -->
                 <div class="lg:col-span-3">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5">Kategori Wisata</h4>
-                    <ul class="space-y-3">
+                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                        <span class="w-4 h-px bg-white/20 inline-block"></span>Jelajahi
+                    </h4>
+                    <ul class="space-y-1">
+                        <!-- Wisata sub-items -->
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Alam'),200)"
-                                class="footer-link group">
-                                <span class="w-5 h-5 rounded-md bg-emerald-500/20 flex items-center justify-center mr-2 shrink-0">
-                                    <i class="ph-fill ph-tree text-emerald-400 text-[10px]"></i>
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori(''),200)" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.25)">
+                                    <i class="ph-fill ph-tree" style="color:#34d399"></i>
                                 </span>Wisata Alam
                             </button>
                         </li>
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Buatan'),200)"
-                                class="footer-link">
-                                <span class="w-5 h-5 rounded-md bg-blue-500/20 flex items-center justify-center mr-2 shrink-0">
-                                    <i class="ph-fill ph-buildings text-blue-400 text-[10px]"></i>
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Buatan'),200)" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon" style="background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.25)">
+                                    <i class="ph-fill ph-buildings" style="color:#60a5fa"></i>
                                 </span>Wisata Buatan
                             </button>
                         </li>
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Religi dan Budaya'),200)"
-                                class="footer-link">
-                                <span class="w-5 h-5 rounded-md bg-purple-500/20 flex items-center justify-center mr-2 shrink-0">
-                                    <i class="ph-fill ph-mosque text-purple-400 text-[10px]"></i>
-                                </span>Wisata Religi &amp; Budaya
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Desa Wisata'),200)" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon" style="background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.25)">
+                                    <i class="ph-fill ph-house-line" style="color:#fbbf24"></i>
+                                </span>Desa Wisata
+                            </button>
+                        </li>
+                        <!-- Divider -->
+                        <li class="pt-1 pb-1"><div class="h-px bg-white/8 mx-2"></div></li>
+                        <!-- Event & Ekraf -->
+                        <li>
+                            <button onclick="navigate('event')" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon" style="background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.25)">
+                                    <i class="ph-fill ph-calendar-star" style="color:#c4b5fd"></i>
+                                </span>Event &amp; Kegiatan
                             </button>
                         </li>
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Desa Wisata'),200)"
-                                class="footer-link">
-                                <span class="w-5 h-5 rounded-md bg-amber-500/20 flex items-center justify-center mr-2 shrink-0">
-                                    <i class="ph-fill ph-house-line text-amber-400 text-[10px]"></i>
-                                </span>Desa Wisata
+                            <button onclick="navigate('ekraf')" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon" style="background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.25)">
+                                    <i class="ph-fill ph-storefront" style="color:#fb923c"></i>
+                                </span>Ekonomi Kreatif
                             </button>
                         </li>
                     </ul>
