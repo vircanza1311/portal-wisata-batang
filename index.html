@@ -2311,11 +2311,11 @@
                 <!-- Brand col (4/12) -->
                 <div class="lg:col-span-4">
                     <!-- Logo: pakai bg putih agar logo berwarna tetap terlihat jelas -->
-                    <div class="inline-flex items-center mb-5 cursor-pointer bg-white/10 hover:bg-white/15 transition rounded-2xl px-4 py-2.5 border border-white/10 backdrop-blur-sm"
+                    <div class="inline-flex items-center mb-5 cursor-pointer bg-white/10 hover:bg-white/15 transition rounded-2xl px-5 py-3 border border-white/10 backdrop-blur-sm"
                          onclick="navigate('home')">
                         <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
-                            alt="Dolan Batang" class="h-9 object-contain max-w-[160px]"
-                            onerror="this.parentElement.innerHTML='<span class=\'font-extrabold text-white text-lg tracking-tight\'>Dolan Batang</span>'">
+                            alt="Dolan Batang" class="h-14 object-contain max-w-[200px]"
+                            onerror="this.parentElement.innerHTML='<span class=\'font-extrabold text-white text-xl tracking-tight\'>Dolan Batang</span>'">
                     </div>
                     <p class="text-white/55 text-sm leading-relaxed mb-6 max-w-xs">
                         Portal informasi wisata resmi Kabupaten Batang. Jelajahi keindahan alam, budaya, dan kearifan lokal bersama kami.
@@ -2441,6 +2441,13 @@
                                 <span class="footer-nav-icon" style="background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.25)">
                                     <i class="ph-fill ph-buildings" style="color:#60a5fa"></i>
                                 </span>Wisata Buatan
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Religi dan Budaya'),200)" class="footer-nav-item w-full">
+                                <span class="footer-nav-icon" style="background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.25)">
+                                    <i class="ph-fill ph-mosque" style="color:#c4b5fd"></i>
+                                </span>Wisata Religi &amp; Budaya
                             </button>
                         </li>
                         <li>
