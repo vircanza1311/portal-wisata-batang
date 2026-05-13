@@ -2266,62 +2266,219 @@
     </main>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="bg-white border-t border-gray-200 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            <div class="col-span-1 md:col-span-1">
-                <div class="flex items-center mb-4 h-10">
-                    <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png" alt=""
-                        class="h-full object-contain">
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="relative overflow-hidden bg-gradient-to-br from-[#0b1c35] via-[#0d2244] to-[#0a1628] text-white">
+
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 left-0 w-80 h-80 bg-brand-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+        <div class="absolute top-1/2 right-1/4 w-40 h-40 bg-brand-400/5 rounded-full blur-2xl pointer-events-none"></div>
+
+        <!-- Top divider wave -->
+        <div class="w-full overflow-hidden leading-none -mb-1">
+            <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-8 fill-[#f7f9fc]">
+                <path d="M0,20 C360,40 1080,0 1440,20 L1440,0 L0,0 Z"/>
+            </svg>
+        </div>
+
+        <!-- ── NEWSLETTER STRIP ── -->
+        <div class="border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-500/20 border border-brand-400/30 flex items-center justify-center shrink-0">
+                        <i class="ph-fill ph-bell-ringing text-2xl text-brand-300"></i>
+                    </div>
+                    <div>
+                        <p class="font-extrabold text-white text-base leading-tight">Dapatkan Info Wisata Terbaru</p>
+                        <p class="text-white/50 text-xs mt-0.5">Update destinasi, event, dan ekraf langsung ke WhatsApp Anda</p>
+                    </div>
                 </div>
-                <p class="text-xs text-gray-500 leading-relaxed mb-6">Portal informasi wisata resmi Kabupaten Batang.
-                    Menjelajahi keindahan alam, budaya, dan kearifan lokal Batang.</p>
-                <p class="text-[10px] text-gray-400 font-medium">© 2026 Dinas Pariwisata Kepemudaan dan Olahraga
-                    Kabupaten Batang. All rights reserved.</p>
+                <div class="flex gap-2 w-full md:w-auto">
+                    <input type="text" placeholder="Nomor WhatsApp Anda..."
+                        class="flex-grow md:w-64 bg-white/10 border border-white/20 text-white placeholder-white/30 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-brand-400 focus:bg-white/15 transition">
+                    <button onclick="alert('Fitur segera hadir!')"
+                        class="shrink-0 bg-brand-500 hover:bg-brand-400 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg flex items-center gap-1.5">
+                        <i class="ph-fill ph-whatsapp-logo"></i> Daftar
+                    </button>
+                </div>
             </div>
+        </div>
 
-            <div>
-                <h4 class="font-bold text-gray-900 mb-4 text-sm">Menu</h4>
-                <ul class="space-y-3 text-xs font-medium text-gray-500">
-                    <li><button onclick="navigate('home')" class="hover:text-brand-600">Beranda</button></li>
-                    <li><button onclick="navigate('wisata')" class="hover:text-brand-600">Wisata</button></li>
-                    <li><button onclick="navigate('event')" class="hover:text-brand-600">Event</button></li>
-                    <li><button class="hover:text-brand-600">Tentang</button></li>
-                    <li><button class="hover:text-brand-600">Kontak</button></li>
-                </ul>
+        <!-- ── MAIN FOOTER GRID ── -->
+        <div class="max-w-7xl mx-auto px-6 pt-12 pb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
+
+                <!-- Brand col (4/12) -->
+                <div class="lg:col-span-4">
+                    <div class="h-12 mb-5 cursor-pointer" onclick="navigate('home')">
+                        <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
+                            alt="Dolan Batang" class="h-full object-contain brightness-0 invert">
+                    </div>
+                    <p class="text-white/55 text-sm leading-relaxed mb-6 max-w-xs">
+                        Portal informasi wisata resmi Kabupaten Batang. Jelajahi keindahan alam, budaya, dan kearifan lokal bersama kami.
+                    </p>
+
+                    <!-- Stats mini row -->
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="bg-white/8 rounded-xl p-3 text-center border border-white/10">
+                            <p id="footer-stat-wisata" class="text-lg font-extrabold text-white leading-none">—</p>
+                            <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold mt-1">Wisata</p>
+                        </div>
+                        <div class="bg-white/8 rounded-xl p-3 text-center border border-white/10">
+                            <p id="footer-stat-event" class="text-lg font-extrabold text-white leading-none">—</p>
+                            <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold mt-1">Event</p>
+                        </div>
+                        <div class="bg-white/8 rounded-xl p-3 text-center border border-white/10">
+                            <p id="footer-stat-ekraf" class="text-lg font-extrabold text-white leading-none">—</p>
+                            <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold mt-1">Ekraf</p>
+                        </div>
+                    </div>
+
+                    <!-- Social icons -->
+                    <div class="flex gap-2.5 flex-wrap">
+                        <a id="footer-ig"   href="#" target="_blank" class="footer-social-btn group" title="Instagram">
+                            <i class="ph-fill ph-instagram-logo"></i>
+                        </a>
+                        <a id="footer-fb"   href="#" target="_blank" class="footer-social-btn group" title="Facebook">
+                            <i class="ph-fill ph-facebook-logo"></i>
+                        </a>
+                        <a id="footer-tw"   href="#" target="_blank" class="footer-social-btn group" title="X / Twitter">
+                            <i class="ph-fill ph-x-logo"></i>
+                        </a>
+                        <a id="footer-tt"   href="#" target="_blank" class="footer-social-btn group" title="TikTok">
+                            <i class="ph-fill ph-tiktok-logo"></i>
+                        </a>
+                    </div>
+
+                    <style>
+                        .footer-social-btn {
+                            display:flex; align-items:center; justify-content:center;
+                            width:36px; height:36px; border-radius:10px;
+                            background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);
+                            color:rgba(255,255,255,0.6); font-size:16px;
+                            transition:all .2s;
+                        }
+                        .footer-social-btn:hover { background:rgba(59,130,246,0.4); border-color:rgba(59,130,246,0.5); color:#fff; transform:translateY(-2px); }
+                    </style>
+                </div>
+
+                <!-- Menu col (2/12) -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5">Menu</h4>
+                    <ul class="space-y-3">
+                        <li><button onclick="navigate('home')"  class="footer-link"><i class="ph ph-house-simple text-xs opacity-60 mr-1.5"></i>Beranda</button></li>
+                        <li><button onclick="navigate('wisata')" class="footer-link"><i class="ph ph-map-trifold text-xs opacity-60 mr-1.5"></i>Wisata</button></li>
+                        <li><button onclick="navigate('event')"  class="footer-link"><i class="ph ph-calendar text-xs opacity-60 mr-1.5"></i>Event</button></li>
+                        <li><button onclick="navigate('ekraf')"  class="footer-link"><i class="ph ph-lightbulb text-xs opacity-60 mr-1.5"></i>Ekonomi Kreatif</button></li>
+                        <li><button onclick="navigate('kontak')" class="footer-link"><i class="ph ph-chat-dots text-xs opacity-60 mr-1.5"></i>Kontak</button></li>
+                    </ul>
+                    <style>
+                        .footer-link { display:flex; align-items:center; font-size:13px; font-weight:500; color:rgba(255,255,255,.5); transition:color .15s; }
+                        .footer-link:hover { color:#fff; }
+                    </style>
+                </div>
+
+                <!-- Kategori Wisata col (3/12) -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5">Kategori Wisata</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Alam'),200)"
+                                class="footer-link group">
+                                <span class="w-5 h-5 rounded-md bg-emerald-500/20 flex items-center justify-center mr-2 shrink-0">
+                                    <i class="ph-fill ph-tree text-emerald-400 text-[10px]"></i>
+                                </span>Wisata Alam
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Buatan'),200)"
+                                class="footer-link">
+                                <span class="w-5 h-5 rounded-md bg-blue-500/20 flex items-center justify-center mr-2 shrink-0">
+                                    <i class="ph-fill ph-buildings text-blue-400 text-[10px]"></i>
+                                </span>Wisata Buatan
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Religi dan Budaya'),200)"
+                                class="footer-link">
+                                <span class="w-5 h-5 rounded-md bg-purple-500/20 flex items-center justify-center mr-2 shrink-0">
+                                    <i class="ph-fill ph-mosque text-purple-400 text-[10px]"></i>
+                                </span>Wisata Religi &amp; Budaya
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Desa Wisata'),200)"
+                                class="footer-link">
+                                <span class="w-5 h-5 rounded-md bg-amber-500/20 flex items-center justify-center mr-2 shrink-0">
+                                    <i class="ph-fill ph-house-line text-amber-400 text-[10px]"></i>
+                                </span>Desa Wisata
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Kontak col (3/12) -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5">Kontak Kami</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="ph-fill ph-phone text-brand-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/35 uppercase tracking-wider font-bold">Telepon</p>
+                                <a id="footer-telepon" href="tel:02853391141"
+                                    class="text-sm font-semibold text-white/80 hover:text-white transition mt-0.5 block">(0285) 391141</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="ph-fill ph-envelope text-rose-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/35 uppercase tracking-wider font-bold">Email</p>
+                                <a id="footer-email" href="mailto:batang.tourism@gmail.com"
+                                    class="text-sm font-semibold text-white/80 hover:text-white transition mt-0.5 block break-all">batang.tourism@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="ph-fill ph-map-pin text-amber-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/35 uppercase tracking-wider font-bold">Alamat</p>
+                                <p id="footer-alamat"
+                                    class="text-sm font-medium text-white/65 mt-0.5 leading-snug">Jl. RA Kartini No.1, Bogoran, Kauman, Kec. Batang, Jawa Tengah 51216</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Quick action button -->
+                    <button onclick="navigate('kontak')"
+                        class="mt-6 w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 text-white/80 hover:text-white text-xs font-bold py-2.5 rounded-xl transition">
+                        <i class="ph-fill ph-paper-plane-tilt text-brand-400"></i> Kirim Pesan ke Kami
+                    </button>
+                </div>
             </div>
+        </div>
 
-            <div>
-                <h4 class="font-bold text-gray-900 mb-4 text-sm">Kategori Wisata</h4>
-                <ul class="space-y-3 text-xs font-medium text-gray-500">
-                    <li><button class="hover:text-brand-600">Wisata Alam</button></li>
-                    <li><button class="hover:text-brand-600">Wisata Buatan</button></li>
-                    <li><button class="hover:text-brand-600">Wisata Religi dan Budaya</button></li>
-                    <li><button class="hover:text-brand-600">Desa Wisata</button></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold text-gray-900 mb-4 text-sm">Kontak Kami</h4>
-                <ul class="space-y-3 text-xs font-medium text-gray-500">
-                    <li class="flex items-center gap-2"><i class="ph-fill ph-phone text-brand-600 text-base"></i> (0285)
-                        391141</li>
-                    <li class="flex items-center gap-2"><i class="ph-fill ph-envelope text-brand-600 text-base"></i>
-                        batang.tourism@gmail.com</li>
-                    <li class="flex items-start gap-2"><i
-                            class="ph-fill ph-map-pin text-brand-600 text-base mt-0.5"></i> Jl. RA Kartini No.1,
-                        Bogoran, Kauman, Kec. Batang, Kabupaten Batang, Jawa Tengah 51216
-                    </li>
-                </ul>
-                <div class="flex gap-3 mt-6">
-                    <a href="#"
-                        class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i
-                            class="ph-fill ph-instagram-logo"></i></a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i
-                            class="ph-fill ph-facebook-logo"></i></a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white transition hover:border-transparent"><i
-                            class="ph-fill ph-youtube-logo"></i></a>
+        <!-- ── BOTTOM BAR ── -->
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-[11px] text-white/35 font-medium text-center sm:text-left">
+                    © 2026 Dinas Pariwisata Kepemudaan dan Olahraga Kabupaten Batang. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4 text-[11px] text-white/30 font-medium">
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block"></span>
+                        Portal Aktif
+                    </span>
+                    <span class="hidden sm:block">·</span>
+                    <span>Powered by Dolan Batang</span>
+                    <span class="hidden sm:block">·</span>
+                    <button onclick="navigate('admin')" class="hover:text-white/60 transition flex items-center gap-1">
+                        <i class="ph ph-lock-key text-xs"></i> Admin
+                    </button>
                 </div>
             </div>
         </div>
@@ -2703,6 +2860,14 @@
             if (se) se.textContent = fmt(jumlahEvent);
             if (sk) sk.textContent = fmt(jumlahEkraf);
             if (ss) ss.textContent = jumlahSubsektor > 0 ? String(jumlahSubsektor) : '0';
+            // Footer mini stats
+            const fmtShort = n => n >= 1000 ? (n/1000).toFixed(1)+'K' : String(n);
+            const fsw = document.getElementById('footer-stat-wisata');
+            const fse = document.getElementById('footer-stat-event');
+            const fsk = document.getElementById('footer-stat-ekraf');
+            if (fsw) fsw.textContent = jumlahWisata > 0 ? fmtShort(jumlahWisata)+'+' : '0';
+            if (fse) fse.textContent = jumlahEvent  > 0 ? fmtShort(jumlahEvent) +'+' : '0';
+            if (fsk) fsk.textContent = jumlahEkraf  > 0 ? fmtShort(jumlahEkraf) +'+' : '0';
         }
 
         function renderAllViews() {
@@ -5064,26 +5229,28 @@
                         </a>`).join('');
                 }
             }
+            // Sync footer data
+            syncFooterKontak(d);
         }
 
-        function loadKontakAdmin() {
-            const d = kontakData;
-            const fields = {
-                'inp-kontak-nama-instansi': d.nama_instansi,
-                'inp-kontak-alamat':       d.alamat,
-                'inp-kontak-telepon':      d.telepon,
-                'inp-kontak-fax':          d.fax,
-                'inp-kontak-email':        d.email,
-                'inp-kontak-instagram':    d.instagram,
-                'inp-kontak-facebook':     d.facebook,
-                'inp-kontak-twitter':      d.twitter,
-                'inp-kontak-tiktok':       d.tiktok,
-                'inp-kontak-maps-link':    d.maps_link,
-                'inp-kontak-maps-embed':   d.maps_embed,
-            };
-            Object.entries(fields).forEach(([id, val]) => {
+        function syncFooterKontak(d) {
+            // Text fields
+            const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val || ''; };
+            set('footer-telepon', d.telepon);
+            set('footer-email',   d.email);
+            set('footer-alamat',  d.alamat);
+            // Hrefs
+            const tpEl = document.getElementById('footer-telepon');
+            if (tpEl) tpEl.href = d.telepon ? 'tel:' + d.telepon.replace(/\D/g,'') : '#';
+            const emEl = document.getElementById('footer-email');
+            if (emEl) emEl.href = d.email ? 'mailto:' + d.email : '#';
+            // Social links
+            const socials = { 'footer-ig': d.instagram, 'footer-fb': d.facebook, 'footer-tw': d.twitter, 'footer-tt': d.tiktok };
+            Object.entries(socials).forEach(([id, url]) => {
                 const el = document.getElementById(id);
-                if (el) el.value = val || '';
+                if (!el) return;
+                el.href = url || '#';
+                el.style.display = url ? '' : 'none';
             });
         }
 
