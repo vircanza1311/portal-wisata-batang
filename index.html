@@ -102,60 +102,73 @@
             font-size: 0.875rem;
         }
 
-        /* ==================== RESPONSIVE MOBILE FIXES ==================== */
+        /* ==================== CRITICAL LAYOUT — Tailwind-independent ==================== */
 
-        /* Hero section: responsive min-height */
+        /* Prevent horizontal overflow */
+        html, body { overflow-x: hidden; }
+
+        /* Hero wrapper: must have height for absolute children to fill */
         .hero-section-wrapper {
+            position: relative;
             min-height: 380px;
         }
         @media (min-width: 768px) {
-            .hero-section-wrapper {
-                min-height: 580px;
-            }
+            .hero-section-wrapper { min-height: 580px; }
         }
 
-        /* Fix potential horizontal overflow on mobile */
-        body {
-            overflow-x: hidden;
+        /* Hero slides container: must fill parent */
+        #hero-slides {
+            position: absolute !important;
+            top: 0; left: 0; right: 0; bottom: 0;
         }
 
-        /* Fix hero image overflow on mobile */
-        #hero-slides .hero-slide img {
-            width: 100%;
-            height: 100%;
+        /* Each hero slide: must fill container, stacked via z-index / opacity */
+        .hero-slide {
+            position: absolute !important;
+            top: 0; left: 0; right: 0; bottom: 0;
+            overflow: hidden;
+        }
+        .hero-slide img {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
             object-fit: cover;
         }
 
-        /* Map section: ensure no horizontal scroll */
-        #batang-map {
-            max-width: 100%;
-            height: auto;
+        /* Navbar: desktop links hidden on mobile */
+        @media (max-width: 767px) {
+            #nav-desktop-links { display: none !important; }
+            #nav-login-admin-desktop { display: none !important; }
+            #nav-hamburger { display: flex !important; }
+        }
+        @media (min-width: 768px) {
+            #nav-hamburger { display: none !important; }
+            /* Mobile menu should never appear on desktop */
+            #mobile-menu { display: none !important; }
         }
 
-        /* Mobile: wisata cards should show 1 column, text smaller */
-        @media (max-width: 640px) {
-            /* Stats ticker: smaller padding */
-            .stats-ticker-item {
-                padding: 0 8px;
-            }
+        /* Mobile menu: hidden by default, shown when JS removes 'hidden' class */
+        #mobile-menu.hidden { display: none !important; }
 
-            /* Card grids: full width on very small screens */
-            #grid-home-wisata,
-            #grid-home-event,
-            #grid-home-ekraf {
-                grid-template-columns: 1fr;
-            }
+        /* Map SVG: scale down on mobile */
+        #batang-map { max-width: 100%; }
 
-            /* Hero text: better sizing */
-            .hero-title {
-                font-size: 1.75rem;
-                line-height: 1.2;
-            }
+        /* Navbar inner row: always flex with space-between */
+        nav > div:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 64px;
+        }
+        @media (min-width: 768px) {
+            nav > div:first-child { min-height: 80px; }
         }
 
-        /* Prevent images from overflowing containers on mobile */
-        img {
-            max-width: 100%;
+        /* Stats: on very small screens ensure 2-column */
+        @media (max-width: 480px) {
+            #stat-wisata, #stat-event, #stat-ekraf, #stat-subsektor {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
@@ -172,7 +185,7 @@
             </div>
 
             <!-- Menu Desktop -->
-            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-600">
+            <div id="nav-desktop-links" class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-600">
                 <button onclick="navigate('home')" class="hover:text-brand-700 transition">Beranda</button>
                 <button onclick="navigate('wisata')" class="hover:text-brand-700 transition">Wisata</button>
                 <button onclick="navigate('event')" class="hover:text-brand-700 transition">Event</button>
@@ -187,7 +200,7 @@
                 <button class="text-gray-500 hover:text-brand-700"><i
                         class="ph ph-magnifying-glass text-xl"></i></button>
                 <!-- Login Admin — desktop only -->
-                <button onclick="openPinModal()"
+                <button id="nav-login-admin-desktop" onclick="openPinModal()"
                     class="hidden md:flex items-center gap-1.5 bg-brand-50 text-brand-700 px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-100 transition border border-brand-200">
                     <i class="ph-fill ph-lock-key"></i> Login Admin
                 </button>
