@@ -2743,15 +2743,71 @@
             }
         }
 
+        async function fetchSiteSettings() {
+            if (!isSupabaseConnected) return;
+            try {
+                const { data, error } = await supabaseClient
+                    .from('site_settings')
+                    .select('*')
+                    .eq('id', 1)
+                    .maybeSingle();
+                if (error || !data) return;
+
+                // Load hero slides
+                if (data.hero_slides && Array.isArray(data.hero_slides) && data.hero_slides.length > 0) {
+                    heroSlides = data.hero_slides;
+                }
+
+                // Load home wisata selection
+                if (data.home_wisata_ids && Array.isArray(data.home_wisata_ids)) {
+                    homeWisataSelectedIds = data.home_wisata_ids.map(id => String(id));
+                    homeWisataSelectionReady = true;
+                }
+
+                // Load home ekraf selection
+                if (data.home_ekraf_ids && Array.isArray(data.home_ekraf_ids)) {
+                    homeEkrafSelectedIds = data.home_ekraf_ids.map(id => String(id));
+                    homeEkrafSelectionReady = true;
+                }
+
+                // Load counts
+                if (data.home_wisata_count) {
+                    const el = document.getElementById('inp-home-wisata-count');
+                    if (el) el.value = data.home_wisata_count;
+                }
+                if (data.home_ekraf_count) {
+                    const el = document.getElementById('inp-home-ekraf-count');
+                    if (el) el.value = data.home_ekraf_count;
+                }
+            } catch (err) {
+                console.warn('Gagal memuat site settings:', err);
+            }
+        }
+
+        async function saveSiteSettings(payload) {
+            if (!isSupabaseConnected) return false;
+            try {
+                const { error } = await supabaseClient
+                    .from('site_settings')
+                    .upsert({ id: 1, ...payload }, { onConflict: 'id' });
+                if (error) { console.error('Gagal menyimpan site settings:', error); return false; }
+                return true;
+            } catch (err) {
+                console.error('Gagal menyimpan site settings:', err);
+                return false;
+            }
+        }
+
         async function initApp() {
             await fetchRealData();
             await fetchKontakData();
+            await fetchSiteSettings();   // Load persisted beranda settings
             renderAllViews();
             renderKontakPage();
             checkAdminStatus();
             addGaleriInput();
             addEventGaleriInput();
-            // Start hero crossfade slideshow
+            // Start hero crossfade slideshow (with persisted slides if available)
             initHeroSlideshow();
         }
 
@@ -5138,8 +5194,8 @@
                     ? [item.kategori, item.lokasi].filter(Boolean).join(' - ')
                     : [item.subsektor, item.lokasi].filter(Boolean).join(' - ');
                 const img = item.foto
-                    ? `<img src="${item.foto}" class="w-10 h-10 rounded-lg object-cover bg-gray-100 border border-gray-200" onerror="this.style.display='none'">`
-                    : `<div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300"><i class="ph ph-image"></i></div>`;
+                    ? `<img src="${optimizeImage(item.foto, 80)}" class="w-10 h-10 rounded-lg object-cover bg-gray-100 border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\\'w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0\\'><i class=\\'ph ph-image\\'></i></div>'">`
+                    : `<div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0"><i class="ph ph-image"></i></div>`;
 
                 return `
                     <label class="flex items-center gap-3 rounded-xl border border-gray-100 hover:border-brand-200 hover:bg-brand-50/40 p-2.5 cursor-pointer transition">
@@ -5222,13 +5278,17 @@
             if (wPrev) {
                 wPrev.innerHTML = selectedWisata.map(w => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
-                        ${w.foto ? `<img src="${w.foto}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold">${w.nama || '?'}</div>`}
+                        ${w.foto
+                            ? `<img src="${optimizeImage(w.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold\\'>No Image</div>'">`
+                            : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold">${w.nama || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-4">Belum ada wisata yang dipilih.</p>';
             }
             if (ePrev) {
                 ePrev.innerHTML = selectedEkraf.map(e => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
-                        ${e.foto ? `<img src="${e.foto}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center">${e.brand || '?'}</div>`}
+                        ${e.foto
+                            ? `<img src="${optimizeImage(e.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center\\'>No Image</div>'">`
+                            : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center">${e.brand || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-3">Belum ada ekraf yang dipilih.</p>';
             }
         }
@@ -5241,7 +5301,7 @@
         });
 
         // Beranda form submit
-        document.getElementById('admin-form-beranda').addEventListener('submit', function(e) {
+        document.getElementById('admin-form-beranda').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('btn-submit-beranda');
             btn.innerText = 'Menyimpan...'; btn.classList.add('opacity-70');
@@ -5279,10 +5339,24 @@
             renderHomePickers();
             refreshHomePreview();
 
+            // ── Simpan ke Supabase site_settings ──
+            const saved = await saveSiteSettings({
+                hero_slides:       heroSlides,
+                home_wisata_ids:   homeWisataSelectedIds,
+                home_ekraf_ids:    homeEkrafSelectedIds,
+                home_wisata_count: wCount,
+                home_ekraf_count:  eCount,
+                updated_at:        new Date().toISOString(),
+            });
+
             setTimeout(() => {
                 btn.innerText = 'Simpan Pengaturan Beranda';
                 btn.classList.remove('opacity-70');
-                alert('✅ Pengaturan beranda berhasil diterapkan!');
+                if (saved) {
+                    alert('✅ Pengaturan beranda berhasil disimpan ke database!');
+                } else {
+                    alert('✅ Pengaturan beranda diterapkan (offline — tidak tersimpan ke database).');
+                }
             }, 600);
         });
 
