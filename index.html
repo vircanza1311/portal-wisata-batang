@@ -101,6 +101,62 @@
             justify-content: center;
             font-size: 0.875rem;
         }
+
+        /* ==================== RESPONSIVE MOBILE FIXES ==================== */
+
+        /* Hero section: responsive min-height */
+        .hero-section-wrapper {
+            min-height: 380px;
+        }
+        @media (min-width: 768px) {
+            .hero-section-wrapper {
+                min-height: 580px;
+            }
+        }
+
+        /* Fix potential horizontal overflow on mobile */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Fix hero image overflow on mobile */
+        #hero-slides .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Map section: ensure no horizontal scroll */
+        #batang-map {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Mobile: wisata cards should show 1 column, text smaller */
+        @media (max-width: 640px) {
+            /* Stats ticker: smaller padding */
+            .stats-ticker-item {
+                padding: 0 8px;
+            }
+
+            /* Card grids: full width on very small screens */
+            #grid-home-wisata,
+            #grid-home-event,
+            #grid-home-ekraf {
+                grid-template-columns: 1fr;
+            }
+
+            /* Hero text: better sizing */
+            .hero-title {
+                font-size: 1.75rem;
+                line-height: 1.2;
+            }
+        }
+
+        /* Prevent images from overflowing containers on mobile */
+        img {
+            max-width: 100%;
+        }
     </style>
 </head>
 
@@ -187,7 +243,7 @@
         <section id="view-home" class="page-view active bg-white">
 
             <!-- ═══ HERO — CROSSFADE SLIDESHOW ═══ -->
-            <div class="relative w-full overflow-hidden" style="min-height:580px">
+            <div class="relative w-full overflow-hidden hero-section-wrapper">
                 <!-- Slideshow layers — crossfade via opacity transition -->
                 <div id="hero-slides" class="absolute inset-0">
                     <!-- Slides injected by JS (or defaults used) -->
@@ -209,12 +265,12 @@
                 <div id="hero-dots" class="absolute bottom-16 right-8 hidden md:flex gap-2 z-20"></div>
 
                 <!-- Content -->
-                <div class="relative z-20 max-w-7xl mx-auto px-6 md:px-12 flex items-center" style="min-height:580px">
+                <div class="relative z-20 max-w-7xl mx-auto px-6 md:px-12 flex items-center hero-section-wrapper">
                     <div class="max-w-2xl">
                         <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
                             <i class="ph-fill ph-map-trifold text-yellow-300"></i> Jelajahi Kabupaten Batang
                         </div>
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-5 drop-shadow-xl">
+                        <h1 class="text-3xl md:text-6xl font-extrabold text-white leading-[1.1] mb-4 md:mb-5 drop-shadow-xl">
                             Jelajahi Keindahannya,<br>
                             <span class="text-transparent bg-clip-text"
                                 style="background-image:linear-gradient(135deg,#7dd3fc,#a5f3fc)">Semarak Eventnya,</span><br>
@@ -262,64 +318,64 @@
                 </div>
 
                 <div class="max-w-7xl mx-auto px-4 relative z-10">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 md:divide-x divide-brand-600/50">
-                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 md:divide-x divide-brand-600/50">
+                        <div class="flex items-center justify-center gap-3 md:gap-4 md:px-6 group cursor-default">
                             <div
-                                class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-map-pin text-3xl text-sky-400 drop-shadow-md group-hover:text-sky-300"></i>
+                                    class="ph-fill ph-map-pin text-2xl md:text-3xl text-sky-400 drop-shadow-md group-hover:text-sky-300"></i>
                             </div>
                             <div>
                                 <p id="stat-wisata"
-                                    class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
                                 </p>
                                 <p
-                                    class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+                                    class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
                                     Destinasi Wisata</p>
                             </div>
                         </div>
-                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                        <div class="flex items-center justify-center gap-3 md:gap-4 md:px-6 group cursor-default">
                             <div
-                                class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-calendar-check text-3xl text-emerald-400 drop-shadow-md group-hover:text-emerald-300"></i>
+                                    class="ph-fill ph-calendar-check text-2xl md:text-3xl text-emerald-400 drop-shadow-md group-hover:text-emerald-300"></i>
                             </div>
                             <div>
                                 <p id="stat-event"
-                                    class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
                                 </p>
                                 <p
-                                    class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+                                    class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
                                     Event Terdaftar</p>
                             </div>
                         </div>
-                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                        <div class="flex items-center justify-center gap-3 md:gap-4 md:px-6 group cursor-default">
                             <div
-                                class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-storefront text-3xl text-amber-400 drop-shadow-md group-hover:text-amber-300"></i>
+                                    class="ph-fill ph-storefront text-2xl md:text-3xl text-amber-400 drop-shadow-md group-hover:text-amber-300"></i>
                             </div>
                             <div>
                                 <p id="stat-ekraf"
-                                    class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
                                 </p>
                                 <p
-                                    class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+                                    class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
                                     Pelaku Ekraf</p>
                             </div>
                         </div>
-                        <div class="flex items-center justify-center gap-4 md:px-6 group cursor-default">
+                        <div class="flex items-center justify-center gap-3 md:gap-4 md:px-6 group cursor-default">
                             <div
-                                class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                                class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-star text-3xl text-pink-400 drop-shadow-md group-hover:text-pink-300"></i>
+                                    class="ph-fill ph-star text-2xl md:text-3xl text-pink-400 drop-shadow-md group-hover:text-pink-300"></i>
                             </div>
                             <div>
                                 <p id="stat-subsektor"
-                                    class="text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
                                 </p>
                                 <p
-                                    class="text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+                                    class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
                                     Subsektor Ekraf</p>
                             </div>
                         </div>
@@ -363,7 +419,7 @@
                         </div>
 
                         <!-- Info Panel -->
-                        <div class="w-full lg:w-1/3 flex flex-col h-full min-h-[500px]">
+                        <div class="w-full lg:w-1/3 flex flex-col h-full lg:min-h-[500px]">
                             <!-- Default state -->
                             <div id="map-panel-default"
                                 class="text-center py-12 text-white/40 flex-grow flex flex-col justify-center items-center">
@@ -2593,13 +2649,20 @@
         // ---------------------------------------------------------
         // 1. IMAGEKIT OPTIMIZATION
         // ---------------------------------------------------------
-        const IMAGEKIT_URL = 'https://ik.imagekit.io/jester96'; // Ganti dengan ImageKit Endpoint Anda
+        const IMAGEKIT_URL = 'https://ik.imagekit.io/jester96';
+
+        // Fallback placeholder for broken images
+        const IMG_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300' fill='none'%3E%3Crect width='400' height='300' fill='%23f1f5f9'/%3E%3Cpath d='M160 200 L200 140 L240 200z' fill='%23cbd5e1'/%3E%3Cpath d='M100 200 L160 120 L220 200z' fill='%23e2e8f0'/%3E%3Cpath d='M200 200 L260 150 L320 200z' fill='%23e2e8f0'/%3E%3Ccircle cx='310' cy='100' r='25' fill='%23fde68a'/%3E%3C/svg%3E";
+
         function optimizeImage(url, width = 800, quality = 80) {
-            if (!url) return '';
-            // Hindari double-proxy
+            if (!url || url.trim() === '') return IMG_PLACEHOLDER;
+            // Sudah melalui ImageKit atau format khusus → langsung dikembalikan
             if (url.includes('ik.imagekit.io') || url.includes('.svg') || url.startsWith('data:')) return url;
 
-            // Format URL dengan query parameter
+            // URL eksternal (http/https) → kembalikan langsung
+            if (url.startsWith('http://') || url.startsWith('https://')) return url;
+
+            // Path relatif → proxy via ImageKit
             return `${IMAGEKIT_URL}/${url}?tr=w-${width},q-${quality},f-auto`;
         }
 
@@ -2725,7 +2788,7 @@
                 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(37,99,235,0.15)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-wisata', ${item.id})">
                     <div class="h-52 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <img src="${optimizeImage(item.foto || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
+                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
                         <div class="absolute top-3 left-3 ${catBg} backdrop-blur-md text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-20 shadow-sm border border-white/20">${item.kategori || ''}</div>
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow relative bg-white">
@@ -2747,7 +2810,7 @@
             return `
                 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_30px_-4px_rgba(6,182,212,0.2)] hover:-translate-y-1.5 hover:border-cyan-200 transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-event', ${item.id})">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="${optimizeImage(item.foto || '', 400)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
+                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
                         <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm rounded-xl p-2.5 text-center shadow-lg min-w-[3.5rem] border border-white/50 group-hover:bg-cyan-50 transition-colors">
                             <div class="text-2xl font-black text-brand-600 leading-none mb-0.5">${item.tanggal || ''}</div>
                             <div class="text-[9px] font-black text-gray-500 uppercase tracking-widest">${item.bulan || ''}</div>
@@ -2799,7 +2862,7 @@
             return `
                 <div onclick="navigate('detail-ekraf', ${item.id})" class="bg-white rounded-2xl overflow-hidden border border-brand-50 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(37,99,235,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col cursor-pointer group h-full">
                     <div class="h-48 relative overflow-hidden bg-gray-50">
-                        ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">` : `<div class="w-full h-full flex items-center justify-center text-gray-200 group-hover:scale-110 transition duration-700"><i class="ph ph-storefront text-6xl"></i></div>`}
+                        ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">` : `<div class="w-full h-full flex items-center justify-center text-gray-200 group-hover:scale-110 transition duration-700"><i class="ph ph-storefront text-6xl"></i></div>`}
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent pointer-events-none"></div>
                         <span class="absolute bottom-3 left-3 ${colorClass} text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-10">${item.subsektor || ''}</span>
                     </div>
