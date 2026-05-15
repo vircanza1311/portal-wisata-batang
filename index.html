@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wisata Batang - Portal Informasi Terpadu</title>
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS
+         NOTE: This project uses the Tailwind CDN build intentionally (single-file HTML, no build step).
+         Browser warning about CDN not being intended for production is expected and harmless here,
+         as this is a local dashboard portal, not a public-facing production web app.
+    -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -1440,14 +1444,24 @@
                     </div>
                 </div>
 
-                <!-- Filter active indicator -->
+                <!-- Filter active indicator: subsektor -->
                 <div id="ekraf-filter-bar"
-                    class="hidden flex items-center gap-3 mb-6 p-3 bg-brand-50 rounded-xl border border-brand-100">
-                    <span class="text-sm text-brand-700 font-semibold">Filter aktif: <span
+                    class="hidden flex items-center gap-3 mb-4 p-3 bg-brand-50 rounded-xl border border-brand-100">
+                    <span class="text-sm text-brand-700 font-semibold">Subsektor: <span
                             id="ekraf-filter-label"></span></span>
                     <button onclick="clearEkrafFilter()"
                         class="ml-auto text-xs bg-white border border-brand-200 text-brand-600 px-3 py-1 rounded-full hover:bg-brand-100 transition font-semibold">Tampilkan
                         Semua</button>
+                </div>
+                <!-- Filter active indicator: lokasi (from map explore) -->
+                <div id="ekraf-lokasi-filter-bar"
+                    class="hidden flex items-center gap-3 mb-6 p-3 bg-cyan-50 rounded-xl border border-cyan-100">
+                    <i class="ph-fill ph-map-pin text-cyan-500"></i>
+                    <span class="text-sm text-cyan-700 font-semibold">Kecamatan: <span
+                            id="ekraf-lokasi-filter-label"></span></span>
+                    <button onclick="clearEkrafLocationFilter()"
+                        class="ml-auto text-xs bg-white border border-cyan-200 text-cyan-600 px-3 py-1 rounded-full hover:bg-cyan-100 transition font-semibold">Hapus
+                        Filter Lokasi</button>
                 </div>
 
                 <!-- Ekraf Grid -->
@@ -1519,7 +1533,8 @@
                                 <div id="kontak-alamat-row" class="flex items-start gap-4">
                                     <div
                                         class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center shrink-0 text-brand-600">
-                                        <i class="ph-fill ph-map-pin text-lg"></i></div>
+                                        <i class="ph-fill ph-map-pin text-lg"></i>
+                                    </div>
                                     <div>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Alamat
                                         </p>
@@ -1532,7 +1547,8 @@
                                 <div id="kontak-telepon-row" class="flex items-center gap-4">
                                     <div
                                         class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0 text-emerald-600">
-                                        <i class="ph-fill ph-phone text-lg"></i></div>
+                                        <i class="ph-fill ph-phone text-lg"></i>
+                                    </div>
                                     <div>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Telepon
                                         </p>
@@ -1544,7 +1560,8 @@
                                 <div id="kontak-fax-row" class="flex items-center gap-4">
                                     <div
                                         class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0 text-amber-600">
-                                        <i class="ph-fill ph-printer text-lg"></i></div>
+                                        <i class="ph-fill ph-printer text-lg"></i>
+                                    </div>
                                     <div>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Fax</p>
                                         <p id="kontak-fax" class="text-sm font-bold text-gray-800 mt-0.5">(0285) 391141
@@ -1554,7 +1571,8 @@
                                 <div id="kontak-email-row" class="flex items-center gap-4">
                                     <div
                                         class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center shrink-0 text-rose-600">
-                                        <i class="ph-fill ph-envelope text-lg"></i></div>
+                                        <i class="ph-fill ph-envelope text-lg"></i>
+                                    </div>
                                     <div>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Email
                                         </p>
@@ -1569,7 +1587,8 @@
                         <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
                             <p
                                 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                <i class="ph-fill ph-share-network text-brand-500"></i> Media Sosial</p>
+                                <i class="ph-fill ph-share-network text-brand-500"></i> Media Sosial
+                            </p>
                             <div id="kontak-socmed-list" class="grid grid-cols-2 gap-3">
                                 <!-- injected by JS -->
                                 <a href="#"
@@ -1595,7 +1614,8 @@
                         <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
                             <p
                                 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                <i class="ph-fill ph-clock text-brand-500"></i> Jam Operasional</p>
+                                <i class="ph-fill ph-clock text-brand-500"></i> Jam Operasional
+                            </p>
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between py-2 border-b border-gray-50">
                                     <span class="text-sm text-gray-600 font-medium">Senin – Jumat</span>
@@ -2542,16 +2562,17 @@
 
                     <!-- Social icons -->
                     <div class="flex gap-2.5 flex-wrap">
-                        <a id="footer-ig" href="#" target="_blank" class="footer-social-btn group" title="Instagram">
+                        <!-- Social links: hidden by default, shown dynamically by syncFooterKontak() when URLs exist in DB -->
+                        <a id="footer-ig" href="#" target="_blank" class="footer-social-btn group" title="Instagram" style="display:none">
                             <i class="ph-fill ph-instagram-logo"></i>
                         </a>
-                        <a id="footer-fb" href="#" target="_blank" class="footer-social-btn group" title="Facebook">
+                        <a id="footer-fb" href="#" target="_blank" class="footer-social-btn group" title="Facebook" style="display:none">
                             <i class="ph-fill ph-facebook-logo"></i>
                         </a>
-                        <a id="footer-tw" href="#" target="_blank" class="footer-social-btn group" title="X / Twitter">
+                        <a id="footer-tw" href="#" target="_blank" class="footer-social-btn group" title="X / Twitter" style="display:none">
                             <i class="ph-fill ph-x-logo"></i>
                         </a>
-                        <a id="footer-tt" href="#" target="_blank" class="footer-social-btn group" title="TikTok">
+                        <a id="footer-tt" href="#" target="_blank" class="footer-social-btn group" title="TikTok" style="display:none">
                             <i class="ph-fill ph-tiktok-logo"></i>
                         </a>
                     </div>
@@ -2911,6 +2932,9 @@
         let homeEkrafSelectedIds = [];
         let homeWisataSelectionReady = false;
         let homeEkrafSelectionReady = false;
+        // Loaded from Supabase site_settings.admin_pin_hash if present;
+        // falls back to the compiled ADMIN_PIN_HASH constant in verifyPin()
+        let siteAdminPinHash = null;
 
         // ---------------------------------------------------------
         // 3. CORE LOGIC (Fetch & SPA Router)
@@ -2967,6 +2991,11 @@
                 if (data.home_ekraf_count) {
                     const el = document.getElementById('inp-home-ekraf-count');
                     if (el) el.value = data.home_ekraf_count;
+                }
+
+                // Load admin PIN hash from Supabase if present (optional: add admin_pin_hash column to site_settings)
+                if (data.admin_pin_hash && typeof data.admin_pin_hash === 'string' && data.admin_pin_hash.length === 64) {
+                    siteAdminPinHash = data.admin_pin_hash;
                 }
             } catch (err) {
                 console.warn('Gagal memuat site settings:', err);
@@ -3155,6 +3184,7 @@
         }
 
         let ekrafFilterActive = null;
+        let ekrafLocationFilter = null; // Lokasi filter set from map explore button
 
         function applyEkrafFilters() {
             const searchInput = document.getElementById('search-ekraf');
@@ -3164,9 +3194,26 @@
                 const searchTxt = ((e.brand || '') + ' ' + (e.owner || '') + ' ' + (e.deskripsi || '')).toLowerCase();
                 const matchSearch = searchTxt.includes(searchVal);
                 const matchSubsektor = ekrafFilterActive === null || e.subsektor === ekrafFilterActive;
-                return matchSearch && matchSubsektor;
+                const matchLokasi = ekrafLocationFilter === null || (e.lokasi || '').trim() === ekrafLocationFilter;
+                return matchSearch && matchSubsektor && matchLokasi;
             });
             renderEkrafGrid(filtered);
+        }
+
+        function setEkrafLocationFilter(lokasi) {
+            ekrafLocationFilter = lokasi;
+            const bar = document.getElementById('ekraf-lokasi-filter-bar');
+            const label = document.getElementById('ekraf-lokasi-filter-label');
+            if (bar) { bar.classList.remove('hidden'); bar.classList.add('flex'); }
+            if (label) label.textContent = lokasi;
+            applyEkrafFilters();
+        }
+
+        function clearEkrafLocationFilter() {
+            ekrafLocationFilter = null;
+            const bar = document.getElementById('ekraf-lokasi-filter-bar');
+            if (bar) { bar.classList.add('hidden'); bar.classList.remove('flex'); }
+            applyEkrafFilters();
         }
 
         function filterEkrafSubsektor(subsektor) {
@@ -3321,10 +3368,10 @@
 
         async function buildDetailWisata(id) {
             let data = wisataData.find(w => w.id == id) || wisataData[0];
-            
+
             const contentDiv = document.getElementById('detail-wisata-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail wisata...</span></div>';
-            
+
             if (isSupabaseConnected && data) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', data.id).single();
@@ -3337,7 +3384,7 @@
                     console.error("Error fetching detail wisata:", err);
                 }
             }
-            
+
             const html = `
                 <div class="bg-gray-900 w-full h-[500px] relative">
                     <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80">
@@ -3438,10 +3485,10 @@
 
         async function buildDetailEvent(id) {
             let data = eventData.find(e => e.id == id) || eventData[0];
-            
+
             const contentDiv = document.getElementById('detail-event-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail event...</span></div>';
-            
+
             if (isSupabaseConnected && data) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', data.id).single();
@@ -3543,7 +3590,7 @@
 
             const contentDiv = document.getElementById('detail-ekraf-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail ekraf...</span></div>';
-            
+
             if (isSupabaseConnected && data) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', data.id).single();
@@ -3823,7 +3870,7 @@
         async function editWisata(id) {
             let data = wisataData.find(w => w.id == id);
             if (!data) return;
-            
+
             if (isSupabaseConnected) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', id).single();
@@ -3884,7 +3931,7 @@
         async function editEvent(id) {
             let data = eventData.find(e => e.id == id);
             if (!data) return;
-            
+
             if (isSupabaseConnected) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', id).single();
@@ -3935,7 +3982,7 @@
         async function editEkraf(id) {
             let data = ekrafData.find(e => e.id == id);
             if (!data) return;
-            
+
             if (isSupabaseConnected) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', id).single();
@@ -5152,9 +5199,8 @@
                             if (sel) sel.value = mapCurrentKec;
                             if (typeof applyEventFilter === 'function') applyEventFilter();
                         } else if (mapCurrentTab === 'ekraf') {
-                            const sel = document.getElementById('filter-ekraf-lokasi');
-                            if (sel) sel.value = mapCurrentKec;
-                            if (typeof applyEkrafFilter === 'function') applyEkrafFilter();
+                            // setEkrafLocationFilter sets the location state and calls applyEkrafFilters()
+                            if (typeof setEkrafLocationFilter === 'function') setEkrafLocationFilter(mapCurrentKec);
                         }
                     }, 300);
                 };
@@ -5878,10 +5924,26 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 200);
         }
 
-        function verifyPin() {
+        // SECURITY NOTE: PIN is client-side only — it guards the admin UI but is NOT a backend security layer.
+        // Real data protection MUST rely on Supabase Row Level Security (RLS) policies that restrict
+        // INSERT/UPDATE/DELETE to authenticated users. Anyone can view the source code and bypass this PIN.
+        // To change the PIN: update it in Supabase site_settings table (admin_pin column), or update ADMIN_PIN_HASH below.
+        // Default fallback PIN: stored as a simple hash to avoid plain-text exposure in source.
+        const ADMIN_PIN_HASH = '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b'; // SHA-256 of '021885' — update if PIN changes
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function verifyPin() {
             const pin = document.getElementById('admin-pin-input').value;
             const errorText = document.getElementById('pin-error');
-            if (pin === '021885') {
+            // Use site_settings admin_pin_hash if loaded from Supabase, else fall back to compiled hash
+            const expectedHash = (typeof siteAdminPinHash !== 'undefined' && siteAdminPinHash) ? siteAdminPinHash : ADMIN_PIN_HASH;
+            const inputHash = await sha256(pin);
+            if (inputHash === expectedHash) {
                 closePinModal();
                 setTimeout(() => { navigate('admin'); }, 200);
             } else {
