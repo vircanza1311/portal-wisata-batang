@@ -2932,9 +2932,9 @@
         let homeEkrafSelectedIds = [];
         let homeWisataSelectionReady = false;
         let homeEkrafSelectionReady = false;
-        // Loaded from Supabase site_settings.admin_pin_hash if present;
-        // falls back to the compiled ADMIN_PIN_HASH constant in verifyPin()
-        let siteAdminPinHash = null;
+        // Loaded from Supabase site_settings at startup for PIN verification
+        let siteAdminPinHash = null; // SHA-256 hash of admin PIN (preferred)
+        let siteAdminPin = null;     // Plain PIN from Supabase (fallback if no hash column)
 
         // ---------------------------------------------------------
         // 3. CORE LOGIC (Fetch & SPA Router)
@@ -2993,9 +2993,15 @@
                     if (el) el.value = data.home_ekraf_count;
                 }
 
-                // Load admin PIN hash from Supabase if present (optional: add admin_pin_hash column to site_settings)
+                // Load admin PIN from Supabase site_settings
+                // Supports two columns (add either to site_settings table):
+                //   admin_pin_hash TEXT  — SHA-256 hex of the PIN (more secure)
+                //   admin_pin      TEXT  — plain PIN string (simpler to manage)
                 if (data.admin_pin_hash && typeof data.admin_pin_hash === 'string' && data.admin_pin_hash.length === 64) {
                     siteAdminPinHash = data.admin_pin_hash;
+                }
+                if (data.admin_pin && typeof data.admin_pin === 'string' && data.admin_pin.length > 0) {
+                    siteAdminPin = data.admin_pin;
                 }
             } catch (err) {
                 console.warn('Gagal memuat site settings:', err);
@@ -5927,9 +5933,12 @@
         // SECURITY NOTE: PIN is client-side only — it guards the admin UI but is NOT a backend security layer.
         // Real data protection MUST rely on Supabase Row Level Security (RLS) policies that restrict
         // INSERT/UPDATE/DELETE to authenticated users. Anyone can view the source code and bypass this PIN.
-        // To change the PIN: update it in Supabase site_settings table (admin_pin column), or update ADMIN_PIN_HASH below.
-        // Default fallback PIN: stored as a simple hash to avoid plain-text exposure in source.
-        const ADMIN_PIN_HASH = '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b'; // SHA-256 of '021885' — update if PIN changes
+        // PIN management: store admin_pin_hash (SHA-256) OR admin_pin (plain) in site_settings table.
+        // The system loads from Supabase at startup. Fallback is only used if Supabase is unreachable.
+
+        // Fallback PIN (used only when Supabase site_settings.admin_pin / admin_pin_hash is not loaded)
+        // Change this to update PIN without Supabase. Plain PIN — replace with your actual PIN:
+        const _DEFAULT_PIN = atob('MDIxODg1'); // base64 of '021885' — obfuscated but not encrypted
 
         async function sha256(message) {
             const msgBuffer = new TextEncoder().encode(message);
@@ -5938,12 +5947,25 @@
         }
 
         async function verifyPin() {
-            const pin = document.getElementById('admin-pin-input').value;
+            const pin = document.getElementById('admin-pin-input').value.trim();
             const errorText = document.getElementById('pin-error');
-            // Use site_settings admin_pin_hash if loaded from Supabase, else fall back to compiled hash
-            const expectedHash = (typeof siteAdminPinHash !== 'undefined' && siteAdminPinHash) ? siteAdminPinHash : ADMIN_PIN_HASH;
-            const inputHash = await sha256(pin);
-            if (inputHash === expectedHash) {
+            errorText.classList.add('hidden');
+
+            let valid = false;
+
+            if (siteAdminPinHash) {
+                // Supabase provided a hash — compare using SHA-256
+                const inputHash = await sha256(pin);
+                valid = (inputHash === siteAdminPinHash);
+            } else if (siteAdminPin) {
+                // Supabase provided plain PIN — compare directly
+                valid = (pin === siteAdminPin);
+            } else {
+                // Offline fallback — compare against default PIN
+                valid = (pin === _DEFAULT_PIN);
+            }
+
+            if (valid) {
                 closePinModal();
                 setTimeout(() => { navigate('admin'); }, 200);
             } else {
