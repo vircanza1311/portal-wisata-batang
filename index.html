@@ -158,9 +158,6 @@
                 display: none !important;
             }
 
-            #nav-login-admin-desktop {
-                display: none !important;
-            }
 
             #nav-hamburger {
                 display: flex !important;
@@ -241,11 +238,7 @@
             <div class="flex items-center gap-3">
                 <button class="text-gray-500 hover:text-brand-700"><i
                         class="ph ph-magnifying-glass text-xl"></i></button>
-                <!-- Login Admin — desktop only -->
-                <button id="nav-login-admin-desktop" onclick="openPinModal()"
-                    class="hidden md:flex items-center gap-1.5 bg-brand-50 text-brand-700 px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-100 transition border border-brand-200">
-                    <i class="ph-fill ph-lock-key"></i> Login Admin
-                </button>
+
                 <!-- Hamburger — mobile only -->
                 <button id="nav-hamburger" onclick="toggleMobileMenu()"
                     class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-gray-600 hover:bg-gray-100 transition">
@@ -281,12 +274,7 @@
                     class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
                     <i class="ph-fill ph-phone text-brand-400 text-base w-5 text-center"></i> Kontak
                 </button>
-                <div class="border-t border-gray-100 mt-2 pt-3">
-                    <button onclick="openPinModal(); closeMobileMenu()"
-                        class="w-full flex items-center justify-center gap-2 bg-brand-600 text-white px-4 py-3 rounded-xl text-sm font-bold hover:bg-brand-700 transition">
-                        <i class="ph-fill ph-lock-key"></i> Login Admin
-                    </button>
-                </div>
+
             </div>
         </div>
     </nav>
@@ -2815,8 +2803,8 @@
                     <span class="hidden sm:block">·</span>
                     <span>Powered by Dolan Batang</span>
                     <span class="hidden sm:block">·</span>
-                    <button onclick="navigate('admin')" class="hover:text-white/60 transition flex items-center gap-1">
-                        <i class="ph ph-lock-key text-xs"></i> Admin
+                    <button onclick="openPinModal()" class="hover:text-white transition flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/10 hover:bg-white/10">
+                        <i class="ph-fill ph-lock-key text-xs"></i> Login Admin
                     </button>
                 </div>
             </div>
