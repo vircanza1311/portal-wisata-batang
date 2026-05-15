@@ -2919,13 +2919,13 @@
         async function fetchRealData() {
             if (!isSupabaseConnected) return;
             try {
-                const { data: wData, error: wErr } = await supabaseClient.from('wisata').select('*').order('id', { ascending: false });
+                const { data: wData, error: wErr } = await supabaseClient.from('wisata').select('id, nama, kategori, lokasi, foto, alamat, telepon, jam, harga, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
                 if (!wErr && wData && wData.length > 0) wisataData = wData;
 
-                const { data: eData, error: eErr } = await supabaseClient.from('events').select('*').order('id', { ascending: false });
+                const { data: eData, error: eErr } = await supabaseClient.from('events').select('id, judul, tanggal, bulan, lokasi, waktu, foto').order('id', { ascending: false });
                 if (!eErr && eData && eData.length > 0) eventData = eData;
 
-                const { data: ekData, error: ekErr } = await supabaseClient.from('ekraf').select('*').order('id', { ascending: false });
+                const { data: ekData, error: ekErr } = await supabaseClient.from('ekraf').select('id, brand, owner, subsektor, lokasi, alamat, telepon, foto, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
                 if (!ekErr && ekData && ekData.length > 0) ekrafData = ekData;
             } catch (err) {
                 console.error("Gagal koneksi ke Supabase:", err);
@@ -3319,8 +3319,25 @@
         // 5. DETAIL PAGES GENERATOR
         // ---------------------------------------------------------
 
-        function buildDetailWisata(id) {
-            const data = wisataData.find(w => w.id == id) || wisataData[0];
+        async function buildDetailWisata(id) {
+            let data = wisataData.find(w => w.id == id) || wisataData[0];
+            
+            const contentDiv = document.getElementById('detail-wisata-content');
+            contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail wisata...</span></div>';
+            
+            if (isSupabaseConnected && data) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', data.id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                        const index = wisataData.findIndex(w => w.id == data.id);
+                        if (index !== -1) wisataData[index] = fullData;
+                    }
+                } catch (err) {
+                    console.error("Error fetching detail wisata:", err);
+                }
+            }
+            
             const html = `
                 <div class="bg-gray-900 w-full h-[500px] relative">
                     <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80">
@@ -3419,8 +3436,25 @@
             document.getElementById('detail-wisata-content').innerHTML = html;
         }
 
-        function buildDetailEvent(id) {
-            const data = eventData.find(e => e.id == id) || eventData[0];
+        async function buildDetailEvent(id) {
+            let data = eventData.find(e => e.id == id) || eventData[0];
+            
+            const contentDiv = document.getElementById('detail-event-content');
+            contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail event...</span></div>';
+            
+            if (isSupabaseConnected && data) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', data.id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                        const index = eventData.findIndex(e => e.id == data.id);
+                        if (index !== -1) eventData[index] = fullData;
+                    }
+                } catch (err) {
+                    console.error("Error fetching detail event:", err);
+                }
+            }
+
             const html = `
                 <div class="w-full h-[400px] relative bg-gray-900">
                     <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-60">
@@ -3503,9 +3537,25 @@
         // ---------------------------------------------------------
         // DETAIL EKRAF PAGE BUILDER
         // ---------------------------------------------------------
-        function buildDetailEkraf(id) {
-            const data = ekrafData.find(e => e.id == id) || ekrafData[0];
+        async function buildDetailEkraf(id) {
+            let data = ekrafData.find(e => e.id == id) || ekrafData[0];
             if (!data) return;
+
+            const contentDiv = document.getElementById('detail-ekraf-content');
+            contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail ekraf...</span></div>';
+            
+            if (isSupabaseConnected && data) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', data.id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                        const index = ekrafData.findIndex(e => e.id == data.id);
+                        if (index !== -1) ekrafData[index] = fullData;
+                    }
+                } catch (err) {
+                    console.error("Error fetching detail ekraf:", err);
+                }
+            }
 
             const subsektorThemes = {
                 'Kuliner': { bg: 'from-orange-500 to-amber-400', badge: 'bg-orange-100 text-orange-700', icon: 'ph-fork-knife', accent: '#f97316' },
@@ -3770,9 +3820,21 @@
         let editEventId = null;
         let editEkrafId = null;
 
-        function editWisata(id) {
-            const data = wisataData.find(w => w.id == id);
+        async function editWisata(id) {
+            let data = wisataData.find(w => w.id == id);
             if (!data) return;
+            
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                    }
+                } catch (err) {
+                    console.error("Error fetching full wisata data for edit:", err);
+                }
+            }
+
             editWisataId = id;
             document.getElementById('inp-nama').value = data.nama || '';
             document.getElementById('inp-kategori').value = data.kategori || '';
@@ -3819,9 +3881,21 @@
             }
         }
 
-        function editEvent(id) {
-            const data = eventData.find(e => e.id == id);
+        async function editEvent(id) {
+            let data = eventData.find(e => e.id == id);
             if (!data) return;
+            
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                    }
+                } catch (err) {
+                    console.error("Error fetching full event data for edit:", err);
+                }
+            }
+
             editEventId = id;
             document.getElementById('inp-event-judul').value = data.judul || '';
             document.getElementById('inp-event-tanggal').value = data.tanggal || '';
@@ -3858,9 +3932,21 @@
             }
         }
 
-        function editEkraf(id) {
-            const data = ekrafData.find(e => e.id == id);
+        async function editEkraf(id) {
+            let data = ekrafData.find(e => e.id == id);
             if (!data) return;
+            
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                    }
+                } catch (err) {
+                    console.error("Error fetching full ekraf data for edit:", err);
+                }
+            }
+
             editEkrafId = id;
             document.getElementById('inp-ekraf-brand').value = data.brand || '';
             document.getElementById('inp-ekraf-owner').value = data.owner || '';
