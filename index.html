@@ -2919,7 +2919,7 @@
         async function fetchRealData() {
             if (!isSupabaseConnected) return;
             try {
-                const { data: wData, error: wErr } = await supabaseClient.from('wisata').select('id, nama, kategori, lokasi, foto, alamat, telepon, jam, harga, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
+                const { data: wData, error: wErr } = await supabaseClient.from('wisata').select('id, nama, kategori, lokasi, foto, telepon, jam, harga, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
                 if (!wErr && wData && wData.length > 0) wisataData = wData;
 
                 const { data: eData, error: eErr } = await supabaseClient.from('events').select('id, judul, tanggal, bulan, lokasi, waktu, foto').order('id', { ascending: false });
