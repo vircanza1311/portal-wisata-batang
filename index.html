@@ -105,29 +105,42 @@
         /* ==================== CRITICAL LAYOUT — Tailwind-independent ==================== */
 
         /* Prevent horizontal overflow */
-        html, body { overflow-x: hidden; }
+        html,
+        body {
+            overflow-x: hidden;
+        }
 
         /* Hero wrapper: must have height for absolute children to fill */
         .hero-section-wrapper {
             position: relative;
             min-height: 380px;
         }
+
         @media (min-width: 768px) {
-            .hero-section-wrapper { min-height: 580px; }
+            .hero-section-wrapper {
+                min-height: 580px;
+            }
         }
 
         /* Hero slides container: must fill parent */
         #hero-slides {
             position: absolute !important;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
 
         /* Each hero slide: must fill container, stacked via z-index / opacity */
         .hero-slide {
             position: absolute !important;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             overflow: hidden;
         }
+
         .hero-slide img {
             width: 100% !important;
             height: 100% !important;
@@ -137,36 +150,61 @@
 
         /* Navbar: desktop links hidden on mobile */
         @media (max-width: 767px) {
-            #nav-desktop-links { display: none !important; }
-            #nav-login-admin-desktop { display: none !important; }
-            #nav-hamburger { display: flex !important; }
+            #nav-desktop-links {
+                display: none !important;
+            }
+
+            #nav-login-admin-desktop {
+                display: none !important;
+            }
+
+            #nav-hamburger {
+                display: flex !important;
+            }
         }
+
         @media (min-width: 768px) {
-            #nav-hamburger { display: none !important; }
+            #nav-hamburger {
+                display: none !important;
+            }
+
             /* Mobile menu should never appear on desktop */
-            #mobile-menu { display: none !important; }
+            #mobile-menu {
+                display: none !important;
+            }
         }
 
         /* Mobile menu: hidden by default, shown when JS removes 'hidden' class */
-        #mobile-menu.hidden { display: none !important; }
+        #mobile-menu.hidden {
+            display: none !important;
+        }
 
         /* Map SVG: scale down on mobile */
-        #batang-map { max-width: 100%; }
+        #batang-map {
+            max-width: 100%;
+        }
 
         /* Navbar inner row: always flex with space-between */
-        nav > div:first-child {
+        nav>div:first-child {
             display: flex;
             align-items: center;
             justify-content: space-between;
             min-height: 64px;
         }
+
         @media (min-width: 768px) {
-            nav > div:first-child { min-height: 80px; }
+            nav>div:first-child {
+                min-height: 80px;
+            }
         }
 
         /* Stats: on very small screens ensure 2-column */
         @media (max-width: 480px) {
-            #stat-wisata, #stat-event, #stat-ekraf, #stat-subsektor {
+
+            #stat-wisata,
+            #stat-event,
+            #stat-ekraf,
+            #stat-subsektor {
                 font-size: 1.25rem;
             }
         }
@@ -266,11 +304,16 @@
                     </div>
                 </div>
                 <!-- Gradient overlays -->
-                <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none z-10"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10"></div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none z-10">
+                </div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10">
+                </div>
 
                 <!-- Floating badge top-right -->
-                <div class="absolute top-6 right-6 hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full z-20">
+                <div
+                    class="absolute top-6 right-6 hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full z-20">
                     <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> Official Tourism Portal
                 </div>
 
@@ -280,13 +323,16 @@
                 <!-- Content -->
                 <div class="relative z-20 max-w-7xl mx-auto px-6 md:px-12 flex items-center hero-section-wrapper">
                     <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
+                        <div
+                            class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
                             <i class="ph-fill ph-map-trifold text-yellow-300"></i> Jelajahi Kabupaten Batang
                         </div>
-                        <h1 class="text-3xl md:text-6xl font-extrabold text-white leading-[1.1] mb-4 md:mb-5 drop-shadow-xl">
+                        <h1
+                            class="text-3xl md:text-6xl font-extrabold text-white leading-[1.1] mb-4 md:mb-5 drop-shadow-xl">
                             Jelajahi Keindahannya,<br>
                             <span class="text-transparent bg-clip-text"
-                                style="background-image:linear-gradient(135deg,#7dd3fc,#a5f3fc)">Semarak Eventnya,</span><br>
+                                style="background-image:linear-gradient(135deg,#7dd3fc,#a5f3fc)">Semarak
+                                Eventnya,</span><br>
                             Batang Kreatif
                         </h1>
                         <p class="text-white/80 text-base md:text-lg mb-8 leading-relaxed max-w-lg">Temukan berbagai
@@ -310,7 +356,8 @@
                 </div>
 
                 <!-- Scroll indicator -->
-                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/40 animate-bounce hidden md:flex z-20">
+                <div
+                    class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/40 animate-bounce hidden md:flex z-20">
                     <span class="text-[10px] font-bold uppercase tracking-widest">Scroll</span>
                     <i class="ph ph-caret-down text-lg"></i>
                 </div>
@@ -340,7 +387,8 @@
                             </div>
                             <div>
                                 <p id="stat-wisata"
-                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">
+                                    —
                                 </p>
                                 <p
                                     class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -355,7 +403,8 @@
                             </div>
                             <div>
                                 <p id="stat-event"
-                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">
+                                    —
                                 </p>
                                 <p
                                     class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -370,7 +419,8 @@
                             </div>
                             <div>
                                 <p id="stat-ekraf"
-                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">
+                                    —
                                 </p>
                                 <p
                                     class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -385,7 +435,8 @@
                             </div>
                             <div>
                                 <p id="stat-subsektor"
-                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">—
+                                    class="text-2xl md:text-3xl font-black text-white drop-shadow-sm leading-none tracking-tight">
+                                    —
                                 </p>
                                 <p
                                     class="text-[10px] md:text-xs text-blue-100 uppercase tracking-widest font-bold mt-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -553,7 +604,8 @@
                                 class="ph-bold ph-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
-                    <div id="grid-home-wisata" data-count="4" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
+                    <div id="grid-home-wisata" data-count="4"
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
                         <!-- Injected via JS -->
                     </div>
                 </div>
@@ -626,7 +678,8 @@
                                 class="ph-bold ph-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
-                    <div id="grid-home-ekraf" data-count="3" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xl:gap-8">
+                    <div id="grid-home-ekraf" data-count="3"
+                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xl:gap-8">
                         <!-- Injected via JS -->
                     </div>
                 </div>
@@ -649,8 +702,7 @@
                             class="bg-white text-brand-700 font-extrabold px-8 py-4 rounded-xl shadow-2xl hover:bg-brand-50 transition text-sm flex items-center gap-2">
                             <i class="ph-fill ph-compass text-brand-600 text-lg"></i> Mulai Jelajah
                         </button>
-                        <button
-                            onclick="scrollToHomeMap()"
+                        <button onclick="scrollToHomeMap()"
                             class="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/25 transition text-sm flex items-center gap-2">
                             <i class="ph-fill ph-map-trifold text-cyan-300 text-lg"></i> Lihat Peta
                         </button>
@@ -1425,16 +1477,26 @@
         <section id="view-kontak" class="page-view bg-[#f7f9fc] min-h-screen">
 
             <!-- Hero Header -->
-            <div class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900 pt-14 pb-28 px-4">
-                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
-                <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none"></div>
-                <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+            <div
+                class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900 pt-14 pb-28 px-4">
+                <div
+                    class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10">
+                </div>
+                <div
+                    class="absolute top-0 right-0 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none">
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none">
+                </div>
                 <div class="max-w-7xl mx-auto relative z-10 text-center">
-                    <span class="inline-block bg-white/10 text-white/80 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/15">
+                    <span
+                        class="inline-block bg-white/10 text-white/80 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/15">
                         <i class="ph-fill ph-chat-dots mr-1"></i> Hubungi Kami
                     </span>
-                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">Kontak &amp; Informasi</h1>
-                    <p class="text-white/60 text-base md:text-lg max-w-xl mx-auto">Kami siap membantu Anda menemukan destinasi terbaik di Kabupaten Batang</p>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">Kontak &amp; Informasi
+                    </h1>
+                    <p class="text-white/60 text-base md:text-lg max-w-xl mx-auto">Kami siap membantu Anda menemukan
+                        destinasi terbaik di Kabupaten Batang</p>
                 </div>
             </div>
 
@@ -1455,31 +1517,49 @@
                             </div>
                             <div class="p-6 space-y-4">
                                 <div id="kontak-alamat-row" class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center shrink-0 text-brand-600"><i class="ph-fill ph-map-pin text-lg"></i></div>
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center shrink-0 text-brand-600">
+                                        <i class="ph-fill ph-map-pin text-lg"></i></div>
                                     <div>
-                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Alamat</p>
-                                        <p id="kontak-alamat" class="text-sm font-semibold text-gray-800 mt-0.5 leading-snug">Jl. RA Kartini No.1, Bogoran, Kauman, Kec. Batang, Kabupaten Batang, Jawa Tengah 51216</p>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Alamat
+                                        </p>
+                                        <p id="kontak-alamat"
+                                            class="text-sm font-semibold text-gray-800 mt-0.5 leading-snug">Jl. RA
+                                            Kartini No.1, Bogoran, Kauman, Kec. Batang, Kabupaten Batang, Jawa Tengah
+                                            51216</p>
                                     </div>
                                 </div>
                                 <div id="kontak-telepon-row" class="flex items-center gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0 text-emerald-600"><i class="ph-fill ph-phone text-lg"></i></div>
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0 text-emerald-600">
+                                        <i class="ph-fill ph-phone text-lg"></i></div>
                                     <div>
-                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Telepon</p>
-                                        <a id="kontak-telepon" href="tel:02853391141" class="text-sm font-bold text-gray-800 hover:text-brand-600 transition mt-0.5 block">(0285) 391141</a>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Telepon
+                                        </p>
+                                        <a id="kontak-telepon" href="tel:02853391141"
+                                            class="text-sm font-bold text-gray-800 hover:text-brand-600 transition mt-0.5 block">(0285)
+                                            391141</a>
                                     </div>
                                 </div>
                                 <div id="kontak-fax-row" class="flex items-center gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0 text-amber-600"><i class="ph-fill ph-printer text-lg"></i></div>
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0 text-amber-600">
+                                        <i class="ph-fill ph-printer text-lg"></i></div>
                                     <div>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Fax</p>
-                                        <p id="kontak-fax" class="text-sm font-bold text-gray-800 mt-0.5">(0285) 391141</p>
+                                        <p id="kontak-fax" class="text-sm font-bold text-gray-800 mt-0.5">(0285) 391141
+                                        </p>
                                     </div>
                                 </div>
                                 <div id="kontak-email-row" class="flex items-center gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center shrink-0 text-rose-600"><i class="ph-fill ph-envelope text-lg"></i></div>
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center shrink-0 text-rose-600">
+                                        <i class="ph-fill ph-envelope text-lg"></i></div>
                                     <div>
-                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Email</p>
-                                        <a id="kontak-email" href="mailto:batang.tourism@gmail.com" class="text-sm font-bold text-gray-800 hover:text-brand-600 transition mt-0.5 block break-all">batang.tourism@gmail.com</a>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Email
+                                        </p>
+                                        <a id="kontak-email" href="mailto:batang.tourism@gmail.com"
+                                            class="text-sm font-bold text-gray-800 hover:text-brand-600 transition mt-0.5 block break-all">batang.tourism@gmail.com</a>
                                     </div>
                                 </div>
                             </div>
@@ -1487,19 +1567,25 @@
 
                         <!-- Social Media Card -->
                         <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2"><i class="ph-fill ph-share-network text-brand-500"></i> Media Sosial</p>
+                            <p
+                                class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <i class="ph-fill ph-share-network text-brand-500"></i> Media Sosial</p>
                             <div id="kontak-socmed-list" class="grid grid-cols-2 gap-3">
                                 <!-- injected by JS -->
-                                <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
+                                <a href="#"
+                                    class="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
                                     <i class="ph-fill ph-instagram-logo text-xl"></i> Instagram
                                 </a>
-                                <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
+                                <a href="#"
+                                    class="flex items-center gap-3 p-3 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
                                     <i class="ph-fill ph-facebook-logo text-xl"></i> Facebook
                                 </a>
-                                <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-black text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
+                                <a href="#"
+                                    class="flex items-center gap-3 p-3 rounded-xl bg-black text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
                                     <i class="ph-fill ph-x-logo text-xl"></i> X / Twitter
                                 </a>
-                                <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-gray-900 text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
+                                <a href="#"
+                                    class="flex items-center gap-3 p-3 rounded-xl bg-gray-900 text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
                                     <i class="ph-fill ph-tiktok-logo text-xl"></i> TikTok
                                 </a>
                             </div>
@@ -1507,7 +1593,9 @@
 
                         <!-- Jam Operasional -->
                         <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2"><i class="ph-fill ph-clock text-brand-500"></i> Jam Operasional</p>
+                            <p
+                                class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <i class="ph-fill ph-clock text-brand-500"></i> Jam Operasional</p>
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between py-2 border-b border-gray-50">
                                     <span class="text-sm text-gray-600 font-medium">Senin – Jumat</span>
@@ -1531,15 +1619,15 @@
                         <!-- Google Maps Embed -->
                         <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
                             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                                <p class="font-bold text-gray-900 flex items-center gap-2 text-sm"><i class="ph-fill ph-map-trifold text-brand-600 text-base"></i> Lokasi Kami</p>
+                                <p class="font-bold text-gray-900 flex items-center gap-2 text-sm"><i
+                                        class="ph-fill ph-map-trifold text-brand-600 text-base"></i> Lokasi Kami</p>
                                 <a id="kontak-maps-link" href="https://maps.app.goo.gl/batang" target="_blank"
-                                   class="flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition border border-brand-200">
+                                    class="flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition border border-brand-200">
                                     <i class="ph ph-arrow-square-out text-xs"></i> Buka di Maps
                                 </a>
                             </div>
                             <div class="relative w-full" style="height:280px">
-                                <iframe
-                                    id="kontak-maps-iframe"
+                                <iframe id="kontak-maps-iframe"
                                     src="https://maps.google.com/maps?q=Dinas+Pariwisata+Kabupaten+Batang&output=embed&z=15"
                                     class="w-full h-full border-0" allowfullscreen="" loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1558,18 +1646,24 @@
                                 <form id="form-pesan-kontak" onsubmit="submitPesanKontak(event)" class="space-y-4">
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div>
-                                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Nama Lengkap *</label>
+                                            <label
+                                                class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Nama
+                                                Lengkap *</label>
                                             <input type="text" id="pesan-nama" required placeholder="Nama Anda"
                                                 class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition placeholder-gray-300">
                                         </div>
                                         <div>
-                                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Email / No. HP *</label>
-                                            <input type="text" id="pesan-kontak-val" required placeholder="email@contoh.com"
+                                            <label
+                                                class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Email
+                                                / No. HP *</label>
+                                            <input type="text" id="pesan-kontak-val" required
+                                                placeholder="email@contoh.com"
                                                 class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition placeholder-gray-300">
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Subjek</label>
+                                        <label
+                                            class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Subjek</label>
                                         <select id="pesan-subjek"
                                             class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition bg-white">
                                             <option value="Informasi Wisata">Informasi Wisata</option>
@@ -1581,11 +1675,15 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Pesan *</label>
-                                        <textarea id="pesan-isi" required rows="4" placeholder="Tulis pesan Anda di sini..."
+                                        <label
+                                            class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Pesan
+                                            *</label>
+                                        <textarea id="pesan-isi" required rows="4"
+                                            placeholder="Tulis pesan Anda di sini..."
                                             class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition placeholder-gray-300 resize-none"></textarea>
                                     </div>
-                                    <div id="pesan-alert" class="hidden rounded-xl px-4 py-3 text-sm font-semibold"></div>
+                                    <div id="pesan-alert" class="hidden rounded-xl px-4 py-3 text-sm font-semibold">
+                                    </div>
                                     <button type="submit" id="btn-kirim-pesan"
                                         class="w-full bg-brand-600 hover:bg-brand-700 text-white font-extrabold py-3 rounded-xl transition shadow-lg flex items-center justify-center gap-2 text-sm">
                                         <i class="ph-fill ph-paper-plane-tilt"></i> Kirim Pesan
@@ -1646,7 +1744,8 @@
                                         Foto Slideshow Hero
                                         <span class="text-xs font-normal text-gray-400">(maks. 5 foto)</span>
                                     </p>
-                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto untuk ditampilkan di slideshow halaman depan.</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto untuk ditampilkan di
+                                        slideshow halaman depan.</p>
                                 </div>
                                 <button type="button" onclick="addHeroSlideInput()" id="btn-add-hero-slide"
                                     class="flex items-center gap-1.5 text-xs font-bold text-brand-600 border border-brand-300 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition">
@@ -1665,10 +1764,12 @@
                             <p class="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
                                 <i class="ph-fill ph-map-pin text-brand-600 text-base"></i> Wisata Terpopuler
                             </p>
-                            <p class="text-xs text-gray-400 mb-4">Pilih wisata yang ditampilkan di beranda. Data diambil dari menu Wisata.</p>
+                            <p class="text-xs text-gray-400 mb-4">Pilih wisata yang ditampilkan di beranda. Data diambil
+                                dari menu Wisata.</p>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Jumlah yang Ditampilkan</label>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Jumlah yang
+                                        Ditampilkan</label>
                                     <select id="inp-home-wisata-count"
                                         class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                         <option value="3">3 Wisata</option>
@@ -1678,9 +1779,11 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Data Wisata yang Dipilih</label>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Data Wisata yang
+                                        Dipilih</label>
                                     <p class="text-xs text-gray-400 bg-white border border-gray-200 rounded-lg p-2.5">
-                                        Gunakan pencarian untuk data besar. Beranda akan menampilkan sesuai urutan pilihan dan batas jumlah.
+                                        Gunakan pencarian untuk data besar. Beranda akan menampilkan sesuai urutan
+                                        pilihan dan batas jumlah.
                                     </p>
                                 </div>
                             </div>
@@ -1693,7 +1796,8 @@
                                     <div class="flex flex-col md:flex-row gap-2 mb-3">
                                         <div class="relative flex-grow">
                                             <i class="ph ph-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
-                                            <input type="text" id="home-wisata-search" oninput="renderHomePicker('wisata')"
+                                            <input type="text" id="home-wisata-search"
+                                                oninput="renderHomePicker('wisata')"
                                                 class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg outline-none text-sm focus:border-brand-400"
                                                 placeholder="Cari nama wisata, kategori, atau kecamatan...">
                                         </div>
@@ -1706,7 +1810,8 @@
                                             Bersihkan
                                         </button>
                                     </div>
-                                    <div id="home-wisata-picker" class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1">
+                                    <div id="home-wisata-picker"
+                                        class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1">
                                     </div>
                                 </div>
                                 <p id="home-wisata-picker-empty" class="hidden text-xs text-gray-400 mt-2">
@@ -1725,10 +1830,12 @@
                             <p class="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
                                 <i class="ph-fill ph-storefront text-amber-500 text-base"></i> Pelaku Ekraf Batang
                             </p>
-                            <p class="text-xs text-gray-400 mb-4">Pilih pelaku ekraf yang ditampilkan di beranda. Data diambil dari menu Ekonomi Kreatif.</p>
+                            <p class="text-xs text-gray-400 mb-4">Pilih pelaku ekraf yang ditampilkan di beranda. Data
+                                diambil dari menu Ekonomi Kreatif.</p>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Jumlah yang Ditampilkan</label>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Jumlah yang
+                                        Ditampilkan</label>
                                     <select id="inp-home-ekraf-count"
                                         class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                         <option value="2">2 Ekraf</option>
@@ -1738,9 +1845,11 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Data Ekraf yang Dipilih</label>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-1">Data Ekraf yang
+                                        Dipilih</label>
                                     <p class="text-xs text-gray-400 bg-white border border-gray-200 rounded-lg p-2.5">
-                                        Gunakan pencarian untuk data besar. Beranda akan menampilkan sesuai urutan pilihan dan batas jumlah.
+                                        Gunakan pencarian untuk data besar. Beranda akan menampilkan sesuai urutan
+                                        pilihan dan batas jumlah.
                                     </p>
                                 </div>
                             </div>
@@ -1753,7 +1862,8 @@
                                     <div class="flex flex-col md:flex-row gap-2 mb-3">
                                         <div class="relative flex-grow">
                                             <i class="ph ph-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
-                                            <input type="text" id="home-ekraf-search" oninput="renderHomePicker('ekraf')"
+                                            <input type="text" id="home-ekraf-search"
+                                                oninput="renderHomePicker('ekraf')"
                                                 class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg outline-none text-sm focus:border-brand-400"
                                                 placeholder="Cari brand, subsektor, owner, atau kecamatan...">
                                         </div>
@@ -1766,7 +1876,8 @@
                                             Bersihkan
                                         </button>
                                     </div>
-                                    <div id="home-ekraf-picker" class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1">
+                                    <div id="home-ekraf-picker"
+                                        class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1">
                                     </div>
                                 </div>
                                 <p id="home-ekraf-picker-empty" class="hidden text-xs text-gray-400 mt-2">
@@ -1789,9 +1900,11 @@
 
                     <!-- ═══ FORM KONTAK ═══ -->
                     <form id="admin-form-kontak" class="space-y-5 hidden">
-                        <p class="text-xs text-gray-400 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 flex items-center gap-2">
+                        <p
+                            class="text-xs text-gray-400 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 flex items-center gap-2">
                             <i class="ph-fill ph-info text-blue-500"></i>
-                            Data kontak disimpan ke tabel <code class="font-bold text-blue-700">kontak</code> di Supabase dan langsung ditampilkan di halaman Kontak.
+                            Data kontak disimpan ke tabel <code class="font-bold text-blue-700">kontak</code> di
+                            Supabase dan langsung ditampilkan di halaman Kontak.
                         </p>
 
                         <!-- Informasi Instansi -->
@@ -1801,7 +1914,8 @@
                             </p>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Instansi</label>
-                                <input type="text" id="inp-kontak-nama-instansi" placeholder="Dinas Pariwisata Kabupaten Batang"
+                                <input type="text" id="inp-kontak-nama-instansi"
+                                    placeholder="Dinas Pariwisata Kabupaten Batang"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm focus:border-brand-500 transition">
                             </div>
                             <div>
@@ -1836,22 +1950,30 @@
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-instagram-logo text-pink-500"></i> Instagram URL</label>
+                                    <label
+                                        class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i
+                                            class="ph-fill ph-instagram-logo text-pink-500"></i> Instagram URL</label>
                                     <input type="url" id="inp-kontak-instagram" placeholder="https://instagram.com/..."
                                         class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm focus:border-brand-500 transition">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-facebook-logo text-blue-600"></i> Facebook URL</label>
+                                    <label
+                                        class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i
+                                            class="ph-fill ph-facebook-logo text-blue-600"></i> Facebook URL</label>
                                     <input type="url" id="inp-kontak-facebook" placeholder="https://facebook.com/..."
                                         class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm focus:border-brand-500 transition">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-x-logo text-gray-800"></i> X / Twitter URL</label>
+                                    <label
+                                        class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i
+                                            class="ph-fill ph-x-logo text-gray-800"></i> X / Twitter URL</label>
                                     <input type="url" id="inp-kontak-twitter" placeholder="https://x.com/..."
                                         class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm focus:border-brand-500 transition">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-tiktok-logo text-gray-900"></i> TikTok URL</label>
+                                    <label
+                                        class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1.5"><i
+                                            class="ph-fill ph-tiktok-logo text-gray-900"></i> TikTok URL</label>
                                     <input type="url" id="inp-kontak-tiktok" placeholder="https://tiktok.com/@..."
                                         class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm focus:border-brand-500 transition">
                                 </div>
@@ -1864,16 +1986,19 @@
                                 <i class="ph-fill ph-map-trifold text-brand-600"></i> Google Maps
                             </p>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">URL Google Maps (link pendek atau embed)</label>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">URL Google Maps (link
+                                    pendek atau embed)</label>
                                 <input type="url" id="inp-kontak-maps-link" placeholder="https://maps.app.goo.gl/..."
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm focus:border-brand-500 transition">
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Embed URL Maps (dari Google Maps → Share → Embed)</label>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Embed URL Maps (dari
+                                    Google Maps → Share → Embed)</label>
                                 <input type="url" id="inp-kontak-maps-embed"
                                     placeholder="https://maps.google.com/maps?q=...&output=embed"
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm focus:border-brand-500 transition">
-                                <p class="text-xs text-gray-400 mt-1">Isi bagian dalam src="..." dari kode embed Google Maps</p>
+                                <p class="text-xs text-gray-400 mt-1">Isi bagian dalam src="..." dari kode embed Google
+                                    Maps</p>
                             </div>
                         </div>
 
@@ -2339,14 +2464,20 @@
     <footer class="relative overflow-hidden bg-gradient-to-br from-[#0b1c35] via-[#0d2244] to-[#0a1628] text-white">
 
         <!-- Decorative blobs -->
-        <div class="absolute top-0 left-0 w-80 h-80 bg-brand-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
-        <div class="absolute top-1/2 right-1/4 w-40 h-40 bg-brand-400/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div
+            class="absolute top-0 left-0 w-80 h-80 bg-brand-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none">
+        </div>
+        <div class="absolute top-1/2 right-1/4 w-40 h-40 bg-brand-400/5 rounded-full blur-2xl pointer-events-none">
+        </div>
 
         <!-- Top divider wave -->
         <div class="w-full overflow-hidden leading-none -mb-1">
-            <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-8 fill-[#f7f9fc]">
-                <path d="M0,20 C360,40 1080,0 1440,20 L1440,0 L0,0 Z"/>
+            <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                class="w-full h-8 fill-[#f7f9fc]">
+                <path d="M0,20 C360,40 1080,0 1440,20 L1440,0 L0,0 Z" />
             </svg>
         </div>
 
@@ -2354,12 +2485,14 @@
         <div class="border-b border-white/10">
             <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-2xl bg-brand-500/20 border border-brand-400/30 flex items-center justify-center shrink-0">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-brand-500/20 border border-brand-400/30 flex items-center justify-center shrink-0">
                         <i class="ph-fill ph-bell-ringing text-2xl text-brand-300"></i>
                     </div>
                     <div>
                         <p class="font-extrabold text-white text-base leading-tight">Dapatkan Info Wisata Terbaru</p>
-                        <p class="text-white/50 text-xs mt-0.5">Update destinasi, event, dan ekraf langsung ke WhatsApp Anda</p>
+                        <p class="text-white/50 text-xs mt-0.5">Update destinasi, event, dan ekraf langsung ke WhatsApp
+                            Anda</p>
                     </div>
                 </div>
                 <div class="flex gap-2 w-full md:w-auto">
@@ -2381,13 +2514,14 @@
                 <div class="lg:col-span-4">
                     <!-- Logo: pakai bg putih agar logo berwarna tetap terlihat jelas -->
                     <div class="inline-flex items-center mb-5 cursor-pointer bg-white/10 hover:bg-white/15 transition rounded-2xl px-5 py-3 border border-white/10 backdrop-blur-sm"
-                         onclick="navigate('home')">
+                        onclick="navigate('home')">
                         <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
                             alt="Dolan Batang" class="h-14 object-contain max-w-[200px]"
                             onerror="this.parentElement.innerHTML='<span class=\'font-extrabold text-white text-xl tracking-tight\'>Dolan Batang</span>'">
                     </div>
                     <p class="text-white/55 text-sm leading-relaxed mb-6 max-w-xs">
-                        Portal informasi wisata resmi Kabupaten Batang. Jelajahi keindahan alam, budaya, dan kearifan lokal bersama kami.
+                        Portal informasi wisata resmi Kabupaten Batang. Jelajahi keindahan alam, budaya, dan kearifan
+                        lokal bersama kami.
                     </p>
 
                     <!-- Stats mini row -->
@@ -2408,35 +2542,48 @@
 
                     <!-- Social icons -->
                     <div class="flex gap-2.5 flex-wrap">
-                        <a id="footer-ig"   href="#" target="_blank" class="footer-social-btn group" title="Instagram">
+                        <a id="footer-ig" href="#" target="_blank" class="footer-social-btn group" title="Instagram">
                             <i class="ph-fill ph-instagram-logo"></i>
                         </a>
-                        <a id="footer-fb"   href="#" target="_blank" class="footer-social-btn group" title="Facebook">
+                        <a id="footer-fb" href="#" target="_blank" class="footer-social-btn group" title="Facebook">
                             <i class="ph-fill ph-facebook-logo"></i>
                         </a>
-                        <a id="footer-tw"   href="#" target="_blank" class="footer-social-btn group" title="X / Twitter">
+                        <a id="footer-tw" href="#" target="_blank" class="footer-social-btn group" title="X / Twitter">
                             <i class="ph-fill ph-x-logo"></i>
                         </a>
-                        <a id="footer-tt"   href="#" target="_blank" class="footer-social-btn group" title="TikTok">
+                        <a id="footer-tt" href="#" target="_blank" class="footer-social-btn group" title="TikTok">
                             <i class="ph-fill ph-tiktok-logo"></i>
                         </a>
                     </div>
 
                     <style>
                         .footer-social-btn {
-                            display:flex; align-items:center; justify-content:center;
-                            width:36px; height:36px; border-radius:10px;
-                            background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);
-                            color:rgba(255,255,255,0.6); font-size:16px;
-                            transition:all .2s;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 10px;
+                            background: rgba(255, 255, 255, 0.08);
+                            border: 1px solid rgba(255, 255, 255, 0.12);
+                            color: rgba(255, 255, 255, 0.6);
+                            font-size: 16px;
+                            transition: all .2s;
                         }
-                        .footer-social-btn:hover { background:rgba(59,130,246,0.4); border-color:rgba(59,130,246,0.5); color:#fff; transform:translateY(-2px); }
+
+                        .footer-social-btn:hover {
+                            background: rgba(59, 130, 246, 0.4);
+                            border-color: rgba(59, 130, 246, 0.5);
+                            color: #fff;
+                            transform: translateY(-2px);
+                        }
                     </style>
                 </div>
 
                 <!-- Menu col (2/12) -->
                 <div class="lg:col-span-2">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                    <h4
+                        class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
                         <span class="w-4 h-px bg-white/20 inline-block"></span>Menu Utama
                     </h4>
                     <ul class="space-y-1">
@@ -2473,72 +2620,109 @@
                     </ul>
                     <style>
                         .footer-nav-item {
-                            display:flex; align-items:center; gap:10px;
-                            font-size:13px; font-weight:500;
-                            color:rgba(255,255,255,.5);
-                            padding:7px 10px; border-radius:10px;
-                            transition:all .15s; text-align:left;
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 13px;
+                            font-weight: 500;
+                            color: rgba(255, 255, 255, .5);
+                            padding: 7px 10px;
+                            border-radius: 10px;
+                            transition: all .15s;
+                            text-align: left;
                         }
-                        .footer-nav-item:hover { color:#fff; background:rgba(255,255,255,.06); }
+
+                        .footer-nav-item:hover {
+                            color: #fff;
+                            background: rgba(255, 255, 255, .06);
+                        }
+
                         .footer-nav-icon {
-                            width:28px; height:28px; border-radius:8px; shrink-0;
-                            background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
-                            display:flex; align-items:center; justify-content:center;
-                            font-size:13px; color:rgba(255,255,255,.5); flex-shrink:0;
-                            transition:all .15s;
+                            width: 28px;
+                            height: 28px;
+                            border-radius: 8px;
+                            shrink-0;
+                            background: rgba(255, 255, 255, .07);
+                            border: 1px solid rgba(255, 255, 255, .1);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 13px;
+                            color: rgba(255, 255, 255, .5);
+                            flex-shrink: 0;
+                            transition: all .15s;
                         }
-                        .footer-nav-item:hover .footer-nav-icon { background:rgba(59,130,246,.25); border-color:rgba(59,130,246,.4); color:#93c5fd; }
+
+                        .footer-nav-item:hover .footer-nav-icon {
+                            background: rgba(59, 130, 246, .25);
+                            border-color: rgba(59, 130, 246, .4);
+                            color: #93c5fd;
+                        }
                     </style>
                 </div>
 
                 <!-- Jelajahi col — replaces Kategori Wisata (3/12) -->
                 <div class="lg:col-span-3">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                    <h4
+                        class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
                         <span class="w-4 h-px bg-white/20 inline-block"></span>Jelajahi
                     </h4>
                     <ul class="space-y-1">
                         <!-- Wisata sub-items -->
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori(''),200)" class="footer-nav-item w-full">
-                                <span class="footer-nav-icon" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.25)">
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori(''),200)"
+                                class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"
+                                    style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.25)">
                                     <i class="ph-fill ph-tree" style="color:#34d399"></i>
                                 </span>Wisata Alam
                             </button>
                         </li>
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Buatan'),200)" class="footer-nav-item w-full">
-                                <span class="footer-nav-icon" style="background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.25)">
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Buatan'),200)"
+                                class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"
+                                    style="background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.25)">
                                     <i class="ph-fill ph-buildings" style="color:#60a5fa"></i>
                                 </span>Wisata Buatan
                             </button>
                         </li>
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Religi dan Budaya'),200)" class="footer-nav-item w-full">
-                                <span class="footer-nav-icon" style="background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.25)">
+                            <button
+                                onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Wisata Religi dan Budaya'),200)"
+                                class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"
+                                    style="background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.25)">
                                     <i class="ph-fill ph-mosque" style="color:#c4b5fd"></i>
                                 </span>Wisata Religi &amp; Budaya
                             </button>
                         </li>
                         <li>
-                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Desa Wisata'),200)" class="footer-nav-item w-full">
-                                <span class="footer-nav-icon" style="background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.25)">
+                            <button onclick="navigate('wisata'); setTimeout(()=>setWisataKategori('Desa Wisata'),200)"
+                                class="footer-nav-item w-full">
+                                <span class="footer-nav-icon"
+                                    style="background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.25)">
                                     <i class="ph-fill ph-house-line" style="color:#fbbf24"></i>
                                 </span>Desa Wisata
                             </button>
                         </li>
                         <!-- Divider -->
-                        <li class="pt-1 pb-1"><div class="h-px bg-white/8 mx-2"></div></li>
+                        <li class="pt-1 pb-1">
+                            <div class="h-px bg-white/8 mx-2"></div>
+                        </li>
                         <!-- Event & Ekraf -->
                         <li>
                             <button onclick="navigate('event')" class="footer-nav-item w-full">
-                                <span class="footer-nav-icon" style="background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.25)">
+                                <span class="footer-nav-icon"
+                                    style="background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.25)">
                                     <i class="ph-fill ph-calendar-star" style="color:#c4b5fd"></i>
                                 </span>Event &amp; Kegiatan
                             </button>
                         </li>
                         <li>
                             <button onclick="navigate('ekraf')" class="footer-nav-item w-full">
-                                <span class="footer-nav-icon" style="background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.25)">
+                                <span class="footer-nav-icon"
+                                    style="background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.25)">
                                     <i class="ph-fill ph-storefront" style="color:#fb923c"></i>
                                 </span>Ekonomi Kreatif
                             </button>
@@ -2548,20 +2732,24 @@
 
                 <!-- Kontak col (3/12) -->
                 <div class="lg:col-span-3">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5">Kontak Kami</h4>
+                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-5">Kontak Kami
+                    </h4>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
                                 <i class="ph-fill ph-phone text-brand-400 text-sm"></i>
                             </div>
                             <div>
                                 <p class="text-[10px] text-white/35 uppercase tracking-wider font-bold">Telepon</p>
                                 <a id="footer-telepon" href="tel:02853391141"
-                                    class="text-sm font-semibold text-white/80 hover:text-white transition mt-0.5 block">(0285) 391141</a>
+                                    class="text-sm font-semibold text-white/80 hover:text-white transition mt-0.5 block">(0285)
+                                    391141</a>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
                                 <i class="ph-fill ph-envelope text-rose-400 text-sm"></i>
                             </div>
                             <div>
@@ -2571,13 +2759,14 @@
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
                                 <i class="ph-fill ph-map-pin text-amber-400 text-sm"></i>
                             </div>
                             <div>
                                 <p class="text-[10px] text-white/35 uppercase tracking-wider font-bold">Alamat</p>
-                                <p id="footer-alamat"
-                                    class="text-sm font-medium text-white/65 mt-0.5 leading-snug">Jl. RA Kartini No.1, Bogoran, Kauman, Kec. Batang, Jawa Tengah 51216</p>
+                                <p id="footer-alamat" class="text-sm font-medium text-white/65 mt-0.5 leading-snug">Jl.
+                                    RA Kartini No.1, Bogoran, Kauman, Kec. Batang, Jawa Tengah 51216</p>
                             </div>
                         </li>
                     </ul>
@@ -3053,13 +3242,13 @@
             if (sk) sk.textContent = fmt(jumlahEkraf);
             if (ss) ss.textContent = jumlahSubsektor > 0 ? String(jumlahSubsektor) : '0';
             // Footer mini stats
-            const fmtShort = n => n >= 1000 ? (n/1000).toFixed(1)+'K' : String(n);
+            const fmtShort = n => n >= 1000 ? (n / 1000).toFixed(1) + 'K' : String(n);
             const fsw = document.getElementById('footer-stat-wisata');
             const fse = document.getElementById('footer-stat-event');
             const fsk = document.getElementById('footer-stat-ekraf');
-            if (fsw) fsw.textContent = jumlahWisata > 0 ? fmtShort(jumlahWisata)+'+' : '0';
-            if (fse) fse.textContent = jumlahEvent  > 0 ? fmtShort(jumlahEvent) +'+' : '0';
-            if (fsk) fsk.textContent = jumlahEkraf  > 0 ? fmtShort(jumlahEkraf) +'+' : '0';
+            if (fsw) fsw.textContent = jumlahWisata > 0 ? fmtShort(jumlahWisata) + '+' : '0';
+            if (fse) fse.textContent = jumlahEvent > 0 ? fmtShort(jumlahEvent) + '+' : '0';
+            if (fsk) fsk.textContent = jumlahEkraf > 0 ? fmtShort(jumlahEkraf) + '+' : '0';
         }
 
         function renderAllViews() {
@@ -3068,7 +3257,7 @@
             const gwHomeCount = parseInt(document.getElementById('grid-home-wisata')?.dataset.count || '4', 10);
             const geHomeCount = parseInt(document.getElementById('grid-home-ekraf')?.dataset.count || '3', 10);
             document.getElementById('grid-home-wisata').innerHTML = getSelectedHomeItems(wisataData, homeWisataSelectedIds, gwHomeCount, homeWisataSelectionReady).map(createWisataCard).join('');
-            document.getElementById('grid-home-event').innerHTML  = eventData.slice(0, 4).map(createEventCardBlock).join('');
+            document.getElementById('grid-home-event').innerHTML = eventData.slice(0, 4).map(createEventCardBlock).join('');
             const homeEkraf = document.getElementById('grid-home-ekraf');
             if (homeEkraf) homeEkraf.innerHTML = getSelectedHomeItems(ekrafData, homeEkrafSelectedIds, geHomeCount, homeEkrafSelectionReady).map(createEkrafCard).join('');
             // Wisata
@@ -3717,33 +3906,33 @@
         }
 
         function switchAdminTab(tab) {
-            const forms  = { beranda: 'admin-form-beranda', wisata: 'admin-form-wisata', event: 'admin-form-event', ekraf: 'admin-form-ekraf', kontak: 'admin-form-kontak' };
+            const forms = { beranda: 'admin-form-beranda', wisata: 'admin-form-wisata', event: 'admin-form-event', ekraf: 'admin-form-ekraf', kontak: 'admin-form-kontak' };
             const tables = { beranda: null, wisata: 'table-wisata-container', event: 'table-event-container', ekraf: 'table-ekraf-container', kontak: null };
-            const tabs   = { beranda: 'tab-beranda', wisata: 'tab-wisata', event: 'tab-event', ekraf: 'tab-ekraf', kontak: 'tab-kontak' };
+            const tabs = { beranda: 'tab-beranda', wisata: 'tab-wisata', event: 'tab-event', ekraf: 'tab-ekraf', kontak: 'tab-kontak' };
 
             Object.keys(forms).forEach(key => {
-                const form   = document.getElementById(forms[key]);
-                const table  = tables[key] ? document.getElementById(tables[key]) : null;
+                const form = document.getElementById(forms[key]);
+                const table = tables[key] ? document.getElementById(tables[key]) : null;
                 const tabBtn = document.getElementById(tabs[key]);
-                if (form)   { form.classList.add('hidden'); form.classList.remove('block'); }
-                if (table)  { table.classList.add('hidden'); table.classList.remove('block'); }
+                if (form) { form.classList.add('hidden'); form.classList.remove('block'); }
+                if (table) { table.classList.add('hidden'); table.classList.remove('block'); }
                 if (tabBtn) {
                     tabBtn.classList.remove('text-brand-600', 'border-brand-600');
                     tabBtn.classList.add('text-gray-500', 'border-transparent', 'hover:text-gray-700');
                 }
             });
 
-            const activeForm  = document.getElementById(forms[tab]);
+            const activeForm = document.getElementById(forms[tab]);
             const activeTable = tables[tab] ? document.getElementById(tables[tab]) : null;
-            const activeTab   = document.getElementById(tabs[tab]);
-            if (activeForm)  { activeForm.classList.remove('hidden'); activeForm.classList.add('block'); }
+            const activeTab = document.getElementById(tabs[tab]);
+            if (activeForm) { activeForm.classList.remove('hidden'); activeForm.classList.add('block'); }
             if (activeTable) { activeTable.classList.remove('hidden'); activeTable.classList.add('block'); }
-            if (activeTab)   {
+            if (activeTab) {
                 activeTab.classList.add('text-brand-600', 'border-brand-600');
                 activeTab.classList.remove('text-gray-500', 'border-transparent', 'hover:text-gray-700');
             }
             if (tab === 'beranda') { loadHeroSlidesAdmin(); renderHomePickers(); refreshHomePreview(); }
-            if (tab === 'kontak')  { loadKontakAdmin(); }
+            if (tab === 'kontak') { loadKontakAdmin(); }
         }
 
         // ---------------------------------------------------------
@@ -4936,7 +5125,7 @@
 
         function initHeroSlideshow() {
             const container = document.getElementById('hero-slides');
-            const dotsEl    = document.getElementById('hero-dots');
+            const dotsEl = document.getElementById('hero-dots');
             if (!container) return;
 
             // Build slide divs
@@ -4973,7 +5162,7 @@
 
         function heroGoTo(idx) {
             const slides = document.querySelectorAll('.hero-slide');
-            const dots   = document.querySelectorAll('#hero-dots button');
+            const dots = document.querySelectorAll('#hero-dots button');
             if (!slides.length) return;
 
             slides[heroCurrentIdx].classList.remove('opacity-100');
@@ -5066,13 +5255,13 @@
 
         function updateHeroSlidePreview() {
             const strip = document.getElementById('hero-slide-preview-strip');
-            const urls  = Array.from(document.querySelectorAll('.hero-slide-input')).map(i => i.value.trim()).filter(v => v);
+            const urls = Array.from(document.querySelectorAll('.hero-slide-input')).map(i => i.value.trim()).filter(v => v);
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-10 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
                     <img src="${url}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.3'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <span class="text-white text-xs font-bold">${i+1}</span>
+                        <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
                 </div>`).join('');
         }
@@ -5279,36 +5468,36 @@
                 wPrev.innerHTML = selectedWisata.map(w => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${w.foto
-                            ? `<img src="${optimizeImage(w.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold\\'>No Image</div>'">`
-                            : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold">${w.nama || '?'}</div>`}
+                        ? `<img src="${optimizeImage(w.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold\\'>No Image</div>'">`
+                        : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold">${w.nama || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-4">Belum ada wisata yang dipilih.</p>';
             }
             if (ePrev) {
                 ePrev.innerHTML = selectedEkraf.map(e => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${e.foto
-                            ? `<img src="${optimizeImage(e.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center\\'>No Image</div>'">`
-                            : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center">${e.brand || '?'}</div>`}
+                        ? `<img src="${optimizeImage(e.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center\\'>No Image</div>'">`
+                        : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center">${e.brand || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-3">Belum ada ekraf yang dipilih.</p>';
             }
         }
 
         // Live preview refresh on dropdown change
         document.addEventListener('change', e => {
-            if (['inp-home-wisata-count','inp-home-ekraf-count'].includes(e.target.id)) {
+            if (['inp-home-wisata-count', 'inp-home-ekraf-count'].includes(e.target.id)) {
                 refreshHomePreview();
             }
         });
 
         // Beranda form submit
-        document.getElementById('admin-form-beranda').addEventListener('submit', async function(e) {
+        document.getElementById('admin-form-beranda').addEventListener('submit', async function (e) {
             e.preventDefault();
             const btn = document.getElementById('btn-submit-beranda');
             btn.innerText = 'Menyimpan...'; btn.classList.add('opacity-70');
 
-            const urls    = getHeroSlideUrls();
-            const wCount  = parseInt(document.getElementById('inp-home-wisata-count').value, 10);
-            const eCount  = parseInt(document.getElementById('inp-home-ekraf-count').value, 10);
+            const urls = getHeroSlideUrls();
+            const wCount = parseInt(document.getElementById('inp-home-wisata-count').value, 10);
+            const eCount = parseInt(document.getElementById('inp-home-ekraf-count').value, 10);
 
             homeWisataSelectedIds = homeWisataSelectedIds.map(id => String(id));
             homeEkrafSelectedIds = homeEkrafSelectedIds.map(id => String(id));
@@ -5341,12 +5530,12 @@
 
             // ── Simpan ke Supabase site_settings ──
             const saved = await saveSiteSettings({
-                hero_slides:       heroSlides,
-                home_wisata_ids:   homeWisataSelectedIds,
-                home_ekraf_ids:    homeEkrafSelectedIds,
+                hero_slides: heroSlides,
+                home_wisata_ids: homeWisataSelectedIds,
+                home_ekraf_ids: homeEkrafSelectedIds,
                 home_wisata_count: wCount,
-                home_ekraf_count:  eCount,
-                updated_at:        new Date().toISOString(),
+                home_ekraf_count: eCount,
+                updated_at: new Date().toISOString(),
             });
 
             setTimeout(() => {
@@ -5385,7 +5574,7 @@
                     kontakData = { ...kontakData, ...data };
                     renderKontakPage();
                 }
-            } catch(e) { /* fallback to defaults */ }
+            } catch (e) { /* fallback to defaults */ }
         }
 
         function renderKontakPage() {
@@ -5401,7 +5590,7 @@
 
             // Telepon
             const tp = document.getElementById('kontak-telepon');
-            if (tp) { tp.textContent = d.telepon || ''; tp.href = 'tel:' + (d.telepon || '').replace(/\D/g,''); }
+            if (tp) { tp.textContent = d.telepon || ''; tp.href = 'tel:' + (d.telepon || '').replace(/\D/g, ''); }
 
             // Fax
             const fx = document.getElementById('kontak-fax');
@@ -5422,9 +5611,9 @@
             // Social media
             const socials = [
                 { key: 'instagram', label: 'Instagram', icon: 'ph-fill ph-instagram-logo', cls: 'bg-gradient-to-br from-purple-500 to-pink-500' },
-                { key: 'facebook',  label: 'Facebook',  icon: 'ph-fill ph-facebook-logo',  cls: 'bg-blue-600' },
-                { key: 'twitter',   label: 'X / Twitter',icon: 'ph-fill ph-x-logo',        cls: 'bg-black' },
-                { key: 'tiktok',    label: 'TikTok',    icon: 'ph-fill ph-tiktok-logo',    cls: 'bg-gray-900' },
+                { key: 'facebook', label: 'Facebook', icon: 'ph-fill ph-facebook-logo', cls: 'bg-blue-600' },
+                { key: 'twitter', label: 'X / Twitter', icon: 'ph-fill ph-x-logo', cls: 'bg-black' },
+                { key: 'tiktok', label: 'TikTok', icon: 'ph-fill ph-tiktok-logo', cls: 'bg-gray-900' },
             ].filter(s => d[s.key]);
 
             const socmedList = document.getElementById('kontak-socmed-list');
@@ -5447,11 +5636,11 @@
             // Text fields
             const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val || ''; };
             set('footer-telepon', d.telepon);
-            set('footer-email',   d.email);
-            set('footer-alamat',  d.alamat);
+            set('footer-email', d.email);
+            set('footer-alamat', d.alamat);
             // Hrefs
             const tpEl = document.getElementById('footer-telepon');
-            if (tpEl) tpEl.href = d.telepon ? 'tel:' + d.telepon.replace(/\D/g,'') : '#';
+            if (tpEl) tpEl.href = d.telepon ? 'tel:' + d.telepon.replace(/\D/g, '') : '#';
             const emEl = document.getElementById('footer-email');
             if (emEl) emEl.href = d.email ? 'mailto:' + d.email : '#';
             // Social links
@@ -5464,24 +5653,24 @@
             });
         }
 
-        document.getElementById('admin-form-kontak').addEventListener('submit', async function(e) {
+        document.getElementById('admin-form-kontak').addEventListener('submit', async function (e) {
             e.preventDefault();
-            const btn   = document.getElementById('btn-submit-kontak');
+            const btn = document.getElementById('btn-submit-kontak');
             const alert = document.getElementById('kontak-admin-alert');
             btn.innerText = 'Menyimpan...'; btn.classList.add('opacity-70');
 
             const newData = {
                 nama_instansi: document.getElementById('inp-kontak-nama-instansi').value,
-                alamat:        document.getElementById('inp-kontak-alamat').value,
-                telepon:       document.getElementById('inp-kontak-telepon').value,
-                fax:           document.getElementById('inp-kontak-fax').value,
-                email:         document.getElementById('inp-kontak-email').value,
-                instagram:     document.getElementById('inp-kontak-instagram').value,
-                facebook:      document.getElementById('inp-kontak-facebook').value,
-                twitter:       document.getElementById('inp-kontak-twitter').value,
-                tiktok:        document.getElementById('inp-kontak-tiktok').value,
-                maps_link:     document.getElementById('inp-kontak-maps-link').value,
-                maps_embed:    document.getElementById('inp-kontak-maps-embed').value,
+                alamat: document.getElementById('inp-kontak-alamat').value,
+                telepon: document.getElementById('inp-kontak-telepon').value,
+                fax: document.getElementById('inp-kontak-fax').value,
+                email: document.getElementById('inp-kontak-email').value,
+                instagram: document.getElementById('inp-kontak-instagram').value,
+                facebook: document.getElementById('inp-kontak-facebook').value,
+                twitter: document.getElementById('inp-kontak-twitter').value,
+                tiktok: document.getElementById('inp-kontak-tiktok').value,
+                maps_link: document.getElementById('inp-kontak-maps-link').value,
+                maps_embed: document.getElementById('inp-kontak-maps-embed').value,
             };
 
             try {
@@ -5498,7 +5687,7 @@
                     alert.classList.remove('hidden');
                     setTimeout(() => alert.classList.add('hidden'), 4000);
                 }
-            } catch(err) {
+            } catch (err) {
                 // Save locally even if Supabase fails
                 kontakData = { ...kontakData, ...newData };
                 renderKontakPage();
@@ -5517,12 +5706,12 @@
         // ---------------------------------------------------------
         async function submitPesanKontak(e) {
             e.preventDefault();
-            const btn   = document.getElementById('btn-kirim-pesan');
+            const btn = document.getElementById('btn-kirim-pesan');
             const alert = document.getElementById('pesan-alert');
-            const nama  = document.getElementById('pesan-nama').value.trim();
-            const kontak= document.getElementById('pesan-kontak-val').value.trim();
-            const subjek= document.getElementById('pesan-subjek').value;
-            const isi   = document.getElementById('pesan-isi').value.trim();
+            const nama = document.getElementById('pesan-nama').value.trim();
+            const kontak = document.getElementById('pesan-kontak-val').value.trim();
+            const subjek = document.getElementById('pesan-subjek').value;
+            const isi = document.getElementById('pesan-isi').value.trim();
 
             btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Mengirim...'; btn.disabled = true;
 
@@ -5537,7 +5726,7 @@
                     alert.classList.remove('hidden');
                 }
                 document.getElementById('form-pesan-kontak').reset();
-            } catch(err) {
+            } catch (err) {
                 if (alert) {
                     alert.className = 'rounded-xl px-4 py-3 text-sm font-semibold bg-red-50 text-red-700 border border-red-200 flex items-center gap-2';
                     alert.innerHTML = '<i class="ph-fill ph-warning text-red-500 text-lg"></i> Gagal mengirim: ' + (err.message || 'Coba lagi.');
