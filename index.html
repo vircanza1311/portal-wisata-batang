@@ -1468,6 +1468,18 @@
                 </div>
                 <p id="ekraf-empty" class="hidden text-center text-gray-400 py-16 text-sm">Belum ada data ekonomi
                     kreatif untuk subsektor ini.</p>
+                <!-- P2: Ekraf pagination controls -->
+                <div id="ekraf-pagination" class="hidden flex justify-center items-center gap-2 mt-10">
+                    <button id="ekraf-prev-btn" onclick="ekrafPrevPage()"
+                        class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        <i class="ph ph-caret-left text-sm"></i>
+                    </button>
+                    <div id="ekraf-page-numbers" class="flex items-center gap-1"></div>
+                    <button id="ekraf-next-btn" onclick="ekrafNextPage()"
+                        class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        <i class="ph ph-caret-right text-sm"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -3272,16 +3284,126 @@
                 </div>`;
         }
 
+        // P2: Ekraf pagination state
+        let ekrafCurrentPage = 1;
+        const EKRAF_PER_PAGE = 24;
+        let ekrafFilteredData = []; // Simpan data terfilter untuk pagination
+
         function renderEkrafGrid(data) {
             const grid = document.getElementById('grid-all-ekraf');
             const empty = document.getElementById('ekraf-empty');
+            const pagination = document.getElementById('ekraf-pagination');
             if (!grid) return;
+
+            // Simpan data terfilter untuk navigasi halaman
+            ekrafFilteredData = data || [];
+            ekrafCurrentPage = 1; // Reset ke halaman 1 setiap filter berubah
+
             if (!data || data.length === 0) {
                 grid.innerHTML = '';
                 if (empty) empty.classList.remove('hidden');
+                if (pagination) { pagination.classList.add('hidden'); pagination.style.display = ''; }
             } else {
-                grid.innerHTML = data.map(createEkrafCard).join('');
+                renderEkrafCurrentPage();
                 if (empty) empty.classList.add('hidden');
+            }
+        }
+
+        function renderEkrafCurrentPage() {
+            const grid = document.getElementById('grid-all-ekraf');
+            const pagination = document.getElementById('ekraf-pagination');
+            if (!grid) return;
+
+            const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
+            const startIdx = (ekrafCurrentPage - 1) * EKRAF_PER_PAGE;
+            const endIdx = startIdx + EKRAF_PER_PAGE;
+            const pageData = ekrafFilteredData.slice(startIdx, endIdx);
+
+            grid.innerHTML = pageData.map(createEkrafCard).join('');
+
+            // Tampilkan/sembunyikan pagination
+            if (totalPages > 1 && pagination) {
+                pagination.classList.remove('hidden');
+                pagination.style.display = 'flex';
+                renderEkrafPageNumbers(totalPages);
+
+                // Update tombol prev/next
+                const prevBtn = document.getElementById('ekraf-prev-btn');
+                const nextBtn = document.getElementById('ekraf-next-btn');
+                if (prevBtn) prevBtn.disabled = ekrafCurrentPage <= 1;
+                if (nextBtn) nextBtn.disabled = ekrafCurrentPage >= totalPages;
+            } else if (pagination) {
+                pagination.classList.add('hidden');
+                pagination.style.display = '';
+            }
+
+            // Scroll ke atas grid saat pindah halaman
+            if (ekrafCurrentPage > 1) {
+                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function renderEkrafPageNumbers(totalPages) {
+            const container = document.getElementById('ekraf-page-numbers');
+            if (!container) return;
+            container.innerHTML = '';
+
+            // Logika penomoran halaman: tampilkan maks 5 nomor halaman dengan ellipsis
+            const maxVisible = 5;
+            let startPage = Math.max(1, ekrafCurrentPage - Math.floor(maxVisible / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+            // Sesuaikan jika di dekat akhir
+            if (endPage - startPage + 1 < maxVisible) {
+                startPage = Math.max(1, endPage - maxVisible + 1);
+            }
+
+            // Halaman pertama + ellipsis kiri
+            if (startPage > 1) {
+                container.innerHTML += `<button onclick="ekrafGoToPage(1)" class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition text-sm font-medium">1</button>`;
+                if (startPage > 2) {
+                    container.innerHTML += `<span class="w-9 h-9 flex items-center justify-center text-gray-400 text-sm">...</span>`;
+                }
+            }
+
+            // Nomor halaman aktif
+            for (let p = startPage; p <= endPage; p++) {
+                const isActive = p === ekrafCurrentPage;
+                const activeClass = isActive
+                    ? 'bg-brand-600 text-white border-brand-600 font-bold'
+                    : 'border-gray-200 text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 font-medium';
+                container.innerHTML += `<button onclick="ekrafGoToPage(${p})" class="w-9 h-9 rounded-lg border flex items-center justify-center transition text-sm ${activeClass}" ${isActive ? 'disabled' : ''}>${p}</button>`;
+            }
+
+            // Ellipsis kanan + halaman terakhir
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    container.innerHTML += `<span class="w-9 h-9 flex items-center justify-center text-gray-400 text-sm">...</span>`;
+                }
+                container.innerHTML += `<button onclick="ekrafGoToPage(${totalPages})" class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition text-sm font-medium">${totalPages}</button>`;
+            }
+        }
+
+        function ekrafPrevPage() {
+            if (ekrafCurrentPage > 1) {
+                ekrafCurrentPage--;
+                renderEkrafCurrentPage();
+            }
+        }
+
+        function ekrafNextPage() {
+            const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
+            if (ekrafCurrentPage < totalPages) {
+                ekrafCurrentPage++;
+                renderEkrafCurrentPage();
+            }
+        }
+
+        function ekrafGoToPage(page) {
+            const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
+            if (page >= 1 && page <= totalPages) {
+                ekrafCurrentPage = page;
+                renderEkrafCurrentPage();
             }
         }
 
@@ -3510,15 +3632,24 @@
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail wisata...</span></div>';
 
             if (isSupabaseConnected && data) {
-                try {
-                    const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', data.id).single();
-                    if (!error && fullData) {
-                        data = fullData;
-                        const index = wisataData.findIndex(w => w.id == data.id);
-                        if (index !== -1) wisataData[index] = fullData;
+                // P1: Cek cache — jika galeri sudah pernah di-fetch, skip request ulang ke Supabase
+                const cachedIndex = wisataData.findIndex(w => w.id == data.id);
+                const isCached = cachedIndex !== -1 && wisataData[cachedIndex].galeri && wisataData[cachedIndex].galeri.length > 0;
+
+                if (!isCached) {
+                    try {
+                        const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', data.id).single();
+                        if (!error && fullData) {
+                            data = fullData;
+                            const index = wisataData.findIndex(w => w.id == data.id);
+                            if (index !== -1) wisataData[index] = fullData;
+                        }
+                    } catch (err) {
+                        console.error("Error fetching detail wisata:", err);
                     }
-                } catch (err) {
-                    console.error("Error fetching detail wisata:", err);
+                } else {
+                    // Gunakan data dari cache
+                    data = wisataData[cachedIndex];
                 }
             }
 
@@ -3559,7 +3690,7 @@
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
-                                    <img src="${optimizeImage(url, 600)}" alt="Galeri Wisata ${i + 1}"
+                                    <img src="${optimizeImage(url, 600)}" alt="Galeri Wisata ${i + 1}" loading="lazy"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
@@ -3627,15 +3758,24 @@
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail event...</span></div>';
 
             if (isSupabaseConnected && data) {
-                try {
-                    const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', data.id).single();
-                    if (!error && fullData) {
-                        data = fullData;
-                        const index = eventData.findIndex(e => e.id == data.id);
-                        if (index !== -1) eventData[index] = fullData;
+                // P1: Cek cache — jika galeri sudah pernah di-fetch, skip request ulang ke Supabase
+                const cachedIndex = eventData.findIndex(e => e.id == data.id);
+                const isCached = cachedIndex !== -1 && eventData[cachedIndex].galeri && eventData[cachedIndex].galeri.length > 0;
+
+                if (!isCached) {
+                    try {
+                        const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', data.id).single();
+                        if (!error && fullData) {
+                            data = fullData;
+                            const index = eventData.findIndex(e => e.id == data.id);
+                            if (index !== -1) eventData[index] = fullData;
+                        }
+                    } catch (err) {
+                        console.error("Error fetching detail event:", err);
                     }
-                } catch (err) {
-                    console.error("Error fetching detail event:", err);
+                } else {
+                    // Gunakan data dari cache
+                    data = eventData[cachedIndex];
                 }
             }
 
@@ -3678,7 +3818,7 @@
                                 <div class="relative overflow-hidden cursor-pointer group ${i === 0 && data.galeri.length >= 3 ? 'col-span-2' : ''}"
                                      style="aspect-ratio:${i === 0 && data.galeri.length >= 3 ? '16/9' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, '&#39;')})">
-                                    <img src="${optimizeImage(url, 600)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                                    <img src="${optimizeImage(url, 600)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
@@ -3729,15 +3869,24 @@
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail ekraf...</span></div>';
 
             if (isSupabaseConnected && data) {
-                try {
-                    const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', data.id).single();
-                    if (!error && fullData) {
-                        data = fullData;
-                        const index = ekrafData.findIndex(e => e.id == data.id);
-                        if (index !== -1) ekrafData[index] = fullData;
+                // P1: Cek cache — jika galeri sudah pernah di-fetch, skip request ulang ke Supabase
+                const cachedIndex = ekrafData.findIndex(e => e.id == data.id);
+                const isCached = cachedIndex !== -1 && ekrafData[cachedIndex].galeri && ekrafData[cachedIndex].galeri.length > 0;
+
+                if (!isCached) {
+                    try {
+                        const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', data.id).single();
+                        if (!error && fullData) {
+                            data = fullData;
+                            const index = ekrafData.findIndex(e => e.id == data.id);
+                            if (index !== -1) ekrafData[index] = fullData;
+                        }
+                    } catch (err) {
+                        console.error("Error fetching detail ekraf:", err);
                     }
-                } catch (err) {
-                    console.error("Error fetching detail ekraf:", err);
+                } else {
+                    // Gunakan data dari cache
+                    data = ekrafData[cachedIndex];
                 }
             }
 
@@ -3873,7 +4022,7 @@
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
-                                    <img src="${optimizeImage(url, 600)}" alt="Galeri ${i + 1}"
+                                    <img src="${optimizeImage(url, 600)}" alt="Galeri ${i + 1}" loading="lazy"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
