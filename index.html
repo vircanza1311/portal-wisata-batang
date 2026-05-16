@@ -230,7 +230,7 @@
                 <button onclick="navigate('event')" class="hover:text-brand-700 transition">Event</button>
                 <button onclick="navigate('ekraf')" id="nav-ekraf" class="hover:text-brand-700 transition">Ekonomi
                     Kreatif</button>
-                <button class="hover:text-brand-700 transition">Tentang</button>
+                <button onclick="navigate('tentang')" class="hover:text-brand-700 transition">Tentang</button>
                 <button onclick="navigate('kontak')" class="hover:text-brand-700 transition">Kontak</button>
             </div>
 
@@ -266,7 +266,7 @@
                     class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
                     <i class="ph-fill ph-lightbulb text-brand-400 text-base w-5 text-center"></i> Ekonomi Kreatif
                 </button>
-                <button
+                <button onclick="mobileNav('tentang')"
                     class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
                     <i class="ph-fill ph-info text-brand-400 text-base w-5 text-center"></i> Tentang
                 </button>
@@ -489,7 +489,7 @@
                             </div>
 
                             <!-- Selected kecamatan panel -->
-                            <div id="map-panel-info" class="hidden flex flex-col h-full">
+                            <div id="map-panel-info" class="hidden flex-col h-full">
                                 <div class="flex items-center gap-3 mb-5">
                                     <div
                                         class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center shrink-0">
@@ -945,6 +945,7 @@
                         </div>
                     </div>
                 </div>
+            </div><!-- /bg-gray-50 wrapper fix: penutup div yang terbuka di awal section wisata -->
         </section>
 
         <!-- 3. VIEW: DETAIL WISATA -->
@@ -1134,13 +1135,13 @@
 
             <!-- Calendar Day Popup (floating, for mobile) -->
             <div id="cal-popup"
-                class="hidden fixed inset-0 bg-black/50 z-[90] flex items-end sm:items-center justify-center p-4"
+                class="hidden fixed inset-0 bg-black/50 z-[90] items-end sm:items-center justify-center p-4"
                 onclick="closeCalPopup(event)">
                 <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 transform transition-all"
                     onclick="event.stopPropagation()">
                     <div class="flex items-center justify-between mb-4">
                         <h4 id="popup-title" class="font-bold text-gray-900 text-base"></h4>
-                        <button onclick="document.getElementById('cal-popup').classList.add('hidden')"
+                        <button onclick="const p=document.getElementById('cal-popup');p.classList.add('hidden');p.style.display='';"
                             class="text-gray-400 hover:text-gray-700"><i class="ph ph-x text-lg"></i></button>
                     </div>
                     <div id="popup-list" class="space-y-3 max-h-64 overflow-y-auto"></div>
@@ -1434,7 +1435,7 @@
 
                 <!-- Filter active indicator: subsektor -->
                 <div id="ekraf-filter-bar"
-                    class="hidden flex items-center gap-3 mb-4 p-3 bg-brand-50 rounded-xl border border-brand-100">
+                    class="hidden items-center gap-3 mb-4 p-3 bg-brand-50 rounded-xl border border-brand-100">
                     <span class="text-sm text-brand-700 font-semibold">Subsektor: <span
                             id="ekraf-filter-label"></span></span>
                     <button onclick="clearEkrafFilter()"
@@ -1443,7 +1444,7 @@
                 </div>
                 <!-- Filter active indicator: lokasi (from map explore) -->
                 <div id="ekraf-lokasi-filter-bar"
-                    class="hidden flex items-center gap-3 mb-6 p-3 bg-cyan-50 rounded-xl border border-cyan-100">
+                    class="hidden items-center gap-3 mb-6 p-3 bg-cyan-50 rounded-xl border border-cyan-100">
                     <i class="ph-fill ph-map-pin text-cyan-500"></i>
                     <span class="text-sm text-cyan-700 font-semibold">Kecamatan: <span
                             id="ekraf-lokasi-filter-label"></span></span>
@@ -1699,6 +1700,101 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW: TENTANG ==================== -->
+        <section id="view-tentang" class="page-view bg-white min-h-screen">
+            <!-- Hero Header -->
+            <div class="relative overflow-hidden bg-gradient-to-br from-brand-800 via-brand-700 to-indigo-600 pt-14 pb-20 px-4">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-10 w-64 h-64 bg-white/5 rounded-full translate-y-1/2 pointer-events-none"></div>
+                <div class="max-w-4xl mx-auto text-center relative z-10">
+                    <span class="inline-block bg-white/15 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/20">Portal Resmi</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">Tentang Dolan Batang</h1>
+                    <p class="text-white/70 text-base md:text-lg max-w-xl mx-auto">Portal informasi pariwisata, ekonomi kreatif, dan budaya Kabupaten Batang</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 py-16 space-y-16">
+                <!-- Tentang Portal -->
+                <div class="flex flex-col md:flex-row gap-10 items-start">
+                    <div class="w-full md:w-1/2">
+                        <p class="text-xs font-bold text-brand-600 uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
+                            <i class="ph-fill ph-info text-brand-500"></i> Tentang Portal
+                        </p>
+                        <h2 class="text-3xl font-black text-gray-900 mb-4 leading-tight">Selamat Datang di Portal Wisata Batang</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            <strong>Dolan Batang</strong> adalah portal informasi terpadu yang dikelola oleh Dinas Pariwisata, Kepemudaan, dan Olahraga Kabupaten Batang untuk mempromosikan potensi wisata, ekonomi kreatif, dan agenda kegiatan di Kabupaten Batang, Jawa Tengah.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Portal ini menjadi satu pintu akses bagi wisatawan, pelaku usaha, dan masyarakat umum untuk mendapatkan informasi terkini mengenai destinasi wisata, pelaku ekraf lokal, serta event dan festival yang berlangsung di Kabupaten Batang.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
+                        <div class="bg-brand-50 rounded-2xl p-6 border border-brand-100 text-center">
+                            <i class="ph-fill ph-map-pin text-brand-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-black text-brand-700" id="tentang-stat-wisata">—</p>
+                            <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Destinasi Wisata</p>
+                        </div>
+                        <div class="bg-green-50 rounded-2xl p-6 border border-green-100 text-center">
+                            <i class="ph-fill ph-calendar-check text-green-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-black text-green-700" id="tentang-stat-event">—</p>
+                            <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Event Terdaftar</p>
+                        </div>
+                        <div class="bg-amber-50 rounded-2xl p-6 border border-amber-100 text-center">
+                            <i class="ph-fill ph-storefront text-amber-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-black text-amber-700" id="tentang-stat-ekraf">—</p>
+                            <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Pelaku Ekraf</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-2xl p-6 border border-purple-100 text-center">
+                            <i class="ph-fill ph-map-trifold text-purple-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-black text-purple-700">15</p>
+                            <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Kecamatan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visi Misi -->
+                <div class="bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center mb-4">
+                                <i class="ph-fill ph-eye text-brand-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Visi</h3>
+                            <p class="text-gray-600 leading-relaxed">Mewujudkan Kabupaten Batang sebagai destinasi wisata unggulan di Jawa Tengah yang berkelanjutan, berbasis potensi lokal dan ekonomi kreatif.</p>
+                        </div>
+                        <div>
+                            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                                <i class="ph-fill ph-target text-green-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Misi</h3>
+                            <ul class="text-gray-600 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-green-500 mt-0.5 shrink-0"></i> Meningkatkan promosi dan aksesibilitas destinasi wisata</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-green-500 mt-0.5 shrink-0"></i> Mendorong pertumbuhan ekonomi kreatif lokal</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-green-500 mt-0.5 shrink-0"></i> Melestarikan budaya dan kearifan lokal Batang</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-green-500 mt-0.5 shrink-0"></i> Memperkuat kolaborasi antar pemangku kepentingan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Mulai Jelajahi Batang</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="navigate('wisata')" class="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-bold transition shadow-lg text-sm">
+                            <i class="ph-fill ph-map-trifold"></i> Destinasi Wisata
+                        </button>
+                        <button onclick="navigate('event')" class="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 px-6 py-3 rounded-xl font-bold transition shadow-sm text-sm">
+                            <i class="ph-fill ph-calendar-check text-brand-600"></i> Agenda Event
+                        </button>
+                        <button onclick="navigate('kontak')" class="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 px-6 py-3 rounded-xl font-bold transition shadow-sm text-sm">
+                            <i class="ph-fill ph-phone text-brand-600"></i> Hubungi Kami
+                        </button>
                     </div>
                 </div>
             </div>
@@ -2534,15 +2630,15 @@
 
                     <!-- Stats mini row -->
                     <div class="grid grid-cols-3 gap-3 mb-6">
-                        <div class="bg-white/8 rounded-xl p-3 text-center border border-white/10">
+                        <div class="bg-white/10 rounded-xl p-3 text-center border border-white/10">
                             <p id="footer-stat-wisata" class="text-lg font-extrabold text-white leading-none">—</p>
                             <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold mt-1">Wisata</p>
                         </div>
-                        <div class="bg-white/8 rounded-xl p-3 text-center border border-white/10">
+                        <div class="bg-white/10 rounded-xl p-3 text-center border border-white/10">
                             <p id="footer-stat-event" class="text-lg font-extrabold text-white leading-none">—</p>
                             <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold mt-1">Event</p>
                         </div>
-                        <div class="bg-white/8 rounded-xl p-3 text-center border border-white/10">
+                        <div class="bg-white/10 rounded-xl p-3 text-center border border-white/10">
                             <p id="footer-stat-ekraf" class="text-lg font-extrabold text-white leading-none">—</p>
                             <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold mt-1">Ekraf</p>
                         </div>
@@ -2551,16 +2647,20 @@
                     <!-- Social icons -->
                     <div class="flex gap-2.5 flex-wrap">
                         <!-- Social links: hidden by default, shown dynamically by syncFooterKontak() when URLs exist in DB -->
-                        <a id="footer-ig" href="#" target="_blank" class="footer-social-btn group" title="Instagram" style="display:none">
+                        <a id="footer-ig" href="#" target="_blank" class="footer-social-btn group" title="Instagram"
+                            style="display:none">
                             <i class="ph-fill ph-instagram-logo"></i>
                         </a>
-                        <a id="footer-fb" href="#" target="_blank" class="footer-social-btn group" title="Facebook" style="display:none">
+                        <a id="footer-fb" href="#" target="_blank" class="footer-social-btn group" title="Facebook"
+                            style="display:none">
                             <i class="ph-fill ph-facebook-logo"></i>
                         </a>
-                        <a id="footer-tw" href="#" target="_blank" class="footer-social-btn group" title="X / Twitter" style="display:none">
+                        <a id="footer-tw" href="#" target="_blank" class="footer-social-btn group" title="X / Twitter"
+                            style="display:none">
                             <i class="ph-fill ph-x-logo"></i>
                         </a>
-                        <a id="footer-tt" href="#" target="_blank" class="footer-social-btn group" title="TikTok" style="display:none">
+                        <a id="footer-tt" href="#" target="_blank" class="footer-social-btn group" title="TikTok"
+                            style="display:none">
                             <i class="ph-fill ph-tiktok-logo"></i>
                         </a>
                     </div>
@@ -2717,7 +2817,7 @@
                         </li>
                         <!-- Divider -->
                         <li class="pt-1 pb-1">
-                            <div class="h-px bg-white/8 mx-2"></div>
+                            <div class="h-px bg-white/10 mx-2"></div>
                         </li>
                         <!-- Event & Ekraf -->
                         <li>
@@ -2746,7 +2846,7 @@
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
                             <div
-                                class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                class="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
                                 <i class="ph-fill ph-phone text-brand-400 text-sm"></i>
                             </div>
                             <div>
@@ -2758,7 +2858,7 @@
                         </li>
                         <li class="flex items-start gap-3">
                             <div
-                                class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                class="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
                                 <i class="ph-fill ph-envelope text-rose-400 text-sm"></i>
                             </div>
                             <div>
@@ -2769,7 +2869,7 @@
                         </li>
                         <li class="flex items-start gap-3">
                             <div
-                                class="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                class="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
                                 <i class="ph-fill ph-map-pin text-amber-400 text-sm"></i>
                             </div>
                             <div>
@@ -2803,7 +2903,8 @@
                     <span class="hidden sm:block">·</span>
                     <span>Powered by Dolan Batang</span>
                     <span class="hidden sm:block">·</span>
-                    <button onclick="openPinModal()" class="hover:text-white transition flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/10 hover:bg-white/10">
+                    <button onclick="openPinModal()"
+                        class="hover:text-white transition flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/10 hover:bg-white/10">
                         <i class="ph-fill ph-lock-key text-xs"></i> Login Admin
                     </button>
                 </div>
@@ -2813,7 +2914,7 @@
 
 
     <!-- Lightbox Modal -->
-    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[200] hidden flex items-center justify-center"
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[200] hidden items-center justify-center"
         onclick="closeLightbox()">
         <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl z-10"><i
                 class="ph ph-x-circle"></i></button>
@@ -2830,7 +2931,7 @@
 
     <!-- PIN Modal -->
     <div id="pin-modal"
-        class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
+        class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center backdrop-blur-sm transition-opacity">
         <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm overflow-hidden transform transition-all scale-95 opacity-0 duration-200"
             id="pin-modal-content">
             <div class="p-6">
@@ -3017,8 +3118,9 @@
             renderAllViews();
             renderKontakPage();
             checkAdminStatus();
-            addGaleriInput();
-            addEventGaleriInput();
+            addGaleriInput();          // Ekraf galeri
+            addWisataGaleriInput();    // Wisata galeri — fix: was missing
+            addEventGaleriInput();     // Event galeri
             // Start hero crossfade slideshow (with persisted slides if available)
             initHeroSlideshow();
         }
@@ -3033,6 +3135,12 @@
             if (viewId === 'detail-wisata') buildDetailWisata(detailId);
             if (viewId === 'detail-event') buildDetailEvent(detailId);
             if (viewId === 'detail-ekraf') buildDetailEkraf(detailId);
+            if (viewId === 'admin') {
+                checkAdminStatus();
+                renderHomePickers();
+                loadHeroSlidesAdmin();
+                switchAdminTab('wisata');
+            }
         }
 
         function scrollToHomeMap() {
@@ -3198,7 +3306,7 @@
             ekrafLocationFilter = lokasi;
             const bar = document.getElementById('ekraf-lokasi-filter-bar');
             const label = document.getElementById('ekraf-lokasi-filter-label');
-            if (bar) { bar.classList.remove('hidden'); bar.classList.add('flex'); }
+            if (bar) { bar.classList.remove('hidden'); bar.style.display = 'flex'; }
             if (label) label.textContent = lokasi;
             applyEkrafFilters();
         }
@@ -3206,7 +3314,7 @@
         function clearEkrafLocationFilter() {
             ekrafLocationFilter = null;
             const bar = document.getElementById('ekraf-lokasi-filter-bar');
-            if (bar) { bar.classList.add('hidden'); bar.classList.remove('flex'); }
+            if (bar) { bar.classList.add('hidden'); bar.style.display = ''; }
             applyEkrafFilters();
         }
 
@@ -3214,7 +3322,7 @@
             ekrafFilterActive = subsektor;
             const filterBar = document.getElementById('ekraf-filter-bar');
             const filterLabel = document.getElementById('ekraf-filter-label');
-            if (filterBar) { filterBar.classList.remove('hidden'); filterBar.classList.add('flex'); }
+            if (filterBar) { filterBar.classList.remove('hidden'); filterBar.style.display = 'flex'; }
             if (filterLabel) filterLabel.textContent = subsektor;
             document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => {
                 btn.querySelector('div').style.background = '';
@@ -3228,14 +3336,40 @@
         function clearEkrafFilter() {
             ekrafFilterActive = null;
             const filterBar = document.getElementById('ekraf-filter-bar');
-            if (filterBar) { filterBar.classList.add('hidden'); filterBar.classList.remove('flex'); }
+            if (filterBar) { filterBar.classList.add('hidden'); filterBar.style.display = ''; }
             document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => { btn.style.opacity = '1'; btn.querySelector('div').style.background = ''; });
-
-            // Clear text search as well if needed, or leave it. We'll leave it but call applyEkrafFilters
             applyEkrafFilters();
         }
 
         // --- WISATA FILTERING ---
+
+        /**
+         * setWisataKategori — dipanggil dari footer dan navigasi cepat.
+         * Mengatur radio button kategori di halaman Wisata sesuai nilai yang diberikan,
+         * lalu menjalankan filterWisata() untuk memperbarui grid.
+         * @param {string} kategori - Nilai kategori sesuai atribut value pada radio button,
+         *   atau string kosong / 'Semua' untuk menampilkan semua kategori.
+         */
+        function setWisataKategori(kategori) {
+            const val = (!kategori || kategori.trim() === '') ? 'Semua' : kategori.trim();
+            const radios = document.querySelectorAll('input[name="kat"]');
+            let matched = false;
+            radios.forEach(radio => {
+                if (radio.value === val) {
+                    radio.checked = true;
+                    matched = true;
+                } else {
+                    radio.checked = false;
+                }
+            });
+            // Jika tidak ada yang cocok, default ke 'Semua'
+            if (!matched) {
+                const fallback = document.querySelector('input[name="kat"][value="Semua"]');
+                if (fallback) fallback.checked = true;
+            }
+            filterWisata();
+        }
+
         function renderWisataGrid(data) {
             const grid = document.getElementById('grid-all-wisata');
             if (!grid) return;
@@ -3282,6 +3416,15 @@
             if (se) se.textContent = fmt(jumlahEvent);
             if (sk) sk.textContent = fmt(jumlahEkraf);
             if (ss) ss.textContent = jumlahSubsektor > 0 ? String(jumlahSubsektor) : '0';
+
+            // Halaman Tentang — statistik mini
+            const tw = document.getElementById('tentang-stat-wisata');
+            const te = document.getElementById('tentang-stat-event');
+            const tk = document.getElementById('tentang-stat-ekraf');
+            if (tw) tw.textContent = fmt(jumlahWisata);
+            if (te) te.textContent = fmt(jumlahEvent);
+            if (tk) tk.textContent = fmt(jumlahEkraf);
+
             // Footer mini stats
             const fmtShort = n => n >= 1000 ? (n / 1000).toFixed(1) + 'K' : String(n);
             const fsw = document.getElementById('footer-stat-wisata');
@@ -4420,7 +4563,9 @@
             if (window.innerWidth < 640) {
                 document.getElementById('popup-title').textContent = `${evs.length} Event — ${dateLabel}`;
                 document.getElementById('popup-list').innerHTML = list.innerHTML;
-                document.getElementById('cal-popup').classList.remove('hidden');
+                const popup = document.getElementById('cal-popup');
+                popup.classList.remove('hidden');
+                popup.style.display = 'flex';
             }
         }
 
@@ -4431,7 +4576,9 @@
         }
 
         function closeCalPopup(e) {
-            document.getElementById('cal-popup').classList.add('hidden');
+            const popup = document.getElementById('cal-popup');
+            popup.classList.add('hidden');
+            popup.style.display = '';
         }
 
         function calPrev() {
@@ -4585,6 +4732,10 @@
         // ---------------------------------------------------------
         // GALERI FOTO WISATA — Admin Helpers
         // ---------------------------------------------------------
+
+        // Konstanta batas maksimal foto galeri (dipakai oleh semua galeri admin)
+        const MAX_GALERI = 10;
+
         function getWisataGaleriUrls() {
             return Array.from(document.querySelectorAll('.wisata-galeri-url-input'))
                 .map(i => i.value.trim()).filter(v => v.length > 0);
@@ -4784,9 +4935,8 @@
         }
 
         // ---------------------------------------------------------
-        // GALERI FOTO — Admin Helpers
+        // GALERI FOTO — Admin Helpers (Ekraf)
         // ---------------------------------------------------------
-        const MAX_GALERI = 10;
 
         function getGaleriUrls() {
             return Array.from(document.querySelectorAll('.galeri-url-input'))
@@ -4902,8 +5052,9 @@
             try { _lbUrls = typeof urlsJson === 'string' ? JSON.parse(urlsJson) : urlsJson; } catch (e) { _lbUrls = [url]; }
             _lbIdx = idx;
             _showLightbox();
-            document.getElementById('lightbox-modal').classList.remove('hidden');
-            document.getElementById('lightbox-modal').classList.add('flex');
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
         }
 
         function _showLightbox() {
@@ -4915,7 +5066,8 @@
 
         function closeLightbox() {
             const m = document.getElementById('lightbox-modal');
-            m.classList.add('hidden'); m.classList.remove('flex');
+            m.classList.add('hidden');
+            m.style.display = '';
         }
 
         function lightboxPrev(e) {
@@ -5205,7 +5357,7 @@
             const def = document.getElementById('map-panel-default');
             const info = document.getElementById('map-panel-info');
             if (def) def.classList.add('hidden');
-            if (info) info.classList.remove('hidden');
+            if (info) { info.classList.remove('hidden'); info.style.display = 'flex'; }
 
             mapCurrentKec = kec;
             mapCurrentPage = 1;
@@ -5233,7 +5385,7 @@
             const def = document.getElementById('map-panel-default');
             const info = document.getElementById('map-panel-info');
             if (def) def.classList.remove('hidden');
-            if (info) info.classList.add('hidden');
+            if (info) { info.classList.add('hidden'); info.style.display = ''; }
         }
 
         // ---------------------------------------------------------
@@ -5903,6 +6055,7 @@
             input.value = '';
             errorText.classList.add('hidden');
             modal.classList.remove('hidden');
+            modal.style.display = 'flex';
             setTimeout(() => {
                 modalContent.classList.remove('scale-95', 'opacity-0');
                 modalContent.classList.add('scale-100', 'opacity-100');
@@ -5915,7 +6068,7 @@
             const modalContent = document.getElementById('pin-modal-content');
             modalContent.classList.remove('scale-100', 'opacity-100');
             modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => { modal.classList.add('hidden'); }, 200);
+            setTimeout(() => { modal.classList.add('hidden'); modal.style.display = ''; }, 200);
         }
 
         // SECURITY NOTE: PIN is client-side only — it guards the admin UI but is NOT a backend security layer.
