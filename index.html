@@ -130,24 +130,6 @@
             }
         }
 
-        /* ── Transparent navbar fix ──────────────────────────────────────────
-           main memiliki padding-top 64/68px agar konten halaman lain tidak
-           tertutup navbar. Namun untuk hero (view-home), kita ingin gambar
-           hero berada DI BALIK navbar yang transparan (full-bleed sinematik).
-           Solusi: tarik hero wrapper ke atas dengan margin-top negatif,
-           kompensasi min-height supaya tinggi total tetap sama.
-        ──────────────────────────────────────────────────────────────────── */
-        #view-home > .hero-section-wrapper:first-child {
-            margin-top: -64px;           /* naik ke belakang navbar */
-            min-height: calc(380px + 64px);  /* +64 agar tinggi visual sama */
-        }
-        @media (min-width: 768px) {
-            #view-home > .hero-section-wrapper:first-child {
-                margin-top: -68px;
-                min-height: calc(580px + 68px);
-            }
-        }
-
         /* Hero slides container: must fill parent */
         #hero-slides {
             position: absolute !important;
@@ -220,79 +202,36 @@
         }
 
         /* ── Navbar scroll states ─────────────────────────────────────────────
-           PATTERN: Transparent-to-Frosted Glass
+           PATTERN: Frosted Glass Always-Visible + Shadow-on-Scroll
 
-           [at-top]   → Transparan gelap — menyatu elegan dengan hero slideshow
-           [scrolled] → Frosted glass putih — elevasi jelas, bersih & premium
+           KENAPA bukan transparan?
+           Ini SPA multi-halaman. Halaman Wisata/Event/Ekraf tidak punya
+           hero gelap — navbar transparan + teks putih = tak terlihat.
 
-           Kenapa begini?
-           • Navbar solid saat di atas hero terasa "nabrak" & berat secara visual.
-           • Transparan + teks putih membuat hero terasa full-bleed & sinematik.
-           • Saat scroll, frosted glass muncul smooth → memberi kedalaman (depth)
-             tanpa mengganggu konten di bawahnya.
-        ──────────────────────────────────────────────────────────────────────── */
+           PATTERN TERBAIK (Apple, Linear, Notion):
+           [default]  → Frosted glass bersih, no shadow, border tipis
+           [scrolled] → Shadow lembut muncul, border sedikit lebih kuat
+           ──────────────────────────────────────────────────────────── */
 
-        /* === BASE: Transparan saat di paling atas (default) === */
+        /* === BASE: Frosted glass bersih — selalu terlihat di semua halaman === */
         #main-navbar {
-            background: transparent;
-            border-bottom: 1px solid rgba(255, 255, 255, 0);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.7);
             box-shadow: none;
             transition:
-                background    0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color  0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow    0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                backdrop-filter 0.35s ease;
+                box-shadow   0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Nav links: putih saat hero (at-top) */
-        #main-navbar.at-top #nav-desktop-links .nav-link {
-            color: rgba(255, 255, 255, 0.85);
-        }
-        #main-navbar.at-top #nav-desktop-links .nav-link:hover {
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.12);
-        }
-        #main-navbar.at-top #nav-desktop-links .nav-link.active {
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.18);
-            font-weight: 700;
-        }
-
-        /* Logo text fallback: putih saat at-top */
-        #main-navbar.at-top .logo-text {
-            color: #ffffff;
-        }
-
-        /* Hamburger icon: putih saat at-top */
-        #main-navbar.at-top #nav-hamburger {
-            color: #ffffff;
-        }
-        #main-navbar.at-top #nav-hamburger:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        /* CTA "Jelajahi" button: ghost putih saat at-top, solid saat scrolled */
-        #main-navbar.at-top #nav-cta-btn {
-            background: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            box-shadow: none;
-        }
-        #main-navbar.at-top #nav-cta-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* === SCROLLED: Frosted glass putih elegan === */
+        /* === SCROLLED: Shadow lembut muncul — memberi kedalaman (depth) === */
         #main-navbar.scrolled {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom-color: rgba(37, 99, 235, 0.10);
+            border-bottom-color: rgba(37, 99, 235, 0.12);
             box-shadow:
                 0 1px 0   0    rgba(37, 99, 235, 0.06),
-                0 4px 16px -4px rgba(15, 23, 42, 0.10),
-                0 12px 40px -8px rgba(15, 23, 42, 0.08);
+                0 4px 20px -4px rgba(15, 23, 42, 0.08),
+                0 8px 32px -8px rgba(15, 23, 42, 0.06);
         }
 
         /* Nav link active state */
@@ -348,7 +287,7 @@
 <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
 
     <!-- ==================== NAVBAR ==================== -->
-    <nav id="main-navbar" class="at-top fixed top-0 left-0 right-0 z-50">
+    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[68px] flex items-center justify-between gap-4">
 
             <!-- Logo -->
@@ -423,7 +362,7 @@
     <main class="flex-grow">
 
         <!-- 1. VIEW: BERANDA -->
-        <section id="view-home" class="page-view active">
+        <section id="view-home" class="page-view active bg-white">
 
             <!-- ═══ HERO — CROSSFADE SLIDESHOW ═══ -->
             <div class="relative w-full overflow-hidden hero-section-wrapper">
@@ -6420,10 +6359,8 @@
                 const isScrolled = window.scrollY > SCROLL_THRESHOLD;
                 if (isScrolled) {
                     navbar.classList.add('scrolled');
-                    navbar.classList.remove('at-top');
                 } else {
                     navbar.classList.remove('scrolled');
-                    navbar.classList.add('at-top');
                 }
             }
 
