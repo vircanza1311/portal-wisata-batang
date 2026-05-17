@@ -130,6 +130,24 @@
             }
         }
 
+        /* ── Transparent navbar fix ──────────────────────────────────────────
+           main memiliki padding-top 64/68px agar konten halaman lain tidak
+           tertutup navbar. Namun untuk hero (view-home), kita ingin gambar
+           hero berada DI BALIK navbar yang transparan (full-bleed sinematik).
+           Solusi: tarik hero wrapper ke atas dengan margin-top negatif,
+           kompensasi min-height supaya tinggi total tetap sama.
+        ──────────────────────────────────────────────────────────────────── */
+        #view-home > .hero-section-wrapper:first-child {
+            margin-top: -64px;           /* naik ke belakang navbar */
+            min-height: calc(380px + 64px);  /* +64 agar tinggi visual sama */
+        }
+        @media (min-width: 768px) {
+            #view-home > .hero-section-wrapper:first-child {
+                margin-top: -68px;
+                min-height: calc(580px + 68px);
+            }
+        }
+
         /* Hero slides container: must fill parent */
         #hero-slides {
             position: absolute !important;
@@ -405,7 +423,7 @@
     <main class="flex-grow">
 
         <!-- 1. VIEW: BERANDA -->
-        <section id="view-home" class="page-view active bg-white">
+        <section id="view-home" class="page-view active">
 
             <!-- ═══ HERO — CROSSFADE SLIDESHOW ═══ -->
             <div class="relative w-full overflow-hidden hero-section-wrapper">
