@@ -108,14 +108,28 @@
 
         /* ==================== CRITICAL LAYOUT — Tailwind-independent ==================== */
 
-        /* Prevent horizontal overflow — on wrapper, NOT body, agar sticky navbar berfungsi */
-        html {
+        /* Prevent horizontal overflow */
+        html,
+        body {
             overflow-x: hidden;
         }
 
-        /* body harus overflow: visible agar sticky bekerja */
-        body {
-            overflow-x: clip; /* clip tidak menciptakan scroll container, sticky tetap bekerja */
+        /* Navbar: state saat di atas (tanpa shadow) */
+        .navbar-top {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom-color: rgba(243, 244, 246, 0.8);
+            box-shadow: none;
+        }
+
+        /* Navbar: state saat scroll (frosted glass + shadow tegas) */
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.82) !important;
+            backdrop-filter: blur(20px) saturate(1.8) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+            border-bottom-color: rgba(229, 231, 235, 0.5) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.06) !important;
         }
 
         /* Hero wrapper: must have height for absolute children to fill */
@@ -162,6 +176,7 @@
                 display: none !important;
             }
 
+
             #nav-hamburger {
                 display: flex !important;
             }
@@ -181,62 +196,6 @@
         /* Mobile menu: hidden by default, shown when JS removes 'hidden' class */
         #mobile-menu.hidden {
             display: none !important;
-        }
-
-        /* Fixed navbar compensation — main content tidak tertutup navbar */
-        #main-navbar {
-            height: 64px;
-        }
-        @media (min-width: 768px) {
-            #main-navbar {
-                height: 68px;
-            }
-        }
-        main {
-            padding-top: 64px;
-        }
-        @media (min-width: 768px) {
-            main {
-                padding-top: 68px;
-            }
-        }
-
-        /* ── Navbar scroll states ───────────────────────────────────────
-           Di atas (top):  bersih, border halus, no shadow
-           Saat scroll:    elevasi jelas — shadow tegas, border lebih kuat
-        ──────────────────────────────────────────────────────────────── */
-        #main-navbar {
-            background: rgba(255, 255, 255, 0.97);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-            box-shadow: none;
-            transition: box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-        }
-
-        #main-navbar.scrolled {
-            background: rgba(255, 255, 255, 1);
-            border-bottom-color: rgba(37, 99, 235, 0.15);
-            box-shadow:
-                0 1px 0 0 rgba(37, 99, 235, 0.08),
-                0 4px 24px -2px rgba(15, 23, 42, 0.12),
-                0 2px 8px -2px rgba(15, 23, 42, 0.08);
-        }
-
-        /* Nav link active state */
-        .nav-link.active {
-            color: #2563eb;
-            background-color: #eff6ff;
-            font-weight: 700;
-        }
-
-        /* Nav link active dot indicator */
-        .nav-link.active::after {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 4px;
-            background: #2563eb;
-            border-radius: 50%;
-            margin: 2px auto 0;
         }
 
         /* Map SVG: scale down on mobile */
@@ -274,73 +233,66 @@
 <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
 
     <!-- ==================== NAVBAR ==================== -->
-    <nav id="main-navbar" class="bg-white/95 backdrop-blur-md border-b border-gray-100/80 fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[68px] flex items-center justify-between gap-4">
-
+    <nav id="main-navbar" class="bg-white/95 backdrop-blur-md border-b border-gray-100/80 sticky top-0 z-50 transition-all duration-300 navbar-top">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
             <!-- Logo -->
-            <div class="flex items-center cursor-pointer shrink-0" onclick="navigate('home')">
+            <div class="flex items-center cursor-pointer h-10 md:h-12" onclick="navigate('home')">
                 <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
-                    alt="Dolan Batang" class="h-9 md:h-10 object-contain"
-                    onerror="this.outerHTML='<span class=&quot;font-extrabold text-brand-600 text-xl tracking-tight&quot;>Dolan Batang</span>'">
+                    alt="Dolan Batang" class="h-full object-contain">
             </div>
 
             <!-- Menu Desktop -->
-            <div id="nav-desktop-links" class="hidden md:flex items-center gap-0.5 text-sm font-semibold text-gray-500 flex-1 justify-center">
-                <button data-nav="home"    onclick="navigate('home')"    class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Beranda</button>
-                <button data-nav="wisata"  onclick="navigate('wisata')"  class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Wisata</button>
-                <button data-nav="event"   onclick="navigate('event')"   class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Event</button>
-                <button data-nav="ekraf"   onclick="navigate('ekraf')"   id="nav-ekraf" class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Ekonomi Kreatif</button>
-                <button data-nav="tentang" onclick="navigate('tentang')" class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Tentang</button>
-                <button data-nav="kontak"  onclick="navigate('kontak')"  class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Kontak</button>
+            <div id="nav-desktop-links" class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-600">
+                <button onclick="navigate('home')" class="hover:text-brand-700 transition">Beranda</button>
+                <button onclick="navigate('wisata')" class="hover:text-brand-700 transition">Wisata</button>
+                <button onclick="navigate('event')" class="hover:text-brand-700 transition">Event</button>
+                <button onclick="navigate('ekraf')" id="nav-ekraf" class="hover:text-brand-700 transition">Ekonomi
+                    Kreatif</button>
+                <button onclick="navigate('tentang')" class="hover:text-brand-700 transition">Tentang</button>
+                <button onclick="navigate('kontak')" class="hover:text-brand-700 transition">Kontak</button>
             </div>
 
-            <!-- Right: CTA + Hamburger -->
-            <div class="flex items-center gap-2.5 shrink-0">
-                <button onclick="navigate('wisata')"
-                    class="hidden md:flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 active:scale-95 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap">
-                    <i class="ph-fill ph-map-trifold text-base"></i>
-                    Jelajahi
-                </button>
+            <!-- Right Actions -->
+            <div class="flex items-center gap-3">
+                <button class="text-gray-500 hover:text-brand-700"><i
+                        class="ph ph-magnifying-glass text-xl"></i></button>
+
+                <!-- Hamburger — mobile only -->
                 <button id="nav-hamburger" onclick="toggleMobileMenu()"
-                    class="md:hidden flex items-center justify-center w-9 h-9 rounded-xl text-gray-600 hover:bg-gray-100 active:bg-gray-200 transition-all">
+                    class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-gray-600 hover:bg-gray-100 transition">
                     <i id="hamburger-icon" class="ph ph-list text-2xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Drawer -->
-        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-100 bg-white shadow-xl">
-            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-0.5">
+        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-100 bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
                 <button onclick="mobileNav('home')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 active:bg-brand-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-brand-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-house text-brand-500 text-sm"></i></span> Beranda
+                    class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
+                    <i class="ph-fill ph-house text-brand-400 text-base w-5 text-center"></i> Beranda
                 </button>
                 <button onclick="mobileNav('wisata')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 active:bg-brand-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-brand-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-map-trifold text-brand-500 text-sm"></i></span> Wisata
+                    class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
+                    <i class="ph-fill ph-map-trifold text-brand-400 text-base w-5 text-center"></i> Wisata
                 </button>
                 <button onclick="mobileNav('event')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 active:bg-cyan-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-cyan-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-calendar-check text-cyan-500 text-sm"></i></span> Event
+                    class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
+                    <i class="ph-fill ph-calendar-check text-brand-400 text-base w-5 text-center"></i> Event
                 </button>
                 <button onclick="mobileNav('ekraf')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-amber-50 hover:text-amber-700 active:bg-amber-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-lightbulb text-amber-500 text-sm"></i></span> Ekonomi Kreatif
+                    class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
+                    <i class="ph-fill ph-lightbulb text-brand-400 text-base w-5 text-center"></i> Ekonomi Kreatif
                 </button>
                 <button onclick="mobileNav('tentang')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 active:bg-purple-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-info text-purple-500 text-sm"></i></span> Tentang
+                    class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
+                    <i class="ph-fill ph-info text-brand-400 text-base w-5 text-center"></i> Tentang
                 </button>
                 <button onclick="mobileNav('kontak')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-green-50 hover:text-green-700 active:bg-green-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-green-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-phone text-green-500 text-sm"></i></span> Kontak
+                    class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition flex items-center gap-3">
+                    <i class="ph-fill ph-phone text-brand-400 text-base w-5 text-center"></i> Kontak
                 </button>
-                <div class="pt-2.5 mt-1 border-t border-gray-100">
-                    <button onclick="mobileNav('wisata')"
-                        class="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm">
-                        <i class="ph-fill ph-map-trifold text-base"></i> Mulai Jelajahi Batang
-                    </button>
-                </div>
+
             </div>
         </div>
     </nav>
@@ -1534,20 +1486,6 @@
                 </div>
                 <p id="ekraf-empty" class="hidden text-center text-gray-400 py-16 text-sm">Belum ada data ekonomi
                     kreatif untuk subsektor ini.</p>
-
-                <!-- Pagination ekraf -->
-                <div id="ekraf-pagination" class="hidden justify-center items-center gap-2 mt-10 flex-wrap">
-                    <button id="ekraf-page-prev" onclick="ekrafPageNav(-1)"
-                        class="w-9 h-9 rounded-xl border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 hover:text-brand-600 transition disabled:opacity-30 disabled:pointer-events-none">
-                        <i class="ph ph-caret-left text-sm"></i>
-                    </button>
-                    <div id="ekraf-page-numbers" class="flex gap-1.5 flex-wrap justify-center"></div>
-                    <button id="ekraf-page-next" onclick="ekrafPageNav(1)"
-                        class="w-9 h-9 rounded-xl border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 hover:text-brand-600 transition disabled:opacity-30 disabled:pointer-events-none">
-                        <i class="ph ph-caret-right text-sm"></i>
-                    </button>
-                    <span id="ekraf-page-info" class="text-xs text-gray-400 font-medium ml-2"></span>
-                </div>
             </div>
         </section>
 
@@ -3212,12 +3150,12 @@
             target.classList.add('active');
             window.scrollTo(0, 0);
 
-            // Reset navbar ke state bersih saat pindah halaman
+            // Reset navbar ke state atas saat navigasi SPA
             const navbar = document.getElementById('main-navbar');
-            if (navbar) navbar.classList.remove('scrolled');
-
-            // Update active nav link
-            updateActiveNavLink(viewId);
+            if (navbar) {
+                navbar.classList.remove('navbar-scrolled');
+                navbar.classList.add('navbar-top');
+            }
 
             if (viewId === 'detail-wisata') buildDetailWisata(detailId);
             if (viewId === 'detail-event') buildDetailEvent(detailId);
@@ -3229,50 +3167,6 @@
                 switchAdminTab('wisata');
             }
         }
-
-        // Update active state on desktop nav links
-        function updateActiveNavLink(viewId) {
-            // Map detail views back to their parent nav
-            const parentMap = {
-                'detail-wisata': 'wisata',
-                'detail-event': 'event',
-                'detail-ekraf': 'ekraf',
-                'admin': 'home',
-                'tentang': 'tentang',
-                'kontak': 'kontak',
-            };
-            const activeKey = parentMap[viewId] || viewId;
-            document.querySelectorAll('.nav-link').forEach(btn => {
-                const nav = btn.getAttribute('data-nav');
-                btn.classList.toggle('active', nav === activeKey);
-            });
-        }
-
-        // Scroll-aware navbar + dynamic padding compensation
-        (function initNavbarScroll() {
-            const navbar = document.getElementById('main-navbar');
-            const mainEl = document.querySelector('main');
-            if (!navbar) return;
-
-            // Set padding-top on main based on actual navbar height
-            function setMainPadding() {
-                if (mainEl) mainEl.style.paddingTop = navbar.offsetHeight + 'px';
-            }
-            setMainPadding();
-            window.addEventListener('resize', setMainPadding, { passive: true });
-
-            // Scroll shadow — threshold 20px agar tidak langsung berubah saat halaman baru dimuat
-            let ticking = false;
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        navbar.classList.toggle('scrolled', window.scrollY > 20);
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }, { passive: true });
-        })();
 
         function scrollToHomeMap() {
             navigate('home');
@@ -3308,7 +3202,7 @@
                 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(37,99,235,0.15)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-wisata', ${item.id})">
                     <div class="h-52 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
+                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
                         <div class="absolute top-3 left-3 ${catBg} backdrop-blur-md text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-20 shadow-sm border border-white/20">${item.kategori || ''}</div>
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow relative bg-white">
@@ -3330,7 +3224,7 @@
             return `
                 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_30px_-4px_rgba(6,182,212,0.2)] hover:-translate-y-1.5 hover:border-cyan-200 transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-event', ${item.id})">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
+                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
                         <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm rounded-xl p-2.5 text-center shadow-lg min-w-[3.5rem] border border-white/50 group-hover:bg-cyan-50 transition-colors">
                             <div class="text-2xl font-black text-brand-600 leading-none mb-0.5">${item.tanggal || ''}</div>
                             <div class="text-[9px] font-black text-gray-500 uppercase tracking-widest">${item.bulan || ''}</div>
@@ -3382,7 +3276,7 @@
             return `
                 <div onclick="navigate('detail-ekraf', ${item.id})" class="bg-white rounded-2xl overflow-hidden border border-brand-50 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(37,99,235,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col cursor-pointer group h-full">
                     <div class="h-48 relative overflow-hidden bg-gray-50">
-                        ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">` : `<div class="w-full h-full flex items-center justify-center text-gray-200 group-hover:scale-110 transition duration-700"><i class="ph ph-storefront text-6xl"></i></div>`}
+                        ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">` : `<div class="w-full h-full flex items-center justify-center text-gray-200 group-hover:scale-110 transition duration-700"><i class="ph ph-storefront text-6xl"></i></div>`}
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent pointer-events-none"></div>
                         <span class="absolute bottom-3 left-3 ${colorClass} text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-10">${item.subsektor || ''}</span>
                     </div>
@@ -3403,88 +3297,17 @@
                 </div>`;
         }
 
-        // --- EKRAF PAGINATION STATE ---
-        const EKRAF_PER_PAGE = 24;
-        let ekrafCurrentPage = 1;
-        let ekrafFilteredData = [];
-
         function renderEkrafGrid(data) {
-            const grid  = document.getElementById('grid-all-ekraf');
-            const empty = document.getElementById('ekraf-empty');
-            const pagi  = document.getElementById('ekraf-pagination');
-            if (!grid) return;
-
-            ekrafFilteredData = data || [];
-            ekrafCurrentPage  = 1;          // reset ke halaman 1 setiap filter berubah
-            _renderEkrafPage();
-
-            if (!ekrafFilteredData.length) {
-                if (empty) empty.classList.remove('hidden');
-                if (pagi)  { pagi.classList.add('hidden'); pagi.style.display = ''; }
-            } else {
-                if (empty) empty.classList.add('hidden');
-                const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
-                if (pagi) {
-                    if (totalPages > 1) { pagi.classList.remove('hidden'); pagi.style.display = 'flex'; }
-                    else                { pagi.classList.add('hidden'); pagi.style.display = ''; }
-                }
-                _renderEkrafPagination(totalPages);
-            }
-        }
-
-        function _renderEkrafPage() {
             const grid = document.getElementById('grid-all-ekraf');
+            const empty = document.getElementById('ekraf-empty');
             if (!grid) return;
-            const start = (ekrafCurrentPage - 1) * EKRAF_PER_PAGE;
-            const slice = ekrafFilteredData.slice(start, start + EKRAF_PER_PAGE);
-            grid.innerHTML = slice.map(createEkrafCard).join('');
-            // Scroll ke atas grid saat ganti halaman (kecuali saat pertama render)
-            if (ekrafCurrentPage > 1) {
-                const section = document.getElementById('view-ekraf');
-                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (!data || data.length === 0) {
+                grid.innerHTML = '';
+                if (empty) empty.classList.remove('hidden');
+            } else {
+                grid.innerHTML = data.map(createEkrafCard).join('');
+                if (empty) empty.classList.add('hidden');
             }
-        }
-
-        function _renderEkrafPagination(totalPages) {
-            const nums = document.getElementById('ekraf-page-numbers');
-            const info = document.getElementById('ekraf-page-info');
-            const prev = document.getElementById('ekraf-page-prev');
-            const next = document.getElementById('ekraf-page-next');
-            if (!nums) return;
-
-            // Prev / Next button state
-            if (prev) prev.disabled = ekrafCurrentPage <= 1;
-            if (next) next.disabled = ekrafCurrentPage >= totalPages;
-
-            // Page number buttons — show max 5 around current
-            const range = [];
-            const delta = 2;
-            for (let i = Math.max(1, ekrafCurrentPage - delta); i <= Math.min(totalPages, ekrafCurrentPage + delta); i++) {
-                range.push(i);
-            }
-            nums.innerHTML = range.map(p => `
-                <button onclick="ekrafGoToPage(${p})"
-                    class="w-9 h-9 rounded-xl text-sm font-semibold transition ${p === ekrafCurrentPage
-                        ? 'bg-brand-600 text-white shadow-sm'
-                        : 'border border-gray-200 text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200'}">${p}</button>
-            `).join('');
-
-            // Info text
-            const start = (ekrafCurrentPage - 1) * EKRAF_PER_PAGE + 1;
-            const end   = Math.min(ekrafCurrentPage * EKRAF_PER_PAGE, ekrafFilteredData.length);
-            if (info) info.textContent = `${start}–${end} dari ${ekrafFilteredData.length} pelaku ekraf`;
-        }
-
-        function ekrafGoToPage(page) {
-            const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
-            if (page < 1 || page > totalPages) return;
-            ekrafCurrentPage = page;
-            _renderEkrafPage();
-            _renderEkrafPagination(totalPages);
-        }
-
-        function ekrafPageNav(dir) {
-            ekrafGoToPage(ekrafCurrentPage + dir);
         }
 
         let ekrafFilterActive = null;
@@ -3711,9 +3534,7 @@
             const contentDiv = document.getElementById('detail-wisata-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail wisata...</span></div>';
 
-            // Cek cache: jika data lengkap (galeri sudah ada) skip fetch Supabase
-            const isCached = data && Array.isArray(data.galeri);
-            if (isSupabaseConnected && data && !isCached) {
+            if (isSupabaseConnected && data) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', data.id).single();
                     if (!error && fullData) {
@@ -3728,10 +3549,10 @@
 
             const html = `
                 <div class="bg-gray-900 w-full h-[500px] relative">
-                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80" loading="eager">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80">
                     <div class="absolute bottom-6 right-6 flex gap-2">
-                        <img src="${optimizeImage(data.foto, 200, 70)}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer" loading="lazy">
-                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=200" class="w-24 h-16 object-cover border-2 border-transparent hover:border-white rounded cursor-pointer opacity-70 hover:opacity-100 transition" loading="lazy">
+                        <img src="${optimizeImage(data.foto, 200, 70)}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=200" class="w-24 h-16 object-cover border-2 border-transparent hover:border-white rounded cursor-pointer opacity-70 hover:opacity-100 transition">
                         <div class="w-24 h-16 bg-black/50 rounded flex items-center justify-center text-white border-2 border-transparent cursor-pointer"><i class="ph ph-caret-right text-2xl"></i></div>
                     </div>
                 </div>
@@ -3765,7 +3586,6 @@
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
                                     <img src="${optimizeImage(url, 600)}" alt="Galeri Wisata ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                                         loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
@@ -3831,9 +3651,7 @@
             const contentDiv = document.getElementById('detail-event-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail event...</span></div>';
 
-            // Cek cache: jika data lengkap (galeri sudah ada) skip fetch Supabase
-            const isCached = data && Array.isArray(data.galeri);
-            if (isSupabaseConnected && data && !isCached) {
+            if (isSupabaseConnected && data) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', data.id).single();
                     if (!error && fullData) {
@@ -3848,7 +3666,7 @@
 
             const html = `
                 <div class="w-full h-[400px] relative bg-gray-900">
-                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-60" loading="eager">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-60">
                 </div>
                 <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-10">
                     <div class="w-full lg:w-2/3">
@@ -3886,7 +3704,6 @@
                                      style="aspect-ratio:${i === 0 && data.galeri.length >= 3 ? '16/9' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, '&#39;')})">
                                     <img src="${optimizeImage(url, 600)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                                         loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
@@ -3936,9 +3753,7 @@
             const contentDiv = document.getElementById('detail-ekraf-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail ekraf...</span></div>';
 
-            // Cek cache: jika data lengkap (galeri sudah ada) skip fetch Supabase
-            const isCached = data && Array.isArray(data.galeri);
-            if (isSupabaseConnected && data && !isCached) {
+            if (isSupabaseConnected && data) {
                 try {
                     const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', data.id).single();
                     if (!error && fullData) {
@@ -3989,7 +3804,7 @@
                 <!-- HERO BANNER -->
                 <div class="relative w-full min-h-[400px] lg:min-h-[480px] overflow-hidden bg-gray-900">
                     ${data.foto
-                    ? `<img src="${optimizeImage(data.foto, 400, 60)}" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" loading="eager" style="filter:blur(2px)">`
+                    ? `<img src="${optimizeImage(data.foto, 400, 60)}" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" style="filter:blur(2px)">`
                     : ''}
                     <div class="absolute inset-0 bg-gradient-to-br ${theme.bg} opacity-80"></div>
                     <!-- Decorative shapes -->
@@ -4002,7 +3817,7 @@
                         <div class="shrink-0">
                             <div class="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border-4 border-white/30 shadow-2xl bg-white/20 backdrop-blur-sm">
                                 ${data.foto
-                    ? `<img src="${optimizeImage(data.foto, 800)}" class="w-full h-full object-cover" loading="eager">`
+                    ? `<img src="${optimizeImage(data.foto, 800)}" class="w-full h-full object-cover">`
                     : `<div class="w-full h-full flex items-center justify-center text-white/60"><i class="ph ${theme.icon} text-7xl"></i></div>`}
                             </div>
                         </div>
@@ -4085,7 +3900,6 @@
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
                                     <img src="${optimizeImage(url, 600)}" alt="Galeri ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                                         loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
@@ -4183,7 +3997,7 @@
                         return `
                                 <div onclick="navigate('detail-ekraf', ${e.id})" class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer group flex flex-col">
                                     <div class="h-36 relative overflow-hidden bg-gray-100">
-                                        ${e.foto ? `<img src="${optimizeImage(e.foto, 600)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy">` : `<div class="w-full h-full bg-gradient-to-br ${t.bg} opacity-50"></div>`}
+                                        ${e.foto ? `<img src="${optimizeImage(e.foto, 600)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">` : `<div class="w-full h-full bg-gradient-to-br ${t.bg} opacity-50"></div>`}
                                         <span class="absolute bottom-2 left-2 ${t.badge} text-[9px] font-bold px-2 py-0.5 rounded uppercase">${e.subsektor}</span>
                                     </div>
                                     <div class="p-4 flex-grow">
@@ -4760,7 +4574,7 @@
                 <div onclick="navigate('detail-event', ${ev.id})"
                      class="flex items-center gap-3 p-3 rounded-xl bg-brand-50 border border-brand-100 hover:bg-brand-100 cursor-pointer transition">
                     <div class="w-10 h-10 rounded-xl overflow-hidden shrink-0 bg-gray-200">
-                        ${ev.foto ? `<img src="${optimizeImage(ev.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full bg-brand-200 flex items-center justify-center"><i class="ph-fill ph-calendar text-brand-600 text-lg"></i></div>`}
+                        ${ev.foto ? `<img src="${optimizeImage(ev.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-brand-200 flex items-center justify-center"><i class="ph-fill ph-calendar text-brand-600 text-lg"></i></div>`}
                     </div>
                     <div class="flex-grow min-w-0">
                         <p class="font-bold text-gray-900 text-sm truncate">${ev.judul}</p>
@@ -4958,7 +4772,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -5058,7 +4872,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -5161,7 +4975,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src=''; this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src=''; this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -5458,7 +5272,7 @@
                 renderItem = w => `
                     <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
-                            ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
+                            ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
                         </div>
                         <div class="flex-grow min-w-0">
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${w.nama}</p>
@@ -5472,7 +5286,7 @@
                 renderItem = e => `
                     <div onclick="navigate('detail-event', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0 flex flex-col justify-center items-center">
-                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${e.tanggal || '-'}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${e.bulan || '-'}</div>`}
+                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${e.tanggal || '-'}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${e.bulan || '-'}</div>`}
                         </div>
                         <div class="flex-grow min-w-0">
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.judul}</p>
@@ -5486,7 +5300,7 @@
                 renderItem = e => `
                     <div onclick="navigate('detail-ekraf', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
-                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
+                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
                         </div>
                         <div class="flex-grow min-w-0">
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.brand}</p>
@@ -5748,7 +5562,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-10 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${url}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.3'">
+                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.3'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -5872,7 +5686,7 @@
                     ? [item.kategori, item.lokasi].filter(Boolean).join(' - ')
                     : [item.subsektor, item.lokasi].filter(Boolean).join(' - ');
                 const img = item.foto
-                    ? `<img src="${optimizeImage(item.foto, 80)}" class="w-10 h-10 rounded-lg object-cover bg-gray-100 border border-gray-200 shrink-0" loading="lazy" onerror="this.outerHTML='<div class=\\'w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0\\'><i class=\\'ph ph-image\\'></i></div>'">`
+                    ? `<img src="${optimizeImage(item.foto, 80)}" class="w-10 h-10 rounded-lg object-cover bg-gray-100 border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\\'w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0\\'><i class=\\'ph ph-image\\'></i></div>'">`
                     : `<div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0"><i class="ph ph-image"></i></div>`;
 
                 return `
@@ -5957,7 +5771,7 @@
                 wPrev.innerHTML = selectedWisata.map(w => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${w.foto
-                        ? `<img src="${optimizeImage(w.foto, 200)}" class="w-full h-full object-cover" loading="lazy" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold\\'>No Image</div>'">`
+                        ? `<img src="${optimizeImage(w.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold\\'>No Image</div>'">`
                         : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold">${w.nama || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-4">Belum ada wisata yang dipilih.</p>';
             }
@@ -5965,7 +5779,7 @@
                 ePrev.innerHTML = selectedEkraf.map(e => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${e.foto
-                        ? `<img src="${optimizeImage(e.foto, 200)}" class="w-full h-full object-cover" loading="lazy" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center\\'>No Image</div>'">`
+                        ? `<img src="${optimizeImage(e.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center\\'>No Image</div>'">`
                         : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center">${e.brand || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-3">Belum ada ekraf yang dipilih.</p>';
             }
@@ -6336,6 +6150,33 @@
             window.addEventListener('resize', () => {
                 if (window.innerWidth >= 768) closeMobileMenu();
             });
+
+            // Navbar scroll effect: frosted glass + shadow saat scroll
+            const navbar = document.getElementById('main-navbar');
+            let lastScrollY = 0;
+            let ticking = false;
+
+            function updateNavbar() {
+                const scrollY = window.scrollY;
+                if (scrollY > 20) {
+                    navbar.classList.add('navbar-scrolled');
+                    navbar.classList.remove('navbar-top');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                    navbar.classList.add('navbar-top');
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateNavbar);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            // Set initial state
+            updateNavbar();
         });
 
     </script>
