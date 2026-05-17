@@ -1468,17 +1468,19 @@
                 </div>
                 <p id="ekraf-empty" class="hidden text-center text-gray-400 py-16 text-sm">Belum ada data ekonomi
                     kreatif untuk subsektor ini.</p>
-                <!-- P2: Ekraf pagination controls -->
-                <div id="ekraf-pagination" class="hidden flex justify-center items-center gap-2 mt-10">
-                    <button id="ekraf-prev-btn" onclick="ekrafPrevPage()"
-                        class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition disabled:opacity-30 disabled:cursor-not-allowed">
+
+                <!-- Pagination ekraf -->
+                <div id="ekraf-pagination" class="hidden justify-center items-center gap-2 mt-10 flex-wrap">
+                    <button id="ekraf-page-prev" onclick="ekrafPageNav(-1)"
+                        class="w-9 h-9 rounded-xl border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 hover:text-brand-600 transition disabled:opacity-30 disabled:pointer-events-none">
                         <i class="ph ph-caret-left text-sm"></i>
                     </button>
-                    <div id="ekraf-page-numbers" class="flex items-center gap-1"></div>
-                    <button id="ekraf-next-btn" onclick="ekrafNextPage()"
-                        class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                    <div id="ekraf-page-numbers" class="flex gap-1.5 flex-wrap justify-center"></div>
+                    <button id="ekraf-page-next" onclick="ekrafPageNav(1)"
+                        class="w-9 h-9 rounded-xl border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 hover:text-brand-600 transition disabled:opacity-30 disabled:pointer-events-none">
                         <i class="ph ph-caret-right text-sm"></i>
                     </button>
+                    <span id="ekraf-page-info" class="text-xs text-gray-400 font-medium ml-2"></span>
                 </div>
             </div>
         </section>
@@ -3189,7 +3191,7 @@
                 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(37,99,235,0.15)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-wisata', ${item.id})">
                     <div class="h-52 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
+                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
                         <div class="absolute top-3 left-3 ${catBg} backdrop-blur-md text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-20 shadow-sm border border-white/20">${item.kategori || ''}</div>
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow relative bg-white">
@@ -3211,7 +3213,7 @@
             return `
                 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_30px_-4px_rgba(6,182,212,0.2)] hover:-translate-y-1.5 hover:border-cyan-200 transition-all duration-300 cursor-pointer group flex flex-col h-full" onclick="navigate('detail-event', ${item.id})">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
+                        <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
                         <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm rounded-xl p-2.5 text-center shadow-lg min-w-[3.5rem] border border-white/50 group-hover:bg-cyan-50 transition-colors">
                             <div class="text-2xl font-black text-brand-600 leading-none mb-0.5">${item.tanggal || ''}</div>
                             <div class="text-[9px] font-black text-gray-500 uppercase tracking-widest">${item.bulan || ''}</div>
@@ -3263,7 +3265,7 @@
             return `
                 <div onclick="navigate('detail-ekraf', ${item.id})" class="bg-white rounded-2xl overflow-hidden border border-brand-50 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(37,99,235,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col cursor-pointer group h-full">
                     <div class="h-48 relative overflow-hidden bg-gray-50">
-                        ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">` : `<div class="w-full h-full flex items-center justify-center text-gray-200 group-hover:scale-110 transition duration-700"><i class="ph ph-storefront text-6xl"></i></div>`}
+                        ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">` : `<div class="w-full h-full flex items-center justify-center text-gray-200 group-hover:scale-110 transition duration-700"><i class="ph ph-storefront text-6xl"></i></div>`}
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent pointer-events-none"></div>
                         <span class="absolute bottom-3 left-3 ${colorClass} text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-10">${item.subsektor || ''}</span>
                     </div>
@@ -3284,127 +3286,88 @@
                 </div>`;
         }
 
-        // P2: Ekraf pagination state
-        let ekrafCurrentPage = 1;
+        // --- EKRAF PAGINATION STATE ---
         const EKRAF_PER_PAGE = 24;
-        let ekrafFilteredData = []; // Simpan data terfilter untuk pagination
+        let ekrafCurrentPage = 1;
+        let ekrafFilteredData = [];
 
         function renderEkrafGrid(data) {
-            const grid = document.getElementById('grid-all-ekraf');
+            const grid  = document.getElementById('grid-all-ekraf');
             const empty = document.getElementById('ekraf-empty');
-            const pagination = document.getElementById('ekraf-pagination');
+            const pagi  = document.getElementById('ekraf-pagination');
             if (!grid) return;
 
-            // Simpan data terfilter untuk navigasi halaman
             ekrafFilteredData = data || [];
-            ekrafCurrentPage = 1; // Reset ke halaman 1 setiap filter berubah
+            ekrafCurrentPage  = 1;          // reset ke halaman 1 setiap filter berubah
+            _renderEkrafPage();
 
-            if (!data || data.length === 0) {
-                grid.innerHTML = '';
+            if (!ekrafFilteredData.length) {
                 if (empty) empty.classList.remove('hidden');
-                if (pagination) { pagination.classList.add('hidden'); pagination.style.display = ''; }
+                if (pagi)  { pagi.classList.add('hidden'); pagi.style.display = ''; }
             } else {
-                renderEkrafCurrentPage();
                 if (empty) empty.classList.add('hidden');
+                const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
+                if (pagi) {
+                    if (totalPages > 1) { pagi.classList.remove('hidden'); pagi.style.display = 'flex'; }
+                    else                { pagi.classList.add('hidden'); pagi.style.display = ''; }
+                }
+                _renderEkrafPagination(totalPages);
             }
         }
 
-        function renderEkrafCurrentPage() {
+        function _renderEkrafPage() {
             const grid = document.getElementById('grid-all-ekraf');
-            const pagination = document.getElementById('ekraf-pagination');
             if (!grid) return;
-
-            const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
-            const startIdx = (ekrafCurrentPage - 1) * EKRAF_PER_PAGE;
-            const endIdx = startIdx + EKRAF_PER_PAGE;
-            const pageData = ekrafFilteredData.slice(startIdx, endIdx);
-
-            grid.innerHTML = pageData.map(createEkrafCard).join('');
-
-            // Tampilkan/sembunyikan pagination
-            if (totalPages > 1 && pagination) {
-                pagination.classList.remove('hidden');
-                pagination.style.display = 'flex';
-                renderEkrafPageNumbers(totalPages);
-
-                // Update tombol prev/next
-                const prevBtn = document.getElementById('ekraf-prev-btn');
-                const nextBtn = document.getElementById('ekraf-next-btn');
-                if (prevBtn) prevBtn.disabled = ekrafCurrentPage <= 1;
-                if (nextBtn) nextBtn.disabled = ekrafCurrentPage >= totalPages;
-            } else if (pagination) {
-                pagination.classList.add('hidden');
-                pagination.style.display = '';
-            }
-
-            // Scroll ke atas grid saat pindah halaman
+            const start = (ekrafCurrentPage - 1) * EKRAF_PER_PAGE;
+            const slice = ekrafFilteredData.slice(start, start + EKRAF_PER_PAGE);
+            grid.innerHTML = slice.map(createEkrafCard).join('');
+            // Scroll ke atas grid saat ganti halaman (kecuali saat pertama render)
             if (ekrafCurrentPage > 1) {
-                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const section = document.getElementById('view-ekraf');
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
-        function renderEkrafPageNumbers(totalPages) {
-            const container = document.getElementById('ekraf-page-numbers');
-            if (!container) return;
-            container.innerHTML = '';
+        function _renderEkrafPagination(totalPages) {
+            const nums = document.getElementById('ekraf-page-numbers');
+            const info = document.getElementById('ekraf-page-info');
+            const prev = document.getElementById('ekraf-page-prev');
+            const next = document.getElementById('ekraf-page-next');
+            if (!nums) return;
 
-            // Logika penomoran halaman: tampilkan maks 5 nomor halaman dengan ellipsis
-            const maxVisible = 5;
-            let startPage = Math.max(1, ekrafCurrentPage - Math.floor(maxVisible / 2));
-            let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+            // Prev / Next button state
+            if (prev) prev.disabled = ekrafCurrentPage <= 1;
+            if (next) next.disabled = ekrafCurrentPage >= totalPages;
 
-            // Sesuaikan jika di dekat akhir
-            if (endPage - startPage + 1 < maxVisible) {
-                startPage = Math.max(1, endPage - maxVisible + 1);
+            // Page number buttons — show max 5 around current
+            const range = [];
+            const delta = 2;
+            for (let i = Math.max(1, ekrafCurrentPage - delta); i <= Math.min(totalPages, ekrafCurrentPage + delta); i++) {
+                range.push(i);
             }
+            nums.innerHTML = range.map(p => `
+                <button onclick="ekrafGoToPage(${p})"
+                    class="w-9 h-9 rounded-xl text-sm font-semibold transition ${p === ekrafCurrentPage
+                        ? 'bg-brand-600 text-white shadow-sm'
+                        : 'border border-gray-200 text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200'}">${p}</button>
+            `).join('');
 
-            // Halaman pertama + ellipsis kiri
-            if (startPage > 1) {
-                container.innerHTML += `<button onclick="ekrafGoToPage(1)" class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition text-sm font-medium">1</button>`;
-                if (startPage > 2) {
-                    container.innerHTML += `<span class="w-9 h-9 flex items-center justify-center text-gray-400 text-sm">...</span>`;
-                }
-            }
-
-            // Nomor halaman aktif
-            for (let p = startPage; p <= endPage; p++) {
-                const isActive = p === ekrafCurrentPage;
-                const activeClass = isActive
-                    ? 'bg-brand-600 text-white border-brand-600 font-bold'
-                    : 'border-gray-200 text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 font-medium';
-                container.innerHTML += `<button onclick="ekrafGoToPage(${p})" class="w-9 h-9 rounded-lg border flex items-center justify-center transition text-sm ${activeClass}" ${isActive ? 'disabled' : ''}>${p}</button>`;
-            }
-
-            // Ellipsis kanan + halaman terakhir
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    container.innerHTML += `<span class="w-9 h-9 flex items-center justify-center text-gray-400 text-sm">...</span>`;
-                }
-                container.innerHTML += `<button onclick="ekrafGoToPage(${totalPages})" class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition text-sm font-medium">${totalPages}</button>`;
-            }
-        }
-
-        function ekrafPrevPage() {
-            if (ekrafCurrentPage > 1) {
-                ekrafCurrentPage--;
-                renderEkrafCurrentPage();
-            }
-        }
-
-        function ekrafNextPage() {
-            const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
-            if (ekrafCurrentPage < totalPages) {
-                ekrafCurrentPage++;
-                renderEkrafCurrentPage();
-            }
+            // Info text
+            const start = (ekrafCurrentPage - 1) * EKRAF_PER_PAGE + 1;
+            const end   = Math.min(ekrafCurrentPage * EKRAF_PER_PAGE, ekrafFilteredData.length);
+            if (info) info.textContent = `${start}–${end} dari ${ekrafFilteredData.length} pelaku ekraf`;
         }
 
         function ekrafGoToPage(page) {
             const totalPages = Math.ceil(ekrafFilteredData.length / EKRAF_PER_PAGE);
-            if (page >= 1 && page <= totalPages) {
-                ekrafCurrentPage = page;
-                renderEkrafCurrentPage();
-            }
+            if (page < 1 || page > totalPages) return;
+            ekrafCurrentPage = page;
+            _renderEkrafPage();
+            _renderEkrafPagination(totalPages);
+        }
+
+        function ekrafPageNav(dir) {
+            ekrafGoToPage(ekrafCurrentPage + dir);
         }
 
         let ekrafFilterActive = null;
@@ -3631,34 +3594,27 @@
             const contentDiv = document.getElementById('detail-wisata-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail wisata...</span></div>';
 
-            if (isSupabaseConnected && data) {
-                // P1: Cek cache — jika galeri sudah pernah di-fetch, skip request ulang ke Supabase
-                const cachedIndex = wisataData.findIndex(w => w.id == data.id);
-                const isCached = cachedIndex !== -1 && wisataData[cachedIndex].galeri && wisataData[cachedIndex].galeri.length > 0;
-
-                if (!isCached) {
-                    try {
-                        const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', data.id).single();
-                        if (!error && fullData) {
-                            data = fullData;
-                            const index = wisataData.findIndex(w => w.id == data.id);
-                            if (index !== -1) wisataData[index] = fullData;
-                        }
-                    } catch (err) {
-                        console.error("Error fetching detail wisata:", err);
+            // Cek cache: jika data lengkap (galeri sudah ada) skip fetch Supabase
+            const isCached = data && Array.isArray(data.galeri);
+            if (isSupabaseConnected && data && !isCached) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('wisata').select('*').eq('id', data.id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                        const index = wisataData.findIndex(w => w.id == data.id);
+                        if (index !== -1) wisataData[index] = fullData;
                     }
-                } else {
-                    // Gunakan data dari cache
-                    data = wisataData[cachedIndex];
+                } catch (err) {
+                    console.error("Error fetching detail wisata:", err);
                 }
             }
 
             const html = `
                 <div class="bg-gray-900 w-full h-[500px] relative">
-                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80" loading="eager">
                     <div class="absolute bottom-6 right-6 flex gap-2">
-                        <img src="${optimizeImage(data.foto, 200, 70)}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer">
-                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=200" class="w-24 h-16 object-cover border-2 border-transparent hover:border-white rounded cursor-pointer opacity-70 hover:opacity-100 transition">
+                        <img src="${optimizeImage(data.foto, 200, 70)}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=200" class="w-24 h-16 object-cover border-2 border-transparent hover:border-white rounded cursor-pointer opacity-70 hover:opacity-100 transition" loading="lazy">
                         <div class="w-24 h-16 bg-black/50 rounded flex items-center justify-center text-white border-2 border-transparent cursor-pointer"><i class="ph ph-caret-right text-2xl"></i></div>
                     </div>
                 </div>
@@ -3690,8 +3646,9 @@
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
-                                    <img src="${optimizeImage(url, 600)}" alt="Galeri Wisata ${i + 1}" loading="lazy"
+                                    <img src="${optimizeImage(url, 600)}" alt="Galeri Wisata ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
@@ -3757,31 +3714,24 @@
             const contentDiv = document.getElementById('detail-event-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail event...</span></div>';
 
-            if (isSupabaseConnected && data) {
-                // P1: Cek cache — jika galeri sudah pernah di-fetch, skip request ulang ke Supabase
-                const cachedIndex = eventData.findIndex(e => e.id == data.id);
-                const isCached = cachedIndex !== -1 && eventData[cachedIndex].galeri && eventData[cachedIndex].galeri.length > 0;
-
-                if (!isCached) {
-                    try {
-                        const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', data.id).single();
-                        if (!error && fullData) {
-                            data = fullData;
-                            const index = eventData.findIndex(e => e.id == data.id);
-                            if (index !== -1) eventData[index] = fullData;
-                        }
-                    } catch (err) {
-                        console.error("Error fetching detail event:", err);
+            // Cek cache: jika data lengkap (galeri sudah ada) skip fetch Supabase
+            const isCached = data && Array.isArray(data.galeri);
+            if (isSupabaseConnected && data && !isCached) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('events').select('*').eq('id', data.id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                        const index = eventData.findIndex(e => e.id == data.id);
+                        if (index !== -1) eventData[index] = fullData;
                     }
-                } else {
-                    // Gunakan data dari cache
-                    data = eventData[cachedIndex];
+                } catch (err) {
+                    console.error("Error fetching detail event:", err);
                 }
             }
 
             const html = `
                 <div class="w-full h-[400px] relative bg-gray-900">
-                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-60">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-60" loading="eager">
                 </div>
                 <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-10">
                     <div class="w-full lg:w-2/3">
@@ -3818,7 +3768,8 @@
                                 <div class="relative overflow-hidden cursor-pointer group ${i === 0 && data.galeri.length >= 3 ? 'col-span-2' : ''}"
                                      style="aspect-ratio:${i === 0 && data.galeri.length >= 3 ? '16/9' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, '&#39;')})">
-                                    <img src="${optimizeImage(url, 600)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                                    <img src="${optimizeImage(url, 600)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                                         loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
@@ -3868,25 +3819,18 @@
             const contentDiv = document.getElementById('detail-ekraf-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail ekraf...</span></div>';
 
-            if (isSupabaseConnected && data) {
-                // P1: Cek cache — jika galeri sudah pernah di-fetch, skip request ulang ke Supabase
-                const cachedIndex = ekrafData.findIndex(e => e.id == data.id);
-                const isCached = cachedIndex !== -1 && ekrafData[cachedIndex].galeri && ekrafData[cachedIndex].galeri.length > 0;
-
-                if (!isCached) {
-                    try {
-                        const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', data.id).single();
-                        if (!error && fullData) {
-                            data = fullData;
-                            const index = ekrafData.findIndex(e => e.id == data.id);
-                            if (index !== -1) ekrafData[index] = fullData;
-                        }
-                    } catch (err) {
-                        console.error("Error fetching detail ekraf:", err);
+            // Cek cache: jika data lengkap (galeri sudah ada) skip fetch Supabase
+            const isCached = data && Array.isArray(data.galeri);
+            if (isSupabaseConnected && data && !isCached) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('ekraf').select('*').eq('id', data.id).single();
+                    if (!error && fullData) {
+                        data = fullData;
+                        const index = ekrafData.findIndex(e => e.id == data.id);
+                        if (index !== -1) ekrafData[index] = fullData;
                     }
-                } else {
-                    // Gunakan data dari cache
-                    data = ekrafData[cachedIndex];
+                } catch (err) {
+                    console.error("Error fetching detail ekraf:", err);
                 }
             }
 
@@ -3928,7 +3872,7 @@
                 <!-- HERO BANNER -->
                 <div class="relative w-full min-h-[400px] lg:min-h-[480px] overflow-hidden bg-gray-900">
                     ${data.foto
-                    ? `<img src="${optimizeImage(data.foto, 400, 60)}" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" style="filter:blur(2px)">`
+                    ? `<img src="${optimizeImage(data.foto, 400, 60)}" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" loading="eager" style="filter:blur(2px)">`
                     : ''}
                     <div class="absolute inset-0 bg-gradient-to-br ${theme.bg} opacity-80"></div>
                     <!-- Decorative shapes -->
@@ -3941,7 +3885,7 @@
                         <div class="shrink-0">
                             <div class="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border-4 border-white/30 shadow-2xl bg-white/20 backdrop-blur-sm">
                                 ${data.foto
-                    ? `<img src="${optimizeImage(data.foto, 800)}" class="w-full h-full object-cover">`
+                    ? `<img src="${optimizeImage(data.foto, 800)}" class="w-full h-full object-cover" loading="eager">`
                     : `<div class="w-full h-full flex items-center justify-center text-white/60"><i class="ph ${theme.icon} text-7xl"></i></div>`}
                             </div>
                         </div>
@@ -4022,8 +3966,9 @@
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
                                      onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
-                                    <img src="${optimizeImage(url, 600)}" alt="Galeri ${i + 1}" loading="lazy"
+                                    <img src="${optimizeImage(url, 600)}" alt="Galeri ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
@@ -4121,7 +4066,7 @@
                         return `
                                 <div onclick="navigate('detail-ekraf', ${e.id})" class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer group flex flex-col">
                                     <div class="h-36 relative overflow-hidden bg-gray-100">
-                                        ${e.foto ? `<img src="${optimizeImage(e.foto, 600)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">` : `<div class="w-full h-full bg-gradient-to-br ${t.bg} opacity-50"></div>`}
+                                        ${e.foto ? `<img src="${optimizeImage(e.foto, 600)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy">` : `<div class="w-full h-full bg-gradient-to-br ${t.bg} opacity-50"></div>`}
                                         <span class="absolute bottom-2 left-2 ${t.badge} text-[9px] font-bold px-2 py-0.5 rounded uppercase">${e.subsektor}</span>
                                     </div>
                                     <div class="p-4 flex-grow">
@@ -4698,7 +4643,7 @@
                 <div onclick="navigate('detail-event', ${ev.id})"
                      class="flex items-center gap-3 p-3 rounded-xl bg-brand-50 border border-brand-100 hover:bg-brand-100 cursor-pointer transition">
                     <div class="w-10 h-10 rounded-xl overflow-hidden shrink-0 bg-gray-200">
-                        ${ev.foto ? `<img src="${optimizeImage(ev.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-brand-200 flex items-center justify-center"><i class="ph-fill ph-calendar text-brand-600 text-lg"></i></div>`}
+                        ${ev.foto ? `<img src="${optimizeImage(ev.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full bg-brand-200 flex items-center justify-center"><i class="ph-fill ph-calendar text-brand-600 text-lg"></i></div>`}
                     </div>
                     <div class="flex-grow min-w-0">
                         <p class="font-bold text-gray-900 text-sm truncate">${ev.judul}</p>
@@ -4896,7 +4841,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -4996,7 +4941,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -5099,7 +5044,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" onerror="this.src=''; this.parentElement.style.opacity='0.4'">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src=''; this.parentElement.style.opacity='0.4'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -5396,7 +5341,7 @@
                 renderItem = w => `
                     <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
-                            ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
+                            ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
                         </div>
                         <div class="flex-grow min-w-0">
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${w.nama}</p>
@@ -5410,7 +5355,7 @@
                 renderItem = e => `
                     <div onclick="navigate('detail-event', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0 flex flex-col justify-center items-center">
-                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${e.tanggal || '-'}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${e.bulan || '-'}</div>`}
+                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${e.tanggal || '-'}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${e.bulan || '-'}</div>`}
                         </div>
                         <div class="flex-grow min-w-0">
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.judul}</p>
@@ -5424,7 +5369,7 @@
                 renderItem = e => `
                     <div onclick="navigate('detail-ekraf', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
-                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
+                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
                         </div>
                         <div class="flex-grow min-w-0">
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.brand}</p>
@@ -5686,7 +5631,7 @@
             if (!strip) return;
             strip.innerHTML = urls.map((url, i) => `
                 <div class="relative w-16 h-10 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 shrink-0 group">
-                    <img src="${url}" class="w-full h-full object-cover" onerror="this.src='';this.parentElement.style.opacity='0.3'">
+                    <img src="${url}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.3'">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                         <span class="text-white text-xs font-bold">${i + 1}</span>
                     </div>
@@ -5810,7 +5755,7 @@
                     ? [item.kategori, item.lokasi].filter(Boolean).join(' - ')
                     : [item.subsektor, item.lokasi].filter(Boolean).join(' - ');
                 const img = item.foto
-                    ? `<img src="${optimizeImage(item.foto, 80)}" class="w-10 h-10 rounded-lg object-cover bg-gray-100 border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\\'w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0\\'><i class=\\'ph ph-image\\'></i></div>'">`
+                    ? `<img src="${optimizeImage(item.foto, 80)}" class="w-10 h-10 rounded-lg object-cover bg-gray-100 border border-gray-200 shrink-0" loading="lazy" onerror="this.outerHTML='<div class=\\'w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0\\'><i class=\\'ph ph-image\\'></i></div>'">`
                     : `<div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-300 shrink-0"><i class="ph ph-image"></i></div>`;
 
                 return `
@@ -5895,7 +5840,7 @@
                 wPrev.innerHTML = selectedWisata.map(w => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${w.foto
-                        ? `<img src="${optimizeImage(w.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold\\'>No Image</div>'">`
+                        ? `<img src="${optimizeImage(w.foto, 200)}" class="w-full h-full object-cover" loading="lazy" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold\\'>No Image</div>'">`
                         : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold">${w.nama || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-4">Belum ada wisata yang dipilih.</p>';
             }
@@ -5903,7 +5848,7 @@
                 ePrev.innerHTML = selectedEkraf.map(e => `
                     <div class="rounded-lg overflow-hidden bg-gray-100 border border-gray-200" style="aspect-ratio:4/3">
                         ${e.foto
-                        ? `<img src="${optimizeImage(e.foto, 200)}" class="w-full h-full object-cover" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center\\'>No Image</div>'">`
+                        ? `<img src="${optimizeImage(e.foto, 200)}" class="w-full h-full object-cover" loading="lazy" onerror="this.outerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center\\'>No Image</div>'">`
                         : `<div class="w-full h-full flex items-center justify-center text-gray-300 text-xs font-semibold px-1 text-center">${e.brand || '?'}</div>`}
                     </div>`).join('') || '<p class="text-xs text-gray-400 col-span-3">Belum ada ekraf yang dipilih.</p>';
             }
