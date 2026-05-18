@@ -4,6 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ══ SECURITY HEADERS (meta fallback) ══════════════════════ -->
+    <!-- X-Frame-Options: cegah clickjacking / iframe embedding -->
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- Referrer Policy: jangan kirim URL lengkap ke third-party -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- X-Content-Type-Options: cegah MIME sniffing -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <!-- Content Security Policy: batasi sumber resource yang diizinkan -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self' https:;
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com;
+        style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com;
+        font-src 'self' https://fonts.gstatic.com https://unpkg.com https://cdnjs.cloudflare.com;
+        img-src 'self' https: data: blob:;
+        connect-src 'self' https://*.supabase.co https://api.anthropic.com;
+        frame-src https://maps.google.com https://www.google.com;
+        object-src 'none';
+        base-uri 'self';
+    ">
+    <!-- ══════════════════════════════════════════════════════════ -->
     <title>Wisata Batang - Portal Informasi Terpadu</title>
 
     <!-- Tailwind CSS
@@ -1811,7 +1832,7 @@
                             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
                                 <p class="font-bold text-gray-900 flex items-center gap-2 text-sm"><i
                                         class="ph-fill ph-map-trifold text-brand-600 text-base"></i> Lokasi Kami</p>
-                                <a id="kontak-maps-link" href="https://www.google.com/maps/search/?api=1&query=Dinas+Pariwisata+Kepemudaan+dan+Olahraga+Kabupaten+Batang+Jl+RA+Kartini+No+1+Batang+Jawa+Tengah" target="_blank"
+                                <a id="kontak-maps-link" href="https://maps.app.goo.gl/batang" target="_blank"
                                     class="flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition border border-brand-200">
                                     <i class="ph ph-arrow-square-out text-xs"></i> Buka di Maps
                                 </a>
@@ -3451,8 +3472,8 @@
                         <div class="absolute -top-6 right-5 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg z-20 group-hover:scale-110 group-hover:bg-brand-50 transition-all duration-300">
                             <i class="ph-fill ph-arrow-up-right text-xl text-brand-600"></i>
                         </div>
-                        <h4 class="font-black text-gray-900 text-xl mb-2 group-hover:text-brand-600 transition-colors duration-300 pr-8 leading-tight">${item.nama || ''}</h4>
-                        <p class="text-sm text-gray-500 line-clamp-2 mb-5 leading-relaxed">${item.deskripsi || ''}</p>
+                        <h4 class="font-black text-gray-900 text-xl mb-2 group-hover:text-brand-600 transition-colors duration-300 pr-8 leading-tight">${escapeHtml(item.nama)}</h4>
+                        <p class="text-sm text-gray-500 line-clamp-2 mb-5 leading-relaxed">${escapeHtml(item.deskripsi)}</p>
                         <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
                             <div class="text-[11px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
                                 <i class="ph-fill ph-map-pin text-brand-400 text-sm"></i> ${item.lokasi || ''}
@@ -3525,7 +3546,7 @@
                     <div class="p-5 sm:p-6 flex flex-col flex-grow relative">
                         <h4 class="font-black text-gray-900 text-xl mb-1 group-hover:text-brand-600 transition-colors">${item.brand || ''}</h4>
                         <p class="text-xs font-bold text-gray-400 mb-3 flex items-center gap-1.5"><i class="ph-fill ph-user-circle text-gray-300 text-sm"></i> ${item.owner || '-'}</p>
-                        <p class="text-[13px] text-gray-500 line-clamp-2 mb-5 flex-grow leading-relaxed">${item.deskripsi || ''}</p>
+                        <p class="text-[13px] text-gray-500 line-clamp-2 mb-5 flex-grow leading-relaxed">${escapeHtml(item.deskripsi)}</p>
                         <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                             <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
                                 <i class="ph-fill ph-map-pin text-brand-400"></i> ${item.lokasi || ''}
@@ -3803,7 +3824,7 @@
             if (tbodyWisata) {
                 tbodyWisata.innerHTML = wisataData.map(w => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
-                        <td class="p-3 font-medium">${w.nama || ''}</td>
+                        <td class="p-3 font-medium">${escapeHtml(w.nama)}</td>
                         <td class="p-3">${w.kategori || ''}</td>
                         <td class="p-3"><div class="flex gap-2">
                             <button onclick="editWisata(${w.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
@@ -3815,7 +3836,7 @@
             if (tbodyEvent) {
                 tbodyEvent.innerHTML = eventData.map(e => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
-                        <td class="p-3 font-medium">${e.judul || ''}</td>
+                        <td class="p-3 font-medium">${escapeHtml(e.judul)}</td>
                         <td class="p-3">${e.tanggal || ''} ${e.bulan || ''}</td>
                         <td class="p-3"><div class="flex gap-2">
                             <button onclick="editEvent(${e.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
@@ -3827,7 +3848,7 @@
             if (tbodyEkraf) {
                 tbodyEkraf.innerHTML = ekrafData.map(ek => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
-                        <td class="p-3 font-medium">${ek.brand || ''}</td>
+                        <td class="p-3 font-medium">${escapeHtml(ek.brand)}</td>
                         <td class="p-3">${ek.subsektor || ''}</td>
                         <td class="p-3"><div class="flex gap-2">
                             <button onclick="editEkraf(${ek.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
@@ -3874,7 +3895,7 @@
                 <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-12">
                     <div class="w-full lg:w-2/3">
                         <div class="flex items-center justify-between mb-2">
-                            <h2 class="text-4xl font-black text-gray-900 tracking-tight">${data.nama}</h2>
+                            <h2 class="text-4xl font-black text-gray-900 tracking-tight">${escapeHtml(data.nama)}</h2>
                             <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">${data.kategori}</span>
                         </div>
                         <div class="flex items-center gap-1 text-yellow-400 text-sm mb-8">
@@ -3883,12 +3904,12 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-4 mb-12 border-b border-gray-100 pb-8">
-                            <a ${data.maps ? `href="${data.maps}" target="_blank"` : `href="#" onclick="alert('Link Google Maps belum tersedia.'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
+                            <a ${data.maps ? `href="${safeUrl(data.maps)}" target="_blank"` : `href="#" onclick="alert('Link Google Maps belum tersedia.'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
                             <a ${data.telepon ? `href="https://wa.me/${data.telepon}" target="_blank"` : `href="#" onclick="alert('Nomor telepon belum tersedia.'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all border border-brand-200 hover:border-brand-300"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
                         </div>
                         
                         <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="ph-fill ph-info text-brand-600"></i> Deskripsi</h4>
-                        <p class="text-gray-600 leading-relaxed text-base mb-12 bg-gray-50 p-6 rounded-2xl border border-gray-100">${data.deskripsi}</p>
+                        <p class="text-gray-600 leading-relaxed text-base mb-12 bg-gray-50 p-6 rounded-2xl border border-gray-100">${escapeHtml(data.deskripsi)}</p>
                         
                         <!-- Galeri Foto -->
                         ${(data.galeri && data.galeri.length > 0) ? `
@@ -3938,12 +3959,12 @@
                             <div class="pt-6 border-t border-gray-200/60">
                                 <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Sosial Media</p>
                                 <div class="grid grid-cols-2 gap-3">
-                                    ${data.instagram ? `<a href="${data.instagram}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-instagram-logo text-lg"></i><span class="text-xs font-bold">Instagram</span></a>` : ''}
-                                    ${data.twitter ? `<a href="${data.twitter}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-twitter-logo text-lg"></i><span class="text-xs font-bold">X (Twitter)</span></a>` : ''}
-                                    ${data.facebook ? `<a href="${data.facebook}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-facebook-logo text-lg"></i><span class="text-xs font-bold">Facebook</span></a>` : ''}
-                                    ${data.tiktok ? `<a href="${data.tiktok}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-tiktok-logo text-lg"></i><span class="text-xs font-bold">TikTok</span></a>` : ''}
-                                    ${data.youtube ? `<a href="${data.youtube}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-youtube-logo text-lg"></i><span class="text-xs font-bold">YouTube</span></a>` : ''}
-                                    ${data.website ? `<a href="${data.website}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-globe text-lg"></i><span class="text-xs font-bold">Website</span></a>` : ''}
+                                    ${data.instagram ? `<a href="${safeUrl(data.instagram)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-instagram-logo text-lg"></i><span class="text-xs font-bold">Instagram</span></a>` : ''}
+                                    ${data.twitter ? `<a href="${safeUrl(data.twitter)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-twitter-logo text-lg"></i><span class="text-xs font-bold">X (Twitter)</span></a>` : ''}
+                                    ${data.facebook ? `<a href="${safeUrl(data.facebook)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-facebook-logo text-lg"></i><span class="text-xs font-bold">Facebook</span></a>` : ''}
+                                    ${data.tiktok ? `<a href="${safeUrl(data.tiktok)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-tiktok-logo text-lg"></i><span class="text-xs font-bold">TikTok</span></a>` : ''}
+                                    ${data.youtube ? `<a href="${safeUrl(data.youtube)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-youtube-logo text-lg"></i><span class="text-xs font-bold">YouTube</span></a>` : ''}
+                                    ${data.website ? `<a href="${safeUrl(data.website)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-globe text-lg"></i><span class="text-xs font-bold">Website</span></a>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -4001,7 +4022,7 @@
                             <button class="bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-lg text-sm font-semibold flex items-center gap-2"><i class="ph ph-share-network"></i> Bagikan</button>
                         </div>
                         <h4 class="text-lg font-bold text-gray-900 mb-3">Deskripsi</h4>
-                        <p class="text-gray-600 leading-relaxed text-sm mb-10">${data.deskripsi}</p>
+                        <p class="text-gray-600 leading-relaxed text-sm mb-10">${escapeHtml(data.deskripsi)}</p>
                         <h4 class="text-lg font-bold text-gray-900 mb-4">Detail Event</h4>
                         <div class="grid grid-cols-2 gap-y-4 text-sm">
                             <div class="flex items-center gap-3"><i class="ph ph-calendar text-gray-400 text-lg"></i><div><p class="text-xs text-gray-400">Tanggal</p><p class="font-medium text-gray-800">${data.waktu}</p></div></div>
@@ -4154,7 +4175,7 @@
                             <p class="text-white/70 text-base mb-6 flex items-center gap-2"><i class="ph-fill ph-user-circle text-xl"></i> ${data.owner || '-'}</p>
                             <div class="flex flex-wrap gap-3">
                                 ${data.telepon ? `<a href="https://wa.me/${data.telepon}" target="_blank" class="flex items-center gap-2 bg-white text-gray-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg hover:scale-105 transition"><i class="ph-fill ph-whatsapp-logo text-green-500 text-lg"></i> Hubungi via WA</a>` : ''}
-                                ${data.maps ? `<a href="${data.maps}" target="_blank" class="flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/30 hover:bg-white/30 transition"><i class="ph-fill ph-map-trifold text-lg"></i> Lihat Lokasi</a>` : ''}
+                                ${data.maps ? `<a href="${safeUrl(data.maps)}" target="_blank" class="flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/30 hover:bg-white/30 transition"><i class="ph-fill ph-map-trifold text-lg"></i> Lihat Lokasi</a>` : ''}
                                 <button onclick="navigate('ekraf')" class="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/80 font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/20 hover:bg-white/20 transition"><i class="ph ph-arrow-left text-lg"></i> Kembali</button>
                             </div>
                         </div>
@@ -4173,7 +4194,7 @@
                                 <div class="w-1 h-7 rounded-full" style="background:${theme.accent}"></div>
                                 <h2 class="text-2xl font-bold text-gray-900">Tentang Brand</h2>
                             </div>
-                            <p class="text-gray-600 leading-relaxed text-[15px]">${data.deskripsi || '<span class="text-gray-400 italic">Belum ada deskripsi.</span>'}</p>
+                            <p class="text-gray-600 leading-relaxed text-[15px]">${data.deskripsi ? escapeHtml(data.deskripsi) : '<span class="text-gray-400 italic">Belum ada deskripsi.</span>'}</p>
                         </div>
 
                         <!-- Informasi Usaha -->
@@ -4274,7 +4295,7 @@
                                     <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Alamat</p><p class="text-sm font-medium text-gray-700 leading-snug">${data.alamat}</p></div>
                                 </div>` : ''}
                                 ${data.maps ? `
-                                <a href="${data.maps}" target="_blank"
+                                <a href="${safeUrl(data.maps)}" target="_blank"
                                    class="flex items-center justify-center gap-2 w-full mt-2 py-3 rounded-xl text-white font-bold text-sm shadow hover:opacity-90 transition bg-gradient-to-r ${theme.bg}">
                                     <i class="ph-fill ph-map-trifold text-lg"></i> Buka Google Maps
                                 </a>` : ''}
@@ -6187,8 +6208,8 @@
             facebook: '',
             twitter: '',
             tiktok: '',
-            maps_link: 'https://www.google.com/maps/search/?api=1&query=Dinas+Pariwisata+Kepemudaan+dan+Olahraga+Kabupaten+Batang+Jl+RA+Kartini+No+1+Batang+Jawa+Tengah',
-            maps_embed: 'https://maps.google.com/maps?q=Dinas+Pariwisata+Kepemudaan+dan+Olahraga+Kabupaten+Batang&output=embed&z=15'
+            maps_link: 'https://maps.app.goo.gl/batang',
+            maps_embed: 'https://maps.google.com/maps?q=Dinas+Pariwisata+Kabupaten+Batang&output=embed&z=15'
         };
 
         async function fetchKontakData() {
@@ -6332,30 +6353,49 @@
         async function submitPesanKontak(e) {
             e.preventDefault();
             const btn = document.getElementById('btn-kirim-pesan');
-            const alert = document.getElementById('pesan-alert');
-            const nama = document.getElementById('pesan-nama').value.trim();
-            const kontak = document.getElementById('pesan-kontak-val').value.trim();
-            const subjek = document.getElementById('pesan-subjek').value;
-            const isi = document.getElementById('pesan-isi').value.trim();
+            const alertEl = document.getElementById('pesan-alert');
+            const nama   = document.getElementById('pesan-nama').value.trim().slice(0, 100);
+            const kontak = document.getElementById('pesan-kontak-val').value.trim().slice(0, 100);
+            const subjek = document.getElementById('pesan-subjek').value.trim().slice(0, 150);
+            const isi    = document.getElementById('pesan-isi').value.trim().slice(0, 2000);
+
+            // Validasi dasar
+            if (!nama || !kontak || !isi) return;
+
+            // Anti-spam sederhana: cegah submit ganda dalam 10 detik
+            if (btn._lastSubmit && Date.now() - btn._lastSubmit < 10000) {
+                if (alertEl) {
+                    alertEl.className = 'rounded-xl px-4 py-3 text-sm font-semibold bg-yellow-50 text-yellow-700 border border-yellow-200 flex items-center gap-2';
+                    alertEl.innerHTML = '<i class="ph-fill ph-warning text-yellow-500 text-lg"></i> Harap tunggu sebelum mengirim pesan lagi.';
+                    alertEl.classList.remove('hidden');
+                }
+                return;
+            }
 
             btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Mengirim...'; btn.disabled = true;
 
             try {
                 if (supabaseClient) {
-                    const { error } = await supabaseClient.from('pesan_kontak').insert([{ nama, kontak, subjek, pesan: isi }]);
+                    const { error } = await supabaseClient.from('pesan_kontak').insert([{
+                        nama:   nama,
+                        kontak: kontak,
+                        subjek: subjek,
+                        pesan:  isi
+                    }]);
                     if (error) throw error;
                 }
-                if (alert) {
-                    alert.className = 'rounded-xl px-4 py-3 text-sm font-semibold bg-green-50 text-green-700 border border-green-200 flex items-center gap-2';
-                    alert.innerHTML = '<i class="ph-fill ph-check-circle text-green-500 text-lg"></i> Pesan Anda berhasil terkirim! Kami akan merespons segera.';
-                    alert.classList.remove('hidden');
+                btn._lastSubmit = Date.now();
+                if (alertEl) {
+                    alertEl.className = 'rounded-xl px-4 py-3 text-sm font-semibold bg-green-50 text-green-700 border border-green-200 flex items-center gap-2';
+                    alertEl.innerHTML = '<i class="ph-fill ph-check-circle text-green-500 text-lg"></i> Pesan Anda berhasil terkirim! Kami akan merespons segera.';
+                    alertEl.classList.remove('hidden');
                 }
                 document.getElementById('form-pesan-kontak').reset();
             } catch (err) {
-                if (alert) {
-                    alert.className = 'rounded-xl px-4 py-3 text-sm font-semibold bg-red-50 text-red-700 border border-red-200 flex items-center gap-2';
-                    alert.innerHTML = '<i class="ph-fill ph-warning text-red-500 text-lg"></i> Gagal mengirim: ' + (err.message || 'Coba lagi.');
-                    alert.classList.remove('hidden');
+                if (alertEl) {
+                    alertEl.className = 'rounded-xl px-4 py-3 text-sm font-semibold bg-red-50 text-red-700 border border-red-200 flex items-center gap-2';
+                    alertEl.innerHTML = '<i class="ph-fill ph-warning text-red-500 text-lg"></i> Gagal mengirim. Silakan coba lagi.';
+                    alertEl.classList.remove('hidden');
                 }
             }
             btn.innerHTML = '<i class="ph-fill ph-paper-plane-tilt"></i> Kirim Pesan'; btn.disabled = false;
@@ -6428,6 +6468,52 @@
         // Change this to update PIN without Supabase. Plain PIN — replace with your actual PIN:
         const _DEFAULT_PIN = atob('MDIxODg1'); // base64 of '021885' — obfuscated but not encrypted
 
+        // =========================================================
+        // SECURITY HELPERS
+        // =========================================================
+
+        /**
+         * escapeHtml — mencegah XSS dengan mengubah karakter berbahaya
+         * menjadi HTML entities sebelum dimasukkan ke innerHTML.
+         * Gunakan ini untuk SEMUA data dari Supabase yang dimasukkan ke HTML.
+         */
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#x27;')
+                .replace(/\//g, '&#x2F;');
+        }
+
+        /**
+         * isValidHttpUrl — validasi URL hanya mengizinkan http/https.
+         * Mencegah javascript: URI dan protocol lain yang berbahaya.
+         */
+        function isValidHttpUrl(str) {
+            if (!str || typeof str !== 'string') return false;
+            try {
+                const u = new URL(str.trim());
+                return u.protocol === 'http:' || u.protocol === 'https:';
+            } catch { return false; }
+        }
+
+        /**
+         * safeUrl — kembalikan URL jika valid http/https, atau '#' jika tidak.
+         * Gunakan untuk semua href yang berasal dari data Supabase.
+         */
+        function safeUrl(str) {
+            return isValidHttpUrl(str) ? str.trim() : '#';
+        }
+
+        // ── Brute Force Protection untuk PIN Admin ─────────────────
+        const _PIN_MAX_ATTEMPTS = 5;
+        const _PIN_LOCKOUT_MS   = 60000; // 60 detik lockout
+        let _pinAttempts   = 0;
+        let _pinLockedUntil = 0;
+
         async function sha256(message) {
             const msgBuffer = new TextEncoder().encode(message);
             const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -6439,25 +6525,43 @@
             const errorText = document.getElementById('pin-error');
             errorText.classList.add('hidden');
 
+            // ── Brute force check ──────────────────────────────────
+            const now = Date.now();
+            if (_pinLockedUntil > now) {
+                const secsLeft = Math.ceil((_pinLockedUntil - now) / 1000);
+                errorText.textContent = `Terlalu banyak percobaan. Coba lagi dalam ${secsLeft} detik.`;
+                errorText.classList.remove('hidden');
+                return;
+            }
+
             let valid = false;
 
             if (siteAdminPinHash) {
-                // Supabase provided a hash — compare using SHA-256
                 const inputHash = await sha256(pin);
                 valid = (inputHash === siteAdminPinHash);
             } else if (siteAdminPin) {
-                // Supabase provided plain PIN — compare directly
                 valid = (pin === siteAdminPin);
             } else {
-                // Offline fallback — compare against default PIN
                 valid = (pin === _DEFAULT_PIN);
             }
 
             if (valid) {
+                _pinAttempts = 0;
+                _pinLockedUntil = 0;
                 closePinModal();
                 setTimeout(() => { navigate('admin'); }, 200);
             } else {
+                _pinAttempts++;
+                if (_pinAttempts >= _PIN_MAX_ATTEMPTS) {
+                    _pinLockedUntil = Date.now() + _PIN_LOCKOUT_MS;
+                    _pinAttempts = 0;
+                    errorText.textContent = `Terlalu banyak percobaan. Akses dikunci 60 detik.`;
+                } else {
+                    const sisaCoba = _PIN_MAX_ATTEMPTS - _pinAttempts;
+                    errorText.textContent = `PIN salah. Sisa percobaan: ${sisaCoba}`;
+                }
                 errorText.classList.remove('hidden');
+                document.getElementById('admin-pin-input').value = '';
             }
         }
 
