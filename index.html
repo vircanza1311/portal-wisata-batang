@@ -19,8 +19,8 @@
         style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;
         font-src 'self' https://fonts.gstatic.com https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;
         img-src 'self' https: data: blob:;
-        connect-src 'self' https://*.supabase.co https://api.anthropic.com;
-        frame-src https://maps.google.com https://www.google.com;
+        connect-src 'self' https://*.supabase.co https://ik.imagekit.io;
+        frame-src https://maps.google.com https://*.google.com;
         object-src 'none';
         base-uri 'self';
     ">
@@ -319,7 +319,8 @@
             <div class="flex items-center cursor-pointer shrink-0 group" onclick="navigate('home')">
                 <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
                     alt="Dolan Batang"
-                    class="h-10 md:h-12 w-auto object-contain drop-shadow-sm group-hover:scale-[1.04] group-hover:drop-shadow-md transition-all duration-250 ease-out"
+                    class="h-10 md:h-12 w-auto object-contain drop-shadow-sm group-hover:scale-[1.04] group-hover:drop-shadow-md transition-all duration-200 ease-out"
+                    loading="eager"
                     onerror="this.outerHTML='<span class=&quot;font-extrabold text-brand-600 text-xl tracking-tight&quot;>Dolan Batang</span>'">
             </div>
 
@@ -406,7 +407,7 @@
                     <!-- Slides injected by JS (or defaults used) -->
                     <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100">
                         <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000"
-                            class="w-full h-full object-cover brightness-[0.55] scale-105">
+                            class="w-full h-full object-cover brightness-[0.55] scale-105" loading="eager">
                     </div>
                 </div>
                 <!-- Gradient overlays -->
@@ -890,7 +891,7 @@
 
                         <!-- Wisata Religi & Budaya -->
                         <label class="relative cursor-pointer group">
-                            <input type="radio" name="kat" value="Religi & Budaya" class="peer sr-only"
+                            <input type="radio" name="kat" value="Wisata Religi dan Budaya" class="peer sr-only"
                                 onchange="filterWisata()">
                             <div
                                 class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-purple-300 hover:shadow-md transition-all duration-300 peer-checked:bg-purple-500 peer-checked:border-purple-500 overflow-hidden">
@@ -1832,7 +1833,7 @@
                             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
                                 <p class="font-bold text-gray-900 flex items-center gap-2 text-sm"><i
                                         class="ph-fill ph-map-trifold text-brand-600 text-base"></i> Lokasi Kami</p>
-                                <a id="kontak-maps-link" href="https://maps.app.goo.gl/batang" target="_blank"
+                                <a id="kontak-maps-link" href="https://maps.app.goo.gl/batang" target="_blank" rel="noopener"
                                     class="flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition border border-brand-200">
                                     <i class="ph ph-arrow-square-out text-xs"></i> Buka di Maps
                                 </a>
@@ -2857,7 +2858,7 @@
                     <div class="inline-flex items-center mb-5 cursor-pointer bg-white/10 hover:bg-white/15 transition rounded-2xl px-5 py-3 border border-white/10 backdrop-blur-sm"
                         onclick="navigate('home')">
                         <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
-                            alt="Dolan Batang" class="h-14 object-contain max-w-[200px]"
+                            alt="Dolan Batang" class="h-14 object-contain max-w-[200px]" loading="lazy"
                             onerror="this.parentElement.innerHTML='<span class=\'font-extrabold text-white text-xl tracking-tight\'>Dolan Batang</span>'">
                     </div>
                     <p class="text-white/55 text-sm leading-relaxed mb-6 max-w-xs">
@@ -2884,19 +2885,19 @@
                     <!-- Social icons -->
                     <div class="flex gap-2.5 flex-wrap">
                         <!-- Social links: hidden by default, shown dynamically by syncFooterKontak() when URLs exist in DB -->
-                        <a id="footer-ig" href="#" target="_blank" class="footer-social-btn group" title="Instagram"
+                        <a id="footer-ig" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="Instagram"
                             style="display:none">
                             <i class="ph-fill ph-instagram-logo"></i>
                         </a>
-                        <a id="footer-fb" href="#" target="_blank" class="footer-social-btn group" title="Facebook"
+                        <a id="footer-fb" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="Facebook"
                             style="display:none">
                             <i class="ph-fill ph-facebook-logo"></i>
                         </a>
-                        <a id="footer-tw" href="#" target="_blank" class="footer-social-btn group" title="X / Twitter"
+                        <a id="footer-tw" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="X / Twitter"
                             style="display:none">
                             <i class="ph-fill ph-x-logo"></i>
                         </a>
-                        <a id="footer-tt" href="#" target="_blank" class="footer-social-btn group" title="TikTok"
+                        <a id="footer-tt" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="TikTok"
                             style="display:none">
                             <i class="ph-fill ph-tiktok-logo"></i>
                         </a>
@@ -2987,7 +2988,6 @@
                             width: 28px;
                             height: 28px;
                             border-radius: 8px;
-                            shrink-0;
                             background: rgba(255, 255, 255, .07);
                             border: 1px solid rgba(255, 255, 255, .1);
                             display: flex;
@@ -3466,7 +3466,7 @@
                     <div class="h-52 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent z-10 pointer-events-none"></div>
                         <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
-                        <div class="absolute top-3 left-3 ${catBg} backdrop-blur-md text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-20 shadow-sm border border-white/20">${item.kategori || ''}</div>
+                        <div class="absolute top-3 left-3 ${catBg} backdrop-blur-md text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-20 shadow-sm border border-white/20">${escapeHtml(item.kategori || '')}</div>
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow relative bg-white">
                         <div class="absolute -top-6 right-5 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg z-20 group-hover:scale-110 group-hover:bg-brand-50 transition-all duration-300">
@@ -3476,7 +3476,7 @@
                         <p class="text-sm text-gray-500 line-clamp-2 mb-5 leading-relaxed">${escapeHtml(item.deskripsi)}</p>
                         <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
                             <div class="text-[11px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
-                                <i class="ph-fill ph-map-pin text-brand-400 text-sm"></i> ${item.lokasi || ''}
+                                <i class="ph-fill ph-map-pin text-brand-400 text-sm"></i> ${escapeHtml(item.lokasi || '')}
                             </div>
                         </div>
                     </div>
@@ -3489,20 +3489,20 @@
                     <div class="h-48 relative overflow-hidden">
                         <img src="${optimizeImage(item.foto || '')}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">
                         <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm rounded-xl p-2.5 text-center shadow-lg min-w-[3.5rem] border border-white/50 group-hover:bg-cyan-50 transition-colors">
-                            <div class="text-2xl font-black text-brand-600 leading-none mb-0.5">${item.tanggal || ''}</div>
-                            <div class="text-[9px] font-black text-gray-500 uppercase tracking-widest">${item.bulan || ''}</div>
+                            <div class="text-2xl font-black text-brand-600 leading-none mb-0.5">${escapeHtml(item.tanggal || '')}</div>
+                            <div class="text-[9px] font-black text-gray-500 uppercase tracking-widest">${escapeHtml(item.bulan || '')}</div>
                         </div>
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow">
-                        <h4 class="font-black text-gray-900 text-lg mb-4 line-clamp-2 leading-tight group-hover:text-cyan-600 transition-colors">${item.judul || ''}</h4>
+                        <h4 class="font-black text-gray-900 text-lg mb-4 line-clamp-2 leading-tight group-hover:text-cyan-600 transition-colors">${escapeHtml(item.judul || '')}</h4>
                         <div class="mt-auto space-y-2.5">
                             <p class="flex items-center gap-2.5 text-xs font-semibold text-gray-600">
                                 <span class="w-7 h-7 rounded-full bg-cyan-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-map-pin text-cyan-500 text-sm"></i></span> 
-                                <span class="truncate">${item.lokasi || ''}</span>
+                                <span class="truncate">${escapeHtml(item.lokasi || '')}</span>
                             </p>
                             <p class="flex items-center gap-2.5 text-xs font-semibold text-gray-600">
                                 <span class="w-7 h-7 rounded-full bg-cyan-50 flex items-center justify-center shrink-0"><i class="ph-fill ph-clock text-cyan-500 text-sm"></i></span> 
-                                <span class="truncate">${item.waktu || ''}</span>
+                                <span class="truncate">${escapeHtml(item.waktu || '')}</span>
                             </p>
                         </div>
                     </div>
@@ -3513,14 +3513,14 @@
             return `
                 <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:border-brand-200 transition cursor-pointer" onclick="navigate('detail-event', ${item.id})">
                     <div class="text-center w-14 shrink-0 border-r border-gray-100 pr-4">
-                        <div class="text-2xl font-black text-brand-600 leading-none mb-1">${item.tanggal || ''}</div>
-                        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-gray-50 rounded">${item.bulan || ''}</div>
+                        <div class="text-2xl font-black text-brand-600 leading-none mb-1">${escapeHtml(item.tanggal || '')}</div>
+                        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-gray-50 rounded">${escapeHtml(item.bulan || '')}</div>
                     </div>
                     <div class="flex-grow">
-                        <h4 class="font-bold text-gray-900 text-sm">${item.judul || ''}</h4>
+                        <h4 class="font-bold text-gray-900 text-sm">${escapeHtml(item.judul || '')}</h4>
                         <p class="text-xs text-gray-500 mt-1.5 flex items-center gap-3">
-                            <span><i class="ph-fill ph-map-pin text-gray-300"></i> ${item.lokasi || ''}</span>
-                            <span><i class="ph-fill ph-calendar text-gray-300"></i> ${item.waktu || ''}</span>
+                            <span><i class="ph-fill ph-map-pin text-gray-300"></i> ${escapeHtml(item.lokasi || '')}</span>
+                            <span><i class="ph-fill ph-calendar text-gray-300"></i> ${escapeHtml(item.waktu || '')}</span>
                         </p>
                     </div>
                 </div>`;
@@ -3541,15 +3541,15 @@
                     <div class="h-48 relative overflow-hidden bg-gray-50">
                         ${item.foto ? `<img src="${optimizeImage(item.foto, 800)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out" loading="lazy" onerror="this.onerror=null;this.src=IMG_PLACEHOLDER;">` : `<div class="w-full h-full flex items-center justify-center text-gray-200 group-hover:scale-110 transition duration-700"><i class="ph ph-storefront text-6xl"></i></div>`}
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent pointer-events-none"></div>
-                        <span class="absolute bottom-3 left-3 ${colorClass} text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-10">${item.subsektor || ''}</span>
+                        <span class="absolute bottom-3 left-3 ${colorClass} text-[9px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest z-10">${escapeHtml(item.subsektor || '')}</span>
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow relative">
-                        <h4 class="font-black text-gray-900 text-xl mb-1 group-hover:text-brand-600 transition-colors">${item.brand || ''}</h4>
-                        <p class="text-xs font-bold text-gray-400 mb-3 flex items-center gap-1.5"><i class="ph-fill ph-user-circle text-gray-300 text-sm"></i> ${item.owner || '-'}</p>
+                        <h4 class="font-black text-gray-900 text-xl mb-1 group-hover:text-brand-600 transition-colors">${escapeHtml(item.brand || '')}</h4>
+                        <p class="text-xs font-bold text-gray-400 mb-3 flex items-center gap-1.5"><i class="ph-fill ph-user-circle text-gray-300 text-sm"></i> ${escapeHtml(item.owner || '-')}</p>
                         <p class="text-[13px] text-gray-500 line-clamp-2 mb-5 flex-grow leading-relaxed">${escapeHtml(item.deskripsi)}</p>
                         <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                             <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
-                                <i class="ph-fill ph-map-pin text-brand-400"></i> ${item.lokasi || ''}
+                                <i class="ph-fill ph-map-pin text-brand-400"></i> ${escapeHtml(item.lokasi || '')}
                             </div>
                             <div class="flex gap-1.5">
                                 ${item.instagram ? `<div class="w-7 h-7 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-gradient-to-tr group-hover:from-purple-500 group-hover:to-pink-500 group-hover:text-white transition-all duration-300 text-xs"><i class="ph-fill ph-instagram-logo"></i></div>` : ''}
@@ -3888,24 +3888,21 @@
                     <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80" loading="eager">
                     <div class="absolute bottom-6 right-6 flex gap-2">
                         <img src="${optimizeImage(data.foto, 200, 70)}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer" loading="lazy">
-                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=200" class="w-24 h-16 object-cover border-2 border-transparent hover:border-white rounded cursor-pointer opacity-70 hover:opacity-100 transition" loading="lazy">
-                        <div class="w-24 h-16 bg-black/50 rounded flex items-center justify-center text-white border-2 border-transparent cursor-pointer"><i class="ph ph-caret-right text-2xl"></i></div>
                     </div>
                 </div>
                 <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-12">
                     <div class="w-full lg:w-2/3">
                         <div class="flex items-center justify-between mb-2">
                             <h2 class="text-4xl font-black text-gray-900 tracking-tight">${escapeHtml(data.nama)}</h2>
-                            <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">${data.kategori}</span>
+                            <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">${escapeHtml(data.kategori)}</span>
                         </div>
                         <div class="flex items-center gap-1 text-yellow-400 text-sm mb-8">
                             <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i>
-                            <span class="text-gray-500 text-sm ml-2 font-medium">4.8 (120 ulasan)</span>
                         </div>
                         
                         <div class="flex flex-wrap gap-4 mb-12 border-b border-gray-100 pb-8">
-                            <a ${data.maps ? `href="${safeUrl(data.maps)}" target="_blank"` : `href="#" onclick="alert('Link Google Maps belum tersedia.'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
-                            <a ${data.telepon ? `href="https://wa.me/${data.telepon}" target="_blank"` : `href="#" onclick="alert('Nomor telepon belum tersedia.'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all border border-brand-200 hover:border-brand-300"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
+                            <a ${data.maps ? `href="${escapeHtml(safeUrl(data.maps))}" target="_blank" rel="noopener"` : `href="#" onclick="alert('Link Google Maps belum tersedia.'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
+                            <a ${data.telepon ? `href="https://wa.me/${encodeURIComponent(data.telepon)}" target="_blank" rel="noopener"` : `href="#" onclick="alert('Nomor telepon belum tersedia.'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all border border-brand-200 hover:border-brand-300"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
                         </div>
                         
                         <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="ph-fill ph-info text-brand-600"></i> Deskripsi</h4>
@@ -3938,33 +3935,33 @@
                             
                             <div class="flex gap-4 items-start group">
                                 <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-map-pin text-xl"></i></div>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Alamat</p><p class="text-sm text-gray-800 font-semibold leading-snug">${data.alamat || data.lokasi + ', Kabupaten Batang'}</p></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Alamat</p><p class="text-sm text-gray-800 font-semibold leading-snug">${escapeHtml(data.alamat || data.lokasi + ', Kabupaten Batang')}</p></div>
                             </div>
                             
                             <div class="flex gap-4 items-start group">
                                 <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-phone text-xl"></i></div>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Kontak</p><p class="text-sm text-gray-800 font-semibold">${data.telepon || '-'}</p></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Kontak</p><p class="text-sm text-gray-800 font-semibold">${escapeHtml(data.telepon || '-')}</p></div>
                             </div>
                             
                             <div class="flex gap-4 items-start group">
                                 <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-clock text-xl"></i></div>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Jam Buka</p><p class="text-sm text-gray-800 font-semibold">${data.jam || '-'}</p></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Jam Buka</p><p class="text-sm text-gray-800 font-semibold">${escapeHtml(data.jam || '-')}</p></div>
                             </div>
                             
                             <div class="flex gap-4 items-start group">
                                 <div class="w-10 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex items-center justify-center text-brand-600 shrink-0 group-hover:scale-110 transition-transform"><i class="ph-fill ph-ticket text-xl"></i></div>
-                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Harga Tiket</p><p class="text-sm text-gray-800 font-semibold">${data.harga || '-'}</p></div>
+                                <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Harga Tiket</p><p class="text-sm text-gray-800 font-semibold">${escapeHtml(data.harga || '-')}</p></div>
                             </div>
                             
                             <div class="pt-6 border-t border-gray-200/60">
                                 <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Sosial Media</p>
                                 <div class="grid grid-cols-2 gap-3">
-                                    ${data.instagram ? `<a href="${safeUrl(data.instagram)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-instagram-logo text-lg"></i><span class="text-xs font-bold">Instagram</span></a>` : ''}
-                                    ${data.twitter ? `<a href="${safeUrl(data.twitter)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-twitter-logo text-lg"></i><span class="text-xs font-bold">X (Twitter)</span></a>` : ''}
-                                    ${data.facebook ? `<a href="${safeUrl(data.facebook)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-facebook-logo text-lg"></i><span class="text-xs font-bold">Facebook</span></a>` : ''}
-                                    ${data.tiktok ? `<a href="${safeUrl(data.tiktok)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-tiktok-logo text-lg"></i><span class="text-xs font-bold">TikTok</span></a>` : ''}
-                                    ${data.youtube ? `<a href="${safeUrl(data.youtube)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-youtube-logo text-lg"></i><span class="text-xs font-bold">YouTube</span></a>` : ''}
-                                    ${data.website ? `<a href="${safeUrl(data.website)}" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-globe text-lg"></i><span class="text-xs font-bold">Website</span></a>` : ''}
+                                    ${data.instagram ? `<a href="${escapeHtml(safeUrl(data.instagram))}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-instagram-logo text-lg"></i><span class="text-xs font-bold">Instagram</span></a>` : ''}
+                                    ${data.twitter ? `<a href="${escapeHtml(safeUrl(data.twitter))}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-twitter-logo text-lg"></i><span class="text-xs font-bold">X (Twitter)</span></a>` : ''}
+                                    ${data.facebook ? `<a href="${escapeHtml(safeUrl(data.facebook))}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-facebook-logo text-lg"></i><span class="text-xs font-bold">Facebook</span></a>` : ''}
+                                    ${data.tiktok ? `<a href="${escapeHtml(safeUrl(data.tiktok))}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-tiktok-logo text-lg"></i><span class="text-xs font-bold">TikTok</span></a>` : ''}
+                                    ${data.youtube ? `<a href="${escapeHtml(safeUrl(data.youtube))}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-youtube-logo text-lg"></i><span class="text-xs font-bold">YouTube</span></a>` : ''}
+                                    ${data.website ? `<a href="${escapeHtml(safeUrl(data.website))}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm"><i class="ph-fill ph-globe text-lg"></i><span class="text-xs font-bold">Website</span></a>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -4010,11 +4007,11 @@
                 <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-10">
                     <div class="w-full lg:w-2/3">
                         <div class="flex items-center gap-3 mb-4">
-                            <h2 class="text-3xl font-extrabold text-gray-900">${data.judul}</h2>
+                            <h2 class="text-3xl font-extrabold text-gray-900">${escapeHtml(data.judul)}</h2>
                             <span class="bg-brand-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Festival</span>
                         </div>
                         <p class="text-sm font-semibold text-gray-500 mb-8 flex items-center gap-2">
-                            <i class="ph-fill ph-calendar text-brand-600"></i> ${data.waktu} <span class="mx-2 text-gray-300">|</span> <i class="ph-fill ph-map-pin text-brand-600"></i> ${data.lokasi}
+                            <i class="ph-fill ph-calendar text-brand-600"></i> ${escapeHtml(data.waktu)} <span class="mx-2 text-gray-300">|</span> <i class="ph-fill ph-map-pin text-brand-600"></i> ${escapeHtml(data.lokasi)}
                         </p>
                         <div class="flex flex-wrap gap-3 mb-10 border-b border-gray-100 pb-8">
                             <button class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 shadow"><i class="ph-fill ph-calendar-plus"></i> Tambah ke Kalender</button>
@@ -4025,7 +4022,7 @@
                         <p class="text-gray-600 leading-relaxed text-sm mb-10">${escapeHtml(data.deskripsi)}</p>
                         <h4 class="text-lg font-bold text-gray-900 mb-4">Detail Event</h4>
                         <div class="grid grid-cols-2 gap-y-4 text-sm">
-                            <div class="flex items-center gap-3"><i class="ph ph-calendar text-gray-400 text-lg"></i><div><p class="text-xs text-gray-400">Tanggal</p><p class="font-medium text-gray-800">${data.waktu}</p></div></div>
+                            <div class="flex items-center gap-3"><i class="ph ph-calendar text-gray-400 text-lg"></i><div><p class="text-xs text-gray-400">Tanggal</p><p class="font-medium text-gray-800">${escapeHtml(data.waktu)}</p></div></div>
                             <div class="flex items-center gap-3"><i class="ph ph-buildings text-gray-400 text-lg"></i><div><p class="text-xs text-gray-400">Penyelenggara</p><p class="font-medium text-gray-800">Pemkab Batang</p></div></div>
                             <div class="flex items-center gap-3"><i class="ph ph-clock text-gray-400 text-lg"></i><div><p class="text-xs text-gray-400">Waktu</p><p class="font-medium text-gray-800">08:00 - Selesai</p></div></div>
                             <div class="flex items-center gap-3"><i class="ph ph-phone text-gray-400 text-lg"></i><div><p class="text-xs text-gray-400">Kontak</p><p class="font-medium text-gray-800">0856-1234-5678</p></div></div>
@@ -4061,11 +4058,11 @@
                             <div class="p-4 space-y-3">
                                 <div class="flex items-start gap-3">
                                     <div class="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600 shrink-0 mt-0.5"><i class="ph-fill ph-map-pin text-sm"></i></div>
-                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Lokasi</p><p class="text-sm font-semibold text-gray-800">${data.lokasi || '-'}</p></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Lokasi</p><p class="text-sm font-semibold text-gray-800">${escapeHtml(data.lokasi || '-')}</p></div>
                                 </div>
                                 <div class="flex items-start gap-3">
                                     <div class="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600 shrink-0 mt-0.5"><i class="ph-fill ph-calendar text-sm"></i></div>
-                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Tanggal</p><p class="text-sm font-semibold text-gray-800">${data.waktu || '-'}</p></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Tanggal</p><p class="text-sm font-semibold text-gray-800">${escapeHtml(data.waktu || '-')}</p></div>
                                 </div>
                             </div>
                         </div>
@@ -4167,15 +4164,15 @@
                         <div class="text-white flex-grow">
                             <div class="flex flex-wrap items-center gap-3 mb-3">
                                 <span class="bg-white/20 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/30">
-                                    <i class="ph-fill ${theme.icon} mr-1"></i>${data.subsektor}
+                                    <i class="ph-fill ${theme.icon} mr-1"></i>${escapeHtml(data.subsektor)}
                                 </span>
-                                ${data.lokasi ? `<span class="bg-white/10 text-white/80 text-[11px] font-medium px-3 py-1 rounded-full border border-white/20"><i class="ph-fill ph-map-pin mr-1"></i>${data.lokasi}</span>` : ''}
+                                ${data.lokasi ? `<span class="bg-white/10 text-white/80 text-[11px] font-medium px-3 py-1 rounded-full border border-white/20"><i class="ph-fill ph-map-pin mr-1"></i>${escapeHtml(data.lokasi)}</span>` : ''}
                             </div>
-                            <h1 class="text-4xl md:text-5xl font-extrabold mb-2 leading-tight drop-shadow">${data.brand || ''}</h1>
-                            <p class="text-white/70 text-base mb-6 flex items-center gap-2"><i class="ph-fill ph-user-circle text-xl"></i> ${data.owner || '-'}</p>
+                            <h1 class="text-4xl md:text-5xl font-extrabold mb-2 leading-tight drop-shadow">${escapeHtml(data.brand || '')}</h1>
+                            <p class="text-white/70 text-base mb-6 flex items-center gap-2"><i class="ph-fill ph-user-circle text-xl"></i> ${escapeHtml(data.owner || '-')}</p>
                             <div class="flex flex-wrap gap-3">
-                                ${data.telepon ? `<a href="https://wa.me/${data.telepon}" target="_blank" class="flex items-center gap-2 bg-white text-gray-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg hover:scale-105 transition"><i class="ph-fill ph-whatsapp-logo text-green-500 text-lg"></i> Hubungi via WA</a>` : ''}
-                                ${data.maps ? `<a href="${safeUrl(data.maps)}" target="_blank" class="flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/30 hover:bg-white/30 transition"><i class="ph-fill ph-map-trifold text-lg"></i> Lihat Lokasi</a>` : ''}
+                                ${data.telepon ? `<a href="https://wa.me/${encodeURIComponent(data.telepon)}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-white text-gray-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg hover:scale-105 transition"><i class="ph-fill ph-whatsapp-logo text-green-500 text-lg"></i> Hubungi via WA</a>` : ''}
+                                ${data.maps ? `<a href="${escapeHtml(safeUrl(data.maps))}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/30 hover:bg-white/30 transition"><i class="ph-fill ph-map-trifold text-lg"></i> Lihat Lokasi</a>` : ''}
                                 <button onclick="navigate('ekraf')" class="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/80 font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/20 hover:bg-white/20 transition"><i class="ph ph-arrow-left text-lg"></i> Kembali</button>
                             </div>
                         </div>
@@ -4206,24 +4203,24 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
                                     <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-storefront"></i></div>
-                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Nama Brand</p><p class="font-semibold text-gray-800 mt-0.5">${data.brand || '-'}</p></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Nama Brand</p><p class="font-semibold text-gray-800 mt-0.5">${escapeHtml(data.brand || '-')}</p></div>
                                 </div>
                                 <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
                                     <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-user"></i></div>
-                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Pemilik / Owner</p><p class="font-semibold text-gray-800 mt-0.5">${data.owner || '-'}</p></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Pemilik / Owner</p><p class="font-semibold text-gray-800 mt-0.5">${escapeHtml(data.owner || '-')}</p></div>
                                 </div>
                                 <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
                                     <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ${theme.icon}"></i></div>
-                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Subsektor Ekraf</p><p class="font-semibold text-gray-800 mt-0.5">${data.subsektor || '-'}</p></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Subsektor Ekraf</p><p class="font-semibold text-gray-800 mt-0.5">${escapeHtml(data.subsektor || '-')}</p></div>
                                 </div>
                                 <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
                                     <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-map-pin"></i></div>
-                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Lokasi</p><p class="font-semibold text-gray-800 mt-0.5">${data.lokasi || '-'}</p></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Lokasi</p><p class="font-semibold text-gray-800 mt-0.5">${escapeHtml(data.lokasi || '-')}</p></div>
                                 </div>
                                 ${data.alamat ? `
                                 <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 sm:col-span-2">
                                     <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-white text-lg" style="background:${theme.accent}"><i class="ph-fill ph-house"></i></div>
-                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Alamat Lengkap</p><p class="font-semibold text-gray-800 mt-0.5">${data.alamat}</p></div>
+                                    <div><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Alamat Lengkap</p><p class="font-semibold text-gray-800 mt-0.5">${escapeHtml(data.alamat)}</p></div>
                                 </div>` : ''}
                             </div>
                         </div>
@@ -4260,7 +4257,7 @@
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                 ${socialLinks.map(s => `
-                                <a href="${data[s.key]}" target="_blank"
+                                <a href="${escapeHtml(safeUrl(data[s.key]))}" target="_blank" rel="noopener"
                                    class="flex items-center gap-3 p-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 font-semibold text-sm ${s.color} hover:text-white hover:border-transparent transition-all duration-200 group">
                                     <i class="${s.icon} text-xl group-hover:scale-110 transition"></i>
                                     <span>${s.label}</span>
@@ -4282,25 +4279,25 @@
                                 ${data.telepon ? `
                                 <div class="flex items-center gap-3">
                                     <div class="w-9 h-9 rounded-lg bg-green-50 flex items-center justify-center text-green-600"><i class="ph-fill ph-phone text-lg"></i></div>
-                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Telepon / WhatsApp</p><p class="text-sm font-semibold text-gray-800">+${data.telepon}</p></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Telepon / WhatsApp</p><p class="text-sm font-semibold text-gray-800">${escapeHtml(data.telepon)}</p></div>
                                 </div>` : ''}
                                 ${data.lokasi ? `
                                 <div class="flex items-center gap-3">
                                     <div class="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-red-500"><i class="ph-fill ph-map-pin text-lg"></i></div>
-                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Kecamatan</p><p class="text-sm font-semibold text-gray-800">${data.lokasi}, Kab. Batang</p></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Kecamatan</p><p class="text-sm font-semibold text-gray-800">${escapeHtml(data.lokasi)}, Kab. Batang</p></div>
                                 </div>` : ''}
                                 ${data.alamat ? `
                                 <div class="flex items-start gap-3">
                                     <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 shrink-0 mt-0.5"><i class="ph-fill ph-house-line text-lg"></i></div>
-                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Alamat</p><p class="text-sm font-medium text-gray-700 leading-snug">${data.alamat}</p></div>
+                                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Alamat</p><p class="text-sm font-medium text-gray-700 leading-snug">${escapeHtml(data.alamat)}</p></div>
                                 </div>` : ''}
                                 ${data.maps ? `
-                                <a href="${safeUrl(data.maps)}" target="_blank"
+                                <a href="${escapeHtml(safeUrl(data.maps))}" target="_blank" rel="noopener"
                                    class="flex items-center justify-center gap-2 w-full mt-2 py-3 rounded-xl text-white font-bold text-sm shadow hover:opacity-90 transition bg-gradient-to-r ${theme.bg}">
                                     <i class="ph-fill ph-map-trifold text-lg"></i> Buka Google Maps
                                 </a>` : ''}
                                 ${data.telepon ? `
-                                <a href="https://wa.me/${data.telepon}" target="_blank"
+                                <a href="https://wa.me/${encodeURIComponent(data.telepon)}" target="_blank" rel="noopener"
                                    class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold text-sm shadow transition">
                                     <i class="ph-fill ph-whatsapp-logo text-lg"></i> Chat WhatsApp
                                 </a>` : ''}
@@ -6576,26 +6573,6 @@
             window.addEventListener('resize', () => {
                 if (window.innerWidth >= 768) closeMobileMenu();
             });
-
-            // ── Navbar scroll state toggle ─────────────────────────────────
-            // Threshold: 60px (satu tinggi navbar) supaya transisi terasa natural
-            const navbar = document.getElementById('main-navbar');
-            const SCROLL_THRESHOLD = 60;
-
-            function updateNavbarState() {
-                const isScrolled = window.scrollY > SCROLL_THRESHOLD;
-                if (isScrolled) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            }
-
-            // Gunakan passive listener untuk performa scroll optimal
-            window.addEventListener('scroll', updateNavbarState, { passive: true });
-
-            // Jalankan sekali saat load (untuk kasus halaman di-refresh saat sudah scroll)
-            updateNavbarState();
         });
 
     </script>
