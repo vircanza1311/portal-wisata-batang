@@ -3417,14 +3417,45 @@
 
         /** Parse hash menjadi { viewId, detailId } */
         function parseHash(hash) {
-            const clean = (hash || '').replace(/^#/, '');
+            const clean = (hash || '').replace(/^#/, '').trim();
             if (!clean) return { viewId: 'home', detailId: null };
             const parts = clean.split('/');
-            return { viewId: parts[0], detailId: parts[1] || null };
+            const rawViewId = parts[0];
+            const rawDetailId = parts[1] || null;
+
+            // Whitelist view yang boleh diakses via URL hash
+            // Admin sengaja dikecualikan — hanya bisa diakses via PIN modal
+            const VALID_VIEWS = ['home', 'wisata', 'event', 'ekraf', 'kontak', 'tentang',
+                                 'detail-wisata', 'detail-event', 'detail-ekraf'];
+
+            if (!VALID_VIEWS.includes(rawViewId)) {
+                return { viewId: 'home', detailId: null };
+            }
+
+            // Validasi detailId: hanya angka yang diizinkan
+            const safeDetailId = rawDetailId && /^\d+$/.test(rawDetailId) ? rawDetailId : null;
+
+            return { viewId: rawViewId, detailId: safeDetailId };
         }
 
         /** Fungsi inti: tampilkan view tanpa menyentuh history */
         function showView(viewId, detailId) {
+            // ── SECURITY: Admin hanya boleh diakses via PIN modal, TIDAK via hash/URL langsung ──
+            // Jika seseorang mengetik #admin di URL atau share URL admin, redirect ke home
+            if (viewId === 'admin') {
+                // Izinkan hanya jika dipanggil dari verifyPin (flag _adminUnlocked)
+                if (!window._adminUnlocked) {
+                    const home = document.getElementById('view-home');
+                    if (home) home.classList.add('active');
+                    updateActiveNavLink('home');
+                    // Bersihkan hash admin dari URL tanpa menambah history entry
+                    history.replaceState({ viewId: 'home', detailId: null }, '', '#home');
+                    return;
+                }
+                // Reset flag setelah dipakai sekali
+                window._adminUnlocked = false;
+            }
+
             document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('view-' + viewId);
             if (!target) {
@@ -3461,7 +3492,10 @@
 
             // Update URL & history (kecuali jika dipicu oleh popstate)
             if (!_isPopState) {
-                const newHash = buildHash(viewId, detailId);
+                // Admin tidak boleh masuk ke URL history (security + UX)
+                // — URL tetap #home saat di panel admin
+                const hashViewId = viewId === 'admin' ? 'home' : viewId;
+                const newHash = buildHash(hashViewId, detailId);
                 // Hanya push jika hash benar-benar berubah (hindari duplikat)
                 if (location.hash !== newHash) {
                     history.pushState({ viewId, detailId }, '', newHash);
@@ -4744,7 +4778,7 @@
                     renderAllViews(); this.reset(); resetWisataGaleriInputs(); editWisataId = null;
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
-                    navigate('admin');
+                    window._adminUnlocked = true; navigate('admin');
                 }, 1000);
             }
         });
@@ -4805,7 +4839,7 @@
                     resetEventGaleriInputs(); addEventGaleriInput();
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
-                    navigate('admin');
+                    window._adminUnlocked = true; navigate('admin');
                 }, 1000);
             }
         });
@@ -4874,7 +4908,7 @@
                     resetGaleriInputs(); addGaleriInput();
                     btn.innerText = "Simpan Data Ekraf ke Supabase";
                     btn.classList.remove('opacity-70');
-                    navigate('admin');
+                    window._adminUnlocked = true; navigate('admin');
                 }, 1000);
             }
         });
@@ -6692,6 +6726,8 @@
                 _pinAttempts = 0;
                 _pinLockedUntil = 0;
                 closePinModal();
+                // Set flag keamanan: izinkan sekali navigate ke admin
+                window._adminUnlocked = true;
                 setTimeout(() => { navigate('admin'); }, 200);
             } else {
                 _pinAttempts++;
