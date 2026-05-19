@@ -25,7 +25,34 @@
         base-uri 'self';
     ">
     <!-- ══════════════════════════════════════════════════════════ -->
-    <title>Wisata Batang - Portal Informasi Terpadu</title>
+    <title>Dolan Batang – Portal Wisata, Ekraf &amp; Event Kabupaten Batang</title>
+    <meta name="description" content="Dolan Batang – Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah. Temukan destinasi wisata, pelaku ekraf, dan kegiatan terkini.">
+    <meta name="keywords" content="wisata batang, dolan batang, pariwisata batang, ekraf batang, event batang, kabupaten batang, jawa tengah, destinasi wisata batang">
+    <meta name="author" content="Dinas Pariwisata Kepemudaan dan Olahraga Kabupaten Batang">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook / WhatsApp sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Dolan Batang">
+    <meta property="og:title" content="Dolan Batang – Portal Wisata, Ekraf &amp; Event Kabupaten Batang">
+    <meta property="og:description" content="Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah.">
+    <meta property="og:image" content="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/og-image.png">
+    <meta property="og:locale" content="id_ID">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dolan Batang – Portal Wisata, Ekraf &amp; Event Kabupaten Batang">
+    <meta name="twitter:description" content="Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah.">
+    <meta name="twitter:image" content="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png">
+    <link rel="apple-touch-icon" href="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"GovernmentOrganization","name":"Dinas Pariwisata Kepemudaan dan Olahraga Kabupaten Batang","alternateName":"Dolan Batang","url":"https://dolanbatang.id","logo":"https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png","description":"Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah.","address":{"@type":"PostalAddress","streetAddress":"Jl. RA Kartini No. 1, Bogoran, Kauman","addressLocality":"Batang","addressRegion":"Jawa Tengah","postalCode":"51216","addressCountry":"ID"},"telephone":"+62285391141","email":"batang.tourism@gmail.com","areaServed":{"@type":"AdministrativeArea","name":"Kabupaten Batang"}}
+    </script>
 
     <!-- Tailwind CSS
          NOTE: This project uses the Tailwind CDN build intentionally (single-file HTML, no build step).
@@ -60,6 +87,14 @@
     </script>
 
     <!-- Google Fonts -->
+    <!-- DNS preconnect untuk percepat loading CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://puitcehmhgizfioeybsz.supabase.co">
+    <link rel="preconnect" href="https://ik.imagekit.io">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
@@ -1833,7 +1868,7 @@
                             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
                                 <p class="font-bold text-gray-900 flex items-center gap-2 text-sm"><i
                                         class="ph-fill ph-map-trifold text-brand-600 text-base"></i> Lokasi Kami</p>
-                                <a id="kontak-maps-link" href="https://maps.app.goo.gl/batang" target="_blank" rel="noopener"
+                                <a id="kontak-maps-link" href="https://www.google.com/maps/search/?api=1&query=Dinas+Pariwisata+Kepemudaan+dan+Olahraga+Kabupaten+Batang+Jl+RA+Kartini+No+1+Batang+Jawa+Tengah" target="_blank" rel="noopener"
                                     class="flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition border border-brand-200">
                                     <i class="ph ph-arrow-square-out text-xs"></i> Buka di Maps
                                 </a>
@@ -2837,14 +2872,10 @@
                             Anda</p>
                     </div>
                 </div>
-                <div class="flex gap-2 w-full md:w-auto">
-                    <input type="text" placeholder="Nomor WhatsApp Anda..."
-                        class="flex-grow md:w-64 bg-white/10 border border-white/20 text-white placeholder-white/30 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-brand-400 focus:bg-white/15 transition">
-                    <button onclick="alert('Fitur segera hadir!')"
-                        class="shrink-0 bg-brand-500 hover:bg-brand-400 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg flex items-center gap-1.5">
-                        <i class="ph-fill ph-whatsapp-logo"></i> Daftar
-                    </button>
-                </div>
+                <a href="https://wa.me/6282876107803" target="_blank" rel="noopener"
+                    class="shrink-0 bg-brand-500 hover:bg-brand-400 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition shadow-lg flex items-center gap-2 whitespace-nowrap">
+                    <i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi via WhatsApp
+                </a>
             </div>
         </div>
 
@@ -3901,8 +3932,8 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-4 mb-12 border-b border-gray-100 pb-8">
-                            <a ${data.maps ? `href="${escapeHtml(safeUrl(data.maps))}" target="_blank" rel="noopener"` : `href="#" onclick="alert('Link Google Maps belum tersedia.'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
-                            <a ${data.telepon ? `href="https://wa.me/${encodeURIComponent(data.telepon)}" target="_blank" rel="noopener"` : `href="#" onclick="alert('Nomor telepon belum tersedia.'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all border border-brand-200 hover:border-brand-300"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
+                            <a ${data.maps ? `href="${escapeHtml(safeUrl(data.maps))}" target="_blank" rel="noopener"` : `href="#" onclick="showToast('Link Google Maps belum tersedia.','info'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
+                            <a ${data.telepon ? `href="https://wa.me/${encodeURIComponent(data.telepon)}" target="_blank" rel="noopener"` : `href="#" onclick="showToast('Nomor telepon belum tersedia.','info'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all border border-brand-200 hover:border-brand-300"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
                         </div>
                         
                         <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="ph-fill ph-info text-brand-600"></i> Deskripsi</h4>
@@ -4420,10 +4451,10 @@
                 try {
                     const { error } = await supabaseClient.from('wisata').delete().eq('id', id);
                     if (error) throw error;
-                    alert("Data wisata berhasil dihapus.");
+                    showToast("Data wisata berhasil dihapus.", "success");
                     await fetchRealData();
                     renderAllViews();
-                } catch (error) { alert("Gagal menghapus: " + error.message); }
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
             } else {
                 wisataData = wisataData.filter(w => w.id != id);
                 renderAllViews();
@@ -4471,10 +4502,10 @@
                 try {
                     const { error } = await supabaseClient.from('events').delete().eq('id', id);
                     if (error) throw error;
-                    alert("Data event berhasil dihapus.");
+                    showToast("Data event berhasil dihapus.", "success");
                     await fetchRealData();
                     renderAllViews();
-                } catch (error) { alert("Gagal menghapus: " + error.message); }
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
             } else {
                 eventData = eventData.filter(e => e.id != id);
                 renderAllViews();
@@ -4530,10 +4561,10 @@
                 try {
                     const { error } = await supabaseClient.from('ekraf').delete().eq('id', id);
                     if (error) throw error;
-                    alert("Data ekraf berhasil dihapus.");
+                    showToast("Data ekraf berhasil dihapus.", "success");
                     await fetchRealData();
                     renderAllViews();
-                } catch (error) { alert("Gagal menghapus: " + error.message); }
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
             } else {
                 ekrafData = ekrafData.filter(e => e.id != id);
                 renderAllViews();
@@ -4610,19 +4641,19 @@
                         error = res.error;
                     }
                     if (error) throw error;
-                    alert("Sukses! Data Wisata berhasil " + (editWisataId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
+                    showToast("Data Wisata berhasil " + (editWisataId ? "diperbarui" : "ditambahkan") + "!", "success");
                     this.reset(); resetWisataGaleriInputs(); editWisataId = null;
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
                     await fetchRealData(); renderAllViews();
                 } catch (err) {
-                    alert("Gagal menyimpan data: " + err.message);
+                    showToast("Gagal menyimpan: " + err.message, "error");
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
                 }
             } else {
                 setTimeout(() => {
-                    alert("SIMULASI: Data hanya dicatat di Console (Supabase belum dikonfigurasi).");
+                    showToast("Mode offline: data tidak tersimpan ke database.", "warning");
                     console.log("Mock Insert Wisata:", newData);
                     if (editWisataId) {
                         newData.id = editWisataId;
@@ -4669,20 +4700,20 @@
                         error = res.error;
                     }
                     if (error) throw error;
-                    alert("Sukses! Data Event berhasil " + (editEventId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
+                    showToast("Data Event berhasil " + (editEventId ? "diperbarui" : "ditambahkan") + "!", "success");
                     this.reset(); editEventId = null;
                     resetEventGaleriInputs(); addEventGaleriInput();
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
                     await fetchRealData(); renderAllViews();
                 } catch (err) {
-                    alert("Gagal menyimpan data: " + err.message);
+                    showToast("Gagal menyimpan: " + err.message, "error");
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
                 }
             } else {
                 setTimeout(() => {
-                    alert("SIMULASI: Data hanya dicatat di Console (Supabase belum dikonfigurasi).");
+                    showToast("Mode offline: data tidak tersimpan ke database.", "warning");
                     console.log("Mock Insert Event:", newData);
                     if (editEventId) {
                         newData.id = editEventId;
@@ -4738,20 +4769,20 @@
                         error = res.error;
                     }
                     if (error) throw error;
-                    alert("Sukses! Data Ekraf berhasil " + (editEkrafId ? "diperbarui" : "ditambahkan") + " ke Supabase.");
+                    showToast("Data Ekraf berhasil " + (editEkrafId ? "diperbarui" : "ditambahkan") + "!", "success");
                     this.reset(); editEkrafId = null;
                     resetGaleriInputs(); addGaleriInput();
                     btn.innerText = "Simpan Data Ekraf ke Supabase";
                     btn.classList.remove('opacity-70');
                     await fetchRealData(); renderAllViews();
                 } catch (err) {
-                    alert("Gagal menyimpan data: " + err.message);
+                    showToast("Gagal menyimpan: " + err.message, "error");
                     btn.innerText = "Simpan Data Ekraf ke Supabase";
                     btn.classList.remove('opacity-70');
                 }
             } else {
                 setTimeout(() => {
-                    alert("SIMULASI: Data hanya dicatat di Console (Supabase belum dikonfigurasi).");
+                    showToast("Mode offline: data tidak tersimpan ke database.", "warning");
                     console.log("Mock Insert Ekraf:", newData);
                     if (editEkrafId) {
                         newData.id = editEkrafId;
@@ -6185,9 +6216,9 @@
                 btn.innerText = 'Simpan Pengaturan Beranda';
                 btn.classList.remove('opacity-70');
                 if (saved) {
-                    alert('✅ Pengaturan beranda berhasil disimpan ke database!');
+                    showToast('Pengaturan beranda berhasil disimpan!', 'success');
                 } else {
-                    alert('✅ Pengaturan beranda diterapkan (offline — tidak tersimpan ke database).');
+                    showToast('Pengaturan diterapkan (mode offline).', 'info');
                 }
             }, 600);
         });
@@ -6205,7 +6236,7 @@
             facebook: '',
             twitter: '',
             tiktok: '',
-            maps_link: 'https://maps.app.goo.gl/batang',
+            maps_link: 'https://www.google.com/maps/search/?api=1&query=Dinas+Pariwisata+Kepemudaan+dan+Olahraga+Kabupaten+Batang+Jl+RA+Kartini+No+1+Batang+Jawa+Tengah',
             maps_embed: 'https://maps.google.com/maps?q=Dinas+Pariwisata+Kabupaten+Batang&output=embed&z=15'
         };
 
@@ -6510,6 +6541,40 @@
         const _PIN_LOCKOUT_MS   = 60000; // 60 detik lockout
         let _pinAttempts   = 0;
         let _pinLockedUntil = 0;
+
+        // ── Toast Notification (menggantikan alert() di admin) ─────
+        function showToast(msg, type = 'success') {
+            let toast = document.getElementById('_admin_toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = '_admin_toast';
+                toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;max-width:340px;transition:all 0.3s ease;transform:translateY(20px);opacity:0;';
+                document.body.appendChild(toast);
+            }
+            const colors = {
+                success: 'bg-green-600',
+                error:   'bg-red-600',
+                info:    'bg-brand-600',
+                warning: 'bg-amber-500'
+            };
+            const icons = {
+                success: 'ph-check-circle',
+                error:   'ph-x-circle',
+                info:    'ph-info',
+                warning: 'ph-warning'
+            };
+            toast.innerHTML = `<div class="flex items-center gap-3 ${colors[type] || colors.info} text-white px-4 py-3 rounded-2xl shadow-2xl text-sm font-semibold">
+                <i class="ph-fill ${icons[type] || icons.info} text-xl shrink-0"></i>
+                <span>${escapeHtml(msg)}</span>
+            </div>`;
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => {
+                toast.style.transform = 'translateY(20px)';
+                toast.style.opacity = '0';
+            }, 3500);
+        }
 
         async function sha256(message) {
             const msgBuffer = new TextEncoder().encode(message);
