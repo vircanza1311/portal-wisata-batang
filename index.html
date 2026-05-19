@@ -3393,12 +3393,47 @@
             addEventGaleriInput();     // Event galeri
             // Start hero crossfade slideshow (with persisted slides if available)
             initHeroSlideshow();
+            // Initialize browser history support — handle URL hash & replaceState
+            handleInitialHash();
         }
 
-        function navigate(viewId, detailId = null) {
+        // ══════════════════════════════════════════════════════════════
+        //  SPA NAVIGATION WITH BROWSER HISTORY (pushState / popState)
+        //
+        //  Sekarang setiap navigasi dicatat di browser history.
+        //  Tombol Back/Forward berfungsi; URL bisa di-share & di-refresh.
+        //  Format URL: #home | #wisata | #event | #ekraf | #tentang | #kontak
+        //              #wisata/123 | #event/456 | #ekraf/789  (detail)
+        // ══════════════════════════════════════════════════════════════
+
+        /** Flag: sedang memproses popstate, jangan push ulang */
+        let _isPopState = false;
+
+        /** Bangun hash string dari viewId + optional detailId */
+        function buildHash(viewId, detailId) {
+            if (detailId) return '#' + viewId + '/' + detailId;
+            return '#' + viewId;
+        }
+
+        /** Parse hash menjadi { viewId, detailId } */
+        function parseHash(hash) {
+            const clean = (hash || '').replace(/^#/, '');
+            if (!clean) return { viewId: 'home', detailId: null };
+            const parts = clean.split('/');
+            return { viewId: parts[0], detailId: parts[1] || null };
+        }
+
+        /** Fungsi inti: tampilkan view tanpa menyentuh history */
+        function showView(viewId, detailId) {
             document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('view-' + viewId);
-            if (!target) return;
+            if (!target) {
+                // Fallback ke home jika viewId tidak valid
+                const home = document.getElementById('view-home');
+                if (home) home.classList.add('active');
+                updateActiveNavLink('home');
+                return;
+            }
             target.classList.add('active');
             window.scrollTo(0, 0);
 
@@ -3417,6 +3452,50 @@
                 renderHomePickers();
                 loadHeroSlidesAdmin();
                 switchAdminTab('wisata');
+            }
+        }
+
+        /** Navigasi utama — dipanggil dari onclick / programmatic */
+        function navigate(viewId, detailId = null) {
+            showView(viewId, detailId);
+
+            // Update URL & history (kecuali jika dipicu oleh popstate)
+            if (!_isPopState) {
+                const newHash = buildHash(viewId, detailId);
+                // Hanya push jika hash benar-benar berubah (hindari duplikat)
+                if (location.hash !== newHash) {
+                    history.pushState({ viewId, detailId }, '', newHash);
+                }
+            }
+        }
+
+        /** Tangani tombol Back / Forward browser */
+        window.addEventListener('popstate', function (e) {
+            _isPopState = true;
+            try {
+                if (e.state && e.state.viewId) {
+                    showView(e.state.viewId, e.state.detailId || null);
+                } else {
+                    // Fallback: parse hash saat ini
+                    const { viewId, detailId } = parseHash(location.hash);
+                    showView(viewId, detailId);
+                }
+            } finally {
+                _isPopState = false;
+            }
+        });
+
+        /** Saat pertama kali load, cek hash di URL */
+        function handleInitialHash() {
+            const { viewId, detailId } = parseHash(location.hash);
+            if (viewId !== 'home' || detailId) {
+                // Ada hash — navigasikan ke view tersebut
+                showView(viewId, detailId);
+                // Replace state agar history bersih (tidak menambah entry)
+                history.replaceState({ viewId, detailId }, '', buildHash(viewId, detailId));
+            } else {
+                // Tidak ada hash — set state awal untuk home
+                history.replaceState({ viewId: 'home', detailId: null }, '', '#home');
             }
         }
 
