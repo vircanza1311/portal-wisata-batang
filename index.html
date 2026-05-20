@@ -3945,8 +3945,10 @@
             // Beranda
             const gwHomeCount = parseInt(document.getElementById('grid-home-wisata')?.dataset.count || '4', 10);
             const geHomeCount = parseInt(document.getElementById('grid-home-ekraf')?.dataset.count || '3', 10);
-            document.getElementById('grid-home-wisata').innerHTML = getSelectedHomeItems(wisataData, homeWisataSelectedIds, gwHomeCount, homeWisataSelectionReady).map(createWisataCard).join('');
-            document.getElementById('grid-home-event').innerHTML = eventData.slice(0, 4).map(createEventCardBlock).join('');
+            const ghw = document.getElementById('grid-home-wisata');
+            if (ghw) ghw.innerHTML = getSelectedHomeItems(wisataData, homeWisataSelectedIds, gwHomeCount, homeWisataSelectionReady).map(createWisataCard).join('');
+            const ghe = document.getElementById('grid-home-event');
+            if (ghe) ghe.innerHTML = eventData.slice(0, 4).map(createEventCardBlock).join('');
             const homeEkraf = document.getElementById('grid-home-ekraf');
             if (homeEkraf) homeEkraf.innerHTML = getSelectedHomeItems(ekrafData, homeEkrafSelectedIds, geHomeCount, homeEkrafSelectionReady).map(createEkrafCard).join('');
             // Wisata
@@ -3954,7 +3956,8 @@
             // Event
             const lhe = document.getElementById('list-home-event');
             if (lhe) lhe.innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
-            document.getElementById('grid-all-event').innerHTML = eventData.map(createEventCardBlock).join('');
+            const gae = document.getElementById('grid-all-event');
+            if (gae) gae.innerHTML = eventData.map(createEventCardBlock).join('');
             // Ekraf
             renderEkrafGrid(ekrafFilterActive ? ekrafData.filter(e => e.subsektor === ekrafFilterActive) : ekrafData);
 
@@ -3971,7 +3974,7 @@
                 tbodyWisata.innerHTML = wisataData.map(w => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="p-3 font-medium">${escapeHtml(w.nama)}</td>
-                        <td class="p-3">${w.kategori || ''}</td>
+                        <td class="p-3">${escapeHtml(w.kategori || '')}</td>
                         <td class="p-3"><div class="flex gap-2">
                             <button onclick="editWisata(${w.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
                             <button onclick="deleteWisata(${w.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
@@ -3983,7 +3986,7 @@
                 tbodyEvent.innerHTML = eventData.map(e => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="p-3 font-medium">${escapeHtml(e.judul)}</td>
-                        <td class="p-3">${e.tanggal || ''} ${e.bulan || ''}</td>
+                        <td class="p-3">${escapeHtml(e.tanggal || '')} ${escapeHtml(e.bulan || '')}</td>
                         <td class="p-3"><div class="flex gap-2">
                             <button onclick="editEvent(${e.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
                             <button onclick="deleteEvent(${e.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
@@ -3995,7 +3998,7 @@
                 tbodyEkraf.innerHTML = ekrafData.map(ek => `
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="p-3 font-medium">${escapeHtml(ek.brand)}</td>
-                        <td class="p-3">${ek.subsektor || ''}</td>
+                        <td class="p-3">${escapeHtml(ek.subsektor || '')}</td>
                         <td class="p-3"><div class="flex gap-2">
                             <button onclick="editEkraf(${ek.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
                             <button onclick="deleteEkraf(${ek.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
@@ -4009,7 +4012,12 @@
         // ---------------------------------------------------------
 
         async function buildDetailWisata(id) {
-            let data = wisataData.find(w => w.id == id) || wisataData[0];
+            let data = wisataData.find(w => w.id == id);
+            if (!data) {
+                const contentDiv = document.getElementById('detail-wisata-content');
+                if (contentDiv) contentDiv.innerHTML = '<div class="flex flex-col items-center justify-center py-24 text-gray-400"><i class="ph ph-map-trifold text-6xl mb-4"></i><p class="text-lg font-semibold">Data wisata tidak ditemukan.</p><button onclick="navigate(\'wisata\')" class="mt-4 text-sm text-brand-600 font-bold hover:underline">Kembali ke Wisata</button></div>';
+                return;
+            }
 
             const contentDiv = document.getElementById('detail-wisata-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail wisata...</span></div>';
@@ -4126,7 +4134,12 @@
         }
 
         async function buildDetailEvent(id) {
-            let data = eventData.find(e => e.id == id) || eventData[0];
+            let data = eventData.find(e => e.id == id);
+            if (!data) {
+                const contentDiv = document.getElementById('detail-event-content');
+                if (contentDiv) contentDiv.innerHTML = '<div class="flex flex-col items-center justify-center py-24 text-gray-400"><i class="ph ph-calendar-x text-6xl mb-4"></i><p class="text-lg font-semibold">Data event tidak ditemukan.</p><button onclick="navigate(\'event\')" class="mt-4 text-sm text-brand-600 font-bold hover:underline">Kembali ke Event</button></div>';
+                return;
+            }
 
             const contentDiv = document.getElementById('detail-event-content');
             contentDiv.innerHTML = '<div class="flex justify-center py-20"><i class="ph ph-spinner-gap animate-spin text-4xl text-brand-600"></i><span class="ml-3 text-lg text-gray-600">Memuat detail event...</span></div>';
@@ -6411,7 +6424,7 @@
                     socmedList.innerHTML = '<p class="text-sm text-gray-400 col-span-2 italic">Belum ada media sosial yang diisi.</p>';
                 } else {
                     socmedList.innerHTML = socials.map(s => `
-                        <a href="${d[s.key]}" target="_blank" rel="noopener"
+                        <a href="${safeUrl(d[s.key])}" target="_blank" rel="noopener"
                            class="flex items-center gap-3 p-3 rounded-xl ${s.cls} text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
                             <i class="${s.icon} text-xl"></i> ${s.label}
                         </a>`).join('');
@@ -6437,7 +6450,7 @@
             Object.entries(socials).forEach(([id, url]) => {
                 const el = document.getElementById(id);
                 if (!el) return;
-                el.href = url || '#';
+                el.href = url ? safeUrl(url) : '#';
                 el.style.display = url ? '' : 'none';
             });
         }
