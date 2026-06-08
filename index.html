@@ -3314,13 +3314,13 @@
         async function fetchRealData() {
             if (!isSupabaseConnected) return;
             try {
-                const { data: wData, error: wErr } = await supabaseClient.from('wisata').select('id, nama, kategori, lokasi, foto, telepon, email, jam, harga, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
+                const { data: wData, error: wErr } = await supabaseClient.from('wisata').select('id, nama, kategori, lokasi, foto, deskripsi, telepon, email, jam, harga, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
                 if (!wErr && wData && wData.length > 0) wisataData = wData;
 
                 const { data: eData, error: eErr } = await supabaseClient.from('events').select('id, judul, tanggal, bulan, lokasi, waktu, foto').order('id', { ascending: false });
                 if (!eErr && eData && eData.length > 0) eventData = eData;
 
-                const { data: ekData, error: ekErr } = await supabaseClient.from('ekraf').select('id, brand, owner, subsektor, lokasi, alamat, telepon, email, foto, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
+                const { data: ekData, error: ekErr } = await supabaseClient.from('ekraf').select('id, brand, owner, subsektor, lokasi, alamat, telepon, email, foto, deskripsi, maps, instagram, twitter, facebook, tiktok, website, youtube').order('id', { ascending: false });
                 if (!ekErr && ekData && ekData.length > 0) ekrafData = ekData;
             } catch (err) {
                 console.error("Gagal koneksi ke Supabase:", err);
