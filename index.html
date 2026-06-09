@@ -3281,6 +3281,7 @@
         let isSupabaseConnected = false;
         let currentAdminUser = null;
         let isAdminAuthorized = false;
+        let activeAdminTab = 'wisata';
 
         if (SUPABASE_URL && SUPABASE_ANON_KEY) {
             supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -3454,8 +3455,8 @@
             // ── SECURITY: Admin hanya boleh diakses via login admin, TIDAK via hash/URL langsung ──
             // Jika seseorang mengetik #admin di URL atau share URL admin, redirect ke home
             if (viewId === 'admin') {
-                // Izinkan hanya jika dipanggil dari verifyPin (flag _adminUnlocked)
-                if (!window._adminUnlocked) {
+                // Izinkan jika sesi admin sudah valid, atau baru saja dibuka dari flow login.
+                if (!isAdminAuthorized && !window._adminUnlocked) {
                     const home = document.getElementById('view-home');
                     if (home) home.classList.add('active');
                     updateActiveNavLink('home');
@@ -3463,7 +3464,7 @@
                     history.replaceState({ viewId: 'home', detailId: null }, '', '#home');
                     return;
                 }
-                // Reset flag setelah dipakai sekali
+                // Flag hanya untuk transisi login; akses berikutnya memakai isAdminAuthorized.
                 window._adminUnlocked = false;
             }
 
@@ -3493,7 +3494,7 @@
                 checkAdminStatus();
                 renderHomePickers();
                 loadHeroSlidesAdmin();
-                switchAdminTab('wisata');
+                switchAdminTab(activeAdminTab || 'wisata');
             }
         }
 
@@ -4723,6 +4724,7 @@
         }
 
         function switchAdminTab(tab) {
+            activeAdminTab = tab || 'wisata';
             const forms = { beranda: 'admin-form-beranda', wisata: 'admin-form-wisata', event: 'admin-form-event', ekraf: 'admin-form-ekraf', kontak: 'admin-form-kontak' };
             const tables = { beranda: null, wisata: 'table-wisata-container', event: 'table-event-container', ekraf: 'table-ekraf-container', kontak: null };
             const tabs = { beranda: 'tab-beranda', wisata: 'tab-wisata', event: 'tab-event', ekraf: 'tab-ekraf', kontak: 'tab-kontak' };
@@ -4815,7 +4817,7 @@
                     renderAllViews(); this.reset(); resetWisataGaleriInputs(); editWisataId = null;
                     btn.innerText = "Simpan Data Wisata ke Supabase";
                     btn.classList.remove('opacity-70');
-                    window._adminUnlocked = true; navigate('admin');
+                    openAdminPanel();
                 }, 1000);
             }
         });
@@ -4876,7 +4878,7 @@
                     resetEventGaleriInputs(); addEventGaleriInput();
                     btn.innerText = "Simpan Data Event ke Supabase";
                     btn.classList.remove('opacity-70');
-                    window._adminUnlocked = true; navigate('admin');
+                    openAdminPanel();
                 }, 1000);
             }
         });
@@ -4946,7 +4948,7 @@
                     resetGaleriInputs(); addGaleriInput();
                     btn.innerText = "Simpan Data Ekraf ke Supabase";
                     btn.classList.remove('opacity-70');
-                    window._adminUnlocked = true; navigate('admin');
+                    openAdminPanel();
                 }, 1000);
             }
         });
@@ -6662,7 +6664,7 @@
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = '_admin_toast';
-                toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;max-width:340px;transition:all 0.3s ease;transform:translateY(20px);opacity:0;';
+                toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;max-width:340px;transition:all 0.3s ease;transform:translateY(20px);opacity:0;pointer-events:none;';
                 document.body.appendChild(toast);
             }
             const colors = {
@@ -6699,14 +6701,32 @@
 
         function updateAdminSessionUI() {
             const label = document.getElementById('admin-session-label');
-            if (!label) return;
+            const footerBtn = document.getElementById('footer-admin-login-btn');
             if (currentAdminUser && isAdminAuthorized) {
-                label.textContent = currentAdminUser.email || 'Admin';
-                label.className = 'text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2';
+                if (label) {
+                    label.textContent = currentAdminUser.email || 'Admin';
+                    label.className = 'text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2';
+                }
+                if (footerBtn) {
+                    footerBtn.innerHTML = '<i class="ph-fill ph-lock-key text-xs"></i> Admin Panel';
+                    footerBtn.setAttribute('aria-label', 'Buka panel admin');
+                }
             } else {
-                label.textContent = 'Belum login';
-                label.className = 'text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2';
+                if (label) {
+                    label.textContent = 'Belum login';
+                    label.className = 'text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2';
+                }
+                if (footerBtn) {
+                    footerBtn.innerHTML = '<i class="ph-fill ph-lock-key text-xs"></i> Login Admin';
+                    footerBtn.setAttribute('aria-label', 'Login admin');
+                }
             }
+        }
+
+        function openAdminPanel(tab = activeAdminTab || 'wisata') {
+            activeAdminTab = tab || 'wisata';
+            window._adminUnlocked = true;
+            navigate('admin');
         }
 
         async function ensureAdminSession(showMessage = false) {
@@ -6752,10 +6772,14 @@
         }
 
         async function openPinModal() {
+            if (currentAdminUser && isAdminAuthorized) {
+                openAdminPanel();
+                return;
+            }
+
             const hasAdminSession = await ensureAdminSession(false);
             if (hasAdminSession) {
-                window._adminUnlocked = true;
-                navigate('admin');
+                openAdminPanel();
                 return;
             }
 
@@ -6831,8 +6855,7 @@
                 }
 
                 closePinModal();
-                window._adminUnlocked = true;
-                setTimeout(() => { navigate('admin'); }, 200);
+                setTimeout(() => { openAdminPanel(); }, 200);
             } catch (err) {
                 setAdminLoginError('Login gagal. Periksa email, password, atau status akun admin.');
             } finally {
