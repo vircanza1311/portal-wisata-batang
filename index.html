@@ -2079,11 +2079,19 @@
         <section id="view-admin" class="page-view bg-gray-50 min-h-screen py-16">
             <div class="max-w-4xl mx-auto px-4">
                 <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                    <div class="flex items-center gap-3 mb-6 border-b pb-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 border-b pb-4">
                         <i class="ph-fill ph-lock-key text-3xl text-brand-600"></i>
-                        <div>
+                        <div class="flex-grow">
                             <h2 class="text-2xl font-bold text-gray-900 leading-none">Login Admin</h2>
                             <p class="text-sm text-gray-500 mt-1">Kelola data wisata, event, dan ekonomi kreatif</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="admin-session-label"
+                                class="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">Belum login</span>
+                            <button type="button" onclick="logoutAdmin()"
+                                class="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 px-3 py-2 rounded-lg transition">
+                                <i class="ph ph-sign-out text-sm"></i> Logout
+                            </button>
                         </div>
                     </div>
 
@@ -3211,27 +3219,30 @@
         <p id="lightbox-counter" class="absolute bottom-4 text-white/60 text-sm font-medium"></p>
     </div>
 
-    <!-- PIN Modal -->
+    <!-- Admin Login Modal -->
     <div id="pin-modal"
         class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center backdrop-blur-sm transition-opacity">
         <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm overflow-hidden transform transition-all scale-95 opacity-0 duration-200"
             id="pin-modal-content">
             <div class="p-6">
                 <div
-                    class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <i class="ph-fill ph-lock-key text-2xl"></i>
+                    class="w-12 h-12 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <i class="ph-fill ph-user-circle text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Akses Admin</h3>
-                <p class="text-sm text-center text-gray-500 mb-6">Masukkan kode PIN untuk mengakses halaman
-                    administrator.</p>
-                <input type="password" id="admin-pin-input"
-                    class="w-full border border-gray-300 rounded-lg p-3 text-center tracking-[0.5em] font-bold text-lg focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition"
-                    placeholder="••••••" maxlength="6">
-                <p id="pin-error" class="text-red-500 text-xs text-center mt-2 hidden">PIN salah. Silakan coba lagi.</p>
+                <p class="text-sm text-center text-gray-500 mb-6">Login memakai akun Supabase Auth yang sudah terdaftar
+                    sebagai admin.</p>
+                <input type="email" id="admin-login-email"
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition mb-3"
+                    placeholder="email admin">
+                <input type="password" id="admin-login-password"
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition"
+                    placeholder="password admin" autocomplete="current-password">
+                <p id="pin-error" class="text-red-500 text-xs text-center mt-3 hidden">Login gagal. Silakan coba lagi.</p>
                 <div class="mt-6 flex gap-3">
                     <button onclick="closePinModal()"
                         class="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition text-sm">Batal</button>
-                    <button onclick="verifyPin()"
+                    <button onclick="verifyPin()" id="admin-login-submit"
                         class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition text-sm">Masuk</button>
                 </div>
             </div>
@@ -3268,6 +3279,8 @@
 
         let supabaseClient = null;
         let isSupabaseConnected = false;
+        let currentAdminUser = null;
+        let isAdminAuthorized = false;
 
         if (SUPABASE_URL && SUPABASE_ANON_KEY) {
             supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -3303,10 +3316,6 @@
         let homeEkrafSelectedIds = [];
         let homeWisataSelectionReady = false;
         let homeEkrafSelectionReady = false;
-        // Loaded from Supabase site_settings at startup for PIN verification
-        let siteAdminPinHash = null; // SHA-256 hash of admin PIN (preferred)
-        let siteAdminPin = null;     // Plain PIN from Supabase (fallback if no hash column)
-
         // ---------------------------------------------------------
         // 3. CORE LOGIC (Fetch & SPA Router)
         // ---------------------------------------------------------
@@ -3364,16 +3373,6 @@
                     if (el) el.value = data.home_ekraf_count;
                 }
 
-                // Load admin PIN from Supabase site_settings
-                // Supports two columns (add either to site_settings table):
-                //   admin_pin_hash TEXT  — SHA-256 hex of the PIN (more secure)
-                //   admin_pin      TEXT  — plain PIN string (simpler to manage)
-                if (data.admin_pin_hash && typeof data.admin_pin_hash === 'string' && data.admin_pin_hash.length === 64) {
-                    siteAdminPinHash = data.admin_pin_hash;
-                }
-                if (data.admin_pin && typeof data.admin_pin === 'string' && data.admin_pin.length > 0) {
-                    siteAdminPin = data.admin_pin;
-                }
             } catch (err) {
                 console.warn('Gagal memuat site settings:', err);
             }
@@ -3436,7 +3435,7 @@
             const rawDetailId = parts[1] || null;
 
             // Whitelist view yang boleh diakses via URL hash
-            // Admin sengaja dikecualikan — hanya bisa diakses via PIN modal
+            // Admin sengaja dikecualikan — hanya bisa diakses via login admin
             const VALID_VIEWS = ['home', 'wisata', 'event', 'ekraf', 'kontak', 'tentang',
                                  'detail-wisata', 'detail-event', 'detail-ekraf'];
 
@@ -3452,7 +3451,7 @@
 
         /** Fungsi inti: tampilkan view tanpa menyentuh history */
         function showView(viewId, detailId) {
-            // ── SECURITY: Admin hanya boleh diakses via PIN modal, TIDAK via hash/URL langsung ──
+            // ── SECURITY: Admin hanya boleh diakses via login admin, TIDAK via hash/URL langsung ──
             // Jika seseorang mengetik #admin di URL atau share URL admin, redirect ke home
             if (viewId === 'admin') {
                 // Izinkan hanya jika dipanggil dari verifyPin (flag _adminUnlocked)
@@ -4540,7 +4539,8 @@
             if (!statusDiv) return;
             if (isSupabaseConnected) {
                 statusDiv.className = "mb-6 p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-2";
-                statusDiv.innerHTML = '<i class="ph-fill ph-check-circle text-lg"></i> Terhubung ke Database Supabase';
+                const email = currentAdminUser?.email ? escapeHtml(currentAdminUser.email) : 'admin';
+                statusDiv.innerHTML = '<i class="ph-fill ph-check-circle text-lg"></i> Terhubung ke Database Supabase sebagai ' + email;
             } else {
                 statusDiv.className = "mb-6 p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm flex items-center gap-2";
                 statusDiv.innerHTML = '<i class="ph-fill ph-warning-circle text-lg"></i> Supabase belum dikonfigurasi. Form hanya akan melakukan simulasi log.';
@@ -6615,42 +6615,8 @@
         }
 
         // ---------------------------------------------------------
-        // 7. PIN MODAL LOGIC
+        // 7. ADMIN AUTH + SECURITY HELPERS
         // ---------------------------------------------------------
-        function openPinModal() {
-            const modal = document.getElementById('pin-modal');
-            const modalContent = document.getElementById('pin-modal-content');
-            const input = document.getElementById('admin-pin-input');
-            const errorText = document.getElementById('pin-error');
-            input.value = '';
-            errorText.classList.add('hidden');
-            modal.classList.remove('hidden');
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
-                input.focus();
-            }, 10);
-        }
-
-        function closePinModal() {
-            const modal = document.getElementById('pin-modal');
-            const modalContent = document.getElementById('pin-modal-content');
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => { modal.classList.add('hidden'); modal.style.display = ''; }, 200);
-        }
-
-        // SECURITY NOTE: PIN is client-side only — it guards the admin UI but is NOT a backend security layer.
-        // Real data protection MUST rely on Supabase Row Level Security (RLS) policies that restrict
-        // INSERT/UPDATE/DELETE to authenticated users. Anyone can view the source code and bypass this PIN.
-        // PIN management: store admin_pin_hash (SHA-256) OR admin_pin (plain) in site_settings table.
-        // The system loads from Supabase at startup. Fallback is only used if Supabase is unreachable.
-
-        // Fallback PIN (used only when Supabase site_settings.admin_pin / admin_pin_hash is not loaded)
-        // Change this to update PIN without Supabase. Plain PIN — replace with your actual PIN:
-        const _DEFAULT_PIN = atob('MDIxODg1'); // base64 of '021885' — obfuscated but not encrypted
-
         // =========================================================
         // SECURITY HELPERS
         // =========================================================
@@ -6692,11 +6658,6 @@
         }
 
         // ── Brute Force Protection untuk PIN Admin ─────────────────
-        const _PIN_MAX_ATTEMPTS = 5;
-        const _PIN_LOCKOUT_MS   = 60000; // 60 detik lockout
-        let _pinAttempts   = 0;
-        let _pinLockedUntil = 0;
-
         // ── Toast Notification (menggantikan alert() di admin) ─────
         function showToast(msg, type = 'success') {
             let toast = document.getElementById('_admin_toast');
@@ -6731,66 +6692,153 @@
             }, 3500);
         }
 
-        async function sha256(message) {
-            const msgBuffer = new TextEncoder().encode(message);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        function setAdminLoginError(message) {
+            const errorText = document.getElementById('pin-error');
+            if (!errorText) return;
+            errorText.textContent = message;
+            errorText.classList.remove('hidden');
         }
 
-        async function verifyPin() {
-            const pin = document.getElementById('admin-pin-input').value.trim();
-            const errorText = document.getElementById('pin-error');
-            errorText.classList.add('hidden');
+        function updateAdminSessionUI() {
+            const label = document.getElementById('admin-session-label');
+            if (!label) return;
+            if (currentAdminUser && isAdminAuthorized) {
+                label.textContent = currentAdminUser.email || 'Admin';
+                label.className = 'text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2';
+            } else {
+                label.textContent = 'Belum login';
+                label.className = 'text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2';
+            }
+        }
 
-            // ── Brute force check ──────────────────────────────────
-            const now = Date.now();
-            if (_pinLockedUntil > now) {
-                const secsLeft = Math.ceil((_pinLockedUntil - now) / 1000);
-                errorText.textContent = `Terlalu banyak percobaan. Coba lagi dalam ${secsLeft} detik.`;
-                errorText.classList.remove('hidden');
+        async function ensureAdminSession(showMessage = false) {
+            if (!supabaseClient) {
+                if (showMessage) setAdminLoginError('Supabase belum siap. Periksa konfigurasi database.');
+                currentAdminUser = null;
+                isAdminAuthorized = false;
+                updateAdminSessionUI();
+                return false;
+            }
+
+            const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+            const session = sessionData?.session || null;
+            if (sessionError || !session) {
+                currentAdminUser = null;
+                isAdminAuthorized = false;
+                updateAdminSessionUI();
+                if (showMessage) setAdminLoginError('Silakan login dengan akun admin.');
+                return false;
+            }
+
+            const { data: allowed, error: adminError } = await supabaseClient.rpc('is_admin');
+            if (adminError || allowed !== true) {
+                currentAdminUser = null;
+                isAdminAuthorized = false;
+                updateAdminSessionUI();
+                if (showMessage) setAdminLoginError('Akun ini belum terdaftar sebagai admin portal.');
+                return false;
+            }
+
+            currentAdminUser = session.user;
+            isAdminAuthorized = true;
+            updateAdminSessionUI();
+            return true;
+        }
+
+        async function openPinModal() {
+            if (await ensureAdminSession(false)) {
+                window._adminUnlocked = true;
+                navigate('admin');
                 return;
             }
 
-            let valid = false;
+            const modal = document.getElementById('pin-modal');
+            const modalContent = document.getElementById('pin-modal-content');
+            const emailInput = document.getElementById('admin-login-email');
+            const passwordInput = document.getElementById('admin-login-password');
+            const errorText = document.getElementById('pin-error');
+            if (emailInput) emailInput.value = '';
+            if (passwordInput) {
+                passwordInput.value = '';
+                passwordInput.removeAttribute('maxlength');
+                passwordInput.placeholder = 'password admin';
+            }
+            if (errorText) errorText.classList.add('hidden');
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+                if (emailInput) emailInput.focus();
+            }, 10);
+        }
 
-            if (siteAdminPinHash) {
-                const inputHash = await sha256(pin);
-                valid = (inputHash === siteAdminPinHash);
-            } else if (siteAdminPin) {
-                valid = (pin === siteAdminPin);
-            } else {
-                valid = (pin === _DEFAULT_PIN);
+        async function verifyPin() {
+            const email = document.getElementById('admin-login-email')?.value.trim();
+            const password = document.getElementById('admin-login-password')?.value;
+            const btn = document.getElementById('admin-login-submit');
+            const errorText = document.getElementById('pin-error');
+            if (errorText) errorText.classList.add('hidden');
+
+            if (!email || !password) {
+                setAdminLoginError('Email dan password wajib diisi.');
+                return;
+            }
+            if (!supabaseClient) {
+                setAdminLoginError('Supabase belum siap. Periksa konfigurasi database.');
+                return;
             }
 
-            if (valid) {
-                _pinAttempts = 0;
-                _pinLockedUntil = 0;
+            if (btn) { btn.disabled = true; btn.textContent = 'Memeriksa...'; btn.classList.add('opacity-70'); }
+            try {
+                const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                if (error) throw error;
+
+                const allowed = await ensureAdminSession(true);
+                if (!allowed) {
+                    await supabaseClient.auth.signOut();
+                    return;
+                }
+
                 closePinModal();
-                // Set flag keamanan: izinkan sekali navigate ke admin
                 window._adminUnlocked = true;
                 setTimeout(() => { navigate('admin'); }, 200);
-            } else {
-                _pinAttempts++;
-                if (_pinAttempts >= _PIN_MAX_ATTEMPTS) {
-                    _pinLockedUntil = Date.now() + _PIN_LOCKOUT_MS;
-                    _pinAttempts = 0;
-                    errorText.textContent = `Terlalu banyak percobaan. Akses dikunci 60 detik.`;
-                } else {
-                    const sisaCoba = _PIN_MAX_ATTEMPTS - _pinAttempts;
-                    errorText.textContent = `PIN salah. Sisa percobaan: ${sisaCoba}`;
-                }
-                errorText.classList.remove('hidden');
-                document.getElementById('admin-pin-input').value = '';
+            } catch (err) {
+                setAdminLoginError('Login gagal. Periksa email, password, atau status akun admin.');
+            } finally {
+                if (btn) { btn.disabled = false; btn.textContent = 'Masuk'; btn.classList.remove('opacity-70'); }
             }
         }
 
+        async function logoutAdmin() {
+            if (supabaseClient) await supabaseClient.auth.signOut();
+            currentAdminUser = null;
+            isAdminAuthorized = false;
+            window._adminUnlocked = false;
+            updateAdminSessionUI();
+            showToast('Admin berhasil logout.', 'info');
+            navigate('home');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            const pinInput = document.getElementById('admin-pin-input');
-            if (pinInput) {
-                pinInput.addEventListener('keypress', function (e) {
-                    if (e.key === 'Enter') verifyPin();
+            ['admin-login-email', 'admin-login-password'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') verifyPin();
+                    });
+                }
+            });
+            if (supabaseClient) {
+                supabaseClient.auth.onAuthStateChange((_event, session) => {
+                    if (!session) {
+                        currentAdminUser = null;
+                        isAdminAuthorized = false;
+                        updateAdminSessionUI();
+                    }
                 });
             }
+            updateAdminSessionUI();
             // Close mobile menu on resize to desktop
             window.addEventListener('resize', () => {
                 if (window.innerWidth >= 768) closeMobileMenu();
