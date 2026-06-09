@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ══ SECURITY HEADERS (meta fallback) ══════════════════════ -->
-    <!-- X-Frame-Options: cegah clickjacking / iframe embedding -->
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- X-Frame-Options wajib dipasang sebagai HTTP header di hosting/server, bukan via meta tag. -->
     <!-- Referrer Policy: jangan kirim URL lengkap ke third-party -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <!-- X-Content-Type-Options: cegah MIME sniffing -->
@@ -2401,13 +2400,13 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Wisata</label>
-                                <input type="text" id="inp-nama"
+                                <input type="text" id="inp-nama" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Pantai Sigandu">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Kategori</label>
-                                <select id="inp-kategori"
+                                <select id="inp-kategori" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Kategori...</option>
                                     <option value="Wisata Alam">Wisata Alam</option>
@@ -2418,7 +2417,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi (Kecamatan)</label>
-                                <select id="inp-lokasi"
+                                <select id="inp-lokasi" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Kecamatan...</option>
                                     <option value="Bandar">Bandar</option>
@@ -2514,7 +2513,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-desc" rows="4"
+                            <textarea id="inp-desc" rows="4" required
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
 
@@ -2554,25 +2553,25 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Event</label>
-                                <input type="text" id="inp-event-judul"
+                                <input type="text" id="inp-event-judul" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Festival Batang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi Pelaksanaan</label>
-                                <input type="text" id="inp-event-lokasi"
+                                <input type="text" id="inp-event-lokasi" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Alun-alun Batang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal (Angka)</label>
-                                <input type="text" id="inp-event-tanggal"
+                                <input type="text" id="inp-event-tanggal" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: 15">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan</label>
-                                <select id="inp-event-bulan"
+                                <select id="inp-event-bulan" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Bulan...</option>
                                     <option value="Januari">Januari</option>
@@ -2591,7 +2590,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Waktu / Jadwal</label>
-                                <input type="text" id="inp-event-waktu"
+                                <input type="text" id="inp-event-waktu" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: 15 Juni 2026">
                             </div>
@@ -2604,7 +2603,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-event-desc" rows="4"
+                            <textarea id="inp-event-desc" rows="4" required
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"></textarea>
                         </div>
 
@@ -2642,20 +2641,20 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Brand / Usaha</label>
-                                <input type="text" id="inp-ekraf-brand"
+                                <input type="text" id="inp-ekraf-brand" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Batik Gemawang">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Owner /
                                     Pemilik</label>
-                                <input type="text" id="inp-ekraf-owner"
+                                <input type="text" id="inp-ekraf-owner" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Budi Santoso">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Subsektor Ekraf</label>
-                                <select id="inp-ekraf-subsektor"
+                                <select id="inp-ekraf-subsektor" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Subsektor...</option>
                                     <option value="Aplikasi">Aplikasi</option>
@@ -2679,7 +2678,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi (Kecamatan)</label>
-                                <select id="inp-ekraf-lokasi"
+                                <select id="inp-ekraf-lokasi" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm bg-white">
                                     <option value="" disabled selected>Pilih Kecamatan...</option>
                                     <option value="Bandar">Bandar</option>
@@ -2701,7 +2700,7 @@
                             </div>
                             <div class="col-span-2">
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat Lengkap</label>
-                                <input type="text" id="inp-ekraf-alamat"
+                                <input type="text" id="inp-ekraf-alamat" required
                                     class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                     placeholder="Contoh: Jl. Raya Batang No. 12, Kel. Proyonanggan, Batang">
                             </div>
@@ -2769,7 +2768,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Lengkap</label>
-                            <textarea id="inp-ekraf-desc" rows="4"
+                            <textarea id="inp-ekraf-desc" rows="4" required
                                 class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-sm"
                                 placeholder="Ceritakan tentang brand/usaha ini..."></textarea>
                         </div>
@@ -3224,7 +3223,7 @@
         class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center backdrop-blur-sm transition-opacity">
         <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm overflow-hidden transform transition-all scale-95 opacity-0 duration-200"
             id="pin-modal-content">
-            <div class="p-6">
+            <form id="admin-login-form" class="p-6" onsubmit="verifyPin(); return false;">
                 <div
                     class="w-12 h-12 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4 mx-auto">
                     <i class="ph-fill ph-user-circle text-2xl"></i>
@@ -3234,11 +3233,11 @@
                     sebagai admin.</p>
                 <input type="email" id="admin-login-email"
                     class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition mb-3"
-                    placeholder="email admin">
+                    placeholder="email admin" autocomplete="username" required>
                 <div class="relative">
                     <input type="password" id="admin-login-password"
                         class="w-full border border-gray-300 rounded-lg p-3 pr-12 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition"
-                        placeholder="password admin" autocomplete="current-password">
+                        placeholder="password admin" autocomplete="current-password" required>
                     <button type="button" id="toggle-admin-password" onclick="toggleAdminPasswordVisibility()"
                         class="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-gray-400 hover:text-brand-600 transition"
                         aria-label="Tampilkan password" aria-pressed="false">
@@ -3247,12 +3246,12 @@
                 </div>
                 <p id="pin-error" class="text-red-500 text-xs text-center mt-3 hidden">Login gagal. Silakan coba lagi.</p>
                 <div class="mt-6 flex gap-3">
-                    <button onclick="closePinModal()"
+                    <button type="button" onclick="closePinModal()"
                         class="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition text-sm">Batal</button>
-                    <button onclick="verifyPin()" id="admin-login-submit"
+                    <button type="submit" id="admin-login-submit"
                         class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition text-sm">Masuk</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -4797,7 +4796,6 @@
                         const res = await supabaseClient.from('wisata').update(newData).eq('id', editWisataId);
                         error = res.error;
                     } else {
-                        newData.id = Date.now();
                         const res = await supabaseClient.from('wisata').insert([newData]);
                         error = res.error;
                     }
@@ -4856,7 +4854,6 @@
                         const res = await supabaseClient.from('events').update(newData).eq('id', editEventId);
                         error = res.error;
                     } else {
-                        newData.id = Date.now();
                         const res = await supabaseClient.from('events').insert([newData]);
                         error = res.error;
                     }
@@ -4926,7 +4923,6 @@
                         const res = await supabaseClient.from('ekraf').update(newData).eq('id', editEkrafId);
                         error = res.error;
                     } else {
-                        newData.id = Date.now();
                         const res = await supabaseClient.from('ekraf').insert([newData]);
                         error = res.error;
                     }
@@ -6121,12 +6117,31 @@
         // BERANDA ADMIN — Preview + settings
         // ---------------------------------------------------------
         function getSelectedHomeItems(data, selectedIds, count, selectionReady = true) {
-            if (!selectionReady) return data.slice(0, count);
-            const idSet = selectedIds.map(id => String(id));
-            return idSet
-                .map(id => data.find(item => String(item.id) === id))
+            const limit = Math.max(parseInt(count, 10) || 0, 0);
+            if (limit <= 0) return [];
+
+            const fallbackItems = data.slice(0, limit);
+            if (!selectionReady || !Array.isArray(selectedIds) || selectedIds.length === 0) {
+                return fallbackItems;
+            }
+
+            const selectedKeys = new Set();
+            const selectedItems = selectedIds
+                .map(id => data.find(item => String(item.id) === String(id)))
                 .filter(Boolean)
-                .slice(0, count);
+                .filter(item => {
+                    const key = String(item.id);
+                    if (selectedKeys.has(key)) return false;
+                    selectedKeys.add(key);
+                    return true;
+                });
+
+            if (selectedItems.length >= limit) {
+                return selectedItems.slice(0, limit);
+            }
+
+            const fillers = data.filter(item => !selectedKeys.has(String(item.id)));
+            return [...selectedItems, ...fillers].slice(0, limit);
         }
 
         function syncHomeSelectionDefaults() {
@@ -6913,7 +6928,10 @@
                 const input = document.getElementById(id);
                 if (input) {
                     input.addEventListener('keydown', function (e) {
-                        if (e.key === 'Enter') verifyPin();
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            verifyPin();
+                        }
                     });
                 }
             });
