@@ -6773,6 +6773,25 @@
             }, 10);
         }
 
+        function closePinModal() {
+            const modal = document.getElementById('pin-modal');
+            const modalContent = document.getElementById('pin-modal-content');
+            const emailInput = document.getElementById('admin-login-email');
+            const passwordInput = document.getElementById('admin-login-password');
+            const errorText = document.getElementById('pin-error');
+            if (!modal || !modalContent) return;
+
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.style.display = '';
+                if (emailInput) emailInput.value = '';
+                if (passwordInput) passwordInput.value = '';
+                if (errorText) errorText.classList.add('hidden');
+            }, 200);
+        }
+
         async function verifyPin() {
             const email = document.getElementById('admin-login-email')?.value.trim();
             const password = document.getElementById('admin-login-password')?.value;
