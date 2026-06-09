@@ -3193,8 +3193,8 @@
                     <span class="hidden sm:block">·</span>
                     <span>Powered by Dolan Batang</span>
                     <span class="hidden sm:block">·</span>
-                    <button onclick="openPinModal()"
-                        class="hover:text-white transition flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/10 hover:bg-white/10">
+                    <button id="footer-admin-login-btn" type="button" onclick="openPinModal(); return false;"
+                        class="relative z-10 pointer-events-auto text-white/55 hover:text-white transition flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/10 hover:bg-white/10">
                         <i class="ph-fill ph-lock-key text-xs"></i> Login Admin
                     </button>
                 </div>
@@ -3965,8 +3965,6 @@
             // Wisata
             filterWisata();
             // Event
-            const lhe = document.getElementById('list-home-event');
-            if (lhe) lhe.innerHTML = eventData.slice(0, 3).map(createEventCardList).join('');
             const gae = document.getElementById('grid-all-event');
             if (gae) gae.innerHTML = eventData.map(createEventCardBlock).join('');
             // Ekraf
@@ -6712,41 +6710,50 @@
         }
 
         async function ensureAdminSession(showMessage = false) {
-            if (!supabaseClient) {
-                if (showMessage) setAdminLoginError('Supabase belum siap. Periksa konfigurasi database.');
+            try {
+                if (!supabaseClient) {
+                    if (showMessage) setAdminLoginError('Supabase belum siap. Periksa konfigurasi database.');
+                    currentAdminUser = null;
+                    isAdminAuthorized = false;
+                    updateAdminSessionUI();
+                    return false;
+                }
+
+                const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+                const session = sessionData?.session || null;
+                if (sessionError || !session) {
+                    currentAdminUser = null;
+                    isAdminAuthorized = false;
+                    updateAdminSessionUI();
+                    if (showMessage) setAdminLoginError('Silakan login dengan akun admin.');
+                    return false;
+                }
+
+                const { data: allowed, error: adminError } = await supabaseClient.rpc('is_admin');
+                if (adminError || allowed !== true) {
+                    currentAdminUser = null;
+                    isAdminAuthorized = false;
+                    updateAdminSessionUI();
+                    if (showMessage) setAdminLoginError('Akun ini belum terdaftar sebagai admin portal.');
+                    return false;
+                }
+
+                currentAdminUser = session.user;
+                isAdminAuthorized = true;
+                updateAdminSessionUI();
+                return true;
+            } catch (err) {
                 currentAdminUser = null;
                 isAdminAuthorized = false;
                 updateAdminSessionUI();
+                if (showMessage) setAdminLoginError('Gagal memeriksa sesi admin. Silakan login ulang.');
                 return false;
             }
-
-            const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
-            const session = sessionData?.session || null;
-            if (sessionError || !session) {
-                currentAdminUser = null;
-                isAdminAuthorized = false;
-                updateAdminSessionUI();
-                if (showMessage) setAdminLoginError('Silakan login dengan akun admin.');
-                return false;
-            }
-
-            const { data: allowed, error: adminError } = await supabaseClient.rpc('is_admin');
-            if (adminError || allowed !== true) {
-                currentAdminUser = null;
-                isAdminAuthorized = false;
-                updateAdminSessionUI();
-                if (showMessage) setAdminLoginError('Akun ini belum terdaftar sebagai admin portal.');
-                return false;
-            }
-
-            currentAdminUser = session.user;
-            isAdminAuthorized = true;
-            updateAdminSessionUI();
-            return true;
         }
 
         async function openPinModal() {
-            if (await ensureAdminSession(false)) {
+            const hasAdminSession = await ensureAdminSession(false);
+            if (hasAdminSession) {
                 window._adminUnlocked = true;
                 navigate('admin');
                 return;
@@ -6757,6 +6764,10 @@
             const emailInput = document.getElementById('admin-login-email');
             const passwordInput = document.getElementById('admin-login-password');
             const errorText = document.getElementById('pin-error');
+            if (!modal || !modalContent) {
+                showToast('Modal login admin tidak ditemukan.', 'error');
+                return;
+            }
             if (emailInput) emailInput.value = '';
             if (passwordInput) {
                 passwordInput.value = '';
@@ -6830,7 +6841,11 @@
         }
 
         async function logoutAdmin() {
-            if (supabaseClient) await supabaseClient.auth.signOut();
+            try {
+                if (supabaseClient) await supabaseClient.auth.signOut();
+            } catch (err) {
+                console.warn('Logout Supabase gagal, state lokal tetap dibersihkan.', err);
+            }
             currentAdminUser = null;
             isAdminAuthorized = false;
             window._adminUnlocked = false;
