@@ -490,16 +490,16 @@
                         <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
                             <button onclick="navigate('wisata')"
                                 class="col-span-2 sm:col-span-1 flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold transition shadow-xl text-sm">
-                                <i class="ph-fill ph-map-trifold"></i> Jelajahi Wisata
+                                <i class="ph ph-compass text-base"></i> Jelajahi Wisata
                             </button>
                             <button onclick="navigate('event')"
                                 class="flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-900 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold transition shadow-xl text-sm">
-                                <i class="ph-fill ph-calendar-check text-brand-600"></i> <span
+                                <i class="ph ph-calendar-blank text-base text-brand-600"></i> <span
                                     class="hidden xs:inline">Lihat </span>Event
                             </button>
                             <button onclick="navigate('ekraf')"
                                 class="flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white border border-white/30 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold transition text-sm">
-                                <i class="ph-fill ph-lightbulb text-yellow-300"></i> <span>Ekraf</span>
+                                <i class="ph ph-storefront text-base text-cyan-300"></i> <span>Ekraf</span>
                             </button>
                         </div>
                     </div>
@@ -533,7 +533,7 @@
                             <div
                                 class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-map-pin text-2xl md:text-3xl text-sky-400 drop-shadow-md group-hover:text-sky-300"></i>
+                                    class="ph ph-map-pin text-2xl md:text-3xl text-cyan-300 drop-shadow-md group-hover:text-white"></i>
                             </div>
                             <div>
                                 <p id="stat-wisata"
@@ -549,7 +549,7 @@
                             <div
                                 class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-calendar-check text-2xl md:text-3xl text-emerald-400 drop-shadow-md group-hover:text-emerald-300"></i>
+                                    class="ph ph-calendar-blank text-2xl md:text-3xl text-cyan-300 drop-shadow-md group-hover:text-white"></i>
                             </div>
                             <div>
                                 <p id="stat-event"
@@ -565,7 +565,7 @@
                             <div
                                 class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-storefront text-2xl md:text-3xl text-amber-400 drop-shadow-md group-hover:text-amber-300"></i>
+                                    class="ph ph-storefront text-2xl md:text-3xl text-cyan-300 drop-shadow-md group-hover:text-white"></i>
                             </div>
                             <div>
                                 <p id="stat-ekraf"
@@ -581,7 +581,7 @@
                             <div
                                 class="w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0 shadow-lg group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                                 <i
-                                    class="ph-fill ph-star text-2xl md:text-3xl text-pink-400 drop-shadow-md group-hover:text-pink-300"></i>
+                                    class="ph ph-squares-four text-2xl md:text-3xl text-cyan-300 drop-shadow-md group-hover:text-white"></i>
                             </div>
                             <div>
                                 <p id="stat-subsektor"
@@ -880,7 +880,7 @@
                                 class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-300 peer-checked:bg-brand-600 peer-checked:border-brand-600 overflow-hidden">
                                 <div
                                     class="relative z-10 w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 peer-checked:bg-white/20 peer-checked:text-white">
-                                    <i class="ph-fill ph-squares-four text-2xl"></i>
+                                    <i class="ph ph-squares-four text-2xl"></i>
                                 </div>
                                 <span
                                     class="relative z-10 font-bold text-xs text-gray-700 peer-checked:text-white transition-colors text-center">Semua
@@ -899,8 +899,8 @@
                             <div
                                 class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-green-300 hover:shadow-md transition-all duration-300 peer-checked:bg-green-500 peer-checked:border-green-500 overflow-hidden">
                                 <div
-                                    class="relative z-10 w-12 h-12 rounded-full bg-green-50 text-green-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
-                                    <i class="ph-fill ph-tree text-2xl"></i>
+                                    class="relative z-10 w-12 h-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-tree text-2xl"></i>
                                 </div>
                                 <span
                                     class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Wisata
@@ -915,8 +915,8 @@
                             <div
                                 class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-300 peer-checked:bg-blue-500 peer-checked:border-blue-500 overflow-hidden">
                                 <div
-                                    class="relative z-10 w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
-                                    <i class="ph-fill ph-buildings text-2xl"></i>
+                                    class="relative z-10 w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-buildings text-2xl"></i>
                                 </div>
                                 <span
                                     class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Wisata
@@ -931,8 +931,8 @@
                             <div
                                 class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-purple-300 hover:shadow-md transition-all duration-300 peer-checked:bg-purple-500 peer-checked:border-purple-500 overflow-hidden">
                                 <div
-                                    class="relative z-10 w-12 h-12 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
-                                    <i class="ph-fill ph-mask-happy text-2xl"></i>
+                                    class="relative z-10 w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-hands-praying text-2xl"></i>
                                 </div>
                                 <span
                                     class="relative z-10 font-semibold text-[11px] text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Religi
@@ -947,8 +947,8 @@
                             <div
                                 class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-orange-300 hover:shadow-md transition-all duration-300 peer-checked:bg-orange-500 peer-checked:border-orange-500 overflow-hidden">
                                 <div
-                                    class="relative z-10 w-12 h-12 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
-                                    <i class="ph-fill ph-house-line text-2xl"></i>
+                                    class="relative z-10 w-12 h-12 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-house-line text-2xl"></i>
                                 </div>
                                 <span
                                     class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Desa
@@ -1392,264 +1392,176 @@
                     <h3 class="text-2xl font-bold text-gray-900 mb-2">Daftar Subsektor</h3>
                     <p class="text-gray-500 text-sm">Subsektor usaha Ekonomi Kreatif</p>
                 </div>
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 mb-12">
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-5 mb-12">
                     <!-- Aplikasi -->
                     <div onclick="filterEkrafSubsektor('Aplikasi')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Aplikasi">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="10" y="5" width="20" height="30" rx="4" fill="#4a8fc2" />
-                                <rect x="14" y="9" width="12" height="18" rx="2" fill="#acd4ee" />
-                                <circle cx="20" cy="31" r="2" fill="#2d6a9f" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-app-window text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Aplikasi</span>
                     </div>
                     <!-- Arsitektur -->
                     <div onclick="filterEkrafSubsektor('Arsitektur')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Arsitektur">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="8" y="18" width="24" height="14" rx="2" fill="#4a8fc2" />
-                                <polygon points="20,6 5,18 35,18" fill="#2d6a9f" />
-                                <rect x="15" y="24" width="10" height="8" rx="1" fill="#acd4ee" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-buildings text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Arsitektur</span>
                     </div>
                     <!-- Desain Interior -->
                     <div onclick="filterEkrafSubsektor('Desain Interior')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Desain Interior">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="8" y="26" width="6" height="6" rx="1" fill="#4a8fc2" />
-                                <path d="M14 29 Q20 20 28 14" stroke="#2d6a9f" stroke-width="2.5" fill="none"
-                                    stroke-linecap="round" />
-                                <circle cx="28" cy="13" r="4" fill="#acd4ee" />
-                                <circle cx="28" cy="13" r="2" fill="#4a8fc2" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-armchair text-2xl md:text-3xl"></i>
                         </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain
-                            Interior</span>
+                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain Interior</span>
                     </div>
                     <!-- Desain Komunikasi Visual -->
                     <div onclick="filterEkrafSubsektor('Desain Komunikasi Visual')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Desain Komunikasi Visual">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M12 28 L18 12 L24 22 L28 16 L32 28 Z" fill="#4a8fc2" />
-                                <circle cx="13" cy="13" r="3" fill="#acd4ee" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-vector-three text-2xl md:text-3xl"></i>
                         </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain Komunikasi
-                            Visual</span>
+                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain DKV</span>
                     </div>
                     <!-- Desain Produk -->
                     <div onclick="filterEkrafSubsektor('Desain Produk')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Desain Produk">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 8 L32 14 L32 26 L20 32 L8 26 L8 14 Z" fill="#4a8fc2" opacity="0.7" />
-                                <path d="M20 8 L32 14 L20 20 L8 14 Z" fill="#2d6a9f" />
-                                <path d="M20 20 L20 32 L8 26 L8 14 Z" fill="#acd4ee" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-cube text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain Produk</span>
                     </div>
                     <!-- Fesyen -->
                     <div onclick="filterEkrafSubsektor('Fesyen')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Fesyen">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <ellipse cx="14" cy="16" rx="5" ry="6" fill="#4a8fc2" />
-                                <ellipse cx="26" cy="16" rx="5" ry="6" fill="#4a8fc2" />
-                                <path d="M9 22 Q20 18 31 22 L33 34 L7 34 Z" fill="#2d6a9f" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-coat-hanger text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Fesyen</span>
                     </div>
                     <!-- Film, Animasi dan Video -->
                     <div onclick="filterEkrafSubsektor('Film, Animasi dan Video')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Film, Animasi dan Video">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="6" y="12" width="22" height="16" rx="3" fill="#4a8fc2" />
-                                <polygon points="36,20 28,14 28,26" fill="#2d6a9f" />
-                                <rect x="9" y="15" width="4" height="10" rx="1" fill="#acd4ee" opacity="0.6" />
-                                <rect x="15" y="15" width="4" height="10" rx="1" fill="#acd4ee" opacity="0.6" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-film-strip text-2xl md:text-3xl"></i>
                         </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Film, Animasi dan
-                            Video</span>
+                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Film & Video</span>
                     </div>
                     <!-- Fotografi -->
                     <div onclick="filterEkrafSubsektor('Fotografi')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Fotografi">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="6" y="13" width="28" height="20" rx="3" fill="#4a8fc2" />
-                                <path d="M15 13 L17 8 L23 8 L25 13 Z" fill="#2d6a9f" />
-                                <circle cx="20" cy="23" r="6" fill="#acd4ee" />
-                                <circle cx="20" cy="23" r="3.5" fill="#2d6a9f" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-camera text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Fotografi</span>
                     </div>
                     <!-- Gim -->
                     <div onclick="filterEkrafSubsektor('Gim')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Gim">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="6" y="13" width="28" height="18" rx="6" fill="#4a8fc2" />
-                                <rect x="11" y="19" width="6" height="2" rx="1" fill="white" />
-                                <rect x="13" y="17" width="2" height="6" rx="1" fill="white" />
-                                <circle cx="26" cy="18" r="2" fill="white" opacity="0.8" />
-                                <circle cx="30" cy="22" r="2" fill="white" opacity="0.8" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-game-controller text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Gim</span>
                     </div>
                     <!-- Kriya -->
                     <div onclick="filterEkrafSubsektor('Kriya')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Kriya">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M14 30 L10 14 L20 10 L30 14 L26 30 Z" fill="#4a8fc2" opacity="0.8" />
-                                <line x1="14" y1="20" x2="26" y2="20" stroke="#acd4ee" stroke-width="1.5" />
-                                <line x1="13" y1="25" x2="27" y2="25" stroke="#acd4ee" stroke-width="1.5" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-paint-brush text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Kriya</span>
                     </div>
                     <!-- Kuliner -->
                     <div onclick="filterEkrafSubsektor('Kuliner')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Kuliner">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M16 10 L16 20 Q16 26 20 26 Q24 26 24 20 L24 10" stroke="#4a8fc2"
-                                    stroke-width="2.5" fill="none" stroke-linecap="round" />
-                                <line x1="20" y1="26" x2="20" y2="32" stroke="#2d6a9f" stroke-width="2.5"
-                                    stroke-linecap="round" />
-                                <line x1="12" y1="10" x2="12" y2="18" stroke="#acd4ee" stroke-width="2.5"
-                                    stroke-linecap="round" />
-                                <line x1="28" y1="10" x2="28" y2="18" stroke="#acd4ee" stroke-width="2.5"
-                                    stroke-linecap="round" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-cooking-pot text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Kuliner</span>
                     </div>
                     <!-- Musik -->
                     <div onclick="filterEkrafSubsektor('Musik')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Musik">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path
-                                    d="M18 28 Q18 32 14 32 Q10 32 10 28 Q10 24 14 24 Q16 24 18 26 L18 12 L28 10 L28 22 Q28 26 24 26 Q20 26 20 22 Q20 18 24 18 Q26 18 28 20"
-                                    stroke="#2d6a9f" stroke-width="2" fill="none" stroke-linecap="round" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-music-notes text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Musik</span>
                     </div>
                     <!-- Penerbitan -->
                     <div onclick="filterEkrafSubsektor('Penerbitan')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Penerbitan">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="10" y="8" width="18" height="24" rx="2" fill="#4a8fc2" />
-                                <rect x="12" y="12" width="10" height="2" rx="1" fill="white" opacity="0.8" />
-                                <rect x="12" y="16" width="10" height="2" rx="1" fill="white" opacity="0.8" />
-                                <rect x="12" y="20" width="7" height="2" rx="1" fill="white" opacity="0.8" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-book-open-text text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Penerbitan</span>
                     </div>
                     <!-- Periklanan -->
                     <div onclick="filterEkrafSubsektor('Periklanan')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Periklanan">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M10 16 L22 10 L22 30 L10 24 Z" fill="#4a8fc2" />
-                                <rect x="22" y="14" width="8" height="12" rx="2" fill="#2d6a9f" opacity="0.7" />
-                                <path d="M10 24 L10 28 L14 28 L14 24" fill="#acd4ee" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-megaphone text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Periklanan</span>
                     </div>
                     <!-- Seni Pertunjukan -->
                     <div onclick="filterEkrafSubsektor('Seni Pertunjukan')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Seni Pertunjukan">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M8 30 Q14 24 20 30 Q26 24 32 30" stroke="#4a8fc2" stroke-width="2.5"
-                                    fill="none" stroke-linecap="round" />
-                                <circle cx="14" cy="18" r="5" fill="#acd4ee" />
-                                <path d="M11 21 Q14 26 17 21" stroke="#4a8fc2" stroke-width="1.5" fill="none" />
-                                <circle cx="26" cy="18" r="5" fill="#4a8fc2" />
-                                <path d="M23 15 Q26 13 29 15" stroke="white" stroke-width="1.5" fill="none" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-microphone-stage text-2xl md:text-3xl"></i>
                         </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Seni
-                            Pertunjukan</span>
+                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Seni Pertunjukan</span>
                     </div>
                     <!-- Seni Rupa -->
                     <div onclick="filterEkrafSubsektor('Seni Rupa')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Seni Rupa">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M12 30 L18 12 L24 24 L28 18" stroke="#4a8fc2" stroke-width="3" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <circle cx="28" cy="15" r="3" fill="#acd4ee" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-palette text-2xl md:text-3xl"></i>
                         </div>
                         <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Seni Rupa</span>
                     </div>
                     <!-- Televisi dan Radio -->
                     <div onclick="filterEkrafSubsektor('Televisi dan Radio')"
-                        class="ekraf-subsektor-btn flex flex-col items-center gap-3 cursor-pointer group"
+                        class="ekraf-subsektor-btn flex flex-col items-center gap-2.5 cursor-pointer group"
                         data-subsektor="Televisi dan Radio">
                         <div
-                            class="w-20 h-20 rounded-full bg-[#deeef9] flex items-center justify-center group-hover:bg-[#b8d9f1] transition shadow-sm">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="7" y="14" width="26" height="18" rx="3" fill="#4a8fc2" />
-                                <rect x="10" y="17" width="20" height="12" rx="1" fill="#acd4ee" opacity="0.6" />
-                                <circle cx="20" cy="23" r="3" fill="#2d6a9f" />
-                                <rect x="14" y="32" width="12" height="2" rx="1" fill="#2d6a9f" />
-                            </svg>
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
+                            <i class="ph ph-television text-2xl md:text-3xl"></i>
                         </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Televisi dan
-                            Radio</span>
+                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">TV & Radio</span>
                     </div>
                 </div>
 
@@ -1987,26 +1899,26 @@
                         </p>
                     </div>
                     <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
-                        <div class="bg-brand-50 rounded-2xl p-6 border border-brand-100 text-center">
-                            <i class="ph-fill ph-map-pin text-brand-600 text-3xl mb-2"></i>
+                        <div class="bg-brand-50/70 rounded-2xl p-6 border border-brand-100/80 text-center">
+                            <i class="ph ph-map-pin text-brand-600 text-3xl mb-2"></i>
                             <p class="text-2xl font-black text-brand-700" id="tentang-stat-wisata">—</p>
                             <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Destinasi
                                 Wisata</p>
                         </div>
-                        <div class="bg-green-50 rounded-2xl p-6 border border-green-100 text-center">
-                            <i class="ph-fill ph-calendar-check text-green-600 text-3xl mb-2"></i>
-                            <p class="text-2xl font-black text-green-700" id="tentang-stat-event">—</p>
+                        <div class="bg-emerald-50/70 rounded-2xl p-6 border border-emerald-100/80 text-center">
+                            <i class="ph ph-calendar-blank text-emerald-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-black text-emerald-700" id="tentang-stat-event">—</p>
                             <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Event Terdaftar
                             </p>
                         </div>
-                        <div class="bg-amber-50 rounded-2xl p-6 border border-amber-100 text-center">
-                            <i class="ph-fill ph-storefront text-amber-600 text-3xl mb-2"></i>
+                        <div class="bg-amber-50/70 rounded-2xl p-6 border border-amber-100/80 text-center">
+                            <i class="ph ph-storefront text-amber-600 text-3xl mb-2"></i>
                             <p class="text-2xl font-black text-amber-700" id="tentang-stat-ekraf">—</p>
                             <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Pelaku Ekraf
                             </p>
                         </div>
-                        <div class="bg-purple-50 rounded-2xl p-6 border border-purple-100 text-center">
-                            <i class="ph-fill ph-map-trifold text-purple-600 text-3xl mb-2"></i>
+                        <div class="bg-purple-50/70 rounded-2xl p-6 border border-purple-100/80 text-center">
+                            <i class="ph ph-map-trifold text-purple-600 text-3xl mb-2"></i>
                             <p class="text-2xl font-black text-purple-700">15</p>
                             <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">Kecamatan</p>
                         </div>
@@ -3847,11 +3759,22 @@
             if (filterBar) { filterBar.classList.remove('hidden'); filterBar.style.display = 'flex'; }
             if (filterLabel) filterLabel.textContent = subsektor;
             document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => {
-                btn.querySelector('div').style.background = '';
-                btn.style.opacity = '0.6';
+                btn.style.opacity = '0.5';
+                const box = btn.querySelector('div');
+                if (box) {
+                    box.classList.remove('bg-brand-600', 'text-white', 'border-brand-600', 'shadow-md');
+                    box.classList.add('bg-white', 'text-brand-600', 'border-gray-100/90');
+                }
             });
             const activeBtn = document.querySelector('.ekraf-subsektor-btn[data-subsektor="' + subsektor + '"]');
-            if (activeBtn) { activeBtn.style.opacity = '1'; activeBtn.querySelector('div').style.background = '#b8d9f1'; }
+            if (activeBtn) {
+                activeBtn.style.opacity = '1';
+                const box = activeBtn.querySelector('div');
+                if (box) {
+                    box.classList.remove('bg-white', 'text-brand-600', 'border-gray-100/90');
+                    box.classList.add('bg-brand-600', 'text-white', 'border-brand-600', 'shadow-md');
+                }
+            }
             applyEkrafFilters();
         }
 
@@ -3859,7 +3782,14 @@
             ekrafFilterActive = null;
             const filterBar = document.getElementById('ekraf-filter-bar');
             if (filterBar) { filterBar.classList.add('hidden'); filterBar.style.display = ''; }
-            document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => { btn.style.opacity = '1'; btn.querySelector('div').style.background = ''; });
+            document.querySelectorAll('.ekraf-subsektor-btn').forEach(btn => {
+                btn.style.opacity = '1';
+                const box = btn.querySelector('div');
+                if (box) {
+                    box.classList.remove('bg-brand-600', 'text-white', 'border-brand-600', 'shadow-md');
+                    box.classList.add('bg-white', 'text-brand-600', 'border-gray-100/90');
+                }
+            });
             applyEkrafFilters();
         }
 
