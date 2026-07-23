@@ -636,14 +636,13 @@
                         <div class="w-full lg:w-1/3 flex flex-col h-full lg:min-h-[500px]">
                             <!-- Default state -->
                             <div id="map-panel-default"
-                                class="text-center py-12 text-white/40 flex-grow flex flex-col justify-center items-center">
+                                class="text-center py-12 px-6 text-white/60 flex-grow flex flex-col justify-center items-center bg-white/5 rounded-3xl border border-white/10 backdrop-blur-md shadow-xl">
                                 <div
-                                    class="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-6 border border-white/10">
-                                    <i class="ph ph-cursor-click text-4xl animate-bounce"></i>
+                                    class="w-20 h-20 rounded-2xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center mb-6 shadow-lg group hover:scale-105 transition-transform duration-300">
+                                    <i class="ph-fill ph-compass text-4xl text-cyan-400 animate-pulse"></i>
                                 </div>
-                                <p class="font-bold text-base text-white/80">Pilih Kecamatan</p>
-                                <p class="text-sm mt-2 max-w-[200px] text-center">Klik pada area peta untuk melihat
-                                    detail destinasi, event, dan ekraf.</p>
+                                <h3 class="font-extrabold text-lg text-white mb-2">Jelajahi Wisata Batang</h3>
+                                <p class="text-xs text-white/70 leading-relaxed max-w-xs text-center">Pilih salah satu kecamatan pada peta di samping untuk mulai menjelajahi destinasi, event, dan ekraf.</p>
                             </div>
 
                             <!-- Selected kecamatan panel -->
@@ -695,9 +694,9 @@
 
                                 <!-- Dynamic List Container -->
                                 <div
-                                    class="flex-grow flex flex-col bg-white/5 rounded-2xl border border-white/10 p-3 mb-4 shadow-inner">
+                                    class="flex-grow flex flex-col bg-white/5 rounded-2xl border border-white/10 p-3 mb-4 shadow-inner min-h-[300px]">
                                     <div id="map-kec-dynamic-list"
-                                        class="flex-grow space-y-2 h-[280px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/40 transition-colors">
+                                        class="flex-grow space-y-2 max-h-[320px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-cyan-500/30 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-cyan-400/70 transition-all">
                                     </div>
 
                                     <!-- Pagination Controls -->
@@ -4071,7 +4070,7 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-4 mb-12 border-b border-gray-100 pb-8">
-                            <a ${data.maps ? `href="${escapeHtml(safeUrl(data.maps))}" target="_blank" rel="noopener"` : `href="#" onclick="showToast('Link Google Maps belum tersedia.','info'); return false;"`} class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
+                            <a href="${data.maps ? escapeHtml(safeUrl(data.maps)) : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.nama + ' ' + (data.lokasi || '') + ' Batang')}`}" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"><i class="ph-fill ph-map-trifold text-lg"></i> Buka di Maps</a>
                             <a ${data.telepon ? `href="https://wa.me/${encodeURIComponent(data.telepon)}" target="_blank" rel="noopener"` : `href="#" onclick="showToast('Nomor telepon belum tersedia.','info'); return false;"`} class="bg-brand-50 hover:bg-brand-100 text-brand-700 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all border border-brand-200 hover:border-brand-300"><i class="ph-fill ph-whatsapp-logo text-lg"></i> Hubungi</a>
                         </div>
                         
@@ -5666,45 +5665,58 @@
                 itemCountsByKec[k]++;
             });
 
-            const maxCount = Math.max(...Object.values(itemCountsByKec), 1);
-
             const svg = d3.select('#batang-map')
                 .attr('viewBox', `0 0 ${W} ${H}`)
                 .attr('preserveAspectRatio', 'xMidYMid meet');
+
+            // SVG glow filters for active selection glow & indicator dots
+            let defs = svg.select('defs');
+            if (defs.empty()) {
+                defs = svg.append('defs');
+            }
+            defs.html(`
+                <filter id="map-selected-glow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#00F2FE" flood-opacity="0.85"/>
+                </filter>
+                <filter id="dot-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#00F2FE" flood-opacity="0.95"/>
+                </filter>
+            `);
 
             // Proper Mercator projection fitted to the real GeoJSON bounds
             const projection = d3.geoMercator().fitSize([W, H], BATANG_GEOJSON);
             const pathGen = d3.geoPath().projection(projection);
 
-            // No dynamic colors needed. Using static solid base for maximum contrast.
+            // Active accent: Electric Cyan (#00F2FE)
             const fillColor = d => {
                 const kec = d.properties.kecamatan;
-                if (kec === mapSelectedKec) return '#fde047'; // yellow-300: standout for selected
-                return '#1e293b'; // slate-800: clean solid base color
+                if (kec === mapSelectedKec) return '#00F2FE'; // Electric Cyan active accent
+                return '#1e293b'; // slate-800 base
             };
 
             const tooltip = document.getElementById('map-tooltip');
             const mapContainer = svgEl.closest('.relative');
 
-            // Draw kecamatan
-            svg.selectAll('path.kec')
+            // Draw kecamatan paths
+            const paths = svg.selectAll('path.kec')
                 .data(BATANG_GEOJSON.features)
                 .enter()
                 .append('path')
                 .attr('class', 'kec')
                 .attr('d', pathGen)
                 .attr('fill', fillColor)
-                .attr('stroke', '#38bdf8') // sky-400 for borders
-                .attr('stroke-width', d => d.properties.kecamatan === mapSelectedKec ? 2.5 : 0.8)
+                .attr('stroke', d => d.properties.kecamatan === mapSelectedKec ? '#ffffff' : '#38bdf8')
+                .attr('stroke-width', d => d.properties.kecamatan === mapSelectedKec ? 2.2 : 0.8)
                 .attr('stroke-opacity', 0.8)
+                .attr('filter', d => d.properties.kecamatan === mapSelectedKec ? 'url(#map-selected-glow)' : 'none')
                 .style('cursor', 'pointer')
-                .style('transition', 'fill 0.3s ease')
+                .style('transition', 'fill 0.25s ease, filter 0.25s ease')
                 .on('mouseenter', function (event, d) {
                     if (d.properties.kecamatan !== mapSelectedKec) {
-                        d3.select(this).attr('fill', '#38bdf8'); // sky-400 hover
+                        d3.select(this).attr('fill', '#2d3b50'); // subtle 15% transparent brightness boost
                         svg.selectAll('text.kec-label')
                             .filter(f => f.properties.kecamatan === d.properties.kecamatan)
-                            .attr('fill', '#0f172a'); // change text to dark on hover
+                            .attr('fill', '#00F2FE'); // Electric Cyan label on hover
                     }
                     if (tooltip) {
                         const kec = d.properties.kecamatan;
@@ -5733,15 +5745,29 @@
                 })
                 .on('click', function (event, d) {
                     mapSelectedKec = d.properties.kecamatan;
-                    // Update all fills and strokes without full re-render
-                    svg.selectAll('path.kec')
-                        .attr('fill', fillColor)
-                        .attr('stroke-width', f => f.properties.kecamatan === mapSelectedKec ? 2.5 : 0.8);
-                    svg.selectAll('text.kec-label')
-                        .attr('fill', f => f.properties.kecamatan === mapSelectedKec ? '#0f172a' : '#f8fafc')
-                        .attr('font-weight', f => f.properties.kecamatan === mapSelectedKec ? 'bold' : 'normal');
+                    updateMapSelectionState();
                     showMapPanel(mapSelectedKec);
                 });
+
+            // Draw thin light dot indicators for kecamatan having data > 0
+            svg.selectAll('circle.kec-dot')
+                .data(BATANG_GEOJSON.features.filter(d => (itemCountsByKec[d.properties.kecamatan] || 0) > 0))
+                .enter()
+                .append('circle')
+                .attr('class', 'kec-dot')
+                .attr('cx', d => {
+                    const c = pathGen.centroid(d);
+                    return isNaN(c[0]) ? 0 : c[0];
+                })
+                .attr('cy', d => {
+                    const c = pathGen.centroid(d);
+                    return isNaN(c[1]) ? 0 : c[1] - 12;
+                })
+                .attr('r', 2.5)
+                .attr('fill', '#00F2FE')
+                .attr('filter', 'url(#dot-glow)')
+                .attr('opacity', 0.9)
+                .attr('pointer-events', 'none');
 
             // Draw labels at centroid
             svg.selectAll('text.kec-label')
@@ -5760,12 +5786,53 @@
                 .attr('fill', d => d.properties.kecamatan === mapSelectedKec ? '#0f172a' : '#f8fafc')
                 .attr('pointer-events', 'none')
                 .text(d => d.properties.kecamatan);
+
+            // Raise active selected path on init if any
+            if (mapSelectedKec) {
+                updateMapSelectionState();
+            }
+
+            function updateMapSelectionState() {
+                svg.selectAll('path.kec')
+                    .attr('fill', fillColor)
+                    .attr('stroke', f => f.properties.kecamatan === mapSelectedKec ? '#ffffff' : '#38bdf8')
+                    .attr('stroke-width', f => f.properties.kecamatan === mapSelectedKec ? 2.2 : 0.8)
+                    .attr('filter', f => f.properties.kecamatan === mapSelectedKec ? 'url(#map-selected-glow)' : 'none');
+
+                svg.selectAll('path.kec')
+                    .filter(f => f.properties.kecamatan === mapSelectedKec)
+                    .raise();
+
+                svg.selectAll('circle.kec-dot').raise();
+
+                svg.selectAll('text.kec-label')
+                    .attr('fill', f => f.properties.kecamatan === mapSelectedKec ? '#0f172a' : '#f8fafc')
+                    .attr('font-weight', f => f.properties.kecamatan === mapSelectedKec ? 'bold' : 'normal')
+                    .raise();
+            }
         }
+
         let mapCurrentData = [];
         let mapCurrentPage = 1;
         const MAP_ITEMS_PER_PAGE = 4;
         let mapCurrentTab = 'wisata';
         let mapCurrentKec = '';
+
+        function triggerMapPanelAnimation() {
+            const listEl = document.getElementById('map-kec-dynamic-list');
+            if (listEl) {
+                listEl.style.opacity = '0';
+                listEl.style.transform = 'translateY(8px)';
+                listEl.style.transition = 'none';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        listEl.style.transition = 'opacity 250ms ease-out, transform 250ms ease-out';
+                        listEl.style.opacity = '1';
+                        listEl.style.transform = 'translateY(0)';
+                    });
+                });
+            }
+        }
 
         function setMapTab(tab) {
             mapCurrentTab = tab;
@@ -5787,6 +5854,7 @@
             }
 
             renderMapList();
+            triggerMapPanelAnimation();
             updateMapExploreAction();
         }
 
@@ -5798,7 +5866,12 @@
             if (mapCurrentTab === 'wisata') {
                 data = wisataData.filter(w => (w.lokasi || '').trim() === mapCurrentKec);
                 emptyMsg = 'Belum ada wisata terdaftar di kecamatan ini.';
-                renderItem = w => `
+                renderItem = w => {
+                    const query = encodeURIComponent(`${w.nama} ${w.lokasi || ''} Batang`);
+                    const gmapsUrl = (w.lat && w.lng) 
+                        ? `https://maps.google.com/?q=${w.lat},${w.lng}` 
+                        : (w.maps || `https://www.google.com/maps/search/?api=1&query=${query}`);
+                    return `
                     <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
                             ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
@@ -5807,12 +5880,22 @@
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${w.nama}</p>
                             <p class="text-white/50 text-xs truncate">${w.kategori || ''}</p>
                         </div>
+                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                            <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                            <span class="hidden sm:inline">Maps</span>
+                        </a>
                         <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
                     </div>`;
+                };
             } else if (mapCurrentTab === 'event') {
                 data = eventData.filter(e => (e.lokasi || '').trim() === mapCurrentKec);
                 emptyMsg = 'Belum ada event terdaftar di kecamatan ini.';
-                renderItem = e => `
+                renderItem = e => {
+                    const query = encodeURIComponent(`${e.judul} ${e.lokasi || ''} Batang`);
+                    const gmapsUrl = (e.lat && e.lng) 
+                        ? `https://maps.google.com/?q=${e.lat},${e.lng}` 
+                        : (e.maps || `https://www.google.com/maps/search/?api=1&query=${query}`);
+                    return `
                     <div onclick="navigate('detail-event', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0 flex flex-col justify-center items-center">
                             ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${e.tanggal || '-'}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${e.bulan || '-'}</div>`}
@@ -5821,12 +5904,22 @@
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.judul}</p>
                             <p class="text-white/50 text-xs truncate">${e.waktu || ''}</p>
                         </div>
+                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                            <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                            <span class="hidden sm:inline">Maps</span>
+                        </a>
                         <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
                     </div>`;
+                };
             } else if (mapCurrentTab === 'ekraf') {
                 data = ekrafData.filter(e => (e.lokasi || '').trim() === mapCurrentKec);
                 emptyMsg = 'Belum ada pelaku ekraf terdaftar di kecamatan ini.';
-                renderItem = e => `
+                renderItem = e => {
+                    const query = encodeURIComponent(`${e.brand} ${e.lokasi || ''} Batang`);
+                    const gmapsUrl = (e.lat && e.lng) 
+                        ? `https://maps.google.com/?q=${e.lat},${e.lng}` 
+                        : (e.maps || `https://www.google.com/maps/search/?api=1&query=${query}`);
+                    return `
                     <div onclick="navigate('detail-ekraf', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
                         <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
                             ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
@@ -5835,51 +5928,27 @@
                             <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.brand}</p>
                             <p class="text-white/50 text-xs truncate">${e.subsektor || ''}</p>
                         </div>
+                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                            <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                            <span class="hidden sm:inline">Maps</span>
+                        </a>
                         <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
                     </div>`;
+                };
             }
 
             mapCurrentData = data;
 
-            const totalPages = Math.ceil(data.length / MAP_ITEMS_PER_PAGE);
-            if (mapCurrentPage > totalPages) mapCurrentPage = Math.max(1, totalPages);
-
             const listEl = document.getElementById('map-kec-dynamic-list');
             if (listEl) {
                 if (data.length === 0) {
-                    listEl.innerHTML = `<div class="h-full flex items-center justify-center"><p class="text-white/40 text-sm px-4 text-center">${emptyMsg}</p></div>`;
-                    document.getElementById('map-pagination').classList.add('hidden');
+                    listEl.innerHTML = `<div class="h-full min-h-[220px] flex items-center justify-center"><p class="text-white/40 text-sm px-4 text-center">${emptyMsg}</p></div>`;
+                    const pag = document.getElementById('map-pagination');
+                    if (pag) pag.classList.add('hidden');
                 } else {
-                    const startIdx = (mapCurrentPage - 1) * MAP_ITEMS_PER_PAGE;
-                    const pageData = data.slice(startIdx, startIdx + MAP_ITEMS_PER_PAGE);
-                    listEl.innerHTML = pageData.map(renderItem).join('');
-
-                    if (totalPages > 1) {
-                        document.getElementById('map-pagination').classList.remove('hidden');
-                        document.getElementById('map-page-info').textContent = `${mapCurrentPage} / ${totalPages}`;
-
-                        const prevBtn = document.getElementById('map-prev-btn');
-                        const nextBtn = document.getElementById('map-next-btn');
-
-                        prevBtn.disabled = mapCurrentPage === 1;
-                        nextBtn.disabled = mapCurrentPage === totalPages;
-
-                        prevBtn.onclick = () => {
-                            if (mapCurrentPage > 1) {
-                                mapCurrentPage--;
-                                renderMapList();
-                            }
-                        };
-
-                        nextBtn.onclick = () => {
-                            if (mapCurrentPage < totalPages) {
-                                mapCurrentPage++;
-                                renderMapList();
-                            }
-                        };
-                    } else {
-                        document.getElementById('map-pagination').classList.add('hidden');
-                    }
+                    listEl.innerHTML = data.map(renderItem).join('');
+                    const pag = document.getElementById('map-pagination');
+                    if (pag) pag.classList.add('hidden');
                 }
             }
         }
@@ -5899,7 +5968,6 @@
                             if (sel) sel.value = mapCurrentKec;
                             if (typeof applyEventFilter === 'function') applyEventFilter();
                         } else if (mapCurrentTab === 'ekraf') {
-                            // setEkrafLocationFilter sets the location state and calls applyEkrafFilters()
                             if (typeof setEkrafLocationFilter === 'function') setEkrafLocationFilter(mapCurrentKec);
                         }
                     }, 300);
@@ -5931,6 +5999,7 @@
             if (ekrafCntEl) ekrafCntEl.textContent = ekrafHere.length;
 
             setMapTab('wisata');
+            triggerMapPanelAnimation();
         }
 
         function clearMapSelection() {
