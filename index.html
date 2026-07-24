@@ -2004,24 +2004,24 @@
 
             <!-- Filter & Grid Container -->
             <div class="max-w-7xl mx-auto px-4 py-10">
-                <!-- Special Filter Chips -->
-                <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6" style="scrollbar-width: none;">
-                    <button onclick="setKulinerFilterTag('Semua')" class="kuliner-tag-btn active shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition bg-amber-500 text-white shadow-md">Semua Kuliner</button>
-                    <button onclick="setKulinerFilterTag('Khas Batang')" class="kuliner-tag-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-amber-400 transition">🍜 Khas Batang</button>
-                    <button onclick="setKulinerFilterTag('Cafe')" class="kuliner-tag-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-amber-400 transition">☕ Cafe & Co-Working</button>
-                    <button onclick="setKulinerFilterTag('Seafood')" class="kuliner-tag-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-amber-400 transition">🦐 Seafood Pesisir</button>
-                    <button onclick="setKulinerFilterTag('Halal')" class="kuliner-tag-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-amber-400 transition">📜 Halal Certified</button>
-                </div>
-
-                <!-- Location Selector Bar -->
-                <div class="flex items-center justify-between gap-4 mb-8 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <p class="text-xs font-bold text-gray-600 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="ph-fill ph-map-pin text-amber-500"></i> Filter Lokasi:
-                    </p>
-                    <select id="filter-kuliner-lokasi" onchange="filterKuliner()" class="bg-gray-50 border border-gray-200 rounded-xl px-3 py-1.5 text-xs font-bold text-gray-700 focus:outline-none focus:border-amber-500">
-                        <option value="">Semua Kecamatan (15)</option>
-                        <option value="Bandar">Bandar</option><option value="Banyuputih">Banyuputih</option><option value="Batang">Batang</option><option value="Bawang">Bawang</option><option value="Blado">Blado</option><option value="Gringsing">Gringsing</option><option value="Kandeman">Kandeman</option><option value="Limpung">Limpung</option><option value="Pecalungan">Pecalungan</option><option value="Reban">Reban</option><option value="Subah">Subah</option><option value="Tersono">Tersono</option><option value="Tulis">Tulis</option><option value="Warungasem">Warungasem</option><option value="Wonotunggal">Wonotunggal</option>
-                    </select>
+                <!-- Location Selector Bar (Refined & Modernized) -->
+                <div class="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 p-5 rounded-2xl border border-amber-200/60 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white flex items-center justify-center shadow-md text-lg shrink-0">
+                            <i class="ph-fill ph-map-pin"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">Filter Lokasi Kuliner</h3>
+                            <p class="text-xs text-gray-500 font-medium">Pilih Kecamatan di Kabupaten Batang</p>
+                        </div>
+                    </div>
+                    <div class="relative w-full sm:w-72">
+                        <select id="filter-kuliner-lokasi" onchange="filterKuliner()" class="w-full appearance-none bg-white border-2 border-amber-200/80 rounded-xl px-4 py-2.5 pr-10 text-xs font-bold text-gray-800 focus:outline-none focus:border-amber-500 focus:ring-4 focus:ring-amber-500/20 shadow-sm cursor-pointer transition">
+                            <option value="">Semua Kecamatan (15)</option>
+                            <option value="Bandar">Bandar</option><option value="Banyuputih">Banyuputih</option><option value="Batang">Batang</option><option value="Bawang">Bawang</option><option value="Blado">Blado</option><option value="Gringsing">Gringsing</option><option value="Kandeman">Kandeman</option><option value="Limpung">Limpung</option><option value="Pecalungan">Pecalungan</option><option value="Reban">Reban</option><option value="Subah">Subah</option><option value="Tersono">Tersono</option><option value="Tulis">Tulis</option><option value="Warungasem">Warungasem</option><option value="Wonotunggal">Wonotunggal</option>
+                        </select>
+                        <i class="ph-bold ph-caret-down absolute right-3.5 top-1/2 -translate-y-1/2 text-amber-600 text-sm pointer-events-none"></i>
+                    </div>
                 </div>
 
                 <!-- Grid Kuliner -->
@@ -2064,16 +2064,27 @@
                     <button onclick="setBelanjaFilterKat('Oleh-Oleh Makanan')" class="belanja-kat-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-emerald-500 transition">🍿 Oleh-Oleh Makanan</button>
                     <button onclick="setBelanjaFilterKat('Batik & Souvenir')" class="belanja-kat-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-emerald-500 transition">🎨 Batik & Souvenir</button>
                     <button onclick="setBelanjaFilterKat('Sentra UMKM')" class="belanja-kat-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-emerald-500 transition">🏪 Sentra UMKM</button>
+                    <button onclick="setBelanjaFilterKat('Pusat Perbelanjaan')" class="belanja-kat-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-emerald-500 transition">🏬 Pusat Perbelanjaan Lainnya</button>
                 </div>
 
-                <div class="flex items-center justify-between gap-4 mb-8 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <p class="text-xs font-bold text-gray-600 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="ph-fill ph-map-pin text-emerald-500"></i> Lokasi Toko:
-                    </p>
-                    <select id="filter-belanja-lokasi" onchange="filterBelanja()" class="bg-gray-50 border border-gray-200 rounded-xl px-3 py-1.5 text-xs font-bold text-gray-700 focus:outline-none focus:border-emerald-500">
-                        <option value="">Semua Kecamatan (15)</option>
-                        <option value="Bandar">Bandar</option><option value="Banyuputih">Banyuputih</option><option value="Batang">Batang</option><option value="Bawang">Bawang</option><option value="Blado">Blado</option><option value="Gringsing">Gringsing</option><option value="Kandeman">Kandeman</option><option value="Limpung">Limpung</option><option value="Pecalungan">Pecalungan</option><option value="Reban">Reban</option><option value="Subah">Subah</option><option value="Tersono">Tersono</option><option value="Tulis">Tulis</option><option value="Warungasem">Warungasem</option><option value="Wonotunggal">Wonotunggal</option>
-                    </select>
+                <!-- Location Selector Bar (Refined & Modernized) -->
+                <div class="bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10 p-5 rounded-2xl border border-emerald-200/60 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center shadow-md text-lg shrink-0">
+                            <i class="ph-fill ph-storefront"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">Lokasi Toko & Pusat Belanja</h3>
+                            <p class="text-xs text-gray-500 font-medium">Pilih Kecamatan di Kabupaten Batang</p>
+                        </div>
+                    </div>
+                    <div class="relative w-full sm:w-72">
+                        <select id="filter-belanja-lokasi" onchange="filterBelanja()" class="w-full appearance-none bg-white border-2 border-emerald-200/80 rounded-xl px-4 py-2.5 pr-10 text-xs font-bold text-gray-800 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 shadow-sm cursor-pointer transition">
+                            <option value="">Semua Kecamatan (15)</option>
+                            <option value="Bandar">Bandar</option><option value="Banyuputih">Banyuputih</option><option value="Batang">Batang</option><option value="Bawang">Bawang</option><option value="Blado">Blado</option><option value="Gringsing">Gringsing</option><option value="Kandeman">Kandeman</option><option value="Limpung">Limpung</option><option value="Pecalungan">Pecalungan</option><option value="Reban">Reban</option><option value="Subah">Subah</option><option value="Tersono">Tersono</option><option value="Tulis">Tulis</option><option value="Warungasem">Warungasem</option><option value="Wonotunggal">Wonotunggal</option>
+                        </select>
+                        <i class="ph-bold ph-caret-down absolute right-3.5 top-1/2 -translate-y-1/2 text-emerald-600 text-sm pointer-events-none"></i>
+                    </div>
                 </div>
 
                 <!-- Grid Belanja -->
@@ -2161,14 +2172,8 @@
                 </div>
             </div>
 
-            <!-- Filter & Grid Container -->
+            <!-- Grid Container -->
             <div class="max-w-7xl mx-auto px-4 py-10">
-                <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6" style="scrollbar-width: none;">
-                    <button onclick="setPaketFilterDurasi('Semua')" class="paket-durasi-btn active shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-md">Semua Paket</button>
-                    <button onclick="setPaketFilterDurasi('1 Day')" class="paket-durasi-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-indigo-500 transition">🌅 1 Day Tour</button>
-                    <button onclick="setPaketFilterDurasi('2D1N')" class="paket-durasi-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-indigo-500 transition">⛺ 2D1N Adventure</button>
-                </div>
-
                 <!-- Grid Paket Wisata -->
                 <div id="grid-all-paket" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Dynamic rendering by JS -->
@@ -5765,7 +5770,8 @@
         let belanjaData = [
             { id: 1, nama_toko: 'Pusat Emping Melinjo Limpung Super', kategori: 'Oleh-Oleh Makanan', produk_unggulan: 'Emping Melinjo Super Rintis', lokasi: 'Limpung', alamat: 'Jl. Pasar Limpung No. 12', foto: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800', jam_operasional: '08:00 - 21:00 WIB', is_umkm_terverifikasi: true, deskripsi: 'Produsen emping melinjo asli Limpung yang terkenal hingga ekspor.', telepon: '6289876543210', maps: 'https://maps.google.com/?q=Limpung' },
             { id: 2, nama_toko: 'Galeri Batik Tulis Bandar', kategori: 'Batik & Souvenir', produk_unggulan: 'Batik Tulis Tiga Negeri', lokasi: 'Bandar', alamat: 'Jl. Raya Bandar No. 8', foto: 'https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&q=80&w=800', jam_operasional: '09:00 - 17:00 WIB', is_umkm_terverifikasi: true, deskripsi: 'Galeri batik tulis halus buatan pengrajin lokal Bandar.', telepon: '6289876543211', maps: 'https://maps.google.com/?q=Bandar' },
-            { id: 3, nama_toko: 'Sentra Souvenir Pantai Sigandu', kategori: 'Batik & Souvenir', produk_unggulan: 'Kerajinan Kerang & Kaos Batang', lokasi: 'Batang', alamat: 'Area Pantai Sigandu, Batang', foto: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80&w=800', jam_operasional: '08:00 - 18:00 WIB', is_umkm_terverifikasi: true, deskripsi: 'Toko aksesoris bahari dan kaos cenderamata khas Dolan Batang.', telepon: '6289876543212', maps: 'https://maps.google.com/?q=Sigandu' }
+            { id: 3, nama_toko: 'Sentra Souvenir Pantai Sigandu', kategori: 'Batik & Souvenir', produk_unggulan: 'Kerajinan Kerang & Kaos Batang', lokasi: 'Batang', alamat: 'Area Pantai Sigandu, Batang', foto: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80&w=800', jam_operasional: '08:00 - 18:00 WIB', is_umkm_terverifikasi: true, deskripsi: 'Toko aksesoris bahari dan kaos cenderamata khas Dolan Batang.', telepon: '6289876543212', maps: 'https://maps.google.com/?q=Sigandu' },
+            { id: 4, nama_toko: 'Batang Plaza & Supermarket Limpung', kategori: 'Pusat Perbelanjaan', produk_unggulan: 'Pusat Belanja Keluarga & Retail', lokasi: 'Batang', alamat: 'Jl. Jendral Sudirman No. 100, Batang', foto: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&q=80&w=800', jam_operasional: '09:00 - 21:30 WIB', is_umkm_terverifikasi: true, deskripsi: 'Pusat perbelanjaan modern dan minimarket keluarga di pusat kota Batang.', telepon: '6289876543213', maps: 'https://maps.google.com/?q=Batang' }
         ];
 
         let penginapanData = [
@@ -5791,12 +5797,6 @@
 
         function setKulinerFilterTag(tag) {
             kulinerActiveTag = tag;
-            document.querySelectorAll('.kuliner-tag-btn').forEach(btn => {
-                btn.className = 'kuliner-tag-btn shrink-0 px-4 py-2 rounded-xl text-xs transition ' +
-                    (btn.textContent.includes(tag) || (tag==='Semua' && btn.textContent==='Semua Kuliner')
-                        ? 'font-bold bg-amber-500 text-white shadow-md'
-                        : 'font-semibold bg-white border border-gray-200 text-gray-700 hover:border-amber-400');
-            });
             filterKuliner();
         }
 
@@ -5807,12 +5807,7 @@
                 const txt = ((k.nama||'') + ' ' + (k.jenis||'') + ' ' + (k.deskripsi||'')).toLowerCase();
                 const mSearch = !search || txt.includes(search);
                 const mLokasi = !lokasi || k.lokasi === lokasi;
-                const mTag = kulinerActiveTag === 'Semua' || 
-                    (kulinerActiveTag === 'Halal' && k.is_halal) ||
-                    (kulinerActiveTag === 'Khas Batang' && k.is_khas_batang) ||
-                    (k.tags && k.tags.some(t => t.toLowerCase().includes(kulinerActiveTag.toLowerCase()))) ||
-                    (k.jenis && k.jenis.toLowerCase().includes(kulinerActiveTag.toLowerCase()));
-                return mSearch && mLokasi && mTag;
+                return mSearch && mLokasi;
             });
             renderKulinerGrid(filtered);
         }
@@ -5880,10 +5875,12 @@
             const search = (document.getElementById('search-belanja')?.value || '').toLowerCase();
             const lokasi = document.getElementById('filter-belanja-lokasi')?.value || '';
             const filtered = belanjaData.filter(b => {
-                const txt = ((b.nama_toko||'') + ' ' + (b.produk_unggulan||'') + ' ' + (b.deskripsi||'')).toLowerCase();
+                const txt = ((b.nama_toko||'') + ' ' + (b.produk_unggulan||'') + ' ' + (b.kategori||'') + ' ' + (b.deskripsi||'')).toLowerCase();
                 const mSearch = !search || txt.includes(search);
                 const mLokasi = !lokasi || b.lokasi === lokasi;
-                const mKat = belanjaActiveKat === 'Semua' || (b.kategori && b.kategori.includes(belanjaActiveKat));
+                const mKat = belanjaActiveKat === 'Semua' || 
+                    (belanjaActiveKat === 'Pusat Perbelanjaan' && (b.kategori?.toLowerCase().includes('pusat') || b.kategori?.toLowerCase().includes('mall') || b.kategori?.toLowerCase().includes('pasar') || b.kategori?.toLowerCase().includes('plaza') || b.kategori === 'Pusat Perbelanjaan')) ||
+                    (b.kategori && b.kategori.includes(belanjaActiveKat));
                 return mSearch && mLokasi && mKat;
             });
             renderBelanjaGrid(filtered);
@@ -5992,12 +5989,6 @@
 
         function setPaketFilterDurasi(durasi) {
             paketActiveDurasi = durasi;
-            document.querySelectorAll('.paket-durasi-btn').forEach(btn => {
-                btn.className = 'paket-durasi-btn shrink-0 px-4 py-2 rounded-xl text-xs transition ' +
-                    (btn.textContent.includes(durasi) || (durasi==='Semua' && btn.textContent==='Semua Paket')
-                        ? 'font-bold bg-indigo-600 text-white shadow-md'
-                        : 'font-semibold bg-white border border-gray-200 text-gray-700 hover:border-indigo-500');
-            });
             filterPaket();
         }
 
@@ -6005,9 +5996,7 @@
             const search = (document.getElementById('search-paket')?.value || '').toLowerCase();
             const filtered = paketData.filter(pk => {
                 const txt = ((pk.nama_paket||'') + ' ' + (pk.durasi||'') + ' ' + (pk.deskripsi||'')).toLowerCase();
-                const mSearch = !search || txt.includes(search);
-                const mDurasi = paketActiveDurasi === 'Semua' || (pk.durasi && pk.durasi.includes(paketActiveDurasi));
-                return mSearch && mDurasi;
+                return !search || txt.includes(search);
             });
             renderPaketGrid(filtered);
         }
