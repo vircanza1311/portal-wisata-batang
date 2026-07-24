@@ -2004,23 +2004,28 @@
 
             <!-- Filter & Grid Container -->
             <div class="max-w-7xl mx-auto px-4 py-10">
-                <!-- Location Selector Bar (Refined & Modernized) -->
-                <div class="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 p-5 rounded-2xl border border-amber-200/60 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white flex items-center justify-center shadow-md text-lg shrink-0">
-                            <i class="ph-fill ph-map-pin"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">Filter Lokasi Kuliner</h3>
-                            <p class="text-xs text-gray-500 font-medium">Pilih Kecamatan di Kabupaten Batang</p>
-                        </div>
+                <!-- Location Pill Filter Bar (Interactive & Modernized) -->
+                <div class="bg-gradient-to-r from-amber-500/5 via-orange-500/5 to-amber-500/5 p-5 sm:p-6 rounded-3xl border border-amber-200/60 shadow-sm mb-10 text-center">
+                    <div class="inline-flex items-center gap-2 bg-amber-500/10 text-amber-900 border border-amber-300/40 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest mb-4">
+                        <i class="ph-fill ph-map-pin text-amber-600"></i> Filter Lokasi Kuliner (15 Kecamatan)
                     </div>
-                    <div class="relative w-full sm:w-72">
-                        <select id="filter-kuliner-lokasi" onchange="filterKuliner()" class="w-full appearance-none bg-white border-2 border-amber-200/80 rounded-xl px-4 py-2.5 pr-10 text-xs font-bold text-gray-800 focus:outline-none focus:border-amber-500 focus:ring-4 focus:ring-amber-500/20 shadow-sm cursor-pointer transition">
-                            <option value="">Semua Kecamatan (15)</option>
-                            <option value="Bandar">Bandar</option><option value="Banyuputih">Banyuputih</option><option value="Batang">Batang</option><option value="Bawang">Bawang</option><option value="Blado">Blado</option><option value="Gringsing">Gringsing</option><option value="Kandeman">Kandeman</option><option value="Limpung">Limpung</option><option value="Pecalungan">Pecalungan</option><option value="Reban">Reban</option><option value="Subah">Subah</option><option value="Tersono">Tersono</option><option value="Tulis">Tulis</option><option value="Warungasem">Warungasem</option><option value="Wonotunggal">Wonotunggal</option>
-                        </select>
-                        <i class="ph-bold ph-caret-down absolute right-3.5 top-1/2 -translate-y-1/2 text-amber-600 text-sm pointer-events-none"></i>
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-5xl mx-auto">
+                        <button onclick="setKulinerLokasi('', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer select-none bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-amber-500/20 ring-2 ring-amber-400 ring-offset-1 scale-105">✨ Semua Kecamatan (15)</button>
+                        <button onclick="setKulinerLokasi('Bandar', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Bandar</button>
+                        <button onclick="setKulinerLokasi('Banyuputih', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Banyuputih</button>
+                        <button onclick="setKulinerLokasi('Batang', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Batang</button>
+                        <button onclick="setKulinerLokasi('Bawang', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Bawang</button>
+                        <button onclick="setKulinerLokasi('Blado', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Blado</button>
+                        <button onclick="setKulinerLokasi('Gringsing', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Gringsing</button>
+                        <button onclick="setKulinerLokasi('Kandeman', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Kandeman</button>
+                        <button onclick="setKulinerLokasi('Limpung', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Limpung</button>
+                        <button onclick="setKulinerLokasi('Pecalungan', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Pecalungan</button>
+                        <button onclick="setKulinerLokasi('Reban', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Reban</button>
+                        <button onclick="setKulinerLokasi('Subah', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Subah</button>
+                        <button onclick="setKulinerLokasi('Tersono', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Tersono</button>
+                        <button onclick="setKulinerLokasi('Tulis', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Tulis</button>
+                        <button onclick="setKulinerLokasi('Warungasem', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Warungasem</button>
+                        <button onclick="setKulinerLokasi('Wonotunggal', this)" class="kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm">Wonotunggal</button>
                     </div>
                 </div>
 
@@ -2067,23 +2072,28 @@
                     <button onclick="setBelanjaFilterKat('Pusat Perbelanjaan')" class="belanja-kat-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-emerald-500 transition">🏬 Pusat Perbelanjaan Lainnya</button>
                 </div>
 
-                <!-- Location Selector Bar (Refined & Modernized) -->
-                <div class="bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10 p-5 rounded-2xl border border-emerald-200/60 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center shadow-md text-lg shrink-0">
-                            <i class="ph-fill ph-storefront"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">Lokasi Toko & Pusat Belanja</h3>
-                            <p class="text-xs text-gray-500 font-medium">Pilih Kecamatan di Kabupaten Batang</p>
-                        </div>
+                <!-- Location Pill Filter Bar (Interactive & Modernized) -->
+                <div class="bg-gradient-to-r from-emerald-500/5 via-teal-500/5 to-emerald-500/5 p-5 sm:p-6 rounded-3xl border border-emerald-200/60 shadow-sm mb-10 text-center">
+                    <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-900 border border-emerald-300/40 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest mb-4">
+                        <i class="ph-fill ph-storefront text-emerald-600"></i> Filter Lokasi Toko (15 Kecamatan)
                     </div>
-                    <div class="relative w-full sm:w-72">
-                        <select id="filter-belanja-lokasi" onchange="filterBelanja()" class="w-full appearance-none bg-white border-2 border-emerald-200/80 rounded-xl px-4 py-2.5 pr-10 text-xs font-bold text-gray-800 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 shadow-sm cursor-pointer transition">
-                            <option value="">Semua Kecamatan (15)</option>
-                            <option value="Bandar">Bandar</option><option value="Banyuputih">Banyuputih</option><option value="Batang">Batang</option><option value="Bawang">Bawang</option><option value="Blado">Blado</option><option value="Gringsing">Gringsing</option><option value="Kandeman">Kandeman</option><option value="Limpung">Limpung</option><option value="Pecalungan">Pecalungan</option><option value="Reban">Reban</option><option value="Subah">Subah</option><option value="Tersono">Tersono</option><option value="Tulis">Tulis</option><option value="Warungasem">Warungasem</option><option value="Wonotunggal">Wonotunggal</option>
-                        </select>
-                        <i class="ph-bold ph-caret-down absolute right-3.5 top-1/2 -translate-y-1/2 text-emerald-600 text-sm pointer-events-none"></i>
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-5xl mx-auto">
+                        <button onclick="setBelanjaLokasi('', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer select-none bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/20 ring-2 ring-emerald-400 ring-offset-1 scale-105">✨ Semua Kecamatan (15)</button>
+                        <button onclick="setBelanjaLokasi('Bandar', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Bandar</button>
+                        <button onclick="setBelanjaLokasi('Banyuputih', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Banyuputih</button>
+                        <button onclick="setBelanjaLokasi('Batang', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Batang</button>
+                        <button onclick="setBelanjaLokasi('Bawang', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Bawang</button>
+                        <button onclick="setBelanjaLokasi('Blado', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Blado</button>
+                        <button onclick="setBelanjaLokasi('Gringsing', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Gringsing</button>
+                        <button onclick="setBelanjaLokasi('Kandeman', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Kandeman</button>
+                        <button onclick="setBelanjaLokasi('Limpung', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Limpung</button>
+                        <button onclick="setBelanjaLokasi('Pecalungan', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Pecalungan</button>
+                        <button onclick="setBelanjaLokasi('Reban', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Reban</button>
+                        <button onclick="setBelanjaLokasi('Subah', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Subah</button>
+                        <button onclick="setBelanjaLokasi('Tersono', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Tersono</button>
+                        <button onclick="setBelanjaLokasi('Tulis', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Tulis</button>
+                        <button onclick="setBelanjaLokasi('Warungasem', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Warungasem</button>
+                        <button onclick="setBelanjaLokasi('Wonotunggal', this)" class="belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm">Wonotunggal</button>
                     </div>
                 </div>
 
@@ -2129,14 +2139,29 @@
                     <button onclick="setPenginapanFilterType('Villa')" class="penginapan-type-btn shrink-0 px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-cyan-500 transition">🏕️ Villa & Resort</button>
                 </div>
 
-                <div class="flex items-center justify-between gap-4 mb-8 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <p class="text-xs font-bold text-gray-600 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="ph-fill ph-map-pin text-cyan-500"></i> Lokasi Penginapan:
-                    </p>
-                    <select id="filter-penginapan-lokasi" onchange="filterPenginapan()" class="bg-gray-50 border border-gray-200 rounded-xl px-3 py-1.5 text-xs font-bold text-gray-700 focus:outline-none focus:border-cyan-500">
-                        <option value="">Semua Kecamatan (15)</option>
-                        <option value="Bandar">Bandar</option><option value="Banyuputih">Banyuputih</option><option value="Batang">Batang</option><option value="Bawang">Bawang</option><option value="Blado">Blado</option><option value="Gringsing">Gringsing</option><option value="Kandeman">Kandeman</option><option value="Limpung">Limpung</option><option value="Pecalungan">Pecalungan</option><option value="Reban">Reban</option><option value="Subah">Subah</option><option value="Tersono">Tersono</option><option value="Tulis">Tulis</option><option value="Warungasem">Warungasem</option><option value="Wonotunggal">Wonotunggal</option>
-                    </select>
+                <!-- Location Pill Filter Bar (Interactive & Modernized) -->
+                <div class="bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-cyan-500/5 p-5 sm:p-6 rounded-3xl border border-cyan-200/60 shadow-sm mb-10 text-center">
+                    <div class="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-900 border border-cyan-300/40 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest mb-4">
+                        <i class="ph-fill ph-map-pin text-cyan-600"></i> Filter Lokasi Penginapan (15 Kecamatan)
+                    </div>
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-5xl mx-auto">
+                        <button onclick="setPenginapanLokasi('', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer select-none bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md shadow-cyan-500/20 ring-2 ring-cyan-400 ring-offset-1 scale-105">✨ Semua Kecamatan (15)</button>
+                        <button onclick="setPenginapanLokasi('Bandar', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Bandar</button>
+                        <button onclick="setPenginapanLokasi('Banyuputih', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Banyuputih</button>
+                        <button onclick="setPenginapanLokasi('Batang', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Batang</button>
+                        <button onclick="setPenginapanLokasi('Bawang', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Bawang</button>
+                        <button onclick="setPenginapanLokasi('Blado', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Blado</button>
+                        <button onclick="setPenginapanLokasi('Gringsing', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Gringsing</button>
+                        <button onclick="setPenginapanLokasi('Kandeman', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Kandeman</button>
+                        <button onclick="setPenginapanLokasi('Limpung', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Limpung</button>
+                        <button onclick="setPenginapanLokasi('Pecalungan', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Pecalungan</button>
+                        <button onclick="setPenginapanLokasi('Reban', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Reban</button>
+                        <button onclick="setPenginapanLokasi('Subah', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Subah</button>
+                        <button onclick="setPenginapanLokasi('Tersono', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Tersono</button>
+                        <button onclick="setPenginapanLokasi('Tulis', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Tulis</button>
+                        <button onclick="setPenginapanLokasi('Warungasem', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Warungasem</button>
+                        <button onclick="setPenginapanLokasi('Wonotunggal', this)" class="penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm">Wonotunggal</button>
+                    </div>
                 </div>
 
                 <!-- Grid Penginapan -->
@@ -5795,6 +5820,21 @@
         let penginapanActiveType = 'Semua';
         let paketActiveDurasi = 'Semua';
 
+        let kulinerActiveLokasi = '';
+        let belanjaActiveLokasi = '';
+        let penginapanActiveLokasi = '';
+
+        function setKulinerLokasi(lokasi, btn) {
+            kulinerActiveLokasi = lokasi;
+            document.querySelectorAll('.kuliner-lokasi-pill').forEach(b => {
+                b.className = 'kuliner-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs transition-all duration-200 cursor-pointer select-none ' +
+                    (b === btn
+                        ? 'font-bold bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-amber-500/20 ring-2 ring-amber-400 ring-offset-1 scale-105'
+                        : 'font-semibold bg-white border border-gray-200/80 text-gray-700 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50/50 shadow-sm');
+            });
+            filterKuliner();
+        }
+
         function setKulinerFilterTag(tag) {
             kulinerActiveTag = tag;
             filterKuliner();
@@ -5802,7 +5842,7 @@
 
         function filterKuliner() {
             const search = (document.getElementById('search-kuliner')?.value || '').toLowerCase();
-            const lokasi = document.getElementById('filter-kuliner-lokasi')?.value || '';
+            const lokasi = kulinerActiveLokasi;
             const filtered = kulinerData.filter(k => {
                 const txt = ((k.nama||'') + ' ' + (k.jenis||'') + ' ' + (k.deskripsi||'')).toLowerCase();
                 const mSearch = !search || txt.includes(search);
@@ -5860,6 +5900,17 @@
             `).join('');
         }
 
+        function setBelanjaLokasi(lokasi, btn) {
+            belanjaActiveLokasi = lokasi;
+            document.querySelectorAll('.belanja-lokasi-pill').forEach(b => {
+                b.className = 'belanja-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs transition-all duration-200 cursor-pointer select-none ' +
+                    (b === btn
+                        ? 'font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/20 ring-2 ring-emerald-400 ring-offset-1 scale-105'
+                        : 'font-semibold bg-white border border-gray-200/80 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 shadow-sm');
+            });
+            filterBelanja();
+        }
+
         function setBelanjaFilterKat(kat) {
             belanjaActiveKat = kat;
             document.querySelectorAll('.belanja-kat-btn').forEach(btn => {
@@ -5873,7 +5924,7 @@
 
         function filterBelanja() {
             const search = (document.getElementById('search-belanja')?.value || '').toLowerCase();
-            const lokasi = document.getElementById('filter-belanja-lokasi')?.value || '';
+            const lokasi = belanjaActiveLokasi;
             const filtered = belanjaData.filter(b => {
                 const txt = ((b.nama_toko||'') + ' ' + (b.produk_unggulan||'') + ' ' + (b.kategori||'') + ' ' + (b.deskripsi||'')).toLowerCase();
                 const mSearch = !search || txt.includes(search);
@@ -5920,6 +5971,17 @@
             `).join('');
         }
 
+        function setPenginapanLokasi(lokasi, btn) {
+            penginapanActiveLokasi = lokasi;
+            document.querySelectorAll('.penginapan-lokasi-pill').forEach(b => {
+                b.className = 'penginapan-lokasi-pill shrink-0 px-4.5 py-2 rounded-full text-xs transition-all duration-200 cursor-pointer select-none ' +
+                    (b === btn
+                        ? 'font-bold bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md shadow-cyan-500/20 ring-2 ring-cyan-400 ring-offset-1 scale-105'
+                        : 'font-semibold bg-white border border-gray-200/80 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 hover:bg-cyan-50/50 shadow-sm');
+            });
+            filterPenginapan();
+        }
+
         function setPenginapanFilterType(tipe) {
             penginapanActiveType = tipe;
             document.querySelectorAll('.penginapan-type-btn').forEach(btn => {
@@ -5933,7 +5995,7 @@
 
         function filterPenginapan() {
             const search = (document.getElementById('search-penginapan')?.value || '').toLowerCase();
-            const lokasi = document.getElementById('filter-penginapan-lokasi')?.value || '';
+            const lokasi = penginapanActiveLokasi;
             const filtered = penginapanData.filter(p => {
                 const txt = ((p.nama||'') + ' ' + (p.tipe||'') + ' ' + (p.deskripsi||'')).toLowerCase();
                 const mSearch = !search || txt.includes(search);
