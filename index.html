@@ -25,8 +25,10 @@
     ">
     <!-- ══════════════════════════════════════════════════════════ -->
     <title>Dolan Batang – Portal Wisata, Ekraf &amp; Event Kabupaten Batang</title>
-    <meta name="description" content="Dolan Batang – Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah. Temukan destinasi wisata, pelaku ekraf, dan kegiatan terkini.">
-    <meta name="keywords" content="wisata batang, dolan batang, pariwisata batang, ekraf batang, event batang, kabupaten batang, jawa tengah, destinasi wisata batang">
+    <meta name="description"
+        content="Dolan Batang – Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah. Temukan destinasi wisata, pelaku ekraf, dan kegiatan terkini.">
+    <meta name="keywords"
+        content="wisata batang, dolan batang, pariwisata batang, ekraf batang, event batang, kabupaten batang, jawa tengah, destinasi wisata batang">
     <meta name="author" content="Dinas Pariwisata Kepemudaan dan Olahraga Kabupaten Batang">
     <meta name="robots" content="index, follow">
 
@@ -35,19 +37,25 @@
     <meta property="og:url" content="https://wisatabatang.vercel.app">
     <meta property="og:site_name" content="Dolan Batang">
     <meta property="og:title" content="Dolan Batang – Portal Wisata, Ekraf &amp; Event Kabupaten Batang">
-    <meta property="og:description" content="Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah.">
-    <meta property="og:image" content="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/og-image.png">
+    <meta property="og:description"
+        content="Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah.">
+    <meta property="og:image"
+        content="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/og-image.png">
     <meta property="og:locale" content="id_ID">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dolan Batang – Portal Wisata, Ekraf &amp; Event Kabupaten Batang">
-    <meta name="twitter:description" content="Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah.">
-    <meta name="twitter:image" content="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/og-image.png">
+    <meta name="twitter:description"
+        content="Portal resmi informasi pariwisata, ekonomi kreatif, dan agenda event Kabupaten Batang, Jawa Tengah.">
+    <meta name="twitter:image"
+        content="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/og-image.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png">
-    <link rel="apple-touch-icon" href="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png">
+    <link rel="icon" type="image/png"
+        href="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png">
+    <link rel="apple-touch-icon"
+        href="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png">
     <link rel="canonical" href="https://wisatabatang.vercel.app">
 
     <!-- JSON-LD Structured Data -->
@@ -362,16 +370,54 @@
 
             <!-- Menu Desktop -->
             <div id="nav-desktop-links"
-                class="hidden md:flex items-center gap-0.5 text-sm font-semibold text-gray-500 flex-1 justify-center">
+                class="hidden md:flex items-center gap-0.5 text-sm font-semibold text-gray-600 flex-1 justify-center">
                 <button data-nav="home" onclick="navigate('home')"
                     class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Beranda</button>
-                <button data-nav="wisata" onclick="navigate('wisata')"
-                    class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Wisata</button>
-                <button data-nav="event" onclick="navigate('event')"
-                    class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Event</button>
-                <button data-nav="ekraf" onclick="navigate('ekraf')" id="nav-ekraf"
-                    class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Ekonomi
-                    Kreatif</button>
+                
+                <!-- Dropdown 1: Destinasi & Ekraf -->
+                <div class="relative group">
+                    <button class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50 flex items-center gap-1">
+                        Destinasi & Ekraf <i class="ph ph-caret-down text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </button>
+                    <div class="absolute left-0 top-full mt-1.5 w-64 rounded-2xl p-2 shadow-2xl transition-all duration-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto z-[100]"
+                        style="background: rgba(11, 19, 43, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12);">
+                        <button onclick="setWisataKategori('Semua'); navigate('wisata');" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🏕️</span> Wisata
+                        </button>
+                        <button onclick="navigate('event')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🎭</span> Event
+                        </button>
+                        <button onclick="navigate('ekraf')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🎨</span> Ekonomi Kreatif
+                        </button>
+                        <button onclick="setWisataKategori('Kuliner'); navigate('wisata');" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🍜</span> Kuliner Khas <span class="text-[9px] bg-amber-500/80 text-white px-1.5 py-0.5 rounded-full font-bold ml-auto">Baru</span>
+                        </button>
+                        <button onclick="setWisataKategori('Belanja'); navigate('wisata');" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🛍️</span> Pusat Belanja & Oleh-Oleh <span class="text-[9px] bg-amber-500/80 text-white px-1.5 py-0.5 rounded-full font-bold ml-auto">Baru</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dropdown 2: Layanan & Fasilitas -->
+                <div class="relative group">
+                    <button class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50 flex items-center gap-1">
+                        Layanan & Fasilitas <i class="ph ph-caret-down text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </button>
+                    <div class="absolute left-0 top-full mt-1.5 w-64 rounded-2xl p-2 shadow-2xl transition-all duration-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto z-[100]"
+                        style="background: rgba(11, 19, 43, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12);">
+                        <button onclick="setWisataKategori('Penginapan'); navigate('wisata');" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🏨</span> Penginapan & Hotel <span class="text-[9px] bg-cyan-500/80 text-white px-1.5 py-0.5 rounded-full font-bold ml-auto">Baru</span>
+                        </button>
+                        <button onclick="setWisataKategori('Paket Wisata'); navigate('wisata');" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🎒</span> Paket Wisata <span class="text-[9px] bg-cyan-500/80 text-white px-1.5 py-0.5 rounded-full font-bold ml-auto">Baru</span>
+                        </button>
+                        <button onclick="setWisataKategori('Biro Perjalanan'); navigate('wisata');" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2.5">
+                            <span class="text-base">🚌</span> Agen & Biro Perjalanan <span class="text-[9px] bg-cyan-500/80 text-white px-1.5 py-0.5 rounded-full font-bold ml-auto">Baru</span>
+                        </button>
+                    </div>
+                </div>
+
                 <button data-nav="tentang" onclick="navigate('tentang')"
                     class="nav-link px-3.5 py-2 rounded-full transition-all duration-200 hover:text-brand-600 hover:bg-brand-50">Tentang</button>
                 <button data-nav="kontak" onclick="navigate('kontak')"
@@ -388,38 +434,69 @@
         </div>
 
         <!-- Mobile Drawer -->
-        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-100 bg-white shadow-xl">
+        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-100 bg-white shadow-xl max-h-[85vh] overflow-y-auto">
             <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-0.5">
                 <button onclick="mobileNav('home')"
                     class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 active:bg-brand-100 transition-all flex items-center gap-3">
                     <span class="w-7 h-7 rounded-lg bg-brand-50 flex items-center justify-center shrink-0"><i
                             class="ph-fill ph-house text-brand-500 text-sm"></i></span> Beranda
                 </button>
-                <button onclick="mobileNav('wisata')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 active:bg-brand-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-brand-50 flex items-center justify-center shrink-0"><i
-                            class="ph-fill ph-map-trifold text-brand-500 text-sm"></i></span> Wisata
-                </button>
-                <button onclick="mobileNav('event')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 active:bg-cyan-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-cyan-50 flex items-center justify-center shrink-0"><i
-                            class="ph-fill ph-calendar-check text-cyan-500 text-sm"></i></span> Event
-                </button>
-                <button onclick="mobileNav('ekraf')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-amber-50 hover:text-amber-700 active:bg-amber-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center shrink-0"><i
-                            class="ph-fill ph-lightbulb text-amber-500 text-sm"></i></span> Ekonomi Kreatif
-                </button>
-                <button onclick="mobileNav('tentang')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 active:bg-purple-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><i
-                            class="ph-fill ph-info text-purple-500 text-sm"></i></span> Tentang
-                </button>
-                <button onclick="mobileNav('kontak')"
-                    class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-green-50 hover:text-green-700 active:bg-green-100 transition-all flex items-center gap-3">
-                    <span class="w-7 h-7 rounded-lg bg-green-50 flex items-center justify-center shrink-0"><i
-                            class="ph-fill ph-phone text-green-500 text-sm"></i></span> Kontak
-                </button>
+                
+                <!-- Group 1 Mobile -->
+                <div class="pt-2 pb-1 border-t border-gray-100 mt-1">
+                    <p class="px-3 text-[10px] font-extrabold text-gray-400 uppercase tracking-wider mb-1">Destinasi & Ekraf</p>
+                    <button onclick="mobileNav('wisata')"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-all flex items-center gap-2.5">
+                        <span>🏕️</span> Wisata
+                    </button>
+                    <button onclick="mobileNav('event')"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 transition-all flex items-center gap-2.5">
+                        <span>🎭</span> Event
+                    </button>
+                    <button onclick="mobileNav('ekraf')"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-all flex items-center gap-2.5">
+                        <span>🎨</span> Ekonomi Kreatif
+                    </button>
+                    <button onclick="setWisataKategori('Kuliner'); mobileNav('wisata');"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-all flex items-center gap-2.5">
+                        <span>🍜</span> Kuliner Khas
+                    </button>
+                    <button onclick="setWisataKategori('Belanja'); mobileNav('wisata');"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-all flex items-center gap-2.5">
+                        <span>🛍️</span> Pusat Belanja & Oleh-Oleh
+                    </button>
+                </div>
+
+                <!-- Group 2 Mobile -->
+                <div class="pt-2 pb-1 border-t border-gray-100">
+                    <p class="px-3 text-[10px] font-extrabold text-gray-400 uppercase tracking-wider mb-1">Layanan & Fasilitas</p>
+                    <button onclick="setWisataKategori('Penginapan'); mobileNav('wisata');"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all flex items-center gap-2.5">
+                        <span>🏨</span> Penginapan & Hotel
+                    </button>
+                    <button onclick="setWisataKategori('Paket Wisata'); mobileNav('wisata');"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all flex items-center gap-2.5">
+                        <span>🎒</span> Paket Wisata
+                    </button>
+                    <button onclick="setWisataKategori('Biro Perjalanan'); mobileNav('wisata');"
+                        class="mobile-nav-btn w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all flex items-center gap-2.5">
+                        <span>🚌</span> Agen & Biro Perjalanan
+                    </button>
+                </div>
+
+                <div class="pt-2 border-t border-gray-100">
+                    <button onclick="mobileNav('tentang')"
+                        class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 active:bg-purple-100 transition-all flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><i
+                                class="ph-fill ph-info text-purple-500 text-sm"></i></span> Tentang
+                    </button>
+                    <button onclick="mobileNav('kontak')"
+                        class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-green-50 hover:text-green-700 active:bg-green-100 transition-all flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-green-50 flex items-center justify-center shrink-0"><i
+                                class="ph-fill ph-phone text-green-500 text-sm"></i></span> Kontak
+                    </button>
+                </div>
+
                 <div class="pt-2.5 mt-1 border-t border-gray-100">
                     <button onclick="mobileNav('wisata')"
                         class="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm">
@@ -642,7 +719,9 @@
                                     <i class="ph-fill ph-compass text-4xl text-cyan-400 animate-pulse"></i>
                                 </div>
                                 <h3 class="font-extrabold text-lg text-white mb-2">Jelajahi Wisata Batang</h3>
-                                <p class="text-xs text-white/70 leading-relaxed max-w-xs text-center">Pilih salah satu kecamatan pada peta di samping untuk mulai menjelajahi destinasi, event, dan ekraf.</p>
+                                <p class="text-xs text-white/70 leading-relaxed max-w-xs text-center">Pilih salah satu
+                                    kecamatan pada peta di samping untuk mulai menjelajahi destinasi, event, dan ekraf.
+                                </p>
                             </div>
 
                             <!-- Selected kecamatan panel -->
@@ -664,32 +743,55 @@
                                     </button>
                                 </div>
 
-                                <!-- Wisata, Event, Ekraf count badges -->
-                                <div class="grid grid-cols-3 gap-2 mb-5">
-                                    <button onclick="setMapTab('wisata')" id="map-tab-wisata"
-                                        class="bg-cyan-500/20 border border-cyan-400/50 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer group">
-                                        <p id="map-kec-count"
-                                            class="text-2xl font-extrabold text-white group-hover:scale-110 transition-transform">
-                                        </p>
-                                        <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">
-                                            Destinasi</p>
-                                    </button>
-                                    <button onclick="setMapTab('event')" id="map-tab-event"
-                                        class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer group">
-                                        <p id="map-kec-event-count"
-                                            class="text-2xl font-extrabold text-white group-hover:scale-110 transition-transform">
-                                        </p>
-                                        <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">
-                                            Event</p>
-                                    </button>
-                                    <button onclick="setMapTab('ekraf')" id="map-tab-ekraf"
-                                        class="bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer group">
-                                        <p id="map-kec-ekraf-count"
-                                            class="text-2xl font-extrabold text-white group-hover:scale-110 transition-transform">
-                                        </p>
-                                        <p class="text-[9px] text-white/70 uppercase tracking-widest font-bold mt-0.5">
-                                            Ekraf</p>
-                                    </button>
+                                <!-- Horizontal Category Filter Pills -->
+                                <div class="mb-4">
+                                    <div class="flex items-center gap-2 overflow-x-auto pb-2" style="scrollbar-width: none; -ms-overflow-style: none;">
+                                        <button onclick="setMapTab('semua')" id="map-tab-semua"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition cursor-pointer bg-cyan-500/20 border border-cyan-400/50 text-white shadow-md">
+                                            <span>Semua</span>
+                                            <span id="map-kec-semua-count" class="bg-cyan-400/30 text-cyan-200 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('wisata')" id="map-tab-wisata"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Wisata</span>
+                                            <span id="map-kec-wisata-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('event')" id="map-tab-event"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Event</span>
+                                            <span id="map-kec-event-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('ekraf')" id="map-tab-ekraf"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Ekraf</span>
+                                            <span id="map-kec-ekraf-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('kuliner')" id="map-tab-kuliner"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Kuliner</span>
+                                            <span id="map-kec-kuliner-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('penginapan')" id="map-tab-penginapan"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Penginapan</span>
+                                            <span id="map-kec-penginapan-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('belanja')" id="map-tab-belanja"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Belanja</span>
+                                            <span id="map-kec-belanja-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('paket')" id="map-tab-paket"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Paket</span>
+                                            <span id="map-kec-paket-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                        <button onclick="setMapTab('biro')" id="map-tab-biro"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Biro</span>
+                                            <span id="map-kec-biro-count" class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <!-- Dynamic List Container -->
@@ -871,7 +973,7 @@
                 <!-- Filter Section -->
                 <div class="max-w-7xl mx-auto px-4 pt-4 pb-12 border-b border-gray-100">
                     <!-- Kategori Grid Centered -->
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 max-w-5xl mx-auto">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8 max-w-6xl mx-auto">
                         <!-- Semua Kategori -->
                         <label class="relative cursor-pointer group">
                             <input type="radio" name="kat" value="Semua" checked class="peer sr-only"
@@ -953,6 +1055,85 @@
                                 <span
                                     class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Desa
                                     Wisata</span>
+                            </div>
+                        </label>
+
+                        <!-- Kuliner Khas -->
+                        <label class="relative cursor-pointer group">
+                            <input type="radio" name="kat" value="Kuliner" class="peer sr-only"
+                                onchange="filterWisata()">
+                            <div
+                                class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-amber-300 hover:shadow-md transition-all duration-300 peer-checked:bg-amber-500 peer-checked:border-amber-500 overflow-hidden">
+                                <div
+                                    class="relative z-10 w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-cooking-pot text-2xl"></i>
+                                </div>
+                                <span
+                                    class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Kuliner
+                                    Khas</span>
+                            </div>
+                        </label>
+
+                        <!-- Penginapan -->
+                        <label class="relative cursor-pointer group">
+                            <input type="radio" name="kat" value="Penginapan" class="peer sr-only"
+                                onchange="filterWisata()">
+                            <div
+                                class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-sky-300 hover:shadow-md transition-all duration-300 peer-checked:bg-sky-500 peer-checked:border-sky-500 overflow-hidden">
+                                <div
+                                    class="relative z-10 w-12 h-12 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-bed text-2xl"></i>
+                                </div>
+                                <span
+                                    class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Penginapan</span>
+                            </div>
+                        </label>
+
+                        <!-- Belanja -->
+                        <label class="relative cursor-pointer group">
+                            <input type="radio" name="kat" value="Belanja" class="peer sr-only"
+                                onchange="filterWisata()">
+                            <div
+                                class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-pink-300 hover:shadow-md transition-all duration-300 peer-checked:bg-pink-500 peer-checked:border-pink-500 overflow-hidden">
+                                <div
+                                    class="relative z-10 w-12 h-12 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-shopping-bag-open text-2xl"></i>
+                                </div>
+                                <span
+                                    class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Pusat
+                                    Belanja</span>
+                            </div>
+                        </label>
+
+                        <!-- Paket Wisata -->
+                        <label class="relative cursor-pointer group">
+                            <input type="radio" name="kat" value="Paket Wisata" class="peer sr-only"
+                                onchange="filterWisata()">
+                            <div
+                                class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-indigo-300 hover:shadow-md transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500 overflow-hidden">
+                                <div
+                                    class="relative z-10 w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-tote text-2xl"></i>
+                                </div>
+                                <span
+                                    class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Paket
+                                    Wisata</span>
+                            </div>
+                        </label>
+
+                        <!-- Biro Perjalanan -->
+                        <label class="relative cursor-pointer group">
+                            <input type="radio" name="kat" value="Biro Perjalanan" class="peer sr-only"
+                                onchange="filterWisata()">
+                            <div
+                                class="flex flex-col items-center justify-center gap-3 p-4 h-32 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-teal-300 hover:shadow-md transition-all duration-300 peer-checked:bg-teal-500 peer-checked:border-teal-500 overflow-hidden">
+                                <div
+                                    class="relative z-10 w-12 h-12 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 peer-checked:bg-white/20 peer-checked:text-white">
+                                    <i class="ph ph-bus text-2xl"></i>
+                                </div>
+                                <span
+                                    class="relative z-10 font-semibold text-xs text-gray-600 text-center leading-tight peer-checked:text-white transition-colors">Biro
+                                    Perjalanan</span>
                             </div>
                         </label>
                     </div>
@@ -1319,7 +1500,8 @@
         <section id="view-ekraf" class="page-view bg-[#f7f9fc] min-h-screen">
 
             <!-- Hero Header — konsisten dengan halaman Tentang & Kontak -->
-            <div class="relative overflow-hidden bg-gradient-to-br from-brand-800 via-brand-700 to-indigo-600 pt-14 pb-20 px-4">
+            <div
+                class="relative overflow-hidden bg-gradient-to-br from-brand-800 via-brand-700 to-indigo-600 pt-14 pb-20 px-4">
 
                 <!-- Siluet abstrak / dekoratif bertema kreatif -->
                 <!-- Lingkaran besar kanan atas -->
@@ -1328,50 +1510,53 @@
                 <div class="absolute -bottom-10 -left-10 w-56 h-56 rounded-full bg-white/5 pointer-events-none"></div>
 
                 <!-- Siluet ikon-ikon ekraf: abstrak, tersebar halus -->
-                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 280" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]"
+                    preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 280" fill="white"
+                    xmlns="http://www.w3.org/2000/svg">
                     <!-- Kuas / brush (seni) -->
-                    <ellipse cx="120" cy="60" rx="8" ry="36" transform="rotate(-30 120 60)"/>
-                    <ellipse cx="120" cy="60" rx="14" ry="10" transform="rotate(-30 120 60) translate(0 -38)"/>
+                    <ellipse cx="120" cy="60" rx="8" ry="36" transform="rotate(-30 120 60)" />
+                    <ellipse cx="120" cy="60" rx="14" ry="10" transform="rotate(-30 120 60) translate(0 -38)" />
                     <!-- Bintang / ide kreatif kiri -->
-                    <polygon points="200,30 205,50 225,50 209,62 215,82 200,70 185,82 191,62 175,50 195,50"/>
+                    <polygon points="200,30 205,50 225,50 209,62 215,82 200,70 185,82 191,62 175,50 195,50" />
                     <!-- Pensil kanan atas -->
-                    <rect x="980" y="20" width="10" height="50" rx="3" transform="rotate(20 980 20)"/>
-                    <polygon points="980,70 990,70 985,90" transform="rotate(20 980 20)"/>
+                    <rect x="980" y="20" width="10" height="50" rx="3" transform="rotate(20 980 20)" />
+                    <polygon points="980,70 990,70 985,90" transform="rotate(20 980 20)" />
                     <!-- Bintang kanan -->
-                    <polygon points="1100,50 1106,70 1126,70 1110,82 1116,102 1100,90 1084,102 1090,82 1074,70 1094,70"/>
+                    <polygon
+                        points="1100,50 1106,70 1126,70 1110,82 1116,102 1100,90 1084,102 1090,82 1074,70 1094,70" />
                     <!-- Gitar / musik (ekraf budaya) -->
-                    <ellipse cx="350" cy="180" rx="22" ry="28"/>
-                    <rect x="347" y="120" width="6" height="40" rx="3"/>
-                    <rect x="340" y="118" width="20" height="8" rx="2"/>
+                    <ellipse cx="350" cy="180" rx="22" ry="28" />
+                    <rect x="347" y="120" width="6" height="40" rx="3" />
+                    <rect x="340" y="118" width="20" height="8" rx="2" />
                     <!-- Kamera (fotografi) -->
-                    <rect x="780" y="160" width="60" height="44" rx="8"/>
-                    <circle cx="810" cy="182" r="14"/>
-                    <circle cx="810" cy="182" r="8"/>
-                    <rect x="792" y="152" width="20" height="10" rx="3"/>
+                    <rect x="780" y="160" width="60" height="44" rx="8" />
+                    <circle cx="810" cy="182" r="14" />
+                    <circle cx="810" cy="182" r="8" />
+                    <rect x="792" y="152" width="20" height="10" rx="3" />
                     <!-- Diamond / fashion -->
-                    <polygon points="500,140 520,155 510,180 490,180 480,155"/>
-                    <polygon points="480,155 500,140 500,175"/>
+                    <polygon points="500,140 520,155 510,180 490,180 480,155" />
+                    <polygon points="480,155 500,140 500,175" />
                     <!-- Bola / kurva desain -->
-                    <circle cx="650" cy="220" r="30" fill="none" stroke="white" stroke-width="4"/>
-                    <path d="M625,220 Q650,190 675,220 Q650,250 625,220Z" fill="white"/>
+                    <circle cx="650" cy="220" r="30" fill="none" stroke="white" stroke-width="4" />
+                    <path d="M625,220 Q650,190 675,220 Q650,250 625,220Z" fill="white" />
                     <!-- Lightbulb / inovasi -->
-                    <circle cx="1050" cy="190" r="22"/>
-                    <rect x="1040" y="212" width="20" height="8" rx="2"/>
-                    <rect x="1043" y="220" width="14" height="5" rx="2"/>
+                    <circle cx="1050" cy="190" r="22" />
+                    <rect x="1040" y="212" width="20" height="8" rx="2" />
+                    <rect x="1043" y="220" width="14" height="5" rx="2" />
                     <!-- Kotak kubus / arsitektur -->
-                    <polygon points="100,200 130,185 160,200 160,230 130,245 100,230"/>
-                    <polygon points="100,200 130,215 160,200"/>
-                    <line x1="130" y1="215" x2="130" y2="245" stroke="white" stroke-width="3"/>
+                    <polygon points="100,200 130,185 160,200 160,230 130,245 100,230" />
+                    <polygon points="100,200 130,215 160,200" />
+                    <line x1="130" y1="215" x2="130" y2="245" stroke="white" stroke-width="3" />
                     <!-- Titik-titik dekoratif -->
-                    <circle cx="440" cy="50" r="5"/>
-                    <circle cx="460" cy="40" r="3"/>
-                    <circle cx="425" cy="38" r="3"/>
-                    <circle cx="870" cy="50" r="5"/>
-                    <circle cx="890" cy="38" r="3"/>
-                    <circle cx="855" cy="62" r="3"/>
-                    <circle cx="600" cy="40" r="6"/>
-                    <circle cx="620" cy="28" r="4"/>
-                    <circle cx="580" cy="30" r="4"/>
+                    <circle cx="440" cy="50" r="5" />
+                    <circle cx="460" cy="40" r="3" />
+                    <circle cx="425" cy="38" r="3" />
+                    <circle cx="870" cy="50" r="5" />
+                    <circle cx="890" cy="38" r="3" />
+                    <circle cx="855" cy="62" r="3" />
+                    <circle cx="600" cy="40" r="6" />
+                    <circle cx="620" cy="28" r="4" />
+                    <circle cx="580" cy="30" r="4" />
                 </svg>
 
                 <!-- Garis diagonal aksen -->
@@ -1380,9 +1565,13 @@
 
                 <!-- Konten teks -->
                 <div class="max-w-4xl mx-auto text-center relative z-10">
-                    <span class="inline-block bg-white/15 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/20">Ekonomi Kreatif</span>
-                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">Ekonomi Kreatif Batang</h1>
-                    <p class="text-white/70 text-base md:text-lg max-w-xl mx-auto">Temukan pelaku ekonomi kreatif unggulan di Kabupaten Batang</p>
+                    <span
+                        class="inline-block bg-white/15 text-white/90 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 border border-white/20">Ekonomi
+                        Kreatif</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">Ekonomi Kreatif Batang
+                    </h1>
+                    <p class="text-white/70 text-base md:text-lg max-w-xl mx-auto">Temukan pelaku ekonomi kreatif
+                        unggulan di Kabupaten Batang</p>
                 </div>
             </div>
 
@@ -1421,7 +1610,8 @@
                             class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
                             <i class="ph ph-armchair text-2xl md:text-3xl"></i>
                         </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain Interior</span>
+                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Desain
+                            Interior</span>
                     </div>
                     <!-- Desain Komunikasi Visual -->
                     <div onclick="filterEkrafSubsektor('Desain Komunikasi Visual')"
@@ -1541,7 +1731,8 @@
                             class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-100/90 text-brand-600 shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 group-hover:shadow-md group-hover:-translate-y-1">
                             <i class="ph ph-microphone-stage text-2xl md:text-3xl"></i>
                         </div>
-                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Seni Pertunjukan</span>
+                        <span class="text-xs font-semibold text-gray-700 text-center leading-tight">Seni
+                            Pertunjukan</span>
                     </div>
                     <!-- Seni Rupa -->
                     <div onclick="filterEkrafSubsektor('Seni Rupa')"
@@ -1661,7 +1852,8 @@
                             <div class="bg-gradient-to-r from-brand-600 to-brand-700 px-6 py-4">
                                 <p class="text-white font-extrabold text-base flex items-center gap-2">
                                     <i class="ph-fill ph-buildings text-white/80"></i>
-                                    <span id="kontak-nama-instansi">Dinas Pariwisata Kepemudaan dan Olahraga Kabupaten Batang</span>
+                                    <span id="kontak-nama-instansi">Dinas Pariwisata Kepemudaan dan Olahraga Kabupaten
+                                        Batang</span>
                                 </p>
                             </div>
                             <div class="p-6 space-y-4">
@@ -1780,7 +1972,9 @@
                             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
                                 <p class="font-bold text-gray-900 flex items-center gap-2 text-sm"><i
                                         class="ph-fill ph-map-trifold text-brand-600 text-base"></i> Lokasi Kami</p>
-                                <a id="kontak-maps-link" href="https://www.google.com/maps/search/?api=1&query=Dinas+Pariwisata+Kepemudaan+dan+Olahraga+Kabupaten+Batang+Jl+RA+Kartini+No+1+Batang+Jawa+Tengah" target="_blank" rel="noopener"
+                                <a id="kontak-maps-link"
+                                    href="https://www.google.com/maps/search/?api=1&query=Dinas+Pariwisata+Kepemudaan+dan+Olahraga+Kabupaten+Batang+Jl+RA+Kartini+No+1+Batang+Jawa+Tengah"
+                                    target="_blank" rel="noopener"
                                     class="flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition border border-brand-200">
                                     <i class="ph ph-arrow-square-out text-xs"></i> Buka di Maps
                                 </a>
@@ -1997,7 +2191,8 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <span id="admin-session-label"
-                                class="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">Belum login</span>
+                                class="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">Belum
+                                login</span>
                             <button type="button" onclick="logoutAdmin()"
                                 class="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 px-3 py-2 rounded-lg transition">
                                 <i class="ph ph-sign-out text-sm"></i> Logout
@@ -2848,20 +3043,20 @@
                     <!-- Social icons -->
                     <div class="flex gap-2.5 flex-wrap">
                         <!-- Social links: hidden by default, shown dynamically by syncFooterKontak() when URLs exist in DB -->
-                        <a id="footer-ig" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="Instagram"
-                            style="display:none">
+                        <a id="footer-ig" href="#" target="_blank" rel="noopener" class="footer-social-btn group"
+                            title="Instagram" style="display:none">
                             <i class="ph-fill ph-instagram-logo"></i>
                         </a>
-                        <a id="footer-fb" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="Facebook"
-                            style="display:none">
+                        <a id="footer-fb" href="#" target="_blank" rel="noopener" class="footer-social-btn group"
+                            title="Facebook" style="display:none">
                             <i class="ph-fill ph-facebook-logo"></i>
                         </a>
-                        <a id="footer-tw" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="X / Twitter"
-                            style="display:none">
+                        <a id="footer-tw" href="#" target="_blank" rel="noopener" class="footer-social-btn group"
+                            title="X / Twitter" style="display:none">
                             <i class="ph-fill ph-x-logo"></i>
                         </a>
-                        <a id="footer-tt" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="TikTok"
-                            style="display:none">
+                        <a id="footer-tt" href="#" target="_blank" rel="noopener" class="footer-social-btn group"
+                            title="TikTok" style="display:none">
                             <i class="ph-fill ph-tiktok-logo"></i>
                         </a>
                     </div>
@@ -3155,7 +3350,8 @@
                         <i id="toggle-admin-password-icon" class="ph ph-eye text-lg"></i>
                     </button>
                 </div>
-                <p id="pin-error" class="text-red-500 text-xs text-center mt-3 hidden">Login gagal. Silakan coba lagi.</p>
+                <p id="pin-error" class="text-red-500 text-xs text-center mt-3 hidden">Login gagal. Silakan coba lagi.
+                </p>
                 <div class="mt-6 flex gap-3">
                     <button type="button" onclick="closePinModal()"
                         class="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition text-sm">Batal</button>
@@ -3209,25 +3405,54 @@
         // 2. MOCK DATA (FALLBACK)
         // ---------------------------------------------------------
         let wisataData = [
-            { id: 1, nama: 'Pantai Sigandu', kategori: 'Wisata Alam', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pantai Sigandu merupakan salah satu pantai terindah di Kabupaten Batang. Dikenal dengan pemandangan sunset yang memukau dan suasana yang tenang. Pantai ini cocok untuk bersantai, menikmati kuliner laut, dan berbagai aktivitas air lainnya.', harga: 'Rp 5.000 / orang', jam: '06.00 - 18.00 WIB', galeri: ['https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800'] },
-            { id: 2, nama: 'Curug Gombong', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1432405972618-c600f44af205?auto=format&fit=crop&q=80&w=800', deskripsi: 'Air terjun cantik di kaki Gunung Prau dengan udara yang sangat sejuk dan segar.', harga: 'Rp 10.000 / orang', jam: '07.00 - 17.00 WIB', galeri: [] },
-            { id: 3, nama: 'Safari Beach Jateng', kategori: 'Wisata Buatan', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1544735047-890250669299?auto=format&fit=crop&q=80&w=800', deskripsi: 'Taman hiburan dan edukasi satwa yang cocok untuk rekreasi keluarga di tepi pantai.', harga: 'Rp 50.000 / orang', jam: '08.00 - 16.00 WIB', galeri: [] },
-            { id: 4, nama: 'Pemandian Air Panas', kategori: 'Wisata Alam', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1540544660406-6a69dacb2804?auto=format&fit=crop&q=80&w=800', deskripsi: 'Relaksasi alami dengan air panas bumi yang dipercaya menyembuhkan berbagai penyakit kulit.', harga: 'Rp 8.000 / orang', jam: '24 Jam', galeri: [] },
-            { id: 5, nama: 'Makam Syekh Maulana Maghribi', kategori: 'Wisata Religi dan Budaya', lokasi: 'Kandeman', foto: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800', deskripsi: 'Kawasan wisata religi dan ziarah makam tokoh penyebar agama Islam di bukit Ujungnegoro.', harga: 'Gratis', jam: '24 Jam', galeri: [] },
-            { id: 6, nama: 'Telaga Dringo', kategori: 'Wisata Alam', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800', deskripsi: 'Danau vulkanik tertinggi di Jawa Tengah yang sering disebut Ranu Kumbolonya Jateng.', harga: 'Rp 10.000 / orang', jam: '24 Jam', galeri: [] }
+            { id: 1, nama: 'Pantai Sigandu', kategori: 'Wisata Alam', sub_kategori: 'Wisata Bahari', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pantai Sigandu merupakan salah satu pantai terindah di Kabupaten Batang. Dikenal dengan pemandangan sunset yang memukau dan suasana yang tenang.', harga: 'Rp 5.000 / orang', jam: '06.00 - 18.00 WIB', galeri: [] },
+            { id: 2, nama: 'Curug Gombong', kategori: 'Wisata Alam', sub_kategori: 'Air Terjun', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1432405972618-c600f44af205?auto=format&fit=crop&q=80&w=800', deskripsi: 'Air terjun cantik di kaki Gunung Prau dengan udara yang sangat sejuk dan segar.', harga: 'Rp 10.000 / orang', jam: '07.00 - 17.00 WIB', galeri: [] },
+            { id: 3, nama: 'Safari Beach Jateng', kategori: 'Wisata Buatan', sub_kategori: 'Taman Rekreasi', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1544735047-890250669299?auto=format&fit=crop&q=80&w=800', deskripsi: 'Taman hiburan dan edukasi satwa yang cocok untuk rekreasi keluarga di tepi pantai.', harga: 'Rp 50.000 / orang', jam: '08.00 - 16.00 WIB', galeri: [] },
+            { id: 4, nama: 'Pemandian Air Panas', kategori: 'Wisata Alam', sub_kategori: 'Pemandian Alami', lokasi: 'Banyuputih', foto: 'https://images.unsplash.com/photo-1540544660406-6a69dacb2804?auto=format&fit=crop&q=80&w=800', deskripsi: 'Relaksasi alami dengan air panas bumi yang dipercaya menyembuhkan berbagai penyakit kulit.', harga: 'Rp 8.000 / orang', jam: '24 Jam', galeri: [] },
+            { id: 5, nama: 'Makam Syekh Maulana Maghribi', kategori: 'Wisata Religi dan Budaya', sub_kategori: 'Wisata Religi', lokasi: 'Kandeman', foto: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800', deskripsi: 'Kawasan wisata religi dan ziarah makam tokoh penyebar agama Islam di bukit Ujungnegoro.', harga: 'Gratis', jam: '24 Jam', galeri: [] },
+            { id: 6, nama: 'Telaga Dringo', kategori: 'Wisata Alam', sub_kategori: 'Danau & Telaga', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800', deskripsi: 'Danau vulkanik tertinggi di Jawa Tengah yang sering disebut Ranu Kumbolonya Jateng.', harga: 'Rp 10.000 / orang', jam: '24 Jam', galeri: [] },
+            
+            // --- KULINER KHAS ---
+            { id: 7, nama: 'Nasi Megono Kandeman', kategori: 'Kuliner', sub_kategori: 'Kuliner Khas', lokasi: 'Kandeman', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800', deskripsi: 'Nasi hangat disajikan dengan cacahan nangka muda bumbu kelapa pedas gurih khas Batang pesisir.', harga: 'Rp 10.000 - Rp 20.000', jam: '06.00 - 21.00 WIB', galeri: [] },
+            { id: 8, nama: 'Lontong Lemprak Pesisir', kategori: 'Kuliner', sub_kategori: 'Kuliner Khas', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=800', deskripsi: 'Kuliner legendaris lontong dengan kuah santan gulai opor ayam kampung khas pesisir Batang.', harga: 'Rp 18.000 / porsi', jam: '16.00 - 23.00 WIB', galeri: [] },
+            { id: 9, nama: 'Emping Melinjo Super Limpung', kategori: 'Kuliner', sub_kategori: 'Oleh-Oleh Khas', lokasi: 'Limpung', foto: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800', deskripsi: 'Emping gurih renyah produksi asli pengrajin Limpung yang terkenal hingga mancanegara.', harga: 'Rp 45.000 / kg', jam: '08.00 - 20.00 WIB', galeri: [] },
+            { id: 10, nama: 'Serabi Kalibeluk Warungasem', kategori: 'Kuliner', sub_kategori: 'Jajanan Pasar', lokasi: 'Warungasem', foto: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800', deskripsi: 'Kue serabi berukuran jumbo dengan rasa manis gula jawa dan gurih santan khas Kalibeluk.', harga: 'Rp 12.000 / sepasang', jam: '05.00 - 11.00 WIB', galeri: [] },
+            { id: 11, nama: 'Soto Batang Kakus Subah', kategori: 'Kuliner', sub_kategori: 'Kuliner Khas', lokasi: 'Subah', foto: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=800', deskripsi: 'Soto daging sapi dengan kuah bening segar dan tauco khas pedalaman Batang.', harga: 'Rp 15.000 / porsi', jam: '07.00 - 19.00 WIB', galeri: [] },
+
+            // --- PENGINAPAN & HOTEL ---
+            { id: 12, nama: 'Homestay Pesisir Ujungnegoro', kategori: 'Penginapan', sub_kategori: 'Homestay', lokasi: 'Kandeman', foto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800', deskripsi: 'Penginapan nyaman berjarak 100m dari tepi Pantai Ujungnegoro dengan pemandangan laut bersih.', harga: 'Rp 250.000 / malam', jam: 'Check in 14.00', galeri: [] },
+            { id: 13, nama: 'Hotel Santika Batang', kategori: 'Penginapan', sub_kategori: 'Hotel Bintang 3', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800', deskripsi: 'Hotel modern di pusat kota Batang dengan fasilitas kolam renang, restoran, dan ballroom.', harga: 'Rp 450.000 / malam', jam: '24 Jam', galeri: [] },
+            { id: 14, nama: 'Villa Pegunungan Bawang', kategori: 'Penginapan', sub_kategori: 'Villa & Resort', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800', deskripsi: 'Villa kayu bernuansa alam di dataran tinggi Bawang dengan panorama perkebunan teh.', harga: 'Rp 600.000 / malam', jam: 'Check in 14.00', galeri: [] },
+            { id: 15, nama: 'Resort Kebun Teh Pagilaran', kategori: 'Penginapan', sub_kategori: 'Resort Alam', lokasi: 'Blado', foto: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=800', deskripsi: 'Penginapan dan cottage sejuk tepat di tengah hamparan teh pegunungan Pagilaran.', harga: 'Rp 350.000 / malam', jam: '24 Jam', galeri: [] },
+
+            // --- PUSAT BELANJA & OLEH-OLEH ---
+            { id: 16, nama: 'Pusat Oleh-Oleh Limpung Segar', kategori: 'Belanja', sub_kategori: 'Sentra Oleh-Oleh', lokasi: 'Limpung', foto: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pusat belanja terlengkap emping melinjo, keripik pisang, dan camilan khas Kabupaten Batang.', harga: 'Beragam', jam: '08.00 - 21.00 WIB', galeri: [] },
+            { id: 17, nama: 'Pasar Souvenir Pantai Sigandu', kategori: 'Belanja', sub_kategori: 'Pasar Wisata', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80&w=800', deskripsi: 'Deretan toko suvenir pantai, kaos khas Dolan Batang, dan aksesoris kerang laut.', harga: 'Beragam', jam: '08.00 - 18.00 WIB', galeri: [] },
+            { id: 18, nama: 'Sentra Batik Tulis Bandar', kategori: 'Belanja', sub_kategori: 'Batik & Galeri', lokasi: 'Bandar', foto: 'https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&q=80&w=800', deskripsi: 'Galeri dan toko batik tulis halus dengan motif pesisir khas pengrajin Kecamatan Bandar.', harga: 'Rp 150.000 - Rp 1.500.000', jam: '09.00 - 17.00 WIB', galeri: [] },
+
+            // --- PAKET WISATA ---
+            { id: 19, nama: 'Paket Jelajah Pantai & Ziarah Kandeman', kategori: 'Paket Wisata', sub_kategori: 'Tour 1 Hari', lokasi: 'Kandeman', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Paket tur sehari mencakup ziarah Makam Maulana Maghribi, makan siang ikan bakar, dan santai di Pantai Ujungnegoro.', harga: 'Rp 150.000 / pax', jam: '08.00 - 17.00 WIB', galeri: [] },
+            { id: 20, nama: 'Paket Agrowisata Teh Pagilaran', kategori: 'Paket Wisata', sub_kategori: 'Edu-Tour', lokasi: 'Blado', foto: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=800', deskripsi: 'Paket edukasi petik teh, kunjungan pabrik pengolahan teh, flying fox, dan tea tasting.', harga: 'Rp 85.000 / pax', jam: '08.00 - 15.00 WIB', galeri: [] },
+            { id: 21, nama: 'Paket Adventure Telaga Dringo Bawang', kategori: 'Paket Wisata', sub_kategori: 'Camping & Trekking', lokasi: 'Bawang', foto: 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800', deskripsi: 'Paket camping 2D1N di tepi Telaga Dringo lengkap dengan alat kemping dan pemandu lokal.', harga: 'Rp 275.000 / pax', jam: '2 Hari 1 Malam', galeri: [] },
+
+            // --- BIRO PERJALANAN ---
+            { id: 22, nama: 'Dolan Batang Tour & Travel', kategori: 'Biro Perjalanan', sub_kategori: 'Agen Resmi', lokasi: 'Batang', foto: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800', deskripsi: 'Biro perjalanan wisata terpercaya menyediakan sewa bus, armada elf/hiace, dan paket wisata custom di Batang.', harga: 'Sesuai Rute', jam: '08.00 - 20.00 WIB', galeri: [] },
+            { id: 23, nama: 'Batang Excursion Biro Wisata', kategori: 'Biro Perjalanan', sub_kategori: 'Tour Operator', lokasi: 'Bandar', foto: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800', deskripsi: 'Operator tour petualangan dan outbound untuk rombongan sekolah, instansi, maupun perusahaan.', harga: 'Nego', jam: '08.00 - 18.00 WIB', galeri: [] }
         ];
 
         let eventData = [
             { id: 101, judul: 'Festival Batang Bersholawat', tanggal: '15', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '15 Juni 2026', foto: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', deskripsi: 'Festival tahunan yang diisi dengan lantunan sholawat, tausiyah, dan doa bersama untuk kemajuan Kabupaten Batang.', galeri: ['https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800'] },
             { id: 102, judul: 'Batang Creative Festival', tanggal: '22', bulan: 'Juni', lokasi: 'Alun-alun Batang', waktu: '22 Juni 2026', foto: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pameran karya kreatif pemuda Batang, UMKM, dan pertunjukan musik lokal.', galeri: ['https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800'] },
             { id: 103, judul: 'Karnaval Budaya Batang', tanggal: '05', bulan: 'Juli', lokasi: 'Jl. Veteran, Batang', waktu: '5 Juli 2026', foto: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pawai pakaian adat dan kesenian tradisional dari berbagai kecamatan.', galeri: [] },
-            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'Agustus', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.', galeri: [] }
+            { id: 104, judul: 'Batang Night Market', tanggal: '17', bulan: 'Agustus', lokasi: 'Alun-alun Batang', waktu: '17 Agustus 2026', foto: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pasar malam spesial perayaan kemerdekaan dengan ratusan stan kuliner.', galeri: [] },
+            { id: 105, judul: 'Festival Kuliner Kandeman', tanggal: '20', bulan: 'Agustus', lokasi: 'Kandeman', waktu: '20 Agustus 2026', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800', deskripsi: 'Pesta kuliner khas pesisir Kandeman menghadirkan sajian laut dan megono.', galeri: [] }
         ];
 
         let ekrafData = [
             { id: 201, brand: 'Batik Gemawang', owner: 'Siti Aminah', subsektor: 'Kriya', lokasi: 'Batang', alamat: 'Jl. Raya Batang No. 12, Batang', telepon: '6281234567891', foto: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800', deskripsi: 'Batik tulis dan cap khas Batang dengan motif pesisiran yang kaya warna.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: ['https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&q=80&w=800'] },
             { id: 202, brand: 'Cita Rasa Batang', owner: 'Hendra Wijaya', subsektor: 'Kuliner', lokasi: 'Limpung', alamat: 'Jl. Limpung Raya No. 5, Limpung', telepon: '6289876543210', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800', deskripsi: 'Usaha kuliner oleh-oleh khas Batang: kerupuk ikan, bandeng presto, dan wajik.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: ['https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800'] },
-            { id: 203, brand: 'PixelBatang Studio', owner: 'Rizal Firmansyah', subsektor: 'Fotografi', lokasi: 'Batang', alamat: 'Ruko Jl. Pemuda No. 8, Batang', telepon: '6285678901234', foto: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800', deskripsi: 'Studio foto profesional untuk wedding, produk, dan editorial di Kabupaten Batang.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: [] }
+            { id: 203, brand: 'PixelBatang Studio', owner: 'Rizal Firmansyah', subsektor: 'Fotografi', lokasi: 'Batang', alamat: 'Ruko Jl. Pemuda No. 8, Batang', telepon: '6285678901234', foto: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800', deskripsi: 'Studio foto profesional untuk wedding, produk, dan editorial di Kabupaten Batang.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: [] },
+            { id: 204, brand: 'Dapur Kandeman Gourmet', owner: 'Laila Fitriani', subsektor: 'Kuliner', lokasi: 'Kandeman', alamat: 'Jl. Ujungnegoro No. 44, Kandeman', telepon: '6281399887766', foto: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800', deskripsi: 'Usaha olahan laut renyah dan sambal cumi asam manis khas pesisir Kandeman.', maps: '', instagram: '', twitter: '', facebook: '', tiktok: '', website: '', youtube: '', galeri: [] }
         ];
 
         let homeWisataSelectedIds = [];
@@ -3355,7 +3580,7 @@
             // Whitelist view yang boleh diakses via URL hash
             // Admin sengaja dikecualikan — hanya bisa diakses via login admin
             const VALID_VIEWS = ['home', 'wisata', 'event', 'ekraf', 'kontak', 'tentang',
-                                 'detail-wisata', 'detail-event', 'detail-ekraf'];
+                'detail-wisata', 'detail-event', 'detail-ekraf'];
 
             if (!VALID_VIEWS.includes(rawViewId)) {
                 return { viewId: 'home', detailId: null };
@@ -5766,21 +5991,32 @@
 
         function setMapTab(tab) {
             mapCurrentTab = tab;
-            const tabs = ['wisata', 'event', 'ekraf'];
+            const tabs = ['semua', 'wisata', 'event', 'ekraf', 'kuliner', 'penginapan', 'belanja', 'paket', 'biro'];
             tabs.forEach(t => {
                 const el = document.getElementById('map-tab-' + t);
                 if (el) {
                     if (t === tab) {
-                        el.className = 'bg-cyan-500/20 border border-cyan-400/50 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer';
+                        el.className = 'map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition cursor-pointer bg-cyan-500/20 border border-cyan-400/50 text-white shadow-md';
                     } else {
-                        el.className = 'bg-white/5 border border-white/10 rounded-xl p-2 text-center hover:bg-white/20 transition cursor-pointer';
+                        el.className = 'map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15';
                     }
                 }
             });
 
             const exploreType = document.getElementById('map-explore-type');
+            const labels = {
+                semua: 'Semua Kategori',
+                wisata: 'Wisata',
+                event: 'Event',
+                ekraf: 'Ekonomi Kreatif',
+                kuliner: 'Kuliner Khas',
+                penginapan: 'Penginapan & Hotel',
+                belanja: 'Pusat Belanja',
+                paket: 'Paket Wisata',
+                biro: 'Biro Perjalanan'
+            };
             if (exploreType) {
-                exploreType.textContent = tab === 'wisata' ? 'Wisata' : (tab === 'event' ? 'Event' : 'Ekraf');
+                exploreType.textContent = labels[tab] || 'Destinasi';
             }
 
             renderMapList();
@@ -5792,79 +6028,103 @@
             let data = [];
             let emptyMsg = '';
             let renderItem = null;
+            const norm = s => (s || '').trim().toLowerCase();
+            const targetKec = norm(mapCurrentKec);
 
-            if (mapCurrentTab === 'wisata') {
-                data = wisataData.filter(w => (w.lokasi || '').trim() === mapCurrentKec);
-                emptyMsg = 'Belum ada wisata terdaftar di kecamatan ini.';
-                renderItem = w => {
-                    const query = encodeURIComponent(`${w.nama} ${w.lokasi || ''} Batang`);
-                    const gmapsUrl = (w.lat && w.lng) 
-                        ? `https://maps.google.com/?q=${w.lat},${w.lng}` 
-                        : (w.maps || `https://www.google.com/maps/search/?api=1&query=${query}`);
-                    return `
-                    <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
-                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
-                            ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
-                        </div>
-                        <div class="flex-grow min-w-0">
-                            <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${w.nama}</p>
-                            <p class="text-white/50 text-xs truncate">${w.kategori || ''}</p>
-                        </div>
-                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
-                            <i class="ph-fill ph-navigation-arrow text-sm"></i>
-                            <span class="hidden sm:inline">Maps</span>
-                        </a>
-                        <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
-                    </div>`;
-                };
+            const mapGmapsUrl = (item) => {
+                const q = encodeURIComponent(`${item.nama || item.judul || item.brand} ${item.lokasi || ''} Batang`);
+                return (item.lat && item.lng) ? `https://maps.google.com/?q=${item.lat},${item.lng}` : (item.maps || `https://www.google.com/maps/search/?api=1&query=${q}`);
+            };
+
+            const cardWisataHtml = (w) => `
+                <div onclick="navigate('detail-wisata', ${w.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
+                        ${w.foto ? `<img src="${optimizeImage(w.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-image text-white/30"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${escapeHtml(w.nama)}</p>
+                        <p class="text-white/50 text-xs truncate">${escapeHtml(w.sub_kategori || w.kategori || 'Destinasi')}</p>
+                    </div>
+                    <a href="${mapGmapsUrl(w)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                        <span class="hidden sm:inline">Maps</span>
+                    </a>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                </div>`;
+
+            const cardEventHtml = (e) => `
+                <div onclick="navigate('detail-event', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0 flex flex-col justify-center items-center">
+                        ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${escapeHtml(e.tanggal || '-')}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${escapeHtml(e.bulan || '-')}</div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${escapeHtml(e.judul)}</p>
+                        <p class="text-white/50 text-xs truncate">${escapeHtml(e.waktu || 'Event')}</p>
+                    </div>
+                    <a href="${mapGmapsUrl(e)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                        <span class="hidden sm:inline">Maps</span>
+                    </a>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                </div>`;
+
+            const cardEkrafHtml = (ek) => `
+                <div onclick="navigate('detail-ekraf', ${ek.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
+                        ${ek.foto ? `<img src="${optimizeImage(ek.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${escapeHtml(ek.brand)}</p>
+                        <p class="text-white/50 text-xs truncate">${escapeHtml(ek.subsektor || 'Ekonomi Kreatif')}</p>
+                    </div>
+                    <a href="${mapGmapsUrl(ek)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                        <span class="hidden sm:inline">Maps</span>
+                    </a>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                </div>`;
+
+            if (mapCurrentTab === 'semua') {
+                const w = wisataData.filter(i => norm(i.lokasi) === targetKec).map(cardWisataHtml);
+                const ev = eventData.filter(i => norm(i.lokasi) === targetKec).map(cardEventHtml);
+                const ek = ekrafData.filter(i => norm(i.lokasi) === targetKec).map(cardEkrafHtml);
+                data = [...w, ...ev, ...ek];
+                emptyMsg = 'Belum ada data terdaftar di kecamatan ini.';
+                renderItem = item => item;
+            } else if (mapCurrentTab === 'wisata') {
+                data = wisataData.filter(w => norm(w.lokasi) === targetKec && !['kuliner','penginapan','belanja','paket wisata','biro perjalanan'].includes(norm(w.kategori)));
+                emptyMsg = 'Belum ada destinasi wisata terdaftar di kecamatan ini.';
+                renderItem = cardWisataHtml;
             } else if (mapCurrentTab === 'event') {
-                data = eventData.filter(e => (e.lokasi || '').trim() === mapCurrentKec);
+                data = eventData.filter(e => norm(e.lokasi) === targetKec);
                 emptyMsg = 'Belum ada event terdaftar di kecamatan ini.';
-                renderItem = e => {
-                    const query = encodeURIComponent(`${e.judul} ${e.lokasi || ''} Batang`);
-                    const gmapsUrl = (e.lat && e.lng) 
-                        ? `https://maps.google.com/?q=${e.lat},${e.lng}` 
-                        : (e.maps || `https://www.google.com/maps/search/?api=1&query=${query}`);
-                    return `
-                    <div onclick="navigate('detail-event', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
-                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0 flex flex-col justify-center items-center">
-                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="text-cyan-400 font-bold text-sm leading-none">${e.tanggal || '-'}</div><div class="text-[9px] uppercase tracking-wider text-white/50 mt-1">${e.bulan || '-'}</div>`}
-                        </div>
-                        <div class="flex-grow min-w-0">
-                            <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.judul}</p>
-                            <p class="text-white/50 text-xs truncate">${e.waktu || ''}</p>
-                        </div>
-                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
-                            <i class="ph-fill ph-navigation-arrow text-sm"></i>
-                            <span class="hidden sm:inline">Maps</span>
-                        </a>
-                        <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
-                    </div>`;
-                };
+                renderItem = cardEventHtml;
             } else if (mapCurrentTab === 'ekraf') {
-                data = ekrafData.filter(e => (e.lokasi || '').trim() === mapCurrentKec);
+                data = ekrafData.filter(e => norm(e.lokasi) === targetKec);
                 emptyMsg = 'Belum ada pelaku ekraf terdaftar di kecamatan ini.';
-                renderItem = e => {
-                    const query = encodeURIComponent(`${e.brand} ${e.lokasi || ''} Batang`);
-                    const gmapsUrl = (e.lat && e.lng) 
-                        ? `https://maps.google.com/?q=${e.lat},${e.lng}` 
-                        : (e.maps || `https://www.google.com/maps/search/?api=1&query=${query}`);
-                    return `
-                    <div onclick="navigate('detail-ekraf', ${e.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
-                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0">
-                            ${e.foto ? `<img src="${optimizeImage(e.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-storefront text-white/30"></i></div>`}
-                        </div>
-                        <div class="flex-grow min-w-0">
-                            <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${e.brand}</p>
-                            <p class="text-white/50 text-xs truncate">${e.subsektor || ''}</p>
-                        </div>
-                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
-                            <i class="ph-fill ph-navigation-arrow text-sm"></i>
-                            <span class="hidden sm:inline">Maps</span>
-                        </a>
-                        <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
-                    </div>`;
-                };
+                renderItem = cardEkrafHtml;
+            } else if (mapCurrentTab === 'kuliner') {
+                const wKul = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'kuliner').map(cardWisataHtml);
+                const ekKul = ekrafData.filter(e => norm(e.lokasi) === targetKec && norm(e.subsektor) === 'kuliner').map(cardEkrafHtml);
+                data = [...wKul, ...ekKul];
+                emptyMsg = 'Belum ada kuliner khas terdaftar di kecamatan ini.';
+                renderItem = item => item;
+            } else if (mapCurrentTab === 'penginapan') {
+                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'penginapan');
+                emptyMsg = 'Belum ada penginapan / hotel terdaftar di kecamatan ini.';
+                renderItem = cardWisataHtml;
+            } else if (mapCurrentTab === 'belanja') {
+                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'belanja');
+                emptyMsg = 'Belum ada pusat belanja / oleh-oleh terdaftar di kecamatan ini.';
+                renderItem = cardWisataHtml;
+            } else if (mapCurrentTab === 'paket') {
+                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'paket wisata');
+                emptyMsg = 'Belum ada paket wisata terdaftar di kecamatan ini.';
+                renderItem = cardWisataHtml;
+            } else if (mapCurrentTab === 'biro') {
+                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'biro perjalanan');
+                emptyMsg = 'Belum ada biro / agen perjalanan terdaftar di kecamatan ini.';
+                renderItem = cardWisataHtml;
             }
 
             mapCurrentData = data;
@@ -5887,20 +6147,42 @@
             const exploreBtn = document.getElementById('map-kec-explore-btn');
             if (exploreBtn) {
                 exploreBtn.onclick = () => {
-                    navigate(mapCurrentTab);
-                    setTimeout(() => {
-                        if (mapCurrentTab === 'wisata') {
+                    const tabMap = {
+                        kuliner: 'Kuliner',
+                        penginapan: 'Penginapan',
+                        belanja: 'Belanja',
+                        paket: 'Paket Wisata',
+                        biro: 'Biro Perjalanan'
+                    };
+
+                    if (tabMap[mapCurrentTab]) {
+                        navigate('wisata');
+                        setTimeout(() => {
+                            setWisataKategori(tabMap[mapCurrentTab]);
                             const cbs = document.querySelectorAll('.cb-lokasi');
                             cbs.forEach(cb => { cb.checked = cb.value === mapCurrentKec; });
                             if (typeof filterWisata === 'function') filterWisata();
-                        } else if (mapCurrentTab === 'event') {
+                        }, 300);
+                    } else if (mapCurrentTab === 'event') {
+                        navigate('event');
+                        setTimeout(() => {
                             const sel = document.getElementById('filter-event-lokasi');
                             if (sel) sel.value = mapCurrentKec;
                             if (typeof applyEventFilter === 'function') applyEventFilter();
-                        } else if (mapCurrentTab === 'ekraf') {
+                        }, 300);
+                    } else if (mapCurrentTab === 'ekraf') {
+                        navigate('ekraf');
+                        setTimeout(() => {
                             if (typeof setEkrafLocationFilter === 'function') setEkrafLocationFilter(mapCurrentKec);
-                        }
-                    }, 300);
+                        }, 300);
+                    } else {
+                        navigate('wisata');
+                        setTimeout(() => {
+                            const cbs = document.querySelectorAll('.cb-lokasi');
+                            cbs.forEach(cb => { cb.checked = cb.value === mapCurrentKec; });
+                            if (typeof filterWisata === 'function') filterWisata();
+                        }, 300);
+                    }
                 };
             }
         }
@@ -5914,21 +6196,39 @@
             mapCurrentKec = kec;
             mapCurrentPage = 1;
 
-            const wisataHere = wisataData.filter(w => (w.lokasi || '').trim() === kec);
-            const eventHere = eventData.filter(e => (e.lokasi || '').trim() === kec);
-            const ekrafHere = ekrafData.filter(e => (e.lokasi || '').trim() === kec);
+            const norm = s => (s || '').trim().toLowerCase();
+            const targetKec = norm(kec);
+
+            const wItems = wisataData.filter(w => norm(w.lokasi) === targetKec);
+            const eItems = eventData.filter(e => norm(e.lokasi) === targetKec);
+            const ekItems = ekrafData.filter(e => norm(e.lokasi) === targetKec);
+
+            const countWisataOnly = wItems.filter(w => !['kuliner','penginapan','belanja','paket wisata','biro perjalanan'].includes(norm(w.kategori))).length;
+            const countKuliner = wItems.filter(w => norm(w.kategori) === 'kuliner').length + ekItems.filter(e => norm(e.subsektor) === 'kuliner').length;
+            const countPenginapan = wItems.filter(w => norm(w.kategori) === 'penginapan').length;
+            const countBelanja = wItems.filter(w => norm(w.kategori) === 'belanja').length;
+            const countPaket = wItems.filter(w => norm(w.kategori) === 'paket wisata').length;
+            const countBiro = wItems.filter(w => norm(w.kategori) === 'biro perjalanan').length;
 
             const nameEl = document.getElementById('map-kec-name');
-            const countEl = document.getElementById('map-kec-count');
-            const eventCntEl = document.getElementById('map-kec-event-count');
-            const ekrafCntEl = document.getElementById('map-kec-ekraf-count');
-
             if (nameEl) nameEl.textContent = kec;
-            if (countEl) countEl.textContent = wisataHere.length;
-            if (eventCntEl) eventCntEl.textContent = eventHere.length;
-            if (ekrafCntEl) ekrafCntEl.textContent = ekrafHere.length;
 
-            setMapTab('wisata');
+            const setBadge = (id, count) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = count;
+            };
+
+            setBadge('map-kec-semua-count', wItems.length + eItems.length + ekItems.length);
+            setBadge('map-kec-wisata-count', countWisataOnly);
+            setBadge('map-kec-event-count', eItems.length);
+            setBadge('map-kec-ekraf-count', ekItems.length);
+            setBadge('map-kec-kuliner-count', countKuliner);
+            setBadge('map-kec-penginapan-count', countPenginapan);
+            setBadge('map-kec-belanja-count', countBelanja);
+            setBadge('map-kec-paket-count', countPaket);
+            setBadge('map-kec-biro-count', countBiro);
+
+            setMapTab('semua');
             triggerMapPanelAnimation();
         }
 
@@ -6558,10 +6858,10 @@
             e.preventDefault();
             const btn = document.getElementById('btn-kirim-pesan');
             const alertEl = document.getElementById('pesan-alert');
-            const nama   = document.getElementById('pesan-nama').value.trim().slice(0, 100);
+            const nama = document.getElementById('pesan-nama').value.trim().slice(0, 100);
             const kontak = document.getElementById('pesan-kontak-val').value.trim().slice(0, 100);
             const subjek = document.getElementById('pesan-subjek').value.trim().slice(0, 150);
-            const isi    = document.getElementById('pesan-isi').value.trim().slice(0, 2000);
+            const isi = document.getElementById('pesan-isi').value.trim().slice(0, 2000);
 
             // Validasi dasar
             if (!nama || !kontak || !isi) return;
@@ -6581,10 +6881,10 @@
             try {
                 if (supabaseClient) {
                     const { error } = await supabaseClient.from('pesan_kontak').insert([{
-                        nama:   nama,
+                        nama: nama,
                         kontak: kontak,
                         subjek: subjek,
-                        pesan:  isi
+                        pesan: isi
                     }]);
                     if (error) throw error;
                 }
@@ -6690,14 +6990,14 @@
             }
             const colors = {
                 success: 'bg-green-600',
-                error:   'bg-red-600',
-                info:    'bg-brand-600',
+                error: 'bg-red-600',
+                info: 'bg-brand-600',
                 warning: 'bg-amber-500'
             };
             const icons = {
                 success: 'ph-check-circle',
-                error:   'ph-x-circle',
-                info:    'ph-info',
+                error: 'ph-x-circle',
+                info: 'ph-info',
                 warning: 'ph-warning'
             };
             toast.innerHTML = `<div class="flex items-center gap-3 ${colors[type] || colors.info} text-white px-4 py-3 rounded-2xl shadow-2xl text-sm font-semibold">
