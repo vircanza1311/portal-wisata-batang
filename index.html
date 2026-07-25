@@ -3869,19 +3869,13 @@
 
 
     <!-- Lightbox Modal -->
-    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[200] hidden items-center justify-center"
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[200] hidden items-center justify-center backdrop-blur-md transition-all duration-300"
         onclick="closeLightbox()">
-        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl z-10"><i
-                class="ph ph-x-circle"></i></button>
-        <button onclick="lightboxPrev(event)"
-            class="absolute left-4 text-white/70 hover:text-white text-4xl z-10 p-2"><i
-                class="ph ph-caret-left"></i></button>
-        <button onclick="lightboxNext(event)"
-            class="absolute right-16 text-white/70 hover:text-white text-4xl z-10 p-2"><i
-                class="ph ph-caret-right"></i></button>
-        <img id="lightbox-img" src="" class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
-            onclick="event.stopPropagation()">
-        <p id="lightbox-counter" class="absolute bottom-4 text-white/60 text-sm font-medium"></p>
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/80 hover:text-white bg-black/50 hover:bg-black/80 w-11 h-11 rounded-full flex items-center justify-center text-2xl transition z-20 shadow-lg"><i class="ph ph-x"></i></button>
+        <button onclick="lightboxPrev(event)" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white bg-black/50 hover:bg-black/80 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition z-20 shadow-lg"><i class="ph ph-caret-left-bold"></i></button>
+        <button onclick="lightboxNext(event)" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white bg-black/50 hover:bg-black/80 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition z-20 shadow-lg"><i class="ph ph-caret-right-bold"></i></button>
+        <img id="lightbox-img" src="" class="max-w-[92vw] max-h-[88vh] object-contain rounded-xl shadow-2xl transition-all duration-300 select-none" onclick="event.stopPropagation()">
+        <p id="lightbox-counter" class="absolute bottom-4 text-white/90 text-xs font-extrabold bg-black/70 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10 shadow-lg"></p>
     </div>
 
     <!-- Admin Login Modal -->
@@ -6015,13 +6009,17 @@
             if (!k) return;
             const card = document.getElementById('kuliner-modal-card');
             const galeriList = (k.galeri && k.galeri.length > 0) ? k.galeri : (k.foto ? [k.foto] : []);
+            window.currentModalGaleri = galeriList;
             
             card.innerHTML = `
-                <div class="relative h-64 overflow-hidden bg-amber-950">
-                    <img src="${optimizeImage(k.foto, 800)}" alt="${escapeHtml(k.nama)}" class="w-full h-full object-cover">
+                <div onclick="openModalGaleriLightbox(0)" class="relative h-64 overflow-hidden bg-amber-950 cursor-pointer group">
+                    <img src="${optimizeImage(k.foto, 800)}" alt="${escapeHtml(k.nama)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-                    <button onclick="closeKulinerModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
-                    <div class="absolute bottom-4 left-5 right-5 text-white">
+                    <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white/90 text-[11px] font-extrabold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition duration-300 flex items-center gap-1.5 shadow-lg border border-white/20">
+                        <i class="ph-bold ph-magnifying-glass-plus text-amber-400"></i> Lihat Foto Penuh
+                    </div>
+                    <button onclick="event.stopPropagation(); closeKulinerModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
+                    <div class="absolute bottom-4 left-5 right-5 text-white pointer-events-none">
                         <div class="flex items-center gap-2 mb-1.5 flex-wrap">
                             ${k.is_khas_batang ? '<span class="bg-amber-500 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Khas Batang</span>' : ''}
                             ${k.is_halal ? '<span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Halal</span>' : ''}
@@ -6045,28 +6043,24 @@
                             <p class="text-[10px] font-bold uppercase text-gray-400 tracking-wider">Jam Operasional</p>
                             <p class="text-sm font-extrabold text-gray-800">${escapeHtml(k.jam_operasional || '10:00 - 22:00 WIB')}</p>
                         </div>
-                        <div>
+                        <div class="col-span-2">
                             <p class="text-[10px] font-bold uppercase text-gray-400 tracking-wider">Kecamatan</p>
                             <p class="text-sm font-extrabold text-gray-800">${escapeHtml(k.lokasi)}</p>
                         </div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase text-gray-400 tracking-wider">Status</p>
-                            <p class="text-sm font-extrabold text-emerald-700">Terdaftar Dinpar</p>
-                        </div>
                     </div>
 
-                    ${galeriList.length > 1 ? `
+                    ${galeriList.length > 0 ? `
                         <div class="pt-2 border-t border-gray-100">
                             <p class="text-[10px] font-extrabold uppercase text-gray-400 tracking-wider mb-2.5 flex items-center gap-1.5">
-                                <i class="ph-fill ph-images text-amber-500"></i> Galeri Foto (${galeriList.length})
+                                <i class="ph-fill ph-images text-amber-500 text-sm"></i> Galeri Foto (${galeriList.length}) <span class="text-[10px] font-normal text-gray-400 normal-case">(Klik foto untuk melihat ukuran penuh)</span>
                             </p>
                             <div class="grid grid-cols-3 gap-2">
                                 ${galeriList.map((url, i) => `
-                                    <div onclick="event.stopPropagation(); openLightbox('${url}', ${i}, ${JSON.stringify(galeriList).replace(/'/g, "&#39;")})"
+                                    <div onclick="event.stopPropagation(); openModalGaleriLightbox(${i})"
                                          class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer aspect-square border border-gray-200/80 shadow-sm">
                                         <img src="${optimizeImage(url, 400)}" alt="Galeri ${i+1}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
-                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg drop-shadow"></i>
+                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-center justify-center">
+                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-xl drop-shadow"></i>
                                         </div>
                                     </div>
                                 `).join('')}
@@ -6181,13 +6175,17 @@
             if (!b) return;
             const card = document.getElementById('belanja-modal-card');
             const galeriList = (b.galeri && b.galeri.length > 0) ? b.galeri : (b.foto ? [b.foto] : []);
+            window.currentModalGaleri = galeriList;
 
             card.innerHTML = `
-                <div class="relative h-64 overflow-hidden bg-emerald-950">
-                    <img src="${optimizeImage(b.foto, 800)}" alt="${escapeHtml(b.nama_toko)}" class="w-full h-full object-cover">
+                <div onclick="openModalGaleriLightbox(0)" class="relative h-64 overflow-hidden bg-emerald-950 cursor-pointer group">
+                    <img src="${optimizeImage(b.foto, 800)}" alt="${escapeHtml(b.nama_toko)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-                    <button onclick="closeBelanjaModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
-                    <div class="absolute bottom-4 left-5 right-5 text-white">
+                    <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white/90 text-[11px] font-extrabold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition duration-300 flex items-center gap-1.5 shadow-lg border border-white/20">
+                        <i class="ph-bold ph-magnifying-glass-plus text-emerald-400"></i> Lihat Foto Penuh
+                    </div>
+                    <button onclick="event.stopPropagation(); closeBelanjaModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
+                    <div class="absolute bottom-4 left-5 right-5 text-white pointer-events-none">
                         <div class="flex items-center gap-2 mb-1.5 flex-wrap">
                             ${b.is_umkm_terverifikasi ? '<span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">✓ UMKM Terverifikasi</span>' : ''}
                             <span class="bg-black/60 backdrop-blur-md text-emerald-300 text-xs font-bold px-2.5 py-0.5 rounded-full"><i class="ph-fill ph-map-pin text-emerald-400"></i> ${escapeHtml(b.lokasi)}</span>
@@ -6222,18 +6220,18 @@
                         </div>
                     </div>
 
-                    ${galeriList.length > 1 ? `
+                    ${galeriList.length > 0 ? `
                         <div class="pt-2 border-t border-gray-100">
                             <p class="text-[10px] font-extrabold uppercase text-gray-400 tracking-wider mb-2.5 flex items-center gap-1.5">
-                                <i class="ph-fill ph-images text-emerald-600"></i> Galeri Foto (${galeriList.length})
+                                <i class="ph-fill ph-images text-emerald-600 text-sm"></i> Galeri Foto (${galeriList.length}) <span class="text-[10px] font-normal text-gray-400 normal-case">(Klik foto untuk melihat ukuran penuh)</span>
                             </p>
                             <div class="grid grid-cols-3 gap-2">
                                 ${galeriList.map((url, i) => `
-                                    <div onclick="event.stopPropagation(); openLightbox('${url}', ${i}, ${JSON.stringify(galeriList).replace(/'/g, "&#39;")})"
+                                    <div onclick="event.stopPropagation(); openModalGaleriLightbox(${i})"
                                          class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer aspect-square border border-gray-200/80 shadow-sm">
                                         <img src="${optimizeImage(url, 400)}" alt="Galeri ${i+1}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
-                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg drop-shadow"></i>
+                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-center justify-center">
+                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-xl drop-shadow"></i>
                                         </div>
                                     </div>
                                 `).join('')}
@@ -6355,13 +6353,17 @@
             if (!p) return;
             const card = document.getElementById('penginapan-modal-card');
             const galeriList = (p.galeri && p.galeri.length > 0) ? p.galeri : (p.foto ? [p.foto] : []);
+            window.currentModalGaleri = galeriList;
 
             card.innerHTML = `
-                <div class="relative h-64 overflow-hidden bg-slate-950">
-                    <img src="${optimizeImage(p.foto, 800)}" alt="${escapeHtml(p.nama)}" class="w-full h-full object-cover">
+                <div onclick="openModalGaleriLightbox(0)" class="relative h-64 overflow-hidden bg-slate-950 cursor-pointer group">
+                    <img src="${optimizeImage(p.foto, 800)}" alt="${escapeHtml(p.nama)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-                    <button onclick="closePenginapanModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
-                    <div class="absolute bottom-4 left-5 right-5 text-white">
+                    <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white/90 text-[11px] font-extrabold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition duration-300 flex items-center gap-1.5 shadow-lg border border-white/20">
+                        <i class="ph-bold ph-magnifying-glass-plus text-cyan-400"></i> Lihat Foto Penuh
+                    </div>
+                    <button onclick="event.stopPropagation(); closePenginapanModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
+                    <div class="absolute bottom-4 left-5 right-5 text-white pointer-events-none">
                         <div class="flex items-center gap-2 mb-1.5 flex-wrap">
                             <span class="bg-cyan-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">${escapeHtml(p.tipe || 'Hotel')}</span>
                             <span class="bg-black/60 backdrop-blur-md text-amber-300 text-xs font-bold px-2.5 py-0.5 rounded-full">⭐ ${p.rating || 4.8}</span>
@@ -6390,18 +6392,18 @@
                         <span class="text-xs font-bold text-emerald-600 bg-emerald-100/80 px-3 py-1 rounded-full border border-emerald-200">Kamar Available</span>
                     </div>
 
-                    ${galeriList.length > 1 ? `
+                    ${galeriList.length > 0 ? `
                         <div class="pt-2 border-t border-gray-100">
                             <p class="text-[10px] font-extrabold uppercase text-gray-400 tracking-wider mb-2.5 flex items-center gap-1.5">
-                                <i class="ph-fill ph-images text-cyan-600"></i> Galeri Foto (${galeriList.length})
+                                <i class="ph-fill ph-images text-cyan-600 text-sm"></i> Galeri Foto (${galeriList.length}) <span class="text-[10px] font-normal text-gray-400 normal-case">(Klik foto untuk melihat ukuran penuh)</span>
                             </p>
                             <div class="grid grid-cols-3 gap-2">
                                 ${galeriList.map((url, i) => `
-                                    <div onclick="event.stopPropagation(); openLightbox('${url}', ${i}, ${JSON.stringify(galeriList).replace(/'/g, "&#39;")})"
+                                    <div onclick="event.stopPropagation(); openModalGaleriLightbox(${i})"
                                          class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer aspect-square border border-gray-200/80 shadow-sm">
                                         <img src="${optimizeImage(url, 400)}" alt="Galeri ${i+1}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
-                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg drop-shadow"></i>
+                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-center justify-center">
+                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-xl drop-shadow"></i>
                                         </div>
                                     </div>
                                 `).join('')}
@@ -6501,6 +6503,7 @@
             if (!pk) return;
             const card = document.getElementById('paket-modal-card');
             const galeriList = (pk.galeri && pk.galeri.length > 0) ? pk.galeri : (pk.foto ? [pk.foto] : []);
+            window.currentModalGaleri = galeriList;
             const itineraryList = pk.itinerary || [
                 {waktu: '08:00 WIB', kegiatan: 'Penjemputan & Orientasi'},
                 {waktu: '09:30 WIB', kegiatan: 'Tiba di Destinasi Utama & Sesi Foto'},
@@ -6510,11 +6513,14 @@
             ];
 
             card.innerHTML = `
-                <div class="relative h-64 overflow-hidden bg-indigo-950">
-                    <img src="${optimizeImage(pk.foto, 800)}" alt="${escapeHtml(pk.nama_paket)}" class="w-full h-full object-cover">
+                <div onclick="openModalGaleriLightbox(0)" class="relative h-64 overflow-hidden bg-indigo-950 cursor-pointer group">
+                    <img src="${optimizeImage(pk.foto, 800)}" alt="${escapeHtml(pk.nama_paket)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-                    <button onclick="closePaketModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
-                    <div class="absolute bottom-4 left-5 right-5 text-white">
+                    <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white/90 text-[11px] font-extrabold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition duration-300 flex items-center gap-1.5 shadow-lg border border-white/20">
+                        <i class="ph-bold ph-magnifying-glass-plus text-indigo-400"></i> Lihat Foto Penuh
+                    </div>
+                    <button onclick="event.stopPropagation(); closePaketModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
+                    <div class="absolute bottom-4 left-5 right-5 text-white pointer-events-none">
                         <span class="bg-indigo-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-1.5 inline-block">${escapeHtml(pk.durasi || '1 Day Tour')}</span>
                         <h2 class="text-2xl font-black leading-tight drop-shadow">${escapeHtml(pk.nama_paket)}</h2>
                     </div>
@@ -6544,18 +6550,18 @@
                         </div>
                     </div>
 
-                    ${galeriList.length > 1 ? `
+                    ${galeriList.length > 0 ? `
                         <div class="pt-2 border-t border-gray-100">
                             <p class="text-[10px] font-extrabold uppercase text-gray-400 tracking-wider mb-2.5 flex items-center gap-1.5">
-                                <i class="ph-fill ph-images text-indigo-600"></i> Galeri Foto (${galeriList.length})
+                                <i class="ph-fill ph-images text-indigo-600 text-sm"></i> Galeri Foto (${galeriList.length}) <span class="text-[10px] font-normal text-gray-400 normal-case">(Klik foto untuk melihat ukuran penuh)</span>
                             </p>
                             <div class="grid grid-cols-3 gap-2">
                                 ${galeriList.map((url, i) => `
-                                    <div onclick="event.stopPropagation(); openLightbox('${url}', ${i}, ${JSON.stringify(galeriList).replace(/'/g, "&#39;")})"
+                                    <div onclick="event.stopPropagation(); openModalGaleriLightbox(${i})"
                                          class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer aspect-square border border-gray-200/80 shadow-sm">
                                         <img src="${optimizeImage(url, 400)}" alt="Galeri ${i+1}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
-                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg drop-shadow"></i>
+                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-center justify-center">
+                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-xl drop-shadow"></i>
                                         </div>
                                     </div>
                                 `).join('')}
@@ -6647,13 +6653,17 @@
             if (!b) return;
             const card = document.getElementById('biro-modal-card');
             const galeriList = (b.galeri && b.galeri.length > 0) ? b.galeri : (b.foto ? [b.foto] : []);
+            window.currentModalGaleri = galeriList;
 
             card.innerHTML = `
-                <div class="relative h-64 overflow-hidden bg-slate-950">
-                    <img src="${optimizeImage(b.foto, 800)}" alt="${escapeHtml(b.nama_biro)}" class="w-full h-full object-cover">
+                <div onclick="openModalGaleriLightbox(0)" class="relative h-64 overflow-hidden bg-slate-950 cursor-pointer group">
+                    <img src="${optimizeImage(b.foto, 800)}" alt="${escapeHtml(b.nama_biro)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-                    <button onclick="closeBiroModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
-                    <div class="absolute bottom-4 left-5 right-5 text-white">
+                    <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white/90 text-[11px] font-extrabold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition duration-300 flex items-center gap-1.5 shadow-lg border border-white/20">
+                        <i class="ph-bold ph-magnifying-glass-plus text-amber-400"></i> Lihat Foto Penuh
+                    </div>
+                    <button onclick="event.stopPropagation(); closeBiroModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition shadow-lg z-10"><i class="ph ph-x text-lg"></i></button>
+                    <div class="absolute bottom-4 left-5 right-5 text-white pointer-events-none">
                         <div class="flex items-center gap-2 mb-1.5 flex-wrap">
                             ${b.is_terverifikasi ? '<span class="bg-amber-500 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">✓ VERIFIED DINPAR</span>' : ''}
                             <span class="bg-black/60 backdrop-blur-md text-amber-300 text-xs font-bold px-2.5 py-0.5 rounded-full">⭐ ${b.rating || 4.9}</span>
@@ -6678,18 +6688,18 @@
                         </div>
                     </div>
 
-                    ${galeriList.length > 1 ? `
+                    ${galeriList.length > 0 ? `
                         <div class="pt-2 border-t border-gray-100">
                             <p class="text-[10px] font-extrabold uppercase text-gray-400 tracking-wider mb-2.5 flex items-center gap-1.5">
-                                <i class="ph-fill ph-images text-amber-500"></i> Galeri Foto (${galeriList.length})
+                                <i class="ph-fill ph-images text-amber-500 text-sm"></i> Galeri Foto (${galeriList.length}) <span class="text-[10px] font-normal text-gray-400 normal-case">(Klik foto untuk melihat ukuran penuh)</span>
                             </p>
                             <div class="grid grid-cols-3 gap-2">
                                 ${galeriList.map((url, i) => `
-                                    <div onclick="event.stopPropagation(); openLightbox('${url}', ${i}, ${JSON.stringify(galeriList).replace(/'/g, "&#39;")})"
+                                    <div onclick="event.stopPropagation(); openModalGaleriLightbox(${i})"
                                          class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer aspect-square border border-gray-200/80 shadow-sm">
                                         <img src="${optimizeImage(url, 400)}" alt="Galeri ${i+1}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
-                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg drop-shadow"></i>
+                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-center justify-center">
+                                            <i class="ph-bold ph-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-xl drop-shadow"></i>
                                         </div>
                                     </div>
                                 `).join('')}
@@ -7804,12 +7814,26 @@
         let _lbUrls = [], _lbIdx = 0;
 
         function openLightbox(url, idx, urlsJson) {
-            try { _lbUrls = typeof urlsJson === 'string' ? JSON.parse(urlsJson) : urlsJson; } catch (e) { _lbUrls = [url]; }
+            try { _lbUrls = typeof urlsJson === 'string' ? JSON.parse(urlsJson) : (Array.isArray(urlsJson) ? urlsJson : [url]); } catch (e) { _lbUrls = [url]; }
             _lbIdx = idx;
             _showLightbox();
             const modal = document.getElementById('lightbox-modal');
-            modal.classList.remove('hidden');
-            modal.style.display = 'flex';
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+            }
+        }
+
+        function openModalGaleriLightbox(idx) {
+            if (!window.currentModalGaleri || window.currentModalGaleri.length === 0) return;
+            _lbUrls = window.currentModalGaleri;
+            _lbIdx = (idx >= 0 && idx < _lbUrls.length) ? idx : 0;
+            _showLightbox();
+            const modal = document.getElementById('lightbox-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+            }
         }
 
         function _showLightbox() {
