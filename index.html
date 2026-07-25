@@ -3641,6 +3641,76 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div id="table-kuliner-container" class="overflow-x-auto hidden">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-amber-50/80 border-b border-amber-200 text-xs uppercase text-amber-900">
+                                        <th class="p-3">Nama Tempat Kuliner</th>
+                                        <th class="p-3">Jenis / Lokasi</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-kuliner" class="text-sm">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="table-belanja-container" class="overflow-x-auto hidden">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-emerald-50/80 border-b border-emerald-200 text-xs uppercase text-emerald-900">
+                                        <th class="p-3">Nama Toko / Sentra</th>
+                                        <th class="p-3">Kategori / Lokasi</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-belanja" class="text-sm">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="table-penginapan-container" class="overflow-x-auto hidden">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-cyan-50/80 border-b border-cyan-200 text-xs uppercase text-cyan-900">
+                                        <th class="p-3">Nama Penginapan</th>
+                                        <th class="p-3">Tipe / Lokasi</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-penginapan" class="text-sm">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="table-paket-container" class="overflow-x-auto hidden">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-indigo-50/80 border-b border-indigo-200 text-xs uppercase text-indigo-900">
+                                        <th class="p-3">Nama Paket Wisata</th>
+                                        <th class="p-3">Durasi / Harga</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-paket" class="text-sm">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="table-biro-container" class="overflow-x-auto hidden">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-100 border-b border-slate-200 text-xs uppercase text-slate-800">
+                                        <th class="p-3">Nama Biro / Travel</th>
+                                        <th class="p-3">Spesialisasi / Lokasi</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-biro" class="text-sm">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -4874,6 +4944,66 @@
                         </div></td>
                     </tr>`).join('');
             }
+            const tbodyKuliner = document.getElementById('tbody-kuliner');
+            if (tbodyKuliner) {
+                tbodyKuliner.innerHTML = kulinerData.map(k => `
+                    <tr class="border-b border-gray-100 hover:bg-amber-50/40">
+                        <td class="p-3 font-medium">${escapeHtml(k.nama)}</td>
+                        <td class="p-3 text-xs text-gray-600">${escapeHtml(k.jenis || 'Kuliner Khas')} (${escapeHtml(k.lokasi || '')})</td>
+                        <td class="p-3"><div class="flex gap-2">
+                            <button onclick="editKuliner(${k.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
+                            <button onclick="deleteKuliner(${k.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
+                        </div></td>
+                    </tr>`).join('');
+            }
+            const tbodyBelanja = document.getElementById('tbody-belanja');
+            if (tbodyBelanja) {
+                tbodyBelanja.innerHTML = belanjaData.map(b => `
+                    <tr class="border-b border-gray-100 hover:bg-emerald-50/40">
+                        <td class="p-3 font-medium">${escapeHtml(b.nama_toko)}</td>
+                        <td class="p-3 text-xs text-gray-600">${escapeHtml(b.kategori || 'Sentra UMKM')} (${escapeHtml(b.lokasi || '')})</td>
+                        <td class="p-3"><div class="flex gap-2">
+                            <button onclick="editBelanja(${b.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
+                            <button onclick="deleteBelanja(${b.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
+                        </div></td>
+                    </tr>`).join('');
+            }
+            const tbodyPenginapan = document.getElementById('tbody-penginapan');
+            if (tbodyPenginapan) {
+                tbodyPenginapan.innerHTML = penginapanData.map(p => `
+                    <tr class="border-b border-gray-100 hover:bg-cyan-50/40">
+                        <td class="p-3 font-medium">${escapeHtml(p.nama)}</td>
+                        <td class="p-3 text-xs text-gray-600">${escapeHtml(p.tipe || 'Hotel')} (${escapeHtml(p.lokasi || '')})</td>
+                        <td class="p-3"><div class="flex gap-2">
+                            <button onclick="editPenginapan(${p.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
+                            <button onclick="deletePenginapan(${p.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
+                        </div></td>
+                    </tr>`).join('');
+            }
+            const tbodyPaket = document.getElementById('tbody-paket');
+            if (tbodyPaket) {
+                tbodyPaket.innerHTML = paketData.map(pk => `
+                    <tr class="border-b border-gray-100 hover:bg-indigo-50/40">
+                        <td class="p-3 font-medium">${escapeHtml(pk.nama_paket)}</td>
+                        <td class="p-3 text-xs text-gray-600">${escapeHtml(pk.durasi || '')} - Rp ${Number(pk.harga_per_pax || 0).toLocaleString('id-ID')}</td>
+                        <td class="p-3"><div class="flex gap-2">
+                            <button onclick="editPaket(${pk.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
+                            <button onclick="deletePaket(${pk.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
+                        </div></td>
+                    </tr>`).join('');
+            }
+            const tbodyBiro = document.getElementById('tbody-biro');
+            if (tbodyBiro) {
+                tbodyBiro.innerHTML = biroData.map(br => `
+                    <tr class="border-b border-gray-100 hover:bg-slate-100/60">
+                        <td class="p-3 font-medium">${escapeHtml(br.nama_biro)}</td>
+                        <td class="p-3 text-xs text-gray-600">${escapeHtml(br.spesialisasi || '')} (${escapeHtml(br.lokasi || '')})</td>
+                        <td class="p-3"><div class="flex gap-2">
+                            <button onclick="editBiro(${br.id})" class="text-blue-500 hover:text-blue-700 text-xs font-semibold px-2 py-1 rounded border border-blue-200">Edit</button>
+                            <button onclick="deleteBiro(${br.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200">Hapus</button>
+                        </div></td>
+                    </tr>`).join('');
+            }
         }
 
         // ---------------------------------------------------------
@@ -5408,6 +5538,252 @@
         let editWisataId = null;
         let editEventId = null;
         let editEkrafId = null;
+        let editKulinerId = null;
+        let editBelanjaId = null;
+        let editPenginapanId = null;
+        let editPaketId = null;
+        let editBiroId = null;
+
+        async function editKuliner(id) {
+            let data = kulinerData.find(k => k.id == id);
+            if (!data) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('kuliner').select('*').eq('id', id).single();
+                    if (!error && fullData) data = fullData;
+                } catch (err) { console.error("Error fetching kuliner:", err); }
+            }
+            editKulinerId = id;
+            document.getElementById('inp-kuliner-nama').value = data.nama || '';
+            document.getElementById('inp-kuliner-jenis').value = data.jenis || '';
+            document.getElementById('inp-kuliner-lokasi').value = data.lokasi || '';
+            document.getElementById('inp-kuliner-harga').value = data.harga_range || '';
+            document.getElementById('inp-kuliner-jam').value = data.jam_operasional || '';
+            document.getElementById('inp-kuliner-foto').value = data.foto || '';
+            document.getElementById('inp-kuliner-telepon').value = data.telepon || '';
+            document.getElementById('inp-kuliner-maps').value = data.maps || '';
+            if (document.getElementById('inp-kuliner-email')) document.getElementById('inp-kuliner-email').value = data.email || '';
+            if (document.getElementById('inp-kuliner-website')) document.getElementById('inp-kuliner-website').value = data.website || '';
+            if (document.getElementById('inp-kuliner-instagram')) document.getElementById('inp-kuliner-instagram').value = data.instagram || '';
+            if (document.getElementById('inp-kuliner-tiktok')) document.getElementById('inp-kuliner-tiktok').value = data.tiktok || '';
+            if (document.getElementById('inp-kuliner-facebook')) document.getElementById('inp-kuliner-facebook').value = data.facebook || '';
+            document.getElementById('inp-kuliner-desc').value = data.deskripsi || '';
+
+            resetKulinerGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addKulinerGaleriInput(url));
+            } else { addKulinerGaleriInput(); }
+            document.getElementById('btn-submit-kuliner').innerText = "Update Data Kuliner ke Supabase";
+            switchAdminTab('kuliner');
+            window.scrollTo(0, 0);
+        }
+
+        async function deleteKuliner(id) {
+            if (!confirm("Hapus data kuliner ini?")) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { error } = await supabaseClient.from('kuliner').delete().eq('id', id);
+                    if (error) throw error;
+                    showToast("Data kuliner berhasil dihapus.", "success");
+                    await fetchRealData(); renderAllViews(); filterKuliner();
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
+            } else {
+                kulinerData = kulinerData.filter(k => k.id != id);
+                renderAllViews(); filterKuliner();
+            }
+        }
+
+        async function editBelanja(id) {
+            let data = belanjaData.find(b => b.id == id);
+            if (!data) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('belanja_oleholeh').select('*').eq('id', id).single();
+                    if (!error && fullData) data = fullData;
+                } catch (err) { console.error("Error fetching belanja:", err); }
+            }
+            editBelanjaId = id;
+            document.getElementById('inp-belanja-nama').value = data.nama_toko || '';
+            document.getElementById('inp-belanja-kategori').value = data.kategori || 'Oleh-Oleh Makanan';
+            document.getElementById('inp-belanja-produk').value = data.produk_unggulan || '';
+            document.getElementById('inp-belanja-lokasi').value = data.lokasi || '';
+            document.getElementById('inp-belanja-foto').value = data.foto || '';
+            document.getElementById('inp-belanja-telepon').value = data.telepon || '';
+            document.getElementById('inp-belanja-maps').value = data.maps || '';
+            if (document.getElementById('inp-belanja-email')) document.getElementById('inp-belanja-email').value = data.email || '';
+            if (document.getElementById('inp-belanja-website')) document.getElementById('inp-belanja-website').value = data.website || '';
+            if (document.getElementById('inp-belanja-instagram')) document.getElementById('inp-belanja-instagram').value = data.instagram || '';
+            if (document.getElementById('inp-belanja-tiktok')) document.getElementById('inp-belanja-tiktok').value = data.tiktok || '';
+            if (document.getElementById('inp-belanja-facebook')) document.getElementById('inp-belanja-facebook').value = data.facebook || '';
+            document.getElementById('inp-belanja-desc').value = data.deskripsi || '';
+
+            resetBelanjaGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addBelanjaGaleriInput(url));
+            } else { addBelanjaGaleriInput(); }
+            document.getElementById('btn-submit-belanja').innerText = "Update Data Belanja ke Supabase";
+            switchAdminTab('belanja');
+            window.scrollTo(0, 0);
+        }
+
+        async function deleteBelanja(id) {
+            if (!confirm("Hapus data belanja ini?")) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { error } = await supabaseClient.from('belanja_oleholeh').delete().eq('id', id);
+                    if (error) throw error;
+                    showToast("Data belanja berhasil dihapus.", "success");
+                    await fetchRealData(); renderAllViews(); filterBelanja();
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
+            } else {
+                belanjaData = belanjaData.filter(b => b.id != id);
+                renderAllViews(); filterBelanja();
+            }
+        }
+
+        async function editPenginapan(id) {
+            let data = penginapanData.find(p => p.id == id);
+            if (!data) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('penginapan').select('*').eq('id', id).single();
+                    if (!error && fullData) data = fullData;
+                } catch (err) { console.error("Error fetching penginapan:", err); }
+            }
+            editPenginapanId = id;
+            document.getElementById('inp-penginapan-nama').value = data.nama || '';
+            document.getElementById('inp-penginapan-tipe').value = data.tipe || 'Hotel Bintang 3';
+            document.getElementById('inp-penginapan-harga').value = data.harga_mulai || 250000;
+            document.getElementById('inp-penginapan-lokasi').value = data.lokasi || '';
+            document.getElementById('inp-penginapan-fasilitas').value = Array.isArray(data.fasilitas) ? data.fasilitas.join(', ') : (data.fasilitas || '');
+            document.getElementById('inp-penginapan-foto').value = data.foto || '';
+            document.getElementById('inp-penginapan-telepon').value = data.telepon || '';
+            document.getElementById('inp-penginapan-maps').value = data.maps || '';
+            if (document.getElementById('inp-penginapan-email')) document.getElementById('inp-penginapan-email').value = data.email || '';
+            if (document.getElementById('inp-penginapan-website')) document.getElementById('inp-penginapan-website').value = data.website || '';
+            if (document.getElementById('inp-penginapan-instagram')) document.getElementById('inp-penginapan-instagram').value = data.instagram || '';
+            if (document.getElementById('inp-penginapan-tiktok')) document.getElementById('inp-penginapan-tiktok').value = data.tiktok || '';
+            if (document.getElementById('inp-penginapan-facebook')) document.getElementById('inp-penginapan-facebook').value = data.facebook || '';
+            document.getElementById('inp-penginapan-desc').value = data.deskripsi || '';
+
+            resetPenginapanGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addPenginapanGaleriInput(url));
+            } else { addPenginapanGaleriInput(); }
+            document.getElementById('btn-submit-penginapan').innerText = "Update Data Penginapan ke Supabase";
+            switchAdminTab('penginapan');
+            window.scrollTo(0, 0);
+        }
+
+        async function deletePenginapan(id) {
+            if (!confirm("Hapus data penginapan ini?")) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { error } = await supabaseClient.from('penginapan').delete().eq('id', id);
+                    if (error) throw error;
+                    showToast("Data penginapan berhasil dihapus.", "success");
+                    await fetchRealData(); renderAllViews(); filterPenginapan();
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
+            } else {
+                penginapanData = penginapanData.filter(p => p.id != id);
+                renderAllViews(); filterPenginapan();
+            }
+        }
+
+        async function editPaket(id) {
+            let data = paketData.find(pk => pk.id == id);
+            if (!data) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('paket_wisata').select('*').eq('id', id).single();
+                    if (!error && fullData) data = fullData;
+                } catch (err) { console.error("Error fetching paket:", err); }
+            }
+            editPaketId = id;
+            document.getElementById('inp-paket-nama').value = data.nama_paket || '';
+            document.getElementById('inp-paket-durasi').value = data.durasi || '1 Day Tour';
+            document.getElementById('inp-paket-harga').value = data.harga_per_pax || 150000;
+            document.getElementById('inp-paket-pax').value = data.min_pax || 4;
+            document.getElementById('inp-paket-inklusi').value = Array.isArray(data.inklusi) ? data.inklusi.join(', ') : (data.inklusi || '');
+            document.getElementById('inp-paket-foto').value = data.foto || '';
+            document.getElementById('inp-paket-telepon').value = data.telepon || '';
+            if (document.getElementById('inp-paket-email')) document.getElementById('inp-paket-email').value = data.email || '';
+            if (document.getElementById('inp-paket-website')) document.getElementById('inp-paket-website').value = data.website || '';
+            if (document.getElementById('inp-paket-instagram')) document.getElementById('inp-paket-instagram').value = data.instagram || '';
+            if (document.getElementById('inp-paket-tiktok')) document.getElementById('inp-paket-tiktok').value = data.tiktok || '';
+            if (document.getElementById('inp-paket-facebook')) document.getElementById('inp-paket-facebook').value = data.facebook || '';
+            document.getElementById('inp-paket-desc').value = data.deskripsi || '';
+
+            resetPaketGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addPaketGaleriInput(url));
+            } else { addPaketGaleriInput(); }
+            document.getElementById('btn-submit-paket').innerText = "Update Data Paket ke Supabase";
+            switchAdminTab('paket');
+            window.scrollTo(0, 0);
+        }
+
+        async function deletePaket(id) {
+            if (!confirm("Hapus data paket ini?")) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { error } = await supabaseClient.from('paket_wisata').delete().eq('id', id);
+                    if (error) throw error;
+                    showToast("Data paket berhasil dihapus.", "success");
+                    await fetchRealData(); renderAllViews(); filterPaket();
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
+            } else {
+                paketData = paketData.filter(pk => pk.id != id);
+                renderAllViews(); filterPaket();
+            }
+        }
+
+        async function editBiro(id) {
+            let data = biroData.find(b => b.id == id);
+            if (!data) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { data: fullData, error } = await supabaseClient.from('biro_perjalanan').select('*').eq('id', id).single();
+                    if (!error && fullData) data = fullData;
+                } catch (err) { console.error("Error fetching biro:", err); }
+            }
+            editBiroId = id;
+            document.getElementById('inp-biro-nama').value = data.nama_biro || '';
+            document.getElementById('inp-biro-spesialisasi').value = data.spesialisasi || '';
+            document.getElementById('inp-biro-lokasi').value = data.lokasi || '';
+            document.getElementById('inp-biro-foto').value = data.foto || '';
+            document.getElementById('inp-biro-telepon').value = data.telepon || '';
+            document.getElementById('inp-biro-maps').value = data.maps || '';
+            if (document.getElementById('inp-biro-email')) document.getElementById('inp-biro-email').value = data.email || '';
+            if (document.getElementById('inp-biro-website')) document.getElementById('inp-biro-website').value = data.website || '';
+            if (document.getElementById('inp-biro-instagram')) document.getElementById('inp-biro-instagram').value = data.instagram || '';
+            if (document.getElementById('inp-biro-tiktok')) document.getElementById('inp-biro-tiktok').value = data.tiktok || '';
+            if (document.getElementById('inp-biro-facebook')) document.getElementById('inp-biro-facebook').value = data.facebook || '';
+            document.getElementById('inp-biro-desc').value = data.deskripsi || '';
+
+            resetBiroGaleriInputs();
+            if (data.galeri && data.galeri.length > 0) {
+                data.galeri.forEach(url => addBiroGaleriInput(url));
+            } else { addBiroGaleriInput(); }
+            document.getElementById('btn-submit-biro').innerText = "Update Data Biro ke Supabase";
+            switchAdminTab('biro');
+            window.scrollTo(0, 0);
+        }
+
+        async function deleteBiro(id) {
+            if (!confirm("Hapus data biro ini?")) return;
+            if (isSupabaseConnected) {
+                try {
+                    const { error } = await supabaseClient.from('biro_perjalanan').delete().eq('id', id);
+                    if (error) throw error;
+                    showToast("Data biro berhasil dihapus.", "success");
+                    await fetchRealData(); renderAllViews(); filterBiro();
+                } catch (error) { showToast("Gagal menghapus: " + error.message, "error"); }
+            } else {
+                biroData = biroData.filter(b => b.id != id);
+                renderAllViews(); filterBiro();
+            }
+        }
 
         async function editWisata(id) {
             let data = wisataData.find(w => w.id == id);
@@ -5601,11 +5977,11 @@
                 wisata: 'table-wisata-container',
                 event: 'table-event-container',
                 ekraf: 'table-ekraf-container',
-                kuliner: null,
-                belanja: null,
-                penginapan: null,
-                paket: null,
-                biro: null,
+                kuliner: 'table-kuliner-container',
+                belanja: 'table-belanja-container',
+                penginapan: 'table-penginapan-container',
+                paket: 'table-paket-container',
+                biro: 'table-biro-container',
                 kontak: null
             };
             const tabs = {
@@ -5867,16 +6243,31 @@
             };
             if (isSupabaseConnected) {
                 try {
-                    const { error } = await supabaseClient.from('kuliner').insert([newData]);
+                    let error;
+                    if (editKulinerId) {
+                        const res = await supabaseClient.from('kuliner').update(newData).eq('id', editKulinerId);
+                        error = res.error;
+                    } else {
+                        const res = await supabaseClient.from('kuliner').insert([newData]);
+                        error = res.error;
+                    }
                     if (error) throw error;
-                    showToast("Data Kuliner tersimpan di Supabase!", "success");
-                    this.reset(); resetKulinerGaleriInputs(); await fetchRealData(); filterKuliner();
+                    showToast("Data Kuliner berhasil " + (editKulinerId ? "diperbarui" : "ditambahkan") + "!", "success");
+                    this.reset(); resetKulinerGaleriInputs(); editKulinerId = null;
+                    await fetchRealData(); renderAllViews(); filterKuliner();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
-                newData.id = Date.now();
-                kulinerData.unshift(newData);
-                showToast("Data Kuliner ditambahkan (Offline Mode)", "info");
-                this.reset(); resetKulinerGaleriInputs(); filterKuliner();
+                if (editKulinerId) {
+                    newData.id = editKulinerId;
+                    const idx = kulinerData.findIndex(k => k.id === editKulinerId);
+                    if (idx > -1) kulinerData[idx] = newData;
+                } else {
+                    newData.id = Date.now();
+                    kulinerData.unshift(newData);
+                }
+                showToast("Data Kuliner " + (editKulinerId ? "diperbarui" : "ditambahkan") + " (Offline Mode)", "info");
+                this.reset(); resetKulinerGaleriInputs(); editKulinerId = null;
+                renderAllViews(); filterKuliner();
             }
             btn.innerText = "Simpan Data Kuliner ke Supabase";
         });
@@ -5904,16 +6295,31 @@
             };
             if (isSupabaseConnected) {
                 try {
-                    const { error } = await supabaseClient.from('belanja_oleholeh').insert([newData]);
+                    let error;
+                    if (editBelanjaId) {
+                        const res = await supabaseClient.from('belanja_oleholeh').update(newData).eq('id', editBelanjaId);
+                        error = res.error;
+                    } else {
+                        const res = await supabaseClient.from('belanja_oleholeh').insert([newData]);
+                        error = res.error;
+                    }
                     if (error) throw error;
-                    showToast("Data Toko Belanja tersimpan di Supabase!", "success");
-                    this.reset(); resetBelanjaGaleriInputs(); await fetchRealData(); filterBelanja();
+                    showToast("Data Toko Belanja berhasil " + (editBelanjaId ? "diperbarui" : "ditambahkan") + "!", "success");
+                    this.reset(); resetBelanjaGaleriInputs(); editBelanjaId = null;
+                    await fetchRealData(); renderAllViews(); filterBelanja();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
-                newData.id = Date.now();
-                belanjaData.unshift(newData);
-                showToast("Data Belanja ditambahkan (Offline Mode)", "info");
-                this.reset(); resetBelanjaGaleriInputs(); filterBelanja();
+                if (editBelanjaId) {
+                    newData.id = editBelanjaId;
+                    const idx = belanjaData.findIndex(b => b.id === editBelanjaId);
+                    if (idx > -1) belanjaData[idx] = newData;
+                } else {
+                    newData.id = Date.now();
+                    belanjaData.unshift(newData);
+                }
+                showToast("Data Belanja " + (editBelanjaId ? "diperbarui" : "ditambahkan") + " (Offline Mode)", "info");
+                this.reset(); resetBelanjaGaleriInputs(); editBelanjaId = null;
+                renderAllViews(); filterBelanja();
             }
             btn.innerText = "Simpan Data Belanja ke Supabase";
         });
@@ -5943,16 +6349,31 @@
             };
             if (isSupabaseConnected) {
                 try {
-                    const { error } = await supabaseClient.from('penginapan').insert([newData]);
+                    let error;
+                    if (editPenginapanId) {
+                        const res = await supabaseClient.from('penginapan').update(newData).eq('id', editPenginapanId);
+                        error = res.error;
+                    } else {
+                        const res = await supabaseClient.from('penginapan').insert([newData]);
+                        error = res.error;
+                    }
                     if (error) throw error;
-                    showToast("Data Penginapan tersimpan di Supabase!", "success");
-                    this.reset(); resetPenginapanGaleriInputs(); await fetchRealData(); filterPenginapan();
+                    showToast("Data Penginapan berhasil " + (editPenginapanId ? "diperbarui" : "ditambahkan") + "!", "success");
+                    this.reset(); resetPenginapanGaleriInputs(); editPenginapanId = null;
+                    await fetchRealData(); renderAllViews(); filterPenginapan();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
-                newData.id = Date.now();
-                penginapanData.unshift(newData);
-                showToast("Data Penginapan ditambahkan (Offline Mode)", "info");
-                this.reset(); resetPenginapanGaleriInputs(); filterPenginapan();
+                if (editPenginapanId) {
+                    newData.id = editPenginapanId;
+                    const idx = penginapanData.findIndex(p => p.id === editPenginapanId);
+                    if (idx > -1) penginapanData[idx] = newData;
+                } else {
+                    newData.id = Date.now();
+                    penginapanData.unshift(newData);
+                }
+                showToast("Data Penginapan " + (editPenginapanId ? "diperbarui" : "ditambahkan") + " (Offline Mode)", "info");
+                this.reset(); resetPenginapanGaleriInputs(); editPenginapanId = null;
+                renderAllViews(); filterPenginapan();
             }
             btn.innerText = "Simpan Data Penginapan ke Supabase";
         });
@@ -5980,16 +6401,31 @@
             };
             if (isSupabaseConnected) {
                 try {
-                    const { error } = await supabaseClient.from('paket_wisata').insert([newData]);
+                    let error;
+                    if (editPaketId) {
+                        const res = await supabaseClient.from('paket_wisata').update(newData).eq('id', editPaketId);
+                        error = res.error;
+                    } else {
+                        const res = await supabaseClient.from('paket_wisata').insert([newData]);
+                        error = res.error;
+                    }
                     if (error) throw error;
-                    showToast("Data Paket Wisata tersimpan di Supabase!", "success");
-                    this.reset(); resetPaketGaleriInputs(); await fetchRealData(); filterPaket();
+                    showToast("Data Paket Wisata berhasil " + (editPaketId ? "diperbarui" : "ditambahkan") + "!", "success");
+                    this.reset(); resetPaketGaleriInputs(); editPaketId = null;
+                    await fetchRealData(); renderAllViews(); filterPaket();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
-                newData.id = Date.now();
-                paketData.unshift(newData);
-                showToast("Data Paket ditambahkan (Offline Mode)", "info");
-                this.reset(); resetPaketGaleriInputs(); filterPaket();
+                if (editPaketId) {
+                    newData.id = editPaketId;
+                    const idx = paketData.findIndex(pk => pk.id === editPaketId);
+                    if (idx > -1) paketData[idx] = newData;
+                } else {
+                    newData.id = Date.now();
+                    paketData.unshift(newData);
+                }
+                showToast("Data Paket " + (editPaketId ? "diperbarui" : "ditambahkan") + " (Offline Mode)", "info");
+                this.reset(); resetPaketGaleriInputs(); editPaketId = null;
+                renderAllViews(); filterPaket();
             }
             btn.innerText = "Simpan Data Paket ke Supabase";
         });
@@ -6016,16 +6452,31 @@
             };
             if (isSupabaseConnected) {
                 try {
-                    const { error } = await supabaseClient.from('biro_perjalanan').insert([newData]);
+                    let error;
+                    if (editBiroId) {
+                        const res = await supabaseClient.from('biro_perjalanan').update(newData).eq('id', editBiroId);
+                        error = res.error;
+                    } else {
+                        const res = await supabaseClient.from('biro_perjalanan').insert([newData]);
+                        error = res.error;
+                    }
                     if (error) throw error;
-                    showToast("Data Biro Perjalanan tersimpan di Supabase!", "success");
-                    this.reset(); resetBiroGaleriInputs(); await fetchRealData(); filterBiro();
+                    showToast("Data Biro Perjalanan berhasil " + (editBiroId ? "diperbarui" : "ditambahkan") + "!", "success");
+                    this.reset(); resetBiroGaleriInputs(); editBiroId = null;
+                    await fetchRealData(); renderAllViews(); filterBiro();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
-                newData.id = Date.now();
-                biroData.unshift(newData);
-                showToast("Data Biro ditambahkan (Offline Mode)", "info");
-                this.reset(); resetBiroGaleriInputs(); filterBiro();
+                if (editBiroId) {
+                    newData.id = editBiroId;
+                    const idx = biroData.findIndex(br => br.id === editBiroId);
+                    if (idx > -1) biroData[idx] = newData;
+                } else {
+                    newData.id = Date.now();
+                    biroData.unshift(newData);
+                }
+                showToast("Data Biro " + (editBiroId ? "diperbarui" : "ditambahkan") + " (Offline Mode)", "info");
+                this.reset(); resetBiroGaleriInputs(); editBiroId = null;
+                renderAllViews(); filterBiro();
             }
             btn.innerText = "Simpan Data Biro ke Supabase";
         });
