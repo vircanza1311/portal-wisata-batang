@@ -3204,6 +3204,23 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Kuliner</label>
                             <textarea id="inp-kuliner-desc" rows="3" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm" placeholder="Ceritakan cita rasa khas menu ini..."></textarea>
                         </div>
+                        
+                        <!-- Galeri Foto Kuliner -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i class="ph-fill ph-images text-amber-600 text-base"></i> Galeri Foto Kuliner <span class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto untuk ditampilkan di halaman detail kuliner.</p>
+                                </div>
+                                <button type="button" onclick="addKulinerGaleriInput()" id="btn-add-kuliner-galeri" class="flex items-center gap-1.5 text-xs font-bold text-amber-700 border border-amber-300 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <div id="kuliner-galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <div id="kuliner-galeri-inputs-container" class="space-y-2"></div>
+                            <p id="kuliner-galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
+
                         <button type="submit" id="btn-submit-kuliner" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan Data Kuliner ke Supabase</button>
                     </form>
 
@@ -3250,6 +3267,23 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Toko / Produk</label>
                             <textarea id="inp-belanja-desc" rows="3" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm" placeholder="Deskripsi produk unggulan..."></textarea>
                         </div>
+                        
+                        <!-- Galeri Foto Belanja -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i class="ph-fill ph-images text-emerald-600 text-base"></i> Galeri Foto Toko <span class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto produk/toko untuk ditampilkan di detail toko.</p>
+                                </div>
+                                <button type="button" onclick="addBelanjaGaleriInput()" id="btn-add-belanja-galeri" class="flex items-center gap-1.5 text-xs font-bold text-emerald-700 border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <div id="belanja-galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <div id="belanja-galeri-inputs-container" class="space-y-2"></div>
+                            <p id="belanja-galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
+
                         <button type="submit" id="btn-submit-belanja" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan Data Belanja ke Supabase</button>
                     </form>
 
@@ -3302,6 +3336,23 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Penginapan</label>
                             <textarea id="inp-penginapan-desc" rows="3" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm" placeholder="Deskripsi fasilitas dan keunggulan..."></textarea>
                         </div>
+                        
+                        <!-- Galeri Foto Penginapan -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i class="ph-fill ph-images text-cyan-600 text-base"></i> Galeri Foto Penginapan <span class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto kamar/fasilitas untuk ditampilkan di detail penginapan.</p>
+                                </div>
+                                <button type="button" onclick="addPenginapanGaleriInput()" id="btn-add-penginapan-galeri" class="flex items-center gap-1.5 text-xs font-bold text-cyan-700 border border-cyan-300 bg-cyan-50 hover:bg-cyan-100 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <div id="penginapan-galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <div id="penginapan-galeri-inputs-container" class="space-y-2"></div>
+                            <p id="penginapan-galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
+
                         <button type="submit" id="btn-submit-penginapan" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan Data Penginapan ke Supabase</button>
                     </form>
 
@@ -3345,6 +3396,23 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Paket</label>
                             <textarea id="inp-paket-desc" rows="3" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm" placeholder="Deskripsi keunggulan paket..."></textarea>
                         </div>
+                        
+                        <!-- Galeri Foto Paket Wisata -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i class="ph-fill ph-images text-indigo-600 text-base"></i> Galeri Foto Paket Wisata <span class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto rute/kegiatan untuk ditampilkan di detail paket.</p>
+                                </div>
+                                <button type="button" onclick="addPaketGaleriInput()" id="btn-add-paket-galeri" class="flex items-center gap-1.5 text-xs font-bold text-indigo-700 border border-indigo-300 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <div id="paket-galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <div id="paket-galeri-inputs-container" class="space-y-2"></div>
+                            <p id="paket-galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
+
                         <button type="submit" id="btn-submit-paket" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan Data Paket ke Supabase</button>
                     </form>
 
@@ -3383,6 +3451,23 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi Layanan Biro</label>
                             <textarea id="inp-biro-desc" rows="3" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm" placeholder="Deskripsi armada dan layanan biro..."></textarea>
                         </div>
+                        
+                        <!-- Galeri Foto Biro Perjalanan -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 flex items-center gap-2"><i class="ph-fill ph-images text-slate-700 text-base"></i> Galeri Foto Biro Perjalanan <span class="text-xs font-normal text-gray-400">(maks. 10 foto)</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Masukkan URL foto armada/layanan untuk ditampilkan di detail biro.</p>
+                                </div>
+                                <button type="button" onclick="addBiroGaleriInput()" id="btn-add-biro-galeri" class="flex items-center gap-1.5 text-xs font-bold text-slate-800 border border-slate-300 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition">
+                                    <i class="ph ph-plus-circle text-sm"></i> Tambah Foto
+                                </button>
+                            </div>
+                            <div id="biro-galeri-preview-strip" class="flex gap-2 flex-wrap mb-3 empty:hidden"></div>
+                            <div id="biro-galeri-inputs-container" class="space-y-2"></div>
+                            <p id="biro-galeri-limit-msg" class="hidden text-xs text-amber-600 mt-2 font-semibold"><i class="ph ph-warning mr-1"></i>Maksimal 10 foto sudah tercapai.</p>
+                        </div>
+
                         <button type="submit" id="btn-submit-biro" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-lg transition shadow-md">Simpan Data Biro ke Supabase</button>
                     </form>
 
@@ -5653,6 +5738,7 @@
                 telepon: document.getElementById('inp-kuliner-telepon').value,
                 maps: document.getElementById('inp-kuliner-maps').value,
                 deskripsi: document.getElementById('inp-kuliner-desc').value,
+                galeri: getKulinerGaleriUrls(),
                 is_khas_batang: true, is_halal: true, rating: 4.8
             };
             if (isSupabaseConnected) {
@@ -5660,13 +5746,13 @@
                     const { error } = await supabaseClient.from('kuliner').insert([newData]);
                     if (error) throw error;
                     showToast("Data Kuliner tersimpan di Supabase!", "success");
-                    this.reset(); await fetchRealData(); filterKuliner();
+                    this.reset(); resetKulinerGaleriInputs(); await fetchRealData(); filterKuliner();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
                 newData.id = Date.now();
                 kulinerData.unshift(newData);
                 showToast("Data Kuliner ditambahkan (Offline Mode)", "info");
-                this.reset(); filterKuliner();
+                this.reset(); resetKulinerGaleriInputs(); filterKuliner();
             }
             btn.innerText = "Simpan Data Kuliner ke Supabase";
         });
@@ -5684,6 +5770,7 @@
                 telepon: document.getElementById('inp-belanja-telepon').value,
                 maps: document.getElementById('inp-belanja-maps').value,
                 deskripsi: document.getElementById('inp-belanja-desc').value,
+                galeri: getBelanjaGaleriUrls(),
                 is_umkm_terverifikasi: true
             };
             if (isSupabaseConnected) {
@@ -5691,13 +5778,13 @@
                     const { error } = await supabaseClient.from('belanja_oleholeh').insert([newData]);
                     if (error) throw error;
                     showToast("Data Toko Belanja tersimpan di Supabase!", "success");
-                    this.reset(); await fetchRealData(); filterBelanja();
+                    this.reset(); resetBelanjaGaleriInputs(); await fetchRealData(); filterBelanja();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
                 newData.id = Date.now();
                 belanjaData.unshift(newData);
                 showToast("Data Belanja ditambahkan (Offline Mode)", "info");
-                this.reset(); filterBelanja();
+                this.reset(); resetBelanjaGaleriInputs(); filterBelanja();
             }
             btn.innerText = "Simpan Data Belanja ke Supabase";
         });
@@ -5717,6 +5804,7 @@
                 telepon: document.getElementById('inp-penginapan-telepon').value,
                 maps: document.getElementById('inp-penginapan-maps').value,
                 deskripsi: document.getElementById('inp-penginapan-desc').value,
+                galeri: getPenginapanGaleriUrls(),
                 rating: 4.8
             };
             if (isSupabaseConnected) {
@@ -5724,13 +5812,13 @@
                     const { error } = await supabaseClient.from('penginapan').insert([newData]);
                     if (error) throw error;
                     showToast("Data Penginapan tersimpan di Supabase!", "success");
-                    this.reset(); await fetchRealData(); filterPenginapan();
+                    this.reset(); resetPenginapanGaleriInputs(); await fetchRealData(); filterPenginapan();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
                 newData.id = Date.now();
                 penginapanData.unshift(newData);
                 showToast("Data Penginapan ditambahkan (Offline Mode)", "info");
-                this.reset(); filterPenginapan();
+                this.reset(); resetPenginapanGaleriInputs(); filterPenginapan();
             }
             btn.innerText = "Simpan Data Penginapan ke Supabase";
         });
@@ -5748,20 +5836,21 @@
                 inklusi: ink ? ink.split(',').map(s=>s.trim()) : ['Transport', 'Tiket', 'Makan'],
                 foto: document.getElementById('inp-paket-foto').value,
                 telepon: document.getElementById('inp-paket-telepon').value,
-                deskripsi: document.getElementById('inp-paket-desc').value
+                deskripsi: document.getElementById('inp-paket-desc').value,
+                galeri: getPaketGaleriUrls()
             };
             if (isSupabaseConnected) {
                 try {
                     const { error } = await supabaseClient.from('paket_wisata').insert([newData]);
                     if (error) throw error;
                     showToast("Data Paket Wisata tersimpan di Supabase!", "success");
-                    this.reset(); await fetchRealData(); filterPaket();
+                    this.reset(); resetPaketGaleriInputs(); await fetchRealData(); filterPaket();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
                 newData.id = Date.now();
                 paketData.unshift(newData);
                 showToast("Data Paket ditambahkan (Offline Mode)", "info");
-                this.reset(); filterPaket();
+                this.reset(); resetPaketGaleriInputs(); filterPaket();
             }
             btn.innerText = "Simpan Data Paket ke Supabase";
         });
@@ -5778,6 +5867,7 @@
                 telepon: document.getElementById('inp-biro-telepon').value,
                 maps: document.getElementById('inp-biro-maps').value,
                 deskripsi: document.getElementById('inp-biro-desc').value,
+                galeri: getBiroGaleriUrls(),
                 is_terverifikasi: true, rating: 4.9
             };
             if (isSupabaseConnected) {
@@ -5785,13 +5875,13 @@
                     const { error } = await supabaseClient.from('biro_perjalanan').insert([newData]);
                     if (error) throw error;
                     showToast("Data Biro Perjalanan tersimpan di Supabase!", "success");
-                    this.reset(); await fetchRealData(); filterBiro();
+                    this.reset(); resetBiroGaleriInputs(); await fetchRealData(); filterBiro();
                 } catch(err) { showToast("Gagal simpan: " + err.message, "error"); }
             } else {
                 newData.id = Date.now();
                 biroData.unshift(newData);
                 showToast("Data Biro ditambahkan (Offline Mode)", "info");
-                this.reset(); filterBiro();
+                this.reset(); resetBiroGaleriInputs(); filterBiro();
             }
             btn.innerText = "Simpan Data Biro ke Supabase";
         });
@@ -7163,6 +7253,440 @@
             if (container) container.innerHTML = '';
             if (strip) strip.innerHTML = '';
             updateEventGaleriLimitMsg();
+        }
+
+        // ---------------------------------------------------------
+        // GALERI FOTO ADMINISTRASI: KULINER, BELANJA, PENGINAPAN, PAKET, BIRO
+        // ---------------------------------------------------------
+
+        // 1. KULINER GALERI HELPERS
+        function getKulinerGaleriUrls() {
+            return Array.from(document.querySelectorAll('.kuliner-galeri-url-input')).map(i => i.value.trim()).filter(v => v.length > 0);
+        }
+        function updateKulinerGaleriPreview() {
+            const strip = document.getElementById('kuliner-galeri-preview-strip');
+            const urls = getKulinerGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-amber-200 shrink-0 group">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i + 1}</span>
+                    </div>
+                </div>`).join('');
+        }
+        function updateKulinerGaleriLimitMsg() {
+            const count = document.querySelectorAll('.kuliner-galeri-url-input').length;
+            const btn = document.getElementById('btn-add-kuliner-galeri');
+            const msg = document.getElementById('kuliner-galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true; btn.classList.add('opacity-40', 'cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false; btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+        function addKulinerGaleriInput(value = '') {
+            const container = document.getElementById('kuliner-galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.kuliner-galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'kuliner-galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-amber-400 transition">
+                    <span class="text-xs font-bold text-amber-500 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}" class="kuliner-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300" placeholder="https://contoh.com/foto-${idx}.jpg" oninput="updateKulinerGaleriPreview()">
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 kuliner-galeri-thumb" onerror="this.style.display='none'">` : `<span class="kuliner-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removeKulinerGaleriRow(this)" class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200"><i class="ph ph-trash text-sm"></i></button>`;
+            const input = row.querySelector('.kuliner-galeri-url-input');
+            const thumb = row.querySelector('.kuliner-galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url; img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 kuliner-galeri-thumb';
+                    img.onerror = () => { img.style.display = 'none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url; thumb.style.display = url ? 'block' : 'none';
+                }
+                updateKulinerGaleriPreview();
+            });
+            container.appendChild(row);
+            updateKulinerGaleriLimitMsg();
+            renumberKulinerGaleriRows();
+        }
+        function removeKulinerGaleriRow(btn) {
+            const row = btn.closest('.kuliner-galeri-row');
+            if (row) row.remove();
+            renumberKulinerGaleriRows();
+            updateKulinerGaleriPreview();
+            updateKulinerGaleriLimitMsg();
+        }
+        function renumberKulinerGaleriRows() {
+            document.querySelectorAll('.kuliner-galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-amber-500');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.kuliner-galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i + 1}.jpg`;
+            });
+        }
+        function resetKulinerGaleriInputs() {
+            const container = document.getElementById('kuliner-galeri-inputs-container');
+            const strip = document.getElementById('kuliner-galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updateKulinerGaleriLimitMsg();
+        }
+
+        // 2. BELANJA GALERI HELPERS
+        function getBelanjaGaleriUrls() {
+            return Array.from(document.querySelectorAll('.belanja-galeri-url-input')).map(i => i.value.trim()).filter(v => v.length > 0);
+        }
+        function updateBelanjaGaleriPreview() {
+            const strip = document.getElementById('belanja-galeri-preview-strip');
+            const urls = getBelanjaGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-emerald-200 shrink-0 group">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i + 1}</span>
+                    </div>
+                </div>`).join('');
+        }
+        function updateBelanjaGaleriLimitMsg() {
+            const count = document.querySelectorAll('.belanja-galeri-url-input').length;
+            const btn = document.getElementById('btn-add-belanja-galeri');
+            const msg = document.getElementById('belanja-galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true; btn.classList.add('opacity-40', 'cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false; btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+        function addBelanjaGaleriInput(value = '') {
+            const container = document.getElementById('belanja-galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.belanja-galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'belanja-galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-emerald-400 transition">
+                    <span class="text-xs font-bold text-emerald-600 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}" class="belanja-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300" placeholder="https://contoh.com/foto-${idx}.jpg" oninput="updateBelanjaGaleriPreview()">
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 belanja-galeri-thumb" onerror="this.style.display='none'">` : `<span class="belanja-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removeBelanjaGaleriRow(this)" class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200"><i class="ph ph-trash text-sm"></i></button>`;
+            const input = row.querySelector('.belanja-galeri-url-input');
+            const thumb = row.querySelector('.belanja-galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url; img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 belanja-galeri-thumb';
+                    img.onerror = () => { img.style.display = 'none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url; thumb.style.display = url ? 'block' : 'none';
+                }
+                updateBelanjaGaleriPreview();
+            });
+            container.appendChild(row);
+            updateBelanjaGaleriLimitMsg();
+            renumberBelanjaGaleriRows();
+        }
+        function removeBelanjaGaleriRow(btn) {
+            const row = btn.closest('.belanja-galeri-row');
+            if (row) row.remove();
+            renumberBelanjaGaleriRows();
+            updateBelanjaGaleriPreview();
+            updateBelanjaGaleriLimitMsg();
+        }
+        function renumberBelanjaGaleriRows() {
+            document.querySelectorAll('.belanja-galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-emerald-600');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.belanja-galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i + 1}.jpg`;
+            });
+        }
+        function resetBelanjaGaleriInputs() {
+            const container = document.getElementById('belanja-galeri-inputs-container');
+            const strip = document.getElementById('belanja-galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updateBelanjaGaleriLimitMsg();
+        }
+
+        // 3. PENGINAPAN GALERI HELPERS
+        function getPenginapanGaleriUrls() {
+            return Array.from(document.querySelectorAll('.penginapan-galeri-url-input')).map(i => i.value.trim()).filter(v => v.length > 0);
+        }
+        function updatePenginapanGaleriPreview() {
+            const strip = document.getElementById('penginapan-galeri-preview-strip');
+            const urls = getPenginapanGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-cyan-200 shrink-0 group">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i + 1}</span>
+                    </div>
+                </div>`).join('');
+        }
+        function updatePenginapanGaleriLimitMsg() {
+            const count = document.querySelectorAll('.penginapan-galeri-url-input').length;
+            const btn = document.getElementById('btn-add-penginapan-galeri');
+            const msg = document.getElementById('penginapan-galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true; btn.classList.add('opacity-40', 'cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false; btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+        function addPenginapanGaleriInput(value = '') {
+            const container = document.getElementById('penginapan-galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.penginapan-galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'penginapan-galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-cyan-400 transition">
+                    <span class="text-xs font-bold text-cyan-600 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}" class="penginapan-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300" placeholder="https://contoh.com/foto-${idx}.jpg" oninput="updatePenginapanGaleriPreview()">
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 penginapan-galeri-thumb" onerror="this.style.display='none'">` : `<span class="penginapan-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removePenginapanGaleriRow(this)" class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200"><i class="ph ph-trash text-sm"></i></button>`;
+            const input = row.querySelector('.penginapan-galeri-url-input');
+            const thumb = row.querySelector('.penginapan-galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url; img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 penginapan-galeri-thumb';
+                    img.onerror = () => { img.style.display = 'none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url; thumb.style.display = url ? 'block' : 'none';
+                }
+                updatePenginapanGaleriPreview();
+            });
+            container.appendChild(row);
+            updatePenginapanGaleriLimitMsg();
+            renumberPenginapanGaleriRows();
+        }
+        function removePenginapanGaleriRow(btn) {
+            const row = btn.closest('.penginapan-galeri-row');
+            if (row) row.remove();
+            renumberPenginapanGaleriRows();
+            updatePenginapanGaleriPreview();
+            updatePenginapanGaleriLimitMsg();
+        }
+        function renumberPenginapanGaleriRows() {
+            document.querySelectorAll('.penginapan-galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-cyan-600');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.penginapan-galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i + 1}.jpg`;
+            });
+        }
+        function resetPenginapanGaleriInputs() {
+            const container = document.getElementById('penginapan-galeri-inputs-container');
+            const strip = document.getElementById('penginapan-galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updatePenginapanGaleriLimitMsg();
+        }
+
+        // 4. PAKET WISATA GALERI HELPERS
+        function getPaketGaleriUrls() {
+            return Array.from(document.querySelectorAll('.paket-galeri-url-input')).map(i => i.value.trim()).filter(v => v.length > 0);
+        }
+        function updatePaketGaleriPreview() {
+            const strip = document.getElementById('paket-galeri-preview-strip');
+            const urls = getPaketGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-indigo-200 shrink-0 group">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i + 1}</span>
+                    </div>
+                </div>`).join('');
+        }
+        function updatePaketGaleriLimitMsg() {
+            const count = document.querySelectorAll('.paket-galeri-url-input').length;
+            const btn = document.getElementById('btn-add-paket-galeri');
+            const msg = document.getElementById('paket-galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true; btn.classList.add('opacity-40', 'cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false; btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+        function addPaketGaleriInput(value = '') {
+            const container = document.getElementById('paket-galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.paket-galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'paket-galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-indigo-400 transition">
+                    <span class="text-xs font-bold text-indigo-600 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}" class="paket-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300" placeholder="https://contoh.com/foto-${idx}.jpg" oninput="updatePaketGaleriPreview()">
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 paket-galeri-thumb" onerror="this.style.display='none'">` : `<span class="paket-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removePaketGaleriRow(this)" class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200"><i class="ph ph-trash text-sm"></i></button>`;
+            const input = row.querySelector('.paket-galeri-url-input');
+            const thumb = row.querySelector('.paket-galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url; img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 paket-galeri-thumb';
+                    img.onerror = () => { img.style.display = 'none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url; thumb.style.display = url ? 'block' : 'none';
+                }
+                updatePaketGaleriPreview();
+            });
+            container.appendChild(row);
+            updatePaketGaleriLimitMsg();
+            renumberPaketGaleriRows();
+        }
+        function removePaketGaleriRow(btn) {
+            const row = btn.closest('.paket-galeri-row');
+            if (row) row.remove();
+            renumberPaketGaleriRows();
+            updatePaketGaleriPreview();
+            updatePaketGaleriLimitMsg();
+        }
+        function renumberPaketGaleriRows() {
+            document.querySelectorAll('.paket-galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-indigo-600');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.paket-galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i + 1}.jpg`;
+            });
+        }
+        function resetPaketGaleriInputs() {
+            const container = document.getElementById('paket-galeri-inputs-container');
+            const strip = document.getElementById('paket-galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updatePaketGaleriLimitMsg();
+        }
+
+        // 5. BIRO PERJALANAN GALERI HELPERS
+        function getBiroGaleriUrls() {
+            return Array.from(document.querySelectorAll('.biro-galeri-url-input')).map(i => i.value.trim()).filter(v => v.length > 0);
+        }
+        function updateBiroGaleriPreview() {
+            const strip = document.getElementById('biro-galeri-preview-strip');
+            const urls = getBiroGaleriUrls();
+            if (!strip) return;
+            strip.innerHTML = urls.map((url, i) => `
+                <div class="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border-2 border-slate-300 shrink-0 group">
+                    <img src="${optimizeImage(url, 100, 70)}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='';this.parentElement.style.opacity='0.4'">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">${i + 1}</span>
+                    </div>
+                </div>`).join('');
+        }
+        function updateBiroGaleriLimitMsg() {
+            const count = document.querySelectorAll('.biro-galeri-url-input').length;
+            const btn = document.getElementById('btn-add-biro-galeri');
+            const msg = document.getElementById('biro-galeri-limit-msg');
+            if (!btn || !msg) return;
+            if (count >= MAX_GALERI) {
+                btn.disabled = true; btn.classList.add('opacity-40', 'cursor-not-allowed');
+                msg.classList.remove('hidden');
+            } else {
+                btn.disabled = false; btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                msg.classList.add('hidden');
+            }
+        }
+        function addBiroGaleriInput(value = '') {
+            const container = document.getElementById('biro-galeri-inputs-container');
+            if (!container) return;
+            const count = container.querySelectorAll('.biro-galeri-url-input').length;
+            if (count >= MAX_GALERI) return;
+            const idx = count + 1;
+            const row = document.createElement('div');
+            row.className = 'biro-galeri-row flex items-center gap-2';
+            row.innerHTML = `
+                <div class="flex items-center gap-2 flex-grow bg-white border border-gray-200 rounded-lg px-3 py-2 focus-within:border-slate-500 transition">
+                    <span class="text-xs font-bold text-slate-600 w-5 text-center shrink-0">${idx}</span>
+                    <i class="ph ph-image text-gray-300 text-base shrink-0"></i>
+                    <input type="url" value="${value}" class="biro-galeri-url-input flex-grow text-sm outline-none bg-transparent text-gray-700 placeholder-gray-300" placeholder="https://contoh.com/foto-${idx}.jpg" oninput="updateBiroGaleriPreview()">
+                    ${value ? `<img src="${optimizeImage(value, 100, 70)}" class="w-7 h-7 rounded object-cover shrink-0 border border-gray-200 biro-galeri-thumb" onerror="this.style.display='none'">` : `<span class="biro-galeri-thumb w-7 h-7 rounded bg-gray-100 shrink-0 border border-gray-200"></span>`}
+                </div>
+                <button type="button" onclick="removeBiroGaleriRow(this)" class="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition border border-gray-200"><i class="ph ph-trash text-sm"></i></button>`;
+            const input = row.querySelector('.biro-galeri-url-input');
+            const thumb = row.querySelector('.biro-galeri-thumb');
+            input.addEventListener('input', () => {
+                const url = input.value.trim();
+                if (url && thumb.tagName === 'SPAN') {
+                    const img = document.createElement('img');
+                    img.src = url; img.className = 'w-7 h-7 rounded object-cover shrink-0 border border-gray-200 biro-galeri-thumb';
+                    img.onerror = () => { img.style.display = 'none'; };
+                    thumb.replaceWith(img);
+                } else if (thumb.tagName === 'IMG') {
+                    thumb.src = url; thumb.style.display = url ? 'block' : 'none';
+                }
+                updateBiroGaleriPreview();
+            });
+            container.appendChild(row);
+            updateBiroGaleriLimitMsg();
+            renumberBiroGaleriRows();
+        }
+        function removeBiroGaleriRow(btn) {
+            const row = btn.closest('.biro-galeri-row');
+            if (row) row.remove();
+            renumberBiroGaleriRows();
+            updateBiroGaleriPreview();
+            updateBiroGaleriLimitMsg();
+        }
+        function renumberBiroGaleriRows() {
+            document.querySelectorAll('.biro-galeri-row').forEach((row, i) => {
+                const num = row.querySelector('span.text-slate-600');
+                if (num) num.textContent = i + 1;
+                const input = row.querySelector('.biro-galeri-url-input');
+                if (input) input.placeholder = `https://contoh.com/foto-${i + 1}.jpg`;
+            });
+        }
+        function resetBiroGaleriInputs() {
+            const container = document.getElementById('biro-galeri-inputs-container');
+            const strip = document.getElementById('biro-galeri-preview-strip');
+            if (container) container.innerHTML = '';
+            if (strip) strip.innerHTML = '';
+            updateBiroGaleriLimitMsg();
         }
 
         // ---------------------------------------------------------
