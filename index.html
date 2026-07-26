@@ -767,59 +767,59 @@
                                 </div>
 
                                 <!-- Horizontal Category Filter Pills -->
-                                <div class="mb-4">
-                                    <div class="flex items-center gap-2 overflow-x-auto pb-2"
-                                        style="scrollbar-width: none; -ms-overflow-style: none;">
+                                <div class="mb-4 relative">
+                                    <div class="flex items-center gap-1.5 overflow-x-auto pb-2 custom-scrollbar scroll-smooth"
+                                        style="scrollbar-width: thin; -ms-overflow-style: auto;">
                                         <button onclick="setMapTab('semua')" id="map-tab-semua"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition cursor-pointer bg-cyan-500/20 border border-cyan-400/50 text-white shadow-md">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer bg-cyan-500/20 border border-cyan-400/50 text-white shadow-md">
                                             <span>Semua</span>
                                             <span id="map-kec-semua-count"
                                                 class="bg-cyan-400/30 text-cyan-200 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
                                         </button>
                                         <button onclick="setMapTab('wisata')" id="map-tab-wisata"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
                                             <span>Wisata</span>
                                             <span id="map-kec-wisata-count"
                                                 class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
                                         </button>
                                         <button onclick="setMapTab('event')" id="map-tab-event"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
                                             <span>Event</span>
                                             <span id="map-kec-event-count"
                                                 class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
                                         </button>
                                         <button onclick="setMapTab('ekraf')" id="map-tab-ekraf"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
                                             <span>Ekraf</span>
                                             <span id="map-kec-ekraf-count"
                                                 class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
                                         </button>
                                         <button onclick="setMapTab('kuliner')" id="map-tab-kuliner"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
                                             <span>Kuliner</span>
                                             <span id="map-kec-kuliner-count"
                                                 class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
                                         </button>
-                                        <button onclick="setMapTab('penginapan')" id="map-tab-penginapan"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
-                                            <span>Penginapan</span>
-                                            <span id="map-kec-penginapan-count"
-                                                class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
-                                        </button>
                                         <button onclick="setMapTab('belanja')" id="map-tab-belanja"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
                                             <span>Belanja</span>
                                             <span id="map-kec-belanja-count"
                                                 class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
                                         </button>
+                                        <button onclick="setMapTab('penginapan')" id="map-tab-penginapan"
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            <span>Penginapan</span>
+                                            <span id="map-kec-penginapan-count"
+                                                class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                                        </button>
                                         <button onclick="setMapTab('paket')" id="map-tab-paket"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
                                             <span>Paket</span>
                                             <span id="map-kec-paket-count"
                                                 class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
                                         </button>
                                         <button onclick="setMapTab('biro')" id="map-tab-biro"
-                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
+                                            class="map-pill-btn shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer bg-white/5 border border-white/10 text-white/70 hover:bg-white/15">
                                             <span>Biro</span>
                                             <span id="map-kec-biro-count"
                                                 class="bg-white/10 text-white/60 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
@@ -9228,7 +9228,7 @@
             const targetKec = norm(mapCurrentKec);
 
             const mapGmapsUrl = (item) => {
-                const q = encodeURIComponent(`${item.nama || item.judul || item.brand} ${item.lokasi || ''} Batang`);
+                const q = encodeURIComponent(`${item.nama || item.nama_toko || item.nama_paket || item.nama_biro || item.judul || item.brand} ${item.lokasi || ''} Batang`);
                 return (item.lat && item.lng) ? `https://maps.google.com/?q=${item.lat},${item.lng}` : (item.maps || `https://www.google.com/maps/search/?api=1&query=${q}`);
             };
 
@@ -9280,11 +9280,96 @@
                     <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
                 </div>`;
 
+            const cardKulinerHtml = (k) => `
+                <div onclick="openKulinerModal(${k.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-amber-950/40 shrink-0">
+                        ${k.foto ? `<img src="${optimizeImage(k.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-bowl-food text-amber-400 text-xl"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-amber-300 transition">${escapeHtml(k.nama)}</p>
+                        <p class="text-amber-200/60 text-xs truncate">${escapeHtml(k.jenis || 'Kuliner Khas')}</p>
+                    </div>
+                    <a href="${mapGmapsUrl(k)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 hover:text-white border border-amber-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                        <span class="hidden sm:inline">Maps</span>
+                    </a>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-amber-400 transition shrink-0"></i>
+                </div>`;
+
+            const cardBelanjaHtml = (b) => `
+                <div onclick="openBelanjaModal(${b.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-emerald-950/40 shrink-0">
+                        ${b.foto ? `<img src="${optimizeImage(b.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-shopping-bag text-emerald-400 text-xl"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-emerald-300 transition">${escapeHtml(b.nama_toko)}</p>
+                        <p class="text-emerald-200/60 text-xs truncate">${escapeHtml(b.kategori || 'Pusat Belanja')}</p>
+                    </div>
+                    <a href="${mapGmapsUrl(b)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 hover:text-white border border-emerald-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                        <span class="hidden sm:inline">Maps</span>
+                    </a>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-emerald-400 transition shrink-0"></i>
+                </div>`;
+
+            const cardPenginapanHtml = (p) => `
+                <div onclick="openPenginapanModal(${p.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-cyan-950/40 shrink-0">
+                        ${p.foto ? `<img src="${optimizeImage(p.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-house-line text-cyan-400 text-xl"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-cyan-300 transition">${escapeHtml(p.nama)}</p>
+                        <p class="text-cyan-200/60 text-xs truncate">${escapeHtml(p.tipe || 'Penginapan & Hotel')}</p>
+                    </div>
+                    <a href="${mapGmapsUrl(p)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 hover:text-white border border-cyan-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                        <span class="hidden sm:inline">Maps</span>
+                    </a>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-cyan-400 transition shrink-0"></i>
+                </div>`;
+
+            const cardPaketHtml = (pk) => `
+                <div onclick="openPaketModal(${pk.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-indigo-950/40 shrink-0">
+                        ${pk.foto ? `<img src="${optimizeImage(pk.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-suitcase text-indigo-400 text-xl"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-indigo-300 transition">${escapeHtml(pk.nama_paket)}</p>
+                        <p class="text-indigo-200/60 text-xs truncate">${escapeHtml(pk.durasi || 'Paket Wisata')}</p>
+                    </div>
+                    <button onclick="event.stopPropagation(); openPaketModal(${pk.id})" title="Detail Paket" class="p-2 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 hover:text-white border border-indigo-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-info text-sm"></i>
+                        <span class="hidden sm:inline">Detail</span>
+                    </button>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-indigo-400 transition shrink-0"></i>
+                </div>`;
+
+            const cardBiroHtml = (br) => `
+                <div onclick="openBiroModal(${br.id})" class="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-amber-950/40 shrink-0">
+                        ${br.foto ? `<img src="${optimizeImage(br.foto, 100, 70)}" class="w-full h-full object-cover" loading="lazy">` : `<div class="w-full h-full flex items-center justify-center"><i class="ph-fill ph-bus text-amber-400 text-xl"></i></div>`}
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-white font-bold text-sm truncate group-hover:text-amber-300 transition">${escapeHtml(br.nama_biro)}</p>
+                        <p class="text-amber-200/60 text-xs truncate">${escapeHtml(br.spesialisasi || 'Biro Perjalanan')}</p>
+                    </div>
+                    <a href="${mapGmapsUrl(br)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Petunjuk Arah Google Maps" class="p-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 hover:text-white border border-amber-400/30 transition shrink-0 flex items-center justify-center gap-1.5 text-xs font-semibold">
+                        <i class="ph-fill ph-navigation-arrow text-sm"></i>
+                        <span class="hidden sm:inline">Maps</span>
+                    </a>
+                    <i class="ph ph-arrow-right text-white/30 group-hover:text-amber-400 transition shrink-0"></i>
+                </div>`;
+
             if (mapCurrentTab === 'semua') {
                 const w = wisataData.filter(i => norm(i.lokasi) === targetKec).map(cardWisataHtml);
                 const ev = eventData.filter(i => norm(i.lokasi) === targetKec).map(cardEventHtml);
                 const ek = ekrafData.filter(i => norm(i.lokasi) === targetKec).map(cardEkrafHtml);
-                data = [...w, ...ev, ...ek];
+                const kul = (kulinerData || []).filter(i => norm(i.lokasi) === targetKec).map(cardKulinerHtml);
+                const bel = (belanjaData || []).filter(i => norm(i.lokasi) === targetKec).map(cardBelanjaHtml);
+                const peng = (penginapanData || []).filter(i => norm(i.lokasi) === targetKec).map(cardPenginapanHtml);
+                const pak = (paketData || []).filter(i => norm(i.lokasi) === targetKec).map(cardPaketHtml);
+                const bir = (biroData || []).filter(i => norm(i.lokasi) === targetKec).map(cardBiroHtml);
+                data = [...w, ...ev, ...ek, ...kul, ...bel, ...peng, ...pak, ...bir];
                 emptyMsg = 'Belum ada data terdaftar di kecamatan ini.';
                 renderItem = item => item;
             } else if (mapCurrentTab === 'wisata') {
@@ -9302,25 +9387,34 @@
             } else if (mapCurrentTab === 'kuliner') {
                 const wKul = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'kuliner').map(cardWisataHtml);
                 const ekKul = ekrafData.filter(e => norm(e.lokasi) === targetKec && norm(e.subsektor) === 'kuliner').map(cardEkrafHtml);
-                data = [...wKul, ...ekKul];
+                const standKul = (kulinerData || []).filter(k => norm(k.lokasi) === targetKec).map(cardKulinerHtml);
+                data = [...wKul, ...ekKul, ...standKul];
                 emptyMsg = 'Belum ada kuliner khas terdaftar di kecamatan ini.';
                 renderItem = item => item;
             } else if (mapCurrentTab === 'penginapan') {
-                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'penginapan');
+                const wPeng = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'penginapan').map(cardWisataHtml);
+                const standPeng = (penginapanData || []).filter(p => norm(p.lokasi) === targetKec).map(cardPenginapanHtml);
+                data = [...wPeng, ...standPeng];
                 emptyMsg = 'Belum ada penginapan / hotel terdaftar di kecamatan ini.';
-                renderItem = cardWisataHtml;
+                renderItem = item => item;
             } else if (mapCurrentTab === 'belanja') {
-                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'belanja');
+                const wBel = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'belanja').map(cardWisataHtml);
+                const standBel = (belanjaData || []).filter(b => norm(b.lokasi) === targetKec).map(cardBelanjaHtml);
+                data = [...wBel, ...standBel];
                 emptyMsg = 'Belum ada pusat belanja / oleh-oleh terdaftar di kecamatan ini.';
-                renderItem = cardWisataHtml;
+                renderItem = item => item;
             } else if (mapCurrentTab === 'paket') {
-                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'paket wisata');
+                const wPak = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'paket wisata').map(cardWisataHtml);
+                const standPak = (paketData || []).filter(pk => norm(pk.lokasi) === targetKec).map(cardPaketHtml);
+                data = [...wPak, ...standPak];
                 emptyMsg = 'Belum ada paket wisata terdaftar di kecamatan ini.';
-                renderItem = cardWisataHtml;
+                renderItem = item => item;
             } else if (mapCurrentTab === 'biro') {
-                data = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'biro perjalanan');
+                const wBir = wisataData.filter(w => norm(w.lokasi) === targetKec && norm(w.kategori) === 'biro perjalanan').map(cardWisataHtml);
+                const standBir = (biroData || []).filter(br => norm(br.lokasi) === targetKec).map(cardBiroHtml);
+                data = [...wBir, ...standBir];
                 emptyMsg = 'Belum ada biro / agen perjalanan terdaftar di kecamatan ini.';
-                renderItem = cardWisataHtml;
+                renderItem = item => item;
             }
 
             mapCurrentData = data;
@@ -9398,13 +9492,20 @@
             const wItems = wisataData.filter(w => norm(w.lokasi) === targetKec);
             const eItems = eventData.filter(e => norm(e.lokasi) === targetKec);
             const ekItems = ekrafData.filter(e => norm(e.lokasi) === targetKec);
+            const kulItems = (kulinerData || []).filter(k => norm(k.lokasi) === targetKec);
+            const belItems = (belanjaData || []).filter(b => norm(b.lokasi) === targetKec);
+            const pengItems = (penginapanData || []).filter(p => norm(p.lokasi) === targetKec);
+            const pakItems = (paketData || []).filter(pk => norm(pk.lokasi) === targetKec);
+            const birItems = (biroData || []).filter(br => norm(br.lokasi) === targetKec);
 
             const countWisataOnly = wItems.filter(w => !['kuliner', 'penginapan', 'belanja', 'paket wisata', 'biro perjalanan'].includes(norm(w.kategori))).length;
-            const countKuliner = wItems.filter(w => norm(w.kategori) === 'kuliner').length + ekItems.filter(e => norm(e.subsektor) === 'kuliner').length;
-            const countPenginapan = wItems.filter(w => norm(w.kategori) === 'penginapan').length;
-            const countBelanja = wItems.filter(w => norm(w.kategori) === 'belanja').length;
-            const countPaket = wItems.filter(w => norm(w.kategori) === 'paket wisata').length;
-            const countBiro = wItems.filter(w => norm(w.kategori) === 'biro perjalanan').length;
+            const countKuliner = wItems.filter(w => norm(w.kategori) === 'kuliner').length + ekItems.filter(e => norm(e.subsektor) === 'kuliner').length + kulItems.length;
+            const countPenginapan = wItems.filter(w => norm(w.kategori) === 'penginapan').length + pengItems.length;
+            const countBelanja = wItems.filter(w => norm(w.kategori) === 'belanja').length + belItems.length;
+            const countPaket = wItems.filter(w => norm(w.kategori) === 'paket wisata').length + pakItems.length;
+            const countBiro = wItems.filter(w => norm(w.kategori) === 'biro perjalanan').length + birItems.length;
+
+            const totalSemua = wItems.length + eItems.length + ekItems.length + kulItems.length + belItems.length + pengItems.length + pakItems.length + birItems.length;
 
             const nameEl = document.getElementById('map-kec-name');
             if (nameEl) nameEl.textContent = kec;
@@ -9414,7 +9515,7 @@
                 if (el) el.textContent = count;
             };
 
-            setBadge('map-kec-semua-count', wItems.length + eItems.length + ekItems.length);
+            setBadge('map-kec-semua-count', totalSemua);
             setBadge('map-kec-wisata-count', countWisataOnly);
             setBadge('map-kec-event-count', eItems.length);
             setBadge('map-kec-ekraf-count', ekItems.length);
