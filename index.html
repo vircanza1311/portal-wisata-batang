@@ -613,65 +613,67 @@
                 </div>
             </div>
 
-            <!-- ═══ STATS TICKER (8 PORTAL CATEGORIES) ═══ -->
+            <!-- ═══ STATS TICKER (8 PORTAL CATEGORIES - 2 ROWS GRID) ═══ -->
             <div
-                class="relative bg-gradient-to-r from-[#0b1b36] via-[#0e274c] to-[#0b1b36] border-t border-b border-brand-700/50 shadow-2xl py-7 overflow-hidden z-20">
+                class="relative bg-gradient-to-r from-[#0b1b36] via-[#0e274c] to-[#0b1b36] border-t border-b border-brand-700/50 shadow-2xl py-8 overflow-hidden z-20">
                 <div class="max-w-7xl mx-auto px-4 relative z-10">
-                    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
-                        <div onclick="navigate('wisata')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-compass"></i></div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4 md:gap-5">
+                        <!-- Row 1 -->
+                        <div onclick="navigate('wisata')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-compass"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-wisata" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-cyan-200/75 font-bold uppercase tracking-wider mt-1 truncate">Wisata</p>
+                                <p id="stat-wisata" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-cyan-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Destinasi Wisata</p>
                             </div>
                         </div>
-                        <div onclick="navigate('event')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-calendar-star"></i></div>
+                        <div onclick="navigate('event')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-calendar-star"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-event" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-indigo-200/75 font-bold uppercase tracking-wider mt-1 truncate">Event</p>
+                                <p id="stat-event" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-indigo-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Event Terdaftar</p>
                             </div>
                         </div>
-                        <div onclick="navigate('ekraf')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-storefront"></i></div>
+                        <div onclick="navigate('ekraf')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-storefront"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-ekraf" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-amber-200/75 font-bold uppercase tracking-wider mt-1 truncate">Ekraf</p>
+                                <p id="stat-ekraf" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-amber-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Pelaku Ekraf</p>
                             </div>
                         </div>
-                        <div onclick="navigate('kuliner')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-bowl-food"></i></div>
+                        <div onclick="navigate('kuliner')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-rose-500/20 text-rose-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-bowl-food"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-kuliner" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-rose-200/75 font-bold uppercase tracking-wider mt-1 truncate">Kuliner</p>
+                                <p id="stat-kuliner" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-rose-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Kuliner Khas</p>
                             </div>
                         </div>
-                        <div onclick="navigate('belanja')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-shopping-bag"></i></div>
+                        <!-- Row 2 -->
+                        <div onclick="navigate('belanja')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-shopping-bag"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-belanja" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-emerald-200/75 font-bold uppercase tracking-wider mt-1 truncate">Belanja</p>
+                                <p id="stat-belanja" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-emerald-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Pusat Belanja</p>
                             </div>
                         </div>
-                        <div onclick="navigate('penginapan')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-house-line"></i></div>
+                        <div onclick="navigate('penginapan')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-house-line"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-penginapan" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-sky-200/75 font-bold uppercase tracking-wider mt-1 truncate">Penginapan</p>
+                                <p id="stat-penginapan" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-sky-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Penginapan & Hotel</p>
                             </div>
                         </div>
-                        <div onclick="navigate('paket')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-suitcase"></i></div>
+                        <div onclick="navigate('paket')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-suitcase"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-paket" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-purple-200/75 font-bold uppercase tracking-wider mt-1 truncate">Paket Tour</p>
+                                <p id="stat-paket" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-purple-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Paket Wisata</p>
                             </div>
                         </div>
-                        <div onclick="navigate('biro')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-yellow-500/20 text-yellow-300 flex items-center justify-center shrink-0 text-xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-bus"></i></div>
+                        <div onclick="navigate('biro')" class="flex items-center gap-3 md:gap-3.5 p-3.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition cursor-pointer group shadow-md">
+                            <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-yellow-500/20 text-yellow-300 flex items-center justify-center shrink-0 text-xl md:text-2xl group-hover:scale-110 transition shadow-inner"><i class="ph-fill ph-bus"></i></div>
                             <div class="min-w-0">
-                                <p id="stat-biro" class="text-lg font-black text-white leading-none truncate">—</p>
-                                <p class="text-[10px] text-yellow-200/75 font-bold uppercase tracking-wider mt-1 truncate">Biro Travel</p>
+                                <p id="stat-biro" class="text-xl md:text-2xl font-black text-white leading-none">—</p>
+                                <p class="text-xs text-yellow-200/80 font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap">Biro Perjalanan</p>
                             </div>
                         </div>
                     </div>
@@ -2798,6 +2800,39 @@
                                 <p class="text-xs font-semibold text-gray-500 mb-2">Preview:</p>
                                 <div id="preview-home-ekraf" class="grid grid-cols-3 gap-2"></div>
                             </div>
+                        <!-- Layanan & Fasilitas Wisata Spotlight Settings -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
+                            <p class="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
+                                <i class="ph-fill ph-bowl-food text-rose-500 text-base"></i> Layanan & Fasilitas Wisata (Spotlight Beranda)
+                            </p>
+                            <p class="text-xs text-gray-400 mb-4">Pilih item spesifik dari modul Kuliner, Penginapan, Belanja, dan Paket Wisata untuk ditampilkan di beranda.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-bowl-food text-amber-500"></i> Sorotan Kuliner Khas</label>
+                                    <select id="inp-home-spotlight-kuliner" class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-xs bg-white">
+                                        <!-- Injected via JS -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-house-line text-sky-500"></i> Sorotan Penginapan / Hotel</label>
+                                    <select id="inp-home-spotlight-penginapan" class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-xs bg-white">
+                                        <!-- Injected via JS -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-shopping-bag text-emerald-500"></i> Sorotan Pusat Belanja</label>
+                                    <select id="inp-home-spotlight-belanja" class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-xs bg-white">
+                                        <!-- Injected via JS -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1 flex items-center gap-1.5"><i class="ph-fill ph-suitcase text-purple-500"></i> Sorotan Paket Wisata</label>
+                                    <select id="inp-home-spotlight-paket" class="w-full border border-gray-300 rounded-lg p-2.5 outline-none text-xs bg-white">
+                                        <!-- Injected via JS -->
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="pt-2">
@@ -4189,44 +4224,44 @@
         </div>
 
         <!-- ── MAIN FOOTER GRID ── -->
-        <div class="max-w-7xl mx-auto px-6 pt-12 pb-10">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
+        <div class="max-w-7xl mx-auto px-6 pt-12 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
 
                 <!-- Brand col (4/12) -->
-                <div class="lg:col-span-4">
+                <div class="lg:col-span-4 space-y-5">
                     <!-- Logo -->
-                    <div class="inline-flex items-center mb-5 cursor-pointer bg-white/10 hover:bg-white/15 transition rounded-2xl px-5 py-3 border border-white/10 backdrop-blur-sm shadow-md"
+                    <div class="inline-flex items-center cursor-pointer bg-white/10 hover:bg-white/15 transition rounded-2xl px-5 py-3 border border-white/15 backdrop-blur-sm shadow-md"
                         onclick="navigate('home')">
                         <img src="https://puitcehmhgizfioeybsz.supabase.co/storage/v1/object/public/assets/logo.png"
                             alt="Dolan Batang" class="h-14 object-contain max-w-[200px]" loading="lazy"
                             onerror="this.parentElement.innerHTML='<span class=\'font-extrabold text-white text-xl tracking-tight\'>Dolan Batang</span>'">
                     </div>
-                    <p class="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
-                        Portal resmi pariwisata Kabupaten Batang. Informasi lengkap destinasi wisata, agenda event, kuliner khas, penginapan, dan ekonomi kreatif.
+                    <p class="text-white/60 text-xs md:text-sm leading-relaxed max-w-sm">
+                        Portal resmi pariwisata Kabupaten Batang. Temukan informasi lengkap destinasi wisata, agenda event, kuliner khas, penginapan, dan ekonomi kreatif.
                     </p>
 
                     <!-- Stats mini row (4 modules) -->
-                    <div class="grid grid-cols-4 gap-2 mb-6">
-                        <div class="bg-white/10 rounded-xl p-2.5 text-center border border-white/10">
+                    <div class="grid grid-cols-4 gap-2 pt-1">
+                        <div class="bg-white/5 rounded-xl p-2.5 text-center border border-white/10">
                             <p id="footer-stat-wisata" class="text-base font-extrabold text-white leading-none">—</p>
-                            <p class="text-[8px] text-white/50 uppercase tracking-wider font-bold mt-1">Wisata</p>
+                            <p class="text-[9px] text-white/50 uppercase tracking-wider font-bold mt-1">Wisata</p>
                         </div>
-                        <div class="bg-white/10 rounded-xl p-2.5 text-center border border-white/10">
+                        <div class="bg-white/5 rounded-xl p-2.5 text-center border border-white/10">
                             <p id="footer-stat-event" class="text-base font-extrabold text-white leading-none">—</p>
-                            <p class="text-[8px] text-white/50 uppercase tracking-wider font-bold mt-1">Event</p>
+                            <p class="text-[9px] text-white/50 uppercase tracking-wider font-bold mt-1">Event</p>
                         </div>
-                        <div class="bg-white/10 rounded-xl p-2.5 text-center border border-white/10">
+                        <div class="bg-white/5 rounded-xl p-2.5 text-center border border-white/10">
                             <p id="footer-stat-ekraf" class="text-base font-extrabold text-white leading-none">—</p>
-                            <p class="text-[8px] text-white/50 uppercase tracking-wider font-bold mt-1">Ekraf</p>
+                            <p class="text-[9px] text-white/50 uppercase tracking-wider font-bold mt-1">Ekraf</p>
                         </div>
-                        <div class="bg-white/10 rounded-xl p-2.5 text-center border border-white/10">
+                        <div class="bg-white/5 rounded-xl p-2.5 text-center border border-white/10">
                             <p id="footer-stat-kuliner" class="text-base font-extrabold text-white leading-none">—</p>
-                            <p class="text-[8px] text-white/50 uppercase tracking-wider font-bold mt-1">Kuliner</p>
+                            <p class="text-[9px] text-white/50 uppercase tracking-wider font-bold mt-1">Kuliner</p>
                         </div>
                     </div>
 
                     <!-- Social icons -->
-                    <div class="flex gap-2.5 flex-wrap">
+                    <div class="flex gap-2.5 flex-wrap pt-1">
                         <a id="footer-ig" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="Instagram" style="display:none"><i class="ph-fill ph-instagram-logo"></i></a>
                         <a id="footer-fb" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="Facebook" style="display:none"><i class="ph-fill ph-facebook-logo"></i></a>
                         <a id="footer-tw" href="#" target="_blank" rel="noopener" class="footer-social-btn group" title="X / Twitter" style="display:none"><i class="ph-fill ph-x-logo"></i></a>
@@ -4236,69 +4271,70 @@
 
                 <!-- Menu Utama col (3/12) -->
                 <div class="lg:col-span-3">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                        <span class="w-4 h-px bg-white/20 inline-block"></span>Menu Utama
+                    <h4 class="text-xs font-black text-white uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>Menu Navigasi
                     </h4>
-                    <div class="grid grid-cols-2 gap-x-2 gap-y-1">
-                        <button onclick="navigate('home')" class="footer-nav-item"><i class="ph-fill ph-house-simple text-cyan-400"></i> Beranda</button>
-                        <button onclick="navigate('wisata')" class="footer-nav-item"><i class="ph-fill ph-compass text-blue-400"></i> Wisata</button>
-                        <button onclick="navigate('event')" class="footer-nav-item"><i class="ph-fill ph-calendar-star text-indigo-400"></i> Event</button>
-                        <button onclick="navigate('ekraf')" class="footer-nav-item"><i class="ph-fill ph-storefront text-amber-400"></i> Ekraf</button>
-                        <button onclick="navigate('kuliner')" class="footer-nav-item"><i class="ph-fill ph-bowl-food text-rose-400"></i> Kuliner</button>
-                        <button onclick="navigate('belanja')" class="footer-nav-item"><i class="ph-fill ph-shopping-bag text-emerald-400"></i> Belanja</button>
-                        <button onclick="navigate('penginapan')" class="footer-nav-item"><i class="ph-fill ph-house-line text-sky-400"></i> Hotel</button>
-                        <button onclick="navigate('paket')" class="footer-nav-item"><i class="ph-fill ph-suitcase text-purple-400"></i> Paket Tour</button>
-                        <button onclick="navigate('biro')" class="footer-nav-item"><i class="ph-fill ph-bus text-yellow-400"></i> Biro Travel</button>
-                        <button onclick="navigate('kontak')" class="footer-nav-item"><i class="ph-fill ph-chat-dots text-white/70"></i> Kontak</button>
+                    <div class="flex flex-col space-y-1.5 text-xs font-semibold text-white/70">
+                        <button onclick="navigate('home')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-house-simple text-cyan-400 text-sm"></i> Beranda</button>
+                        <button onclick="navigate('wisata')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-compass text-blue-400 text-sm"></i> Destinasi Wisata</button>
+                        <button onclick="navigate('event')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-calendar-star text-indigo-400 text-sm"></i> Agenda Event</button>
+                        <button onclick="navigate('ekraf')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-storefront text-amber-400 text-sm"></i> Ekonomi Kreatif</button>
+                        <button onclick="navigate('kuliner')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-bowl-food text-rose-400 text-sm"></i> Kuliner Khas</button>
+                        <button onclick="navigate('belanja')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-shopping-bag text-emerald-400 text-sm"></i> Pusat Belanja</button>
+                        <button onclick="navigate('penginapan')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-house-line text-sky-400 text-sm"></i> Penginapan & Hotel</button>
+                        <button onclick="navigate('paket')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-suitcase text-purple-400 text-sm"></i> Paket Wisata</button>
+                        <button onclick="navigate('biro')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-bus text-yellow-400 text-sm"></i> Biro Perjalanan</button>
+                        <button onclick="navigate('kontak')" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition text-left"><i class="ph-fill ph-chat-dots text-white/50 text-sm"></i> Kontak Kami</button>
                     </div>
                 </div>
 
-                <!-- Directory Jelajahi col (2/12) -->
+                <!-- Direktori col (2/12) -->
                 <div class="lg:col-span-2">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                        <span class="w-4 h-px bg-white/20 inline-block"></span>Direktori
+                    <h4 class="text-xs font-black text-white uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>Direktori
                     </h4>
-                    <ul class="space-y-1 text-xs text-white/60">
-                        <li><button onclick="navigate('wisata')" class="hover:text-white transition block py-1">Wisata Alam & Pesisir</button></li>
-                        <li><button onclick="navigate('event')" class="hover:text-white transition block py-1">Agenda & Festival</button></li>
-                        <li><button onclick="navigate('kuliner')" class="hover:text-white transition block py-1">Kuliner Khas Batang</button></li>
-                        <li><button onclick="navigate('belanja')" class="hover:text-white transition block py-1">Sentra Batik & Souvenir</button></li>
-                        <li><button onclick="navigate('penginapan')" class="hover:text-white transition block py-1">Hotel, Homestay & Villa</button></li>
-                        <li><button onclick="navigate('paket')" class="hover:text-white transition block py-1">Paket Wisata & Edukasi</button></li>
-                        <li><button onclick="navigate('biro')" class="hover:text-white transition block py-1">Agen & Bus Pariwisata</button></li>
+                    <ul class="space-y-2 text-xs font-medium text-white/60">
+                        <li><button onclick="navigate('wisata')" class="hover:text-cyan-300 transition flex items-center gap-1.5 py-0.5"><i class="ph ph-caret-right text-[10px] text-cyan-400"></i> Wisata Alam</button></li>
+                        <li><button onclick="navigate('event')" class="hover:text-cyan-300 transition flex items-center gap-1.5 py-0.5"><i class="ph ph-caret-right text-[10px] text-cyan-400"></i> Agenda Event</button></li>
+                        <li><button onclick="navigate('kuliner')" class="hover:text-cyan-300 transition flex items-center gap-1.5 py-0.5"><i class="ph ph-caret-right text-[10px] text-cyan-400"></i> Kuliner Khas</button></li>
+                        <li><button onclick="navigate('belanja')" class="hover:text-cyan-300 transition flex items-center gap-1.5 py-0.5"><i class="ph ph-caret-right text-[10px] text-cyan-400"></i> Batik & Souvenir</button></li>
+                        <li><button onclick="navigate('penginapan')" class="hover:text-cyan-300 transition flex items-center gap-1.5 py-0.5"><i class="ph ph-caret-right text-[10px] text-cyan-400"></i> Hotel & Villa</button></li>
+                        <li><button onclick="navigate('paket')" class="hover:text-cyan-300 transition flex items-center gap-1.5 py-0.5"><i class="ph ph-caret-right text-[10px] text-cyan-400"></i> Paket Tour</button></li>
+                        <li><button onclick="navigate('biro')" class="hover:text-cyan-300 transition flex items-center gap-1.5 py-0.5"><i class="ph ph-caret-right text-[10px] text-cyan-400"></i> Bus Pariwisata</button></li>
                     </ul>
                 </div>
 
                 <!-- Kontak col (3/12) -->
-                <div class="lg:col-span-3">
-                    <h4 class="text-[10px] font-extrabold text-white/40 uppercase tracking-[0.15em] mb-4">Kontak Resmi
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-xs font-black text-white uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>Kontak Resmi
                     </h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-fill ph-phone text-brand-400 text-sm"></i></div>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 text-cyan-400"><i class="ph-fill ph-phone text-sm"></i></div>
                             <div>
-                                <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold">Telepon</p>
-                                <a id="footer-telepon" href="tel:02853391141" class="text-xs font-semibold text-white/80 hover:text-white transition mt-0.5 block">(0285) 391141</a>
+                                <p class="text-[10px] text-white/40 uppercase tracking-wider font-bold">Telepon</p>
+                                <a id="footer-telepon" href="tel:02853391141" class="font-semibold text-white/90 hover:text-white transition block">(0285) 391141</a>
                             </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-fill ph-envelope text-rose-400 text-sm"></i></div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 text-rose-400"><i class="ph-fill ph-envelope text-sm"></i></div>
                             <div>
-                                <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold">Email</p>
-                                <a id="footer-email" href="mailto:batang.tourism@gmail.com" class="text-xs font-semibold text-white/80 hover:text-white transition mt-0.5 block break-all">batang.tourism@gmail.com</a>
+                                <p class="text-[10px] text-white/40 uppercase tracking-wider font-bold">Email</p>
+                                <a id="footer-email" href="mailto:batang.tourism@gmail.com" class="font-semibold text-white/90 hover:text-white transition block break-all">batang.tourism@gmail.com</a>
                             </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-fill ph-map-pin text-amber-400 text-sm"></i></div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 text-amber-400"><i class="ph-fill ph-map-pin text-sm"></i></div>
                             <div>
-                                <p class="text-[9px] text-white/40 uppercase tracking-wider font-bold">Alamat Kantor</p>
-                                <p id="footer-alamat" class="text-xs font-medium text-white/65 mt-0.5 leading-snug">Jl. RA Kartini No.1, Kauman, Kec. Batang, Jawa Tengah</p>
+                                <p class="text-[10px] text-white/40 uppercase tracking-wider font-bold">Alamat Kantor</p>
+                                <p id="footer-alamat" class="font-medium text-white/70 leading-snug">Jl. RA Kartini No.1, Kauman, Kec. Batang, Jawa Tengah 51216</p>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
 
                     <button onclick="navigate('kontak')"
-                        class="mt-5 w-full flex items-center justify-center gap-2 bg-brand-600/80 hover:bg-brand-600 border border-brand-400/40 text-white text-xs font-bold py-2.5 rounded-xl transition shadow-lg">
+                        class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-cyan-600 hover:from-brand-500 hover:to-cyan-500 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg mt-2">
                         <i class="ph-fill ph-paper-plane-tilt text-sm"></i> Kirim Pesan ke Dinpar
                     </button>
                 </div>
@@ -4485,6 +4521,8 @@
         let homeEkrafSelectedIds = [];
         let homeWisataSelectionReady = false;
         let homeEkrafSelectionReady = false;
+        let homeSpotlightIds = { kuliner: 7, penginapan: 12, belanja: 16, paket: 19 };
+
         // ---------------------------------------------------------
         // 3. CORE LOGIC (Fetch & SPA Router)
         // ---------------------------------------------------------
@@ -4545,6 +4583,11 @@
                 if (data.home_ekraf_ids && Array.isArray(data.home_ekraf_ids)) {
                     homeEkrafSelectedIds = data.home_ekraf_ids.map(id => String(id));
                     homeEkrafSelectionReady = true;
+                }
+
+                // Load home spotlight selection
+                if (data.home_spotlight_ids && typeof data.home_spotlight_ids === 'object') {
+                    homeSpotlightIds = { ...homeSpotlightIds, ...data.home_spotlight_ids };
                 }
 
                 // Load counts
@@ -5209,10 +5252,10 @@
             // Homepage Spotlight Section: Kuliner, Hotel, Belanja, Paket Tour
             const gSpotlight = document.getElementById('grid-home-spotlight');
             if (gSpotlight) {
-                const itemKuliner = (typeof kulinerData !== 'undefined' && kulinerData[0]) || { id: 7, nama: 'Nasi Megono Kandeman', jenis: 'Kuliner Khas', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800' };
-                const itemPenginapan = (typeof penginapanData !== 'undefined' && penginapanData[0]) || { id: 12, nama: 'Homestay Pesisir Ujungnegoro', tipe: 'Homestay', foto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800' };
-                const itemBelanja = (typeof belanjaData !== 'undefined' && belanjaData[0]) || { id: 16, nama_toko: 'Pusat Oleh-Oleh Limpung Segar', kategori: 'Sentra Oleh-Oleh', foto: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800' };
-                const itemPaket = (typeof paketData !== 'undefined' && paketData[0]) || { id: 19, nama_paket: 'Paket Jelajah Pantai Kandeman', durasi: 'Tour 1 Hari', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800' };
+                const itemKuliner = (typeof kulinerData !== 'undefined' && (kulinerData.find(k => k.id == homeSpotlightIds.kuliner) || kulinerData[0])) || { id: 7, nama: 'Nasi Megono Kandeman', jenis: 'Kuliner Khas', foto: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800' };
+                const itemPenginapan = (typeof penginapanData !== 'undefined' && (penginapanData.find(p => p.id == homeSpotlightIds.penginapan) || penginapanData[0])) || { id: 12, nama: 'Homestay Pesisir Ujungnegoro', tipe: 'Homestay', foto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800' };
+                const itemBelanja = (typeof belanjaData !== 'undefined' && (belanjaData.find(b => b.id == homeSpotlightIds.belanja) || belanjaData[0])) || { id: 16, nama_toko: 'Pusat Oleh-Oleh Limpung Segar', kategori: 'Sentra Oleh-Oleh', foto: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800' };
+                const itemPaket = (typeof paketData !== 'undefined' && (paketData.find(pk => pk.id == homeSpotlightIds.paket) || paketData[0])) || { id: 19, nama_paket: 'Paket Jelajah Pantai Kandeman', durasi: 'Tour 1 Hari', foto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800' };
 
                 gSpotlight.innerHTML = `
                     <div onclick="openKulinerModal(${itemKuliner.id})" class="flex flex-col bg-white/10 border border-white/15 hover:bg-white/20 rounded-2xl overflow-hidden cursor-pointer transition group">
@@ -9793,10 +9836,31 @@
             }).join('') + limitNotice;
         }
 
+        function populateHomeSpotlightSelects() {
+            const selKuliner = document.getElementById('inp-home-spotlight-kuliner');
+            const selPenginapan = document.getElementById('inp-home-spotlight-penginapan');
+            const selBelanja = document.getElementById('inp-home-spotlight-belanja');
+            const selPaket = document.getElementById('inp-home-spotlight-paket');
+
+            if (selKuliner && typeof kulinerData !== 'undefined') {
+                selKuliner.innerHTML = kulinerData.map(k => `<option value="${k.id}" ${homeSpotlightIds.kuliner == k.id ? 'selected' : ''}>${escapeHtml(k.nama)} (${escapeHtml(k.lokasi || '')})</option>`).join('');
+            }
+            if (selPenginapan && typeof penginapanData !== 'undefined') {
+                selPenginapan.innerHTML = penginapanData.map(p => `<option value="${p.id}" ${homeSpotlightIds.penginapan == p.id ? 'selected' : ''}>${escapeHtml(p.nama)} (${escapeHtml(p.lokasi || '')})</option>`).join('');
+            }
+            if (selBelanja && typeof belanjaData !== 'undefined') {
+                selBelanja.innerHTML = belanjaData.map(b => `<option value="${b.id}" ${homeSpotlightIds.belanja == b.id ? 'selected' : ''}>${escapeHtml(b.nama_toko || b.nama)} (${escapeHtml(b.lokasi || '')})</option>`).join('');
+            }
+            if (selPaket && typeof paketData !== 'undefined') {
+                selPaket.innerHTML = paketData.map(pk => `<option value="${pk.id}" ${homeSpotlightIds.paket == pk.id ? 'selected' : ''}>${escapeHtml(pk.nama_paket || pk.nama)} (${escapeHtml(pk.lokasi || '')})</option>`).join('');
+            }
+        }
+
         function renderHomePickers() {
             syncHomeSelectionDefaults();
             renderHomePicker('wisata');
             renderHomePicker('ekraf');
+            populateHomeSpotlightSelects();
         }
 
         function updateHomeSelection(type, id, checked) {
@@ -9892,6 +9956,17 @@
             const wCount = parseInt(document.getElementById('inp-home-wisata-count').value, 10);
             const eCount = parseInt(document.getElementById('inp-home-ekraf-count').value, 10);
 
+            // Read selected spotlight items
+            const spotKulinerId = document.getElementById('inp-home-spotlight-kuliner')?.value;
+            const spotPenginapanId = document.getElementById('inp-home-spotlight-penginapan')?.value;
+            const spotBelanjaId = document.getElementById('inp-home-spotlight-belanja')?.value;
+            const spotPaketId = document.getElementById('inp-home-spotlight-paket')?.value;
+
+            if (spotKulinerId) homeSpotlightIds.kuliner = spotKulinerId;
+            if (spotPenginapanId) homeSpotlightIds.penginapan = spotPenginapanId;
+            if (spotBelanjaId) homeSpotlightIds.belanja = spotBelanjaId;
+            if (spotPaketId) homeSpotlightIds.paket = spotPaketId;
+
             homeWisataSelectedIds = homeWisataSelectedIds.map(id => String(id));
             homeEkrafSelectedIds = homeEkrafSelectedIds.map(id => String(id));
             homeWisataSelectionReady = true;
@@ -9906,7 +9981,6 @@
             if (gridW) {
                 gridW.dataset.count = wCount;
                 gridW.innerHTML = getSelectedHomeItems(wisataData, homeWisataSelectedIds, wCount, homeWisataSelectionReady).map(createWisataCard).join('');
-                // Adjust grid cols
                 gridW.className = `grid gap-6 xl:gap-8 grid-cols-1 sm:grid-cols-2 ${wCount <= 3 ? 'lg:grid-cols-3' : wCount <= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-4 xl:grid-cols-' + Math.min(wCount, 4)}`;
             }
 
@@ -9920,12 +9994,14 @@
 
             renderHomePickers();
             refreshHomePreview();
+            renderAllViews();
 
             // ── Simpan ke Supabase site_settings ──
             const saved = await saveSiteSettings({
                 hero_slides: heroSlides,
                 home_wisata_ids: homeWisataSelectedIds,
                 home_ekraf_ids: homeEkrafSelectedIds,
+                home_spotlight_ids: homeSpotlightIds,
                 home_wisata_count: wCount,
                 home_ekraf_count: eCount,
                 updated_at: new Date().toISOString(),
