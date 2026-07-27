@@ -3902,12 +3902,18 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Durasi Tour</label>
-                                <select id="inp-paket-durasi"
-                                    class="w-full border border-gray-300 rounded-lg p-2.5 text-sm bg-white">
-                                    <option value="1 Day Tour">1 Day Tour</option>
-                                    <option value="2D1N Adventure">2D1N Adventure</option>
-                                    <option value="3D2N Full Explore">3D2N Full Explore</option>
-                                </select>
+                                <input type="text" id="inp-paket-durasi" list="list-paket-durasi" required
+                                    class="w-full border border-gray-300 rounded-lg p-2.5 text-sm bg-white"
+                                    placeholder="Contoh: 1 Day Tour, 2D1N Adventure, Half Day, 4D3N, dll.">
+                                <datalist id="list-paket-durasi">
+                                    <option value="Half Day Tour (6 Jam)"></option>
+                                    <option value="1 Day Tour (Full Day)"></option>
+                                    <option value="2D1N Adventure"></option>
+                                    <option value="3D2N Full Explore"></option>
+                                    <option value="4D3N Special Tour"></option>
+                                    <option value="Custom Tour (Sesuai Permintaan)"></option>
+                                </datalist>
+                                <p class="text-[11px] text-gray-400 mt-1">Ketik durasi tour secara bebas sesuai dengan paket yang Anda buat.</p>
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Harga per Pax (Rp)</label>
