@@ -5611,12 +5611,18 @@
                 }
             }
 
+            window.currentModalGaleri = (data.galeri && data.galeri.length > 0) ? data.galeri : (data.foto ? [data.foto] : []);
+
             const html = `
-                <div class="bg-gray-900 w-full h-[500px] relative">
-                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80" loading="eager">
-                    <div class="absolute bottom-6 right-6 flex gap-2">
-                        <img src="${optimizeImage(data.foto, 200, 70)}" class="w-24 h-16 object-cover border-2 border-white rounded cursor-pointer" loading="lazy">
+                <div class="bg-gray-900 w-full h-[500px] relative cursor-pointer group overflow-hidden" onclick="openModalGaleriLightbox(0)">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500" loading="eager">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
+                        <i class="ph-fill ph-magnifying-glass-plus text-white text-4xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
                     </div>
+                    ${(data.galeri && data.galeri.length > 0) ? `
+                    <div class="absolute bottom-6 right-6 flex items-center gap-2 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/20">
+                        <i class="ph-fill ph-images text-cyan-300"></i> ${data.galeri.length} Foto (Klik Perbesar)
+                    </div>` : ''}
                 </div>
                 <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-12">
                     <div class="w-full lg:w-2/3">
@@ -5644,12 +5650,12 @@
                                 ${data.galeri.map((url, i) => `
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
-                                     onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
+                                     onclick="event.stopPropagation(); openModalGaleriLightbox(${i})">
                                     <img src="${optimizeImage(url, 600)}" alt="Galeri Wisata ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                                          loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300 flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
                                     </div>
                                 </div>`).join('')}
@@ -5739,9 +5745,14 @@
                 }
             }
 
+            window.currentModalGaleri = (data.galeri && data.galeri.length > 0) ? data.galeri : (data.foto ? [data.foto] : []);
+
             const html = `
-                <div class="w-full h-[400px] relative bg-gray-900">
-                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-60" loading="eager">
+                <div class="w-full h-[400px] relative bg-gray-900 cursor-pointer group overflow-hidden" onclick="openModalGaleriLightbox(0)">
+                    <img src="${optimizeImage(data.foto, 1200, 90)}" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition duration-500" loading="eager">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
+                        <i class="ph-fill ph-magnifying-glass-plus text-white text-4xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
+                    </div>
                 </div>
                 <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-10">
                     <div class="w-full lg:w-2/3">
@@ -5777,11 +5788,11 @@
                                 ${data.galeri.slice(0, 6).map((url, i) => `
                                 <div class="relative overflow-hidden cursor-pointer group ${i === 0 && data.galeri.length >= 3 ? 'col-span-2' : ''}"
                                      style="aspect-ratio:${i === 0 && data.galeri.length >= 3 ? '16/9' : '1/1'}"
-                                     onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, '&#39;')})">
+                                     onclick="event.stopPropagation(); openModalGaleriLightbox(${i})">
                                     <img src="${optimizeImage(url, 600)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
                                          loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
                                     </div>
                                     ${i === 5 && data.galeri.length > 6 ? `<div class="absolute inset-0 bg-black/50 flex items-center justify-center"><span class="text-white font-bold text-xl">+${data.galeri.length - 6}</span></div>` : ''}
@@ -5878,6 +5889,8 @@
             const otherEkraf = ekrafData.filter(e => e.id != data.id).slice(0, 3);
             const suggestions = relatedEkraf.length > 0 ? relatedEkraf : otherEkraf;
 
+            window.currentModalGaleri = (data.galeri && data.galeri.length > 0) ? data.galeri : (data.foto ? [data.foto] : []);
+
             const html = `
                 <!-- HERO BANNER -->
                 <div class="relative w-full min-h-[400px] lg:min-h-[480px] overflow-hidden bg-gray-900">
@@ -5893,9 +5906,12 @@
                     <div class="relative z-10 max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-10">
                         <!-- Avatar / Photo -->
                         <div class="shrink-0">
-                            <div class="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border-4 border-white/30 shadow-2xl bg-white/20 backdrop-blur-sm">
+                            <div class="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border-4 border-white/30 shadow-2xl bg-white/20 backdrop-blur-sm cursor-pointer group relative" onclick="openModalGaleriLightbox(0)">
                                 ${data.foto
-                    ? `<img src="${optimizeImage(data.foto, 800)}" class="w-full h-full object-cover" loading="eager">`
+                    ? `<img src="${optimizeImage(data.foto, 800)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="eager">
+                       <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300 flex items-center justify-center">
+                           <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
+                       </div>`
                     : `<div class="w-full h-full flex items-center justify-center text-white/60"><i class="ph ${theme.icon} text-7xl"></i></div>`}
                             </div>
                         </div>
@@ -5975,12 +5991,12 @@
                                 ${data.galeri.map((url, i) => `
                                 <div class="relative group overflow-hidden rounded-xl bg-gray-100 cursor-pointer ${i === 0 && data.galeri.length >= 5 ? 'row-span-2 col-span-2' : ''}"
                                      style="aspect-ratio: ${i === 0 && data.galeri.length >= 5 ? '4/3' : '1/1'}"
-                                     onclick="openLightbox('${url}', ${i}, ${JSON.stringify(data.galeri).replace(/'/g, "&#39;")})">
+                                     onclick="event.stopPropagation(); openModalGaleriLightbox(${i})">
                                     <img src="${optimizeImage(url, 600)}" alt="Galeri ${i + 1}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                                          loading="${i === 0 ? 'eager' : 'lazy'}"
                                          onerror="this.parentElement.style.display='none'">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300 flex items-center justify-center">
                                         <i class="ph-fill ph-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition drop-shadow-lg"></i>
                                     </div>
                                 </div>`).join('')}
